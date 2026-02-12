@@ -9,7 +9,7 @@ import {finishExperiment, finishTracking, initTracking, registerElement} from ".
 import {useExerciseProgressUpdater} from "../../hooks/useExerciseProgressUpdater";
 import {getNextExercise} from "../../services/getNextExercise";
 import {TRAINING_MODES} from "../../Globals";
-import {getGuidedIndex} from "../../services/getGuidedIndex";
+import GifComponent from "../GifComponent";
 
 let TypePhase2 = () => {
 
@@ -68,6 +68,7 @@ let TypePhase2 = () => {
 	let [id, setId] = useState(INITIAL_ID);
 	let [current, setCurrent] = useState(INITIAL_ELEMENT);
 	let [timer, setTimer] = useState(undefined);
+	let [showGif, setShowGif] = useState(false);
 
 	let normalize = (word) => {
 		return word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -97,7 +98,9 @@ let TypePhase2 = () => {
 									             ) / 1000
 								}, title:           exercise.title, representation: exercise.representation, networkType: exercise.networkType, date: Date.now()
 							            });
+							setShowGif(true);
 							setTimer(setTimeout(() => {
+								setShowGif(false);
 								finishExperiment();
 								finishTracking("/students/exercises");
 								updateExerciseProgress(exercise.index).then(() => {
@@ -563,6 +566,7 @@ let TypePhase2 = () => {
 					</Row>
 				</Flex>
 			</Flex>
+			<GifComponent show={showGif}/>
 		</Card>
 	);
 };

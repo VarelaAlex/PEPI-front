@@ -16,7 +16,7 @@ import {useAvatar} from "../AvatarContext";
 import {getNextExercise} from '../../services/getNextExercise';
 import {TRAINING_MODES} from "../../Globals";
 import {executeWithProbability} from "../../services/executeWithProbability";
-import {getGuidedIndex} from "../../services/getGuidedIndex";
+import GifComponent from "../GifComponent";
 
 let DnDPhase2 = () => {
 
@@ -78,6 +78,7 @@ let DnDPhase2 = () => {
     let [current, setCurrent] = useState(INITIAL_ELEMENT);
     let [timer, setTimer] = useState(undefined);
     let [countErrors, setCountErrors] = useState(0);
+    let [showGif, setShowGif] = useState(false);
 
     let saveFeedback = async (feedback) => {
 
@@ -404,7 +405,9 @@ let DnDPhase2 = () => {
                 audio: `p2-end-${index}`,
                 afterDelay: 0
             }]);
+            setShowGif(true);
             setTimer(setTimeout(() => {
+                setShowGif(false);
                 finishExperiment();
                 finishTracking("/students/exercises");
                 updateExerciseProgress(exercise.index).then(() => {
@@ -694,6 +697,7 @@ let DnDPhase2 = () => {
                     </Flex>
                 </DndContext>
             </Flex>
+        <GifComponent show={showGif}/>
         </Card>);
 };
 

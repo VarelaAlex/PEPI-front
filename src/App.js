@@ -46,6 +46,7 @@ import {useAvatar} from "./components/AvatarContext";
 import ClosedExercisesSelector from "./components/student/ClosedExercisesSelectorComponent";
 import AvatarNavigationListener from "./components/AvatarNavigationListener";
 import InteractionBlocker from "./components/InteractionBlockerComponent";
+import EditExercise from "./components/teacher/EditExerciseComponent";
 
 let App = () => {
 
@@ -369,6 +370,7 @@ let App = () => {
 								<Route path="/teachers/classrooms/:classroomName/students" element={<CreateStudent />} />
 								<Route path="/teachers/manageExercises" element={<ExercisesList />} />
 								<Route path="/teachers/create" element={<CreateExercise isMobile={isMobile} />} />
+								<Route path="/teachers/exercise/:exerciseId/edit" element={<EditExercise />} />
 								<Route path='/teachers/profile' element={<Profile />} />
 								<Route path='/teachers/classroomStats/:classroomName' element={<ClassroomStatistics classroomId={classroomId} />} />
 								<Route path='/teachers/studentStats/:studentId' element={<StudentStatistics studentName={studentName} />} />

@@ -1,4 +1,4 @@
-import { DeleteOutlined }                                                        from "@ant-design/icons";
+import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import { Alert, Button, Card, Divider, Empty, Popconfirm, Spin, Table, Tooltip } from "antd";
 import { useEffect, useState }                                                   from "react";
 import { useTranslation }                                                        from "react-i18next";
@@ -36,9 +36,9 @@ let ExercisesList = (props) => {
 			align:     "center",
 			render:    (_id) => (
 				isMobile ? <>
-					{/*<Tooltip title={t("exercise.table.tooltips.edit")} mouseEnterDelay="0.3" trigger={["hover", "focus"]}>
+					<Tooltip title={t("exercise.table.tooltips.edit")} mouseEnterDelay="0.3" trigger={["hover", "focus"]}>
 					 <Button onClick={() => navigate(`/teachers/exercise/${_id}/edit`)} icon={<EditOutlined />} style={{ marginRight: "1vmax" }} />
-					 </Tooltip>*/ }
+					 </Tooltip>
 					<Tooltip title={ t("exercise.table.tooltips.delete") } mouseEnterDelay="0.3" trigger={ ["hover", "focus"] }>
 						<Popconfirm
 							title={ t("exercise.delete.popconfirm.title") }
@@ -52,7 +52,7 @@ let ExercisesList = (props) => {
 						</Popconfirm>
 					</Tooltip>
 				</> : <>
-					{/*<Button onClick={() => navigate(`/teachers/exercise/${_id}/edit`)} style={{ marginRight: "1vmax" }}> {t("exercise.table.buttons.edit")}</Button >*/ }
+					<Button onClick={() => navigate(`/teachers/exercise/${_id}/edit`)} style={{ marginRight: "1vmax" }}> {t("exercise.table.buttons.edit")}</Button >
 					<Popconfirm
 						title={ t("exercise.delete.popconfirm.title") }
 						description={ t("exercise.delete.popconfirm.description") }

@@ -360,6 +360,11 @@
         "button": "Crear ejercicio"
       }
     },
+    "edit": {
+      "title": "Editar ejercicio",
+      "button": "Guardar cambios"
+    },
+    "clear": "Borrar",
     "carousel": {
       "empty": "No existen ejercicios"
     },

@@ -12,6 +12,7 @@ import {nexusX, nodes, pathBottom, pathBottom2, pathTop, STOP, stopX, viewBoxWid
 import {useAvatar} from "../AvatarContext";
 import {HAPPY_SPEAKING, NEUTRAL, WORRIED_SPEAKING} from "../Avatar";
 import {executeWithProbability} from "../../services/executeWithProbability";
+import GifComponent from "../GifComponent";
 
 let DnDPhase1 = () => {
 
@@ -72,6 +73,7 @@ let DnDPhase1 = () => {
     let [element, setElement] = useState();
     let [extendedNodes, setExtendedNodes] = useState(INITIAL_EXTENDED_NODES);
     let [timer, setTimer] = useState(undefined);
+    let [showGif, setShowGif] = useState(false);
 
     let [droppableNodes, setDroppableNodes] = useState(JSON.parse(JSON.stringify(INITIAL_EXTENDED_NODES)));
     let [current, setCurrent] = useState(INITIAL_ELEMENT);
@@ -381,8 +383,9 @@ let DnDPhase1 = () => {
                 audio: `p1-end-${index}`,
                 afterDelay: 0
             }]);
-
+            setShowGif(true);
             setTimer(setTimeout(() => {
+                setShowGif(false);
                 finishTracking("/exerciseDnD/phase2");
                 navigate(`/exerciseDnD/phase2/${trainingMode}`);
             }, 4500));
@@ -558,6 +561,7 @@ let DnDPhase1 = () => {
                     </Flex>
                 </DndContext>
             </Flex>
+        <GifComponent show={showGif}/>
         </Card>);
 };
 

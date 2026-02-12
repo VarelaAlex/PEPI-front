@@ -7,6 +7,7 @@ import { useSession }                                                           
 import { nexusX, nodes, pathBottom, pathBottom2, pathTop, stopX, viewBoxWidth, X, Y } from "./NetworkProps";
 import "../assets/styles/font.css";
 import {finishTracking, initTracking, registerElement} from "../../scriptTest2";
+import GifComponent from "../GifComponent";
 
 let TypePhase1 = () => {
 
@@ -65,6 +66,7 @@ let TypePhase1 = () => {
 	let [id, setId] = useState(INITIAL_ID);
 	let [current, setCurrent] = useState(INITIAL_ELEMENT);
 	let [timer, setTimer] = useState(undefined);
+	let [showGif, setShowGif] = useState(false);
 
 	let check = () => {
 
@@ -95,7 +97,9 @@ let TypePhase1 = () => {
 									                         ) / 1000
 								            }
 							            });
+							setShowGif(true);
 							setTimer(setTimeout(() => {
+								setShowGif(false);
 								finishTracking("/exerciseType/phase2");
 								navigate(`/exerciseType/phase2/${trainingMode}`);
 							}, 3000));
@@ -576,6 +580,7 @@ let TypePhase1 = () => {
 					</svg>
 				</Flex>
 			</Flex>
+			<GifComponent show={showGif}/>
 		</Card>
 	);
 };

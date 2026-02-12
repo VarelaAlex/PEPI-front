@@ -61,7 +61,7 @@ let Header = (props) => {
 
     return (
         <Header style={{ padding: "0vh 3vh", display: 'flex', justifyContent: 'space-between' }}>
-            <Row gutter="16">
+            <Row gutter={16}>
                 {login &&
                     <Col style={{ display: 'flex', alignItems: 'center' }}>
                         <Button

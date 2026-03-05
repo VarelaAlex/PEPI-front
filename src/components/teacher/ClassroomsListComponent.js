@@ -221,7 +221,7 @@ let ClassroomsList = (props) => {
     };
 
     return (<Spin spinning={loading} tip="Loading" size="large">
-            <Card title={t("classrooms.table.title")} style={{width: "90vw"}}>
+            <Card title={t("classrooms.table.title")} style={{width: "90vw", marginTop: "2vh", marginBottom: "2vh"}}>
                 {classrooms.length <= 0 ?
                     <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={t("classrooms.table.empty")}/> :
                     <Table bordered columns={columns}

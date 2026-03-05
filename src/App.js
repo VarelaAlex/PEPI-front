@@ -31,7 +31,7 @@ import BlankPage from './components/BlankPageComponent';
 import Profile from './components/teacher/ProfileComponent';
 import ClassroomStatistics from './components/teacher/ClassroomStatisticsComponent';
 import StudentStatistics from './components/teacher/StudentStatisticsComponent';
-import AboutEPI from './components/teacher/AboutEPIComponent';
+import AboutEPI from './components/teacher/AboutPEPIComponent';
 import SurveyA from "./components/teacher/SurveyAComponent";
 import SurveyB from "./components/teacher/SurveyBComponent";
 import SelectMode from "./components/student/SelectModeComponent";
@@ -47,6 +47,7 @@ import ClosedExercisesSelector from "./components/student/ClosedExercisesSelecto
 import AvatarNavigationListener from "./components/AvatarNavigationListener";
 import InteractionBlocker from "./components/InteractionBlockerComponent";
 import EditExercise from "./components/teacher/EditExerciseComponent";
+import TeacherHelpButton from "./components/TeacherHelpButtonComponent";
 
 let App = () => {
 
@@ -131,6 +132,30 @@ let App = () => {
         }
     ];
 
+	const anonymousMenuFooter = [
+		{
+			key: "team",
+			label: <Link to="/funding" onClick={() => setOpen(false)}>{t("sider.funding")}</Link>,
+			danger: false,
+			icon: <DollarOutlined />
+		}
+	];
+
+	let anonymousMenuItems = [
+		{
+			key: "selectRole",
+			label: <Link to="/selectRole" onClick={() => setOpen(false)}>{t("sider.selectRole")}</Link>,
+			danger: false,
+			icon: <UserOutlined />
+		},
+		{
+			key: "about",
+			label: <Link to="/aboutEPI" onClick={() => setOpen(false)}>{t("sider.about")}</Link>,
+			danger: false,
+			icon: <InfoCircleOutlined />
+		}
+	];
+
 	let teacherMenuItems = [
 		{
 			key: "classrooms",
@@ -183,6 +208,12 @@ let App = () => {
 			danger: false,
 			icon: <InfoCircleOutlined />
 		},
+		{
+			key: "about",
+			label: <Link to="/aboutEPI" onClick={() => setOpen(false)}>{t("sider.about")}</Link>,
+			danger: false,
+			icon: <InfoCircleOutlined />
+		}
 	];
 
 	useEffect(() => {
@@ -275,7 +306,7 @@ let App = () => {
 
 					if (role === "T") {
 
-						const isAllowedPath = matchPath("/teachers/:path/*", location.pathname) || location.pathname.startsWith("/funding");
+						const isAllowedPath = matchPath("/teachers/:path/*", location.pathname) || location.pathname.startsWith("/funding") || location.pathname.startsWith("/aboutEPI");
 
 						if (!isAllowedPath) {
 							navigate("/teachers/menuTeacher");
@@ -284,7 +315,7 @@ let App = () => {
 
 					if (role === "S") {
 
-						const isAllowedPath = matchPath("/students/:path/*", location.pathname) || location.pathname.startsWith("/exercise") || location.pathname.startsWith("/funding");
+						const isAllowedPath = matchPath("/students/:path/*", location.pathname) || location.pathname.startsWith("/exercise") || location.pathname.startsWith("/funding") || location.pathname.startsWith("/aboutEPI");
 
 						if (!isAllowedPath) {
 							navigate("/students/selectMode");
@@ -295,7 +326,7 @@ let App = () => {
 					navigate("/selectRole");
 				}
 			} else {
-				if (!["/loginTeacher", "/loginStudent", "/registerTeacher", "/selectRole", "/funding"].includes(location.pathname)) {
+				if (!["/loginTeacher", "/loginStudent", "/registerTeacher", "/selectRole", "/funding", "/aboutEPI"].includes(location.pathname)) {
 					disconnect();
 					navigate("/selectRole");
 				}
@@ -318,36 +349,56 @@ let App = () => {
 
     let {Text} = Typography;
 
+	const hideHeaderFooterRoutes = [
+		"/exerciseDnD",
+		"/exerciseType",
+		"/students"
+	];
+
+	const shouldHideHeaderFooter = hideHeaderFooterRoutes.some(route =>
+		location.pathname.startsWith(route)
+	);
+
 	return (
 		<>
 			{contextHolder}
             <AudioPermissionModal/>
 			<AvatarNavigationListener />
 			<InteractionBlocker active={isBusy} />
-			<Layout>
-				<Header
+			<Layout style={{ height: "100vh" }}>
+				{<Header
 					login={login}
 					open={open}
 					setOpen={setOpen}
 					isMobile={isMobile}
-				/>
-				<Layout hasSider>
-					{login &&
-						<Sider
-							login={login}
-							setLogin={setLogin}
-							open={open}
-							setOpen={setOpen}
-							menu={localStorage.getItem("role") === "T" ? teacherMenuItems : studentMenuItems}
-                            drawerFooter={drawerFooter}
-						/>
-					}
-					<Content style={{ minHeight: "100vh", background: "url(/bg.svg) no-repeat", backgroundSize: "cover" }} >
+				/>}
+			<Layout hasSider>
+				{login ?
+					<Sider
+						login={login}
+						setLogin={setLogin}
+						open={open}
+						setOpen={setOpen}
+						menu={localStorage.getItem("role") === "T" ? teacherMenuItems : studentMenuItems}
+                        drawerFooter={drawerFooter}
+					/>
+					:
+					<Sider
+						login={login}
+						setLogin={setLogin}
+						open={open}
+						setOpen={setOpen}
+						menu={anonymousMenuItems}
+                        drawerFooter={anonymousMenuFooter}
+					/>
+				}
+				<Content style={{ overflowY: "auto", background: "url(/bg.png)", backgroundSize: "cover" }} >
 						<Flex align="center" justify="center" style={{ minHeight: "100%" }}>
 							<Routes>
 								<Route path="/selectRole" element={<SelectRole />} />
 								<Route path="/loginStudent" element={<LoginStudent />} />
 								<Route path="/funding" element={<Funding />} />
+								<Route path="/aboutEPI" element={<AboutEPI />} />
 								<Route path="/exerciseDnD/phase1/:trainingMode" element={<DnDPhase1 />} />
 								<Route path="/exerciseDnD/phase2/:trainingMode" element={<DnDPhase2 />} />
 								<Route path="/exerciseType/phase1/:trainingMode" element={<TypePhase1 />} />
@@ -383,22 +434,30 @@ let App = () => {
 						</Flex>
 					</Content>
 				</Layout>
-				<Footer style={{backgroundColor: "#001628", color: "white"}}>
-					<Flex align="center" justify="center" style={{ minHeight: "100%" }}>
-                        <Text style={{color:"white"}}>PEPI @ 2025 Made with ❤️ by <Typography.Link href="https://github.com/VarelaAlex" style={{color:"white"}} underline>Álex</Typography.Link> & <Typography.Link href="https://grupoadir.es/" style={{color:"white"}} underline>ADIR</Typography.Link> – based on <Typography.Link href="https://www.unioviedo.es/hyper/" style={{color:"white"}} underline>Hyper</Typography.Link></Text>
-                        <Link to="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-                            <Image
-							src="https://static.arasaac.org/images/by-nc-sa.svg"
-							alt="Creative Commons license CC BY-NC-SA"
-							title="ARASAAC creative commons license CC BY-NC-SA"
-                            preview={false}
-                            style={{padding: "0px 10px"}}
-						/>
-                        </Link>
-                        <Typography.Link href="/funding" style={{color:"white"}} underline>Financiación</Typography.Link>
+				{!shouldHideHeaderFooter && <Footer style={{backgroundColor: "#001628", color: "white", padding: 10}}>
+					<Flex align="center" justify="center" style={{minHeight: "100%"}}>
+						<Text style={{color: "white"}}>PEPI @ 2025 Made with ❤️ by <Typography.Link
+							href="https://github.com/VarelaAlex" style={{color: "white"}}
+							underline>Álex</Typography.Link> & <Typography.Link href="https://grupoadir.es/"
+																				style={{color: "white"}}
+																				underline>ADIR</Typography.Link> – based
+							on <Typography.Link href="https://www.unioviedo.es/hyper/" style={{color: "white"}}
+												underline>Hyper</Typography.Link></Text>
+						<Link to="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+							<Image
+								src="https://static.arasaac.org/images/by-nc-sa.svg"
+								alt="Creative Commons license CC BY-NC-SA"
+								title="ARASAAC creative commons license CC BY-NC-SA"
+								preview={false}
+								style={{padding: "0px 10px"}}
+							/>
+						</Link>
+						<Typography.Link href="/funding" style={{color: "white"}}
+										 underline>Financiación</Typography.Link>
 					</Flex>
-				</Footer>
+				</Footer>}
 			</Layout>
+			<TeacherHelpButton />
 		</>
 	);
 };

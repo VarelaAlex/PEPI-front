@@ -98,8 +98,8 @@ let LoginTeacher = () => {
                     </Button>
                 </Form.Item>
             </Form>
-            <Text style={{ paddingTop: "2vh" }}>
-                {t("login.registerMessage")} <Link to="/registerTeacher">{t("login.registerLink")}</Link>
+            <Text style={{ paddingTop: "2vh", fontSize: "1.1em", display: "block" }}>
+                {t("login.registerMessage")} <Link to="/registerTeacher" style={{ fontSize: "1.1em" }}>{t("login.registerLink")}</Link>
             </Text>
         </Card>
     );

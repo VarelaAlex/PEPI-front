@@ -1,0 +1,1018 @@
+funding:
+  title: Project Funding
+  body: Project funded under the 2023 Call for "KNOWLEDGE GENERATION PROJECTS" and for actions aimed at training predoctoral research staff associated with these projects, within the framework of the State Program to Promote Scientific and Technical Research and its Transfer, of the State Plan for Scientific, Technical and Innovation Research 2021–2023.
+  code: "[PID2023-147792NB-I00]"
+help: Help
+language:
+  button: Language
+  spanish: Spanish
+  english: English
+pwa:
+  button: Download
+  notificationMessage: Welcome to PEPI!
+  notificationDescription: You can download the app by clicking on the button on the right
+iconic: Iconic
+mixed: Mixed
+symbolic: Symbolic
+lexical: Lexical
+syntactic: Syntactic
+semantic: Semantic
+sider:
+  teacher:
+    welcomeMessage: Hello
+    classrooms: My classrooms
+    exercises: My exercises
+    about: About the strategy
+    profile: My profile
+  student:
+    exercises: Exercises
+    howto: How to do a exercise
+    mode: Select the mode
+  anonymous:
+    welcomeMessage: Welcome
+  selectRole: Select a role
+  about: About PEPI
+  funding: Funding
+  disconnect: Disconnect
+role:
+  title: Who are you?
+  teacher: Teacher
+  teacherMale: Teacher
+  teacherFemale: Teacher
+  student: Student
+  studentMale: Student
+  studentFemale: Student
+login:
+  title: Login
+  button: Log in
+  registerMessage: Don't you have an account yet?
+  registerLink: Sign up
+  faqMessage: Do you have doubts?
+  faqLink: Check our frequently asked questions
+  form:
+    label:
+      email: Email
+      username: Username
+      password: Password
+    placeholder:
+      email: angelicaR@email.com
+      username: ross80
+  error:
+    email:
+      empty: Please enter your email
+      format: Incorrect email format
+      notExist: There is no teacher with this email
+    password:
+      empty: Please enter your password
+      incorrect: Incorrect password
+    username:
+      empty: Please enter your username
+      notExist: There is no student with this username
+signup:
+  title: Sign up
+  student:
+    title: Add student
+    steps:
+      basicInformation: Basic Information
+      familyBackground: Family Background
+      educationalNeeds: Educational Needs
+  button:
+    next: Next
+    prev: Previous
+    submit: Submit
+  loginMessage: Already have an account?
+  loginLink: Log in
+  steps:
+    basicInfo: Basic Information
+    additionalInfo: Additional Information
+    finalInfo: Final Details
+  form:
+    label:
+      name: Name
+      lastName: Last name
+      email: Email
+      username: Username
+      password: Password
+      confirm: Confirm your password
+      teachingStage: Teaching stage
+      schoolType: School type
+      schoolLocation: School location
+      gender: Gender
+      experienceYears: Years of experience
+      community: Autonomous community
+      age: Age
+      birthDate: Birth date
+      classroomNumber: Classroom number
+      school: School
+      socioEconomicLevel: Socioeconomic status
+      nationalOrigin: National origin
+      learningReadingRisk: Student at risk of reading learning difficulties?
+      learningWritingRisk: Student at risk of writing learning difficulties?
+      familyBackground: Did either of the student's parents have reading or writing learning difficulties?
+      neae: Does the student have Specific Educational Support Needs (SESN)?
+      specificSupportNeeds: Specific Needs
+      learningDiagnosedDifficulties: Diagnosed Learning Difficulties
+      needEducationalSupport: The student receives educational support
+      educationalSupport: Educational Support
+      firstWords: When did the first words begin to appear?
+      otherSpecialists: Specialists
+    placeholder:
+      name: Angelica
+      lastName: Ross
+      email: angelicaR@email.com
+      password: "******"
+      confirm: Repeat your password
+      teachingStage: Select a teaching stage
+      schoolType: Select a school type
+      schoolLocation: Select a location type
+      gender: Select your gender
+      experienceYears: E.g. 5
+      community: Select your community
+    options:
+      infantil: Preschool
+      primaria: Primary
+      secundaria: Secondary
+      public: Public
+      concertado: Charter
+      private: Private
+      rural: Rural
+      urban: Urban
+      male: Male
+      female: Female
+      nonBinary: Non-binary
+      preferNotToSay: Prefer not to say
+  error:
+    email:
+      empty: Please enter your email
+      format: Incorrect email format
+      repeated: There is already an account with this email
+    name: Please enter your name
+    lastName: Please enter your last name
+    age: Please enter your age
+    birthDate: Please enter your birth date
+    classroomNumber: Please enter the classroom number
+    school: Please enter the school
+    neae: Please enter SESN description
+    specialists: Please enter the specialists
+    nationalOrigin: Please enter the national origin
+    password:
+      empty: Please enter your password
+      format: "Password must be 8–12 characters, include at least one digit and one special character (! @ # $ % & *)"
+      confirm: Please confirm your password
+      unmatch: The passwords you entered do not match
+    teachingStage: Please select the teaching stage
+    schoolType: Please select the school type
+    schoolLocation: Please select the school location
+    gender: Please select the gender
+    experienceYears: Please enter your years of experience
+    community:
+      empty: Please select your autonomous community
+    level:
+      empty: Please select the educational level
+  validationError: Please check the form fields for errors
+  internalServerError: A server error occurred. Please try again later.
+  invalidServerResponse: Unexpected server response. Please try again later.
+  unknownError: An unknown error occurred. Please try again.
+classrooms:
+  table:
+    title: My classrooms
+    className: Class name
+    numberStudents: Number of students
+    actions: Actions
+    empty: You don't have classrooms yet
+    tooltips:
+      seeStatistics: See statistics
+      delete: Delete
+    buttons:
+      seeStatistics: See statistics
+      delete: Delete
+      generateReport: Generate Report
+  addClassroom:
+    divider: Add a new classroom
+    label: Classroom name
+    placeholder: Primary 2ºC
+    button: Add classroom
+    error: Please enter the classroom name
+    level:
+      label: Level
+      placeholder: Primary
+      EI:
+        label: Early Childhood Education
+        stage:
+          "1": 3 years of Early Childhood Education
+          "2": 4 years of Early Childhood Education
+          "3": 5 years of Early Childhood Education
+      EP:
+        label: Primary Education
+        stage:
+          "1": 1st Grade of Primary Education
+          "2": 2nd Grade of Primary Education
+          "3": 3rd Grade of Primary Education
+          "4": 4th Grade of Primary Education
+          "5": 5th Grade of Primary Education
+          "6": 6th Grade of Primary Education
+  create:
+    error:
+      name: Please enter the classroom name
+      teacher: Teacher's id is mandatory
+      repeated: There is already a classroom with this name
+  list:
+    error:
+      teacher: Teacher's id is mandatory
+      notExist: You don't have classrooms yet
+  delete:
+    error:
+      id: Classroom's id is mandatory
+      notExist: The classroom doesn't exist
+    popconfirm:
+      title: Delete Classroom
+      description: Are you sure you want to delete this classroom?
+      okText: Delete
+      cancelText: Cancel
+  detail:
+    table:
+      title: My students
+      studentUsername: Username
+      studentName: Name
+      studentLastName: Last name
+      studentAge: Age
+      empty: You don't have students yet
+      tooltips:
+        seeStatistics: See statistics
+        delete: Delete
+      buttons:
+        seeStatistics: See statistics
+        delete: Delete
+        survey: Complete survey
+        editSurvey: Edit survey
+    addStudent:
+      divider: Add a new student
+      label:
+        name: Student's name
+        lastName: Student's last name
+        age: Student's age
+      error:
+        name: Please enter the student's name
+        lastName: Please enter the student's last name
+        age: Please enter the student's age
+      placeholder:
+        name: Angelica
+        lastName: Ross
+        age: "5"
+      button: Add student
+    error:
+      id: Student's id is mandatory
+      teacher: Teacher's id is mandatory
+      notExist: The student doesn't exist
+internalServerError: Something went wrong, try again later
+exercise:
+  delete:
+    popconfirm:
+      title: Delete Exercise
+      description: Are you sure you want to delete this exercise?
+      okText: Delete
+      cancelText: Cancel
+  create:
+    title: Create Exercise
+    label:
+      title: Title
+      language: Language
+      category: Category
+      networkType: Network Type
+      representation: Representation
+      mainImage: Main Image
+      definitionText: Definition Text
+      definitionImage: Definition Image
+      ampliationText: Ampliation Text
+      ampliationImage: Ampliation Image
+      definitionPictogram: Definition Pictogram
+      ampliationPictogram: Ampliation Pictogram
+    error:
+      title: Please enter a title
+      language: Please select a language
+      category: Please select a category
+      networkType: Please select a network type
+      representation: Please select a representation
+      definitionText: Please enter a definition text
+      ampliationText: Please enter an ampliation text
+      definitionPictogram: Please select a definition connector
+      ampliationPictogram: Please select an ampliation connector
+    placeholder:
+      title: The hand
+      language: English
+      category: Body and Food
+      networkType: I-I
+      representation: Iconic
+      definitionText: The arm
+      ampliationText: Fingers
+      definitionPictogram: is part of
+      ampliationPictogram: has
+    addExercise:
+      divider: Add a new exercise
+      button: Create exercise
+  edit:
+    title: Edit exercise
+    button: Submit changes
+  clear: Clear
+  carousel:
+    empty: No exercises exist
+  table:
+    actions: Actions
+    title: My exercises
+    name: Exercise
+    category: Category
+    networkType: Network type
+    representation: Representation
+    language: Language
+    empty: You don't have exercises yet
+    tooltips:
+      edit: Edit
+      delete: Delete
+    buttons:
+      edit: Edit
+      delete: Delete
+  ICONIC: ICONIC
+  MIXED: MIXED
+  SYMBOLIC: SYMBOLIC
+  GLOBAL: GLOBAL
+pictograms:
+  is: is
+  isFor: is for
+  isPartOf: is part of
+  are: are
+  areFor: are for
+  arePartOf: are part of
+  has: has
+  isUsedFor: is used for
+  isIn: is in
+  have: have
+  areUsedFor: are used for
+  areIn: are in
+representation:
+  iconic: Iconic
+  mixed: Mixed
+  symbolic: Symbolic
+  global: Global
+categories:
+  family: Family
+  animals: Animals
+  body&food: Body and Food
+  transports: Transports
+  seasons: Seasons
+student:
+  title: Student Role
+  sub1:
+    title: How do we work with PEPI?
+    intro: Steps and modalities for completing exercises in the student role.
+    divisions:
+      - title: First steps
+        intro:
+          - When we access PEPI with a student account, <bold>our friend PEPI appears!!</bold> She explains how to work and guides the learning process.
+          - In addition, PEPI speaks to us both during errors and correct answers, to prevent exercises from being completed mechanically without understanding the reason behind what we are doing.
+          - "In the program we will find two blocks: <linkPreparation>PREPARATION</linkPreparation> and <linkTraining>TRAINING</linkTraining>."
+
+  sub2:
+    title: Preparation
+    intro: Preparation is designed to learn the meaning of the pictograms that represent links in the iconic and combined presentation. Pictograms are images to which we have assigned a new meaning. In PEPI there are six pictograms and six exercises to learn what they mean.
+    divisions:
+      - title: Exercises 1 and 2
+        intro:
+          - These exercises are designed to learn the meaning of each pictogram. The task consists of placing the pictogram that PEPI indicates in the correct location. PEPI will give instructions without needing to read them on screen. If PEPI says "is", we must move the two circles by dragging them to the answer box at the bottom.
+        imgs:
+          - src: /images/activity1.png
+            alt: Activity 1
+          - src: /images/activity2.png
+            alt: Activity 2
+      - title: Exercises 3 and 4
+        intro:
+          - These consist of arranging elements to form the sentence, using both the images and the pictograms we are learning. Again, we will first listen to PEPI and then arrange the elements by dragging them to the bottom.
+        imgs:
+          - src: /images/activity3.png
+            alt: Activity 3
+          - src: /images/activity4.png
+            alt: Activity 4
+      - title: Exercise 5
+        intro:
+          - To get familiar with the position of the pictogram in the network, exercise 5 consists of placing the pictogram that PEPI indicates in the correct location. Remember that three pictograms are for defining (left branch) and three for expanding information (right branch).
+        imgs:
+          - src: /images/activity5.png
+            alt: Activity 5
+      - title: Exercise 6
+        intro:
+          - The last exercise allows us to get an idea of what will happen when we begin training. Now we will need to place each element in the correct position in the network by dragging it.
+        imgs:
+          - src: /images/activity6.png
+            alt: Activity 6
+    ending:
+      - Once you have finished the preparation, it is time to begin training.
+
+  sub3:
+    title: Training
+    intro: "Training can be done in two ways: Closed and Open."
+    divisions:
+      - title: Description
+        intro:
+          - In <bold>closed</bold> mode, PEPI shows us the exercise to complete following a sequence based on difficulty level and our performance. Completing an exercise will unlock others of greater difficulty.
+          - In <bold>open</bold> mode, the student can choose whichever exercise they wish.
+          - We recommend starting in closed mode, and once that mode is completed, we can work freely in open mode.
+          - "To complete an exercise in PEPI we follow <bold>THREE</bold> steps: Select the source text, transform the text into a network, and transform the network back into text."
+      - title: Select the source text
+        intro:
+          - "The program consists of different activities in which, as we already know, information is presented in four ways: iconic (images only), combined (images associated with words), global (complete words) and symbolic (fragmented words)."
+          - "In open mode, the central menu allows you to select the type of presentation and then the topic of the exercise, organized into five knowledge blocks: body and food, family, transport, animals and seasons."
+          - "Once a topic is chosen, different exercises will appear that work with simple texts which must be organized into three types of networks: 1-1 network, 1-2 network and 1-3 network."
+          - "In closed mode, PEPI will show the completed exercises that allow progressively unlocking others of greater difficulty."
+          - "Once an exercise has started, a linear message will appear at the top of the screen and an empty network at the bottom."
+      - title: Transform the linear text into a network
+        intro:
+          - "The goal of this second phase is to work on content comprehension. In the case of iconic, combined and global presentation, it is necessary to drag the elements of the linear text into the Hypertext in a specific sequence designed to foster comprehension:"
+          - 'First we place the boat (the title) in the rectangle labeled "1". Then, we place "the boat" again in rectangle "1", put "is for" where "2" is, and "sailing" where "3" is. We place the stop at "4". Again, we place "the boat" in rectangle "1", take "has" and place it at "5", sails at "6" and the stop at "7".'
+        imgs:
+          - src: /images/textToHyper.png
+            alt: Transform the linear text into a network
+        presentation:
+          - title: Iconic, combined and global
+            text: During the transformation from linear text to network, in these three presentation types (<bold>iconic</bold>, <bold>combined</bold> and <bold>global</bold>), it is worth keeping some key points in mind
+            steps:
+              - Punctuation marks are replaced by the STOP image. We move from the left branch to the right branch with a STOP; sibling nodes when there are two or three are separated by a small stop representing a shorter pause. The Hyper (or network) ends with the large STOP.
+              - If we try to place an element in the wrong location, the program allows us to pick it up and move it, but once we place it in an incorrect spot, the element returns to its original position. For example, if we pick up the boat and try to place it in a node instead of in the rectangle, the boat returns to its place in the initial text at the top.
+              - If we try to complete the exercise out of order — for example, trying to pick up the sails before "the boat" — the program allows us to pick up that element, but once we place it, even if it is in the correct location, the element returns to its place.
+              - Once we complete the exercise correctly, a reward will appear.
+          - title: Symbolic
+            text: In the case of the <bold>symbolic</bold> presentation, we will need to type the word (hence the idea of "fragmented word") from the linear message in the correct location, remembering key points such as
+            steps:
+              - If we make a mistake and write the word with incorrect spelling, the program will not allow us to continue.
+              - If we try to write in the wrong location, without respecting the established order, the program will not allow us to work.
+              - 'We must remember to place punctuation marks keeping in mind that: we always move from the left branch to the right branch with a full stop, sibling nodes when there are two (1-2 network) are separated by "and", but when there are three (1-3 network), they are separated by "," and the last one by "and". The exercise ends with a final full stop. We simply need to type: ","  "and" or ".".'
+      - title: Transform the network into linear text
+        intro:
+          - The goal of this phase is to work on content expression. To do so, a new screen shows the completed network at the top, and the spaces needed to convert it back into a linear text are shown at the bottom.
+        imgs:
+          - src: /images/hyperToText.png
+            alt: Transform the network into linear text
+        presentation:
+          - title: Iconic, combined and global
+            text: In the <bold>iconic</bold>, <bold>combined</bold> and <bold>global</bold> presentation, we must drag the elements from the network to the correct position in the linear message, keeping in mind that
+            steps:
+              - Punctuation marks are replaced by the STOP image. We move from the left branch to the right branch with a STOP; sibling nodes when there are two or three are separated by a small stop representing a shorter pause. The Hyper (or network) ends with the large STOP.
+              - If we try to place an element in the wrong location, the program allows us to pick it up and move it, but once we place it in an incorrect spot, the element returns to its original position. For example, if we pick up the boat and try to place it in a node instead of in the rectangle, the boat returns to its place in the initial text at the top.
+              - If we try to complete the exercise out of order — for example, trying to pick up the sails before "the boat" — the program allows us to pick up that element, but once we place it, even if it is in the correct location, the element returns to its place.
+              - Once we complete the exercise correctly, a reward will appear.
+          - title: Symbolic
+            text: "In the symbolic presentation, we will need to type the word from the linear message in the correct location, keeping three key points in mind:"
+            steps:
+              - If we make a mistake and write the word with incorrect spelling, the program will not allow us to continue.
+              - If we try to write in the wrong location, without respecting the established order, the program will not allow us to work.
+              - We must remember to place the punctuation marks "," "and" or "."
+
+  error:
+    notExist: The student doesn't exist
+  delete:
+    popconfirm:
+      title: Delete Student
+      description: Are you sure you want to delete this student?
+      okText: Delete
+      cancelText: Cancel
+  mode:
+    training: Training
+    pretraining: Preparation
+  trainingMode:
+    free: Open
+    ruled: Closed
+students:
+  detail:
+    title: Modify student
+    update:
+      label:
+        name: Student's name
+        lastName: Student's last name
+        age: Student's age
+        classroom: Student's classroom
+      error:
+        name: Please enter the student's name
+        lastName: Please enter the student's last name
+        age: Please enter the student's age
+        classroom: Please select the student's classroom
+      placeholder:
+        name: Angelica
+        lastName: Ross
+        age: "5"
+        classroom: Primary 3º A
+      button: Submit
+  socioeconomicLevel:
+    low: Low
+    medium: Medium
+    high: High
+  nationalOrigin:
+    spain: Spain
+    european: Other European country
+    african: African country
+    asian: Asian country
+    northAmerican: North American country
+    latinAmerican: Latin American country
+    other: Other
+    specify: Specify the country
+  familyBackground:
+    father: Yes, the father
+    mother: Yes, the mother
+    both: Both parents
+    none: None
+  specificSupportNeeds:
+    languageDisorder: Language and Communication Development Disorder
+    adhd: Attention-Deficit/Hyperactivity Disorder
+    asd: Autism Spectrum Disorder
+    awaitingEvaluation: Student awaiting Psycho-educational Evaluation
+    highAbilities: High Abilities
+    cognitiveDisability: Cognitive Disability
+    physicalDisability: Physical Disability
+    specificLearningDisability: Specific Learning Disability
+    other: Others
+  learningDiagnosedDifficulties:
+    reading: Reading
+    writing: Writing
+    math: Math
+  educationalSupport:
+    pt: SpEd
+    al: SLP
+    other: Others
+  firstWords:
+    before12Months: Before one year old
+    between12And18Months: Between one year old and one and a half years old
+    between18And24Months: Between one and a half years old and two years old
+    between24And30Months: Between two years old and two and a half years old
+    after30Months: After two and a half years old
+    dontComunicate: Does not communicate verbally
+profile:
+  title: My profile
+  label:
+    name: Name
+    lastName: Last name
+    email: Email
+    teachingStage: Teaching stage
+    schoolType: School type
+    schoolLocation: School location
+    gender: Gender
+    experienceYears: Experience years
+    community: Community
+  error:
+    name: Please enter your name
+    lastName: Please enter your last name
+    email:
+      empty: Please enter your email
+      format: Incorrect email format
+      repeated: There is already an account with this email
+    teachingStage: Please select the teaching stage
+    schoolType: Please select the school type
+    schoolLocation: Please select the school location
+    gender: Please select the gender
+    experienceYears: Please enter your years of experience
+    experienceYearsMin: Experience years must be greater than 0
+    community: Please select your community
+  placeholder:
+    name: Angelica
+    lastName: Ross
+    email: angelicaR@email.com
+    teachingStage: Primary
+    schoolType: Public
+    schoolLocation: Rural
+    gender: Woman
+    experienceYears: "5"
+    community: Rural
+  options:
+    infant: Infant
+    primary: Primary
+    secondary: Secondary
+    public: Public
+    private: Private
+    concerted: Charter
+    rural: Rural
+    urban: Urban
+    man: Man
+    woman: Woman
+    nonBinary: Non-binary
+    preferNotToSay: Prefer not to say
+  button: Submit
+classroomStats:
+  title: Percentage of Exercises by Representation and Network Type
+studentStats:
+  titleIconic: ICONIC Type errors
+  titleMixed: MIXED Type errors
+  titleSymbolic: SYMBOLIC Type errors
+  numberOfExercises: Number of exercises
+  errorsByCategoryAndTypeIconic: Errors by Category and Type for ICONIC
+  errorsByCategoryAndTypeMixed: Errors by Category and Type for MIXED
+  errorsByCategorySymbolic: Errors by Category and Type for SYMBOLIC
+  incorrectOrder: Incorrect order
+  incorrectPos: Incorrect position
+  outOfBounds: Out of bounds
+surveyA:
+  title: Questionnaire for early detection of learning difficulties in reading, writing, and arithmetic for students starting 5-year-old Early Childhood Education (A)
+  button:
+    next: Next
+    prev: Previous
+    submit: Submit
+  options:
+    never: Never
+    almostNever: Almost never
+    fewTimes: A few times
+    sometimes: Sometimes
+    often: Often
+    unknown: Don't know / Not applicable
+  steps:
+    generalBehavior: General behavior
+    speechAbility: Speech ability
+    memoryAbility: Memory ability
+    attentionAbility: Attention ability
+    sequenceAbility: Sequencing ability
+    muscleCoordination: Muscle coordination
+    spatialOrientation: Sense of space and orientation
+    emotionsSocialAdaptation: Emotions and social adaptation
+  questions:
+    generalBehavior:
+      generalBehavior_1: In the notebook, leaves many eraser marks, the paper even tears or wrinkles from so much erasing
+      generalBehavior_2: Behavior doing homework is irregular
+      generalBehavior_3: Behavior in class is good, but performance is low
+    speechAbility:
+      speechAbility_1: Reacts slowly when having to answer questions orally
+      speechAbility_2: Expresses themselves orally with difficulty (for example, cannot find the words to express their ideas)
+      speechAbility_3: Makes grammatical errors when speaking
+      speechAbility_4: Has difficulty pronouncing correctly
+    memoryAbility:
+      memoryAbility_1: Loses personal belongings, such as notebooks, pencils, or pencil cases, or forgets to do or bring homework
+      memoryAbility_2: Has difficulty following a series of several consecutive instructions
+      memoryAbility_3: Needs other people to remind them several times about certain information, such as bringing materials from home to work in the classroom
+      memoryAbility_4: Has difficulty memorizing the names of people or places
+      memoryAbility_5: Has difficulty learning songs or children's poems, even simple ones
+      memoryAbility_6: Has difficulty learning a schedule that is somewhat complex
+      memoryAbility_7: Has difficulty remembering personal information, such as date of birth, phone number, address, etc.
+    attentionAbility:
+      attentionAbility_1: Gets distracted easily
+      attentionAbility_2: Has difficulty concentrating on one thing for a long time (for example, when doing tasks, stops frequently, gets up to talk with other classmates)
+      attentionAbility_3: Has difficulty repeating information just heard, such as phone numbers, people's names, or story content
+    sequenceAbility:
+      sequenceAbility_1: Has difficulty assimilating time concepts (does not distinguish yesterday, today, and tomorrow)
+      sequenceAbility_2: Makes mistakes in order when having to memorize words or numbers in a sequence (for example, the order of the four seasons or phone numbers)
+      sequenceAbility_3: Needs a lot of time to learn to tell time
+    muscleCoordination:
+      muscleCoordination_1: When coloring a drawing, goes outside the lines
+      muscleCoordination_2: Has difficulty when running and jumping (for example, falls often or gets injured)
+      muscleCoordination_3: When doing games with a lot of movement, for example, jumping rope, gets tired easily
+      muscleCoordination_4: Motor performance is low (for example, cannot perform the movements indicated by the teacher)
+      muscleCoordination_5: Has difficulty jumping rope, throwing, catching, or kicking the ball
+      muscleCoordination_6: In class cannot clap following simple rhythms
+      muscleCoordination_7: Has difficulty tying shoelaces and buttoning buttons more than children their age
+    spatialOrientation:
+      spatialOrientation_1: Has difficulty distinguishing between up and down or between left and right
+      spatialOrientation_2: Has difficulty with orientation (for example, needs a lot of time to know how to get to different classrooms, staff room, or music room)
+    emotionsSocialAdaptation:
+      emotionsSocialAdaptation_1: Has difficulty relating to other people (for example, often argues with siblings or classmates)
+      emotionsSocialAdaptation_2: Has a poor self-image
+      emotionsSocialAdaptation_3: Gets discouraged or gives up on doing things easily
+      emotionsSocialAdaptation_4: Has headaches, stomach aches, gets angry, or becomes nervous when feeling pressured
+  validationError: Please answer all questions before proceeding to the next step or submitting the form.
+surveyB:
+  title: Questionnaire for early detection of learning difficulties in reading, writing, and arithmetic for students starting 1st grade of Primary Education (B)
+  button:
+    next: Next
+    prev: Previous
+    submit: Submit
+  options:
+    never: Never
+    almostNever: Almost never
+    fewTimes: A few times
+    sometimes: Sometimes
+    often: Often
+    unknown: Don't know / Not applicable
+  steps:
+    reading: Reading
+    orthography: Spelling and dictation writing
+    writeExpression: Written expression
+    generalBehavior: General behavior
+    mathAbility: Math ability
+    speechAbility: Speech ability
+    memoryAbility: Memory ability
+    attentionAbility: Attention ability
+    sequenceAbility: Sequencing ability
+    muscleCoordination: Muscle coordination
+    spatialOrientation: Sense of space and orientation
+    emotionsSocialAdaptation: Emotions and social adaptation
+  questions:
+    reading:
+      reading_1: Reading competence is worse than that of students of the same age
+      reading_2: Has difficulty recognizing very frequent or familiar words
+      reading_3: When reading aloud, makes mistakes with words
+      reading_4: Attitude toward reading is worse than that of students of the same age
+      reading_5: When reviewing their work, does not find the errors
+    orthography:
+      orthography_1: Makes mistakes in dictation tasks, making errors in letters, words, or leaves it blank
+      orthography_2: Makes many errors when writing, such as skipping letters, not maintaining the same letter size, or not respecting the guidelines
+      orthography_3: Needs more time than other students to copy a text
+    writeExpression:
+      writeExpression_1: Many words from their oral vocabulary, they do not know how to write
+      writeExpression_2: Written expression is worse than oral expression
+    generalBehavior:
+      generalBehavior_1: In the notebook, leaves many eraser marks, the paper even tears or wrinkles from so much erasing
+      generalBehavior_2: Behavior doing homework is irregular
+      generalBehavior_3: Behavior in class is good, but performance is low
+      generalBehavior_4: Parents say the student studies a lot, but even so, their performance in class is low
+      generalBehavior_5: Parents say the student has read many times the content they must write from memory, but the result of writing from memory is not good
+    mathAbility:
+      mathAbility_1: For simple calculations (for example, 3+2), needs fingers or to make marks on paper
+      mathAbility_2: Has difficulties solving problems
+      mathAbility_3: Has difficulties understanding the value of numbers they should know for their age
+    speechAbility:
+      speechAbility_1: Reacts slowly when having to answer questions orally
+      speechAbility_2: Expresses themselves orally with difficulty (for example, cannot find the words to express their ideas)
+      speechAbility_3: Makes grammatical errors when speaking
+      speechAbility_4: Has difficulties pronouncing correctly
+    memoryAbility:
+      memoryAbility_1: Loses personal belongings, such as notebooks, pencils, or pencil cases, or forgets to do or bring homework
+      memoryAbility_2: Has difficulty following a series of several consecutive instructions
+      memoryAbility_3: Needs other people to remind them several times about certain information, such as bringing materials from home to work in the classroom
+      memoryAbility_4: Has difficulty memorizing the names of people or places
+      memoryAbility_5: Has difficulty learning songs or children's poems, even simple ones
+      memoryAbility_6: Has difficulty learning a schedule that is somewhat complex
+      memoryAbility_7: Has difficulty remembering personal information, such as date of birth, phone number, address, etc.
+    attentionAbility:
+      attentionAbility_1: Gets distracted easily
+      attentionAbility_2: Has difficulty concentrating on one thing for a long time (for example, when doing tasks, stops frequently, gets up to talk with other classmates)
+      attentionAbility_3: Has difficulty repeating information just heard, such as phone numbers, people's names, or story content
+    sequenceAbility:
+      sequenceAbility_1: Changes the order of letters in words
+      sequenceAbility_2: Has difficulty writing dates correctly, following the order of day, month, year
+      sequenceAbility_3: Has difficulty assimilating time concepts (does not distinguish yesterday, today, and tomorrow)
+      sequenceAbility_4: Makes mistakes in order when having to memorize words or numbers in a sequence (for example, the order of the four seasons or phone numbers)
+      sequenceAbility_5: Needs a lot of time to learn to tell time
+    muscleCoordination:
+      muscleCoordination_1: When coloring a drawing, goes outside the lines
+      muscleCoordination_2: Has difficulty when running and jumping (for example, falls often or gets injured)
+      muscleCoordination_3: When doing games with a lot of movement, for example, jumping rope, gets tired easily
+      muscleCoordination_4: Performance in Physical Education is low (for example, cannot perform the movements indicated by the teacher)
+      muscleCoordination_5: Has difficulty jumping rope, throwing, catching, or kicking the ball
+      muscleCoordination_6: In Music class has difficulty clapping following simple rhythms
+      muscleCoordination_7: Has difficulty tying shoelaces and buttoning buttons more than children their age
+    spatialOrientation:
+      spatialOrientation_1: Has difficulty distinguishing between up and down or between left and right
+      spatialOrientation_2: Has difficulty with orientation (for example, needs a lot of time to know how to get to different classrooms, staff room, or music room)
+    emotionsSocialAdaptation:
+      emotionsSocialAdaptation_1: Avoids studying
+      emotionsSocialAdaptation_2: Has difficulty relating to other people (for example, often argues with siblings or classmates)
+      emotionsSocialAdaptation_3: Has a poor self-image
+      emotionsSocialAdaptation_4: Gets discouraged or gives up on doing things easily
+      emotionsSocialAdaptation_5: Has headaches, stomach aches, gets angry, or becomes nervous when feeling pressured
+  validationError: Please answer all questions before proceeding to the next step or submitting the form.
+pageNotFound:
+  message1: Oops... It seems the page you are looking for does not exist.
+  message2: Click the icon at the top left to go back.
+exercises:
+  notFound: No exercises found
+pretraining:
+  select: Select activity
+yes: Yes
+no: No
+select: Please select an option
+addField: Add field
+phrasesActivity:
+  intro1: Now we are going to order the elements to form the phrase. Look closely to the pictograms!
+  intro2: Remember that in this activity you have to order the elements to form the phrase.
+  help: Listen and order the sentence
+  phrases:
+    dog-animal:
+      - The dog
+      - is
+      - an animal
+    whale-mammal:
+      - The whale
+      - is
+      - a mammal
+    house-living:
+      - The house
+      - is for
+      - living
+    sun-star:
+      - The sun
+      - is
+      - a star
+    summer-year:
+      - The summer
+      - is part of
+      - the year
+    apple-fruit:
+      - The apple
+      - is
+      - a fruit
+    bed-sleeping:
+      - The bed
+      - is for
+      - sleeping
+    street-city:
+      - The street
+      - is part of
+      - the city
+    car-traveling:
+      - The car
+      - is for
+      - traveling
+    swing-playing:
+      - The swing
+      - is for
+      - playing
+    water-drinking:
+      - The water
+      - is for
+      - drinking
+    sea-bathing:
+      - The sea
+      - is for
+      - bathing
+    dog-tail:
+      - The dog
+      - has
+      - a tail
+    whale-sea:
+      - The whale
+      - is in
+      - the sea
+    house-living2:
+      - The house
+      - is used for
+      - living
+    sun-sky:
+      - The sun
+      - is in
+      - the sky
+    summer-sunbathing:
+      - The summer
+      - is used for
+      - sunbathing
+    apple-fruitBowl:
+      - The apple
+      - is in
+      - the fruit bowl
+    bed-bedroom:
+      - The bed
+      - is in
+      - the room
+    street-city2:
+      - The street
+      - is in
+      - the city
+    car-wheels:
+      - The car
+      - has
+      - wheels
+    swing-park:
+      - The swing
+      - is in
+      - the park
+    water-washing:
+      - The water
+      - is used for
+      - washing
+    sea-beach:
+      - The sea
+      - is at
+      - the beach
+
+site:
+  title: Help Center
+
+general:
+  title: General Information
+  sub1:
+    title: What is PEPI?
+    intro: Presentation of the PEPI program and its foundations.
+    body:
+      - PEPI is the review and update of the paper-and-pencil program "EPI – Estimulación del Pensamiento y la Inteligencia (Stimulation of Thinking and Intelligence)" for children in Early Childhood and Primary Education.
+      - topic: "The program has a dual objective:"
+        explanation:
+          - On one hand, it aims to develop pre-literacy skills in order to foster comprehension and expression at very early ages.
+          - "On the other hand, the program introduces students to information organization by working with a very simple type of concept map.
+                 This is very important because, even before children can read, improving the quality of processing (lexical, semantic and syntactic) and information management stimulates intelligence, thinking and learning potential."
+      - PEPI is based on Hypertext (reviewed and updated in the Hyper program), a type of concept map with internal rules that allows information to be structured in networks, establishing meaningful connections between selected content.
+
+  sub2:
+    title: About the Strategy
+    intro: Foundations of the Hypertext strategy on which PEPI is based.
+    body:
+      - Hyper works simultaneously on lexical, semantic and syntactic processing (involved in comprehension-expression), as well as on the networked organization of knowledge.
+      - "Hyper is built on the idea that comprehension does not depend exclusively on how information is interpreted or constructed, but also on how it is selected, related and conveyed, both verbally and in writing.
+         Hence the effectiveness of working on comprehension-expression processes together in a single block, making students actively participate in translating, interpreting and extrapolating what they have learned.
+         To do this, it is necessary to learn to transform linear messages into concept maps or network-shaped structures, like Hyper."
+      - PEPI uses three types of network and four types of presentation that adapt to the different levels and needs of students.
+
+  sub3:
+    title: Network Types and Presentation
+    intro: Structures and formats with which PEPI organizes information.
+    divisions:
+      - title: Three Types of Network
+        body: The three network types are the 1-1 network, the 1-2 network and the 1-3 network. Information is defined in the left branch and expanded in the right branch.
+        steps:
+          - "1-1 Network: one node on the left branch and one on the right."
+          - "1-2 Network: one node on the left and two on the right."
+          - "1-3 Network: one node on the left and three on the right."
+
+      - title: Punctuation Marks
+        body: For each network type, punctuation marks (and therefore expression) have certain particularities.
+        steps:
+          - "Sibling nodes are separated by <code>,</code>, <code>and</code> or smaller STOPs <smallStop/>."
+          - "The transition from the left branch to the right is always marked with a full stop <code>.</code> or a larger STOP <bigStop/>."
+          - "The right branch always ends with a final full stop <code>.</code> or a larger STOP <bigStop/>."
+
+      - title: Four Types of Presentation
+        body: Information is presented in four ways to suit the different levels of students.
+        steps:
+          - "Iconic: images only."
+          - "Combined: images associated with words."
+          - "Global: complete words — works the lexical route."
+          - "Symbolic: fragmented words — each letter must be written, developing the phonological route."
+        descriptions:
+          - The iconic and combined presentation replaces content and verbs with images and pictograms. To replace content with images, this program connects to the database of the Aragonese Center for Augmentative and Alternative Communication (ARASAAC).
+          - In the global presentation, the word appears in its complete form, and as we will see, the exercises are solved by dragging it without the need to write. In this presentation, we primarily work on the lexical route of reading. However, in the symbolic presentation it will be necessary to write the word; to do so, we must break it down and type each of the letters that make up the word, which allows the phonological route to be developed.
+          - <bold>Why a global presentation and a symbolic presentation?</bold>
+          - With the program, we aim to begin organizing information even before mastering reading and writing. With the global presentation, we seek to advance this goal, and later continue with organization once reading and writing have been introduced.
+          - The specific procedure for carrying out each of the exercises in these network types and presentation types can be found in the section <linkWorkWithPepi>How do we work with Pepi?</linkWorkWithPepi>
+
+      - title: Pictograms and ARASAAC
+        body: The iconic and combined presentations replace content words and verbs with images and pictograms connected to the ARASAAC database.
+        steps:
+          - ARASAAC has more than 13,500 images and pictograms.
+          - "6 pictograms for verbs: 3 for defining (is, is for, is part of) and 3 for expanding (has, is used for, is in)."
+          - Using the verb in the plural requires two pictograms instead of one.
+
+teacher:
+  help:
+    tooltip: Help for teachers
+  title: Teacher Role
+  faq:
+    title: Frequently Asked Questions
+    intro: Guide to using the teacher profile in PEPI.
+    items:
+      - q: How do I sign up?
+        type: steps
+        a: 'When we access PEPI we can choose the type of user profile: Teacher or Student.'
+        steps:
+          - 'Access PEPI and select the profile type <bold>Teacher</bold>.'
+          - 'Click on <bold>"Sign up"</bold>.'
+          - 'Fill in your name, last name, email and password.'
+          - 'You can now create classrooms, enroll students and view their statistics.'
+
+      - q: How do I create a classroom?
+        type: steps
+        a: 'Creating a classroom is very simple:'
+        steps:
+          - 'On the main screen, fill in the fields: classroom name and educational level.'
+          - 'Click on <bold>"Add classroom"</bold>.'
+
+      - q: How do I add a student?
+        type: steps
+        a: 'Adding your students is very simple, just follow these steps:'
+        steps:
+          - 'Click on the name of the classroom you want to add the student to.'
+          - 'In <bold>"My classrooms"</bold>, click on the classroom name.'
+          - 'Click <bold>"Add student"</bold> at the bottom.'
+          - 'Fill in the required information: name, last name(s), age, date of birth, classroom number and school.'
+          - '(Optional, but highly recommended) Complete the supplementary information about family background and educational needs.'
+          - 'Once the student has been created, we can access the classroom to see the student''s <bold>username</bold>. In addition, we will see the <bold>"Complete survey"</bold> button, which provides access to a survey about the student''s literacy level. These are short-answer, quick-response items.'
+        note: 'Student information can be edited at any time by clicking on their name.'
+
+      - q: How do I view classroom or student performance?
+        type: steps
+        a: 'There are two levels of statistics available:'
+        steps:
+          - 'On the main screen, <bold>"See statistics"</bold> column for the classroom → number of exercises completed by all students.'
+          - 'Inside the classroom, <bold>"See statistics"</bold> column for the student → exercises completed and errors made.'
+
+      - q: What other features does the teacher version offer?
+        type: list
+        a: 'From the teacher profile you can also:'
+        items:
+          - 'Create new personalized exercises.'
+          - 'Consult information related to the PEPI strategy.'
+        note: 'To access these options, click on the <bold><userIcon/> user</bold> icon in the top left.'
+
+contactAndPublications:
+  title: "Contact and Publications"
+  intro: "Contact information and publications related to the PEPI program and the Hypertext strategy."
+  contact:
+    title: "Contact"
+    intro: "You can get in touch with us through the following channels:"
+    means:
+      - type: "email"
+        label: "Marisol Fernández Cueli"
+        value: "cuelimarisol@uniovi.es"
+      - type: "email"
+        label: "María Paloma González Castro"
+        value: "mgcastro@uniovi.es"
+      - type: "web"
+        label: "Official project website"
+        value: "https://www.unioviedo.es/hyper/"
+
+  publications:
+    title: "Publications"
+    intro: "Articles and papers related to the PEPI program and the Hypertext strategy."
+    items:
+      - ref: "Álvarez, L., y González-Castro, P. (2012). EPI.com: Programa de Estimulación del Pensamiento y la Inteligencia. Editorial EOS."
+        url: null
+      - ref: "Cueli, M., Álvarez, A. I., Loew, S., González-Castro, P., y Rodríguez, C. (2020). Is organizing knowledge effective in primary education?"
+        url: "https://doi.org/10.1155/2020/887"

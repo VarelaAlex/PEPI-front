@@ -8,7 +8,7 @@ import { useSession } from "../SessionComponent";
 let Header = (props) => {
 
     let { open, setOpen, isMobile } = props;
-    let { login, setLang } = useSession();
+    let { setLang } = useSession();
 
     let [highlighted, setHighlighted] = useState(false);
     let [isReadyForInstall, setIsReadyForInstall] = useState(false);
@@ -62,18 +62,16 @@ let Header = (props) => {
     return (
         <Header style={{ padding: "0vh 3vh", display: 'flex', justifyContent: 'space-between' }}>
             <Row gutter={16}>
-                {login &&
-                    <Col style={{ display: 'flex', alignItems: 'center' }}>
-                        <Button
-                            ghost
-                            size="large"
-                            shape="circle"
-                            icon={<UserOutlined />}
-                            onClick={() => setOpen(!open)}
-                            data-testid="menu-button"
-                        />
-                    </Col>
-                }
+                <Col style={{ display: 'flex', alignItems: 'center' }}>
+                    <Button
+                        ghost
+                        size="large"
+                        shape="circle"
+                        icon={<UserOutlined />}
+                        onClick={() => setOpen(!open)}
+                        data-testid="menu-button"
+                    />
+                </Col>
                 <Col style={{ display: 'flex', alignItems: 'center' }}>
                     <Link to="/" >
                         <Image alt="logo" src="/logo_text.png" height="3rem" preview={false} style={{ borderRadius: '0.75vmax' }} />

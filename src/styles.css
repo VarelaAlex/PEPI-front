@@ -1,0 +1,8 @@
+.ant-menu-item,
+.ant-menu-submenu-title {
+    height: auto !important;
+    white-space: normal !important;
+    line-height: 1.6 !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}

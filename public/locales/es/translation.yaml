@@ -1,0 +1,1017 @@
+funding:
+  title: Financiación del Proyecto
+  body: 'Proyecto financiado dentro de la Convocatoria de Ayudas 2023 a "PROYECTOS DE GENERACIÓN DE CONOCIMIENTO" y a actuaciones para la formación de personal investigador predoctoral asociadas a dichos proyectos, en el marco del Programa Estatal para Impulsar la Investigación Científico-Técnica y su Transferencia, del Plan Estatal de Investigación Científica, Técnica y de Innovación 2021-2023'
+  code: "[PID2023-147792NB-I00]"
+help: Ayuda
+language:
+  button: Idioma
+  spanish: Español
+  english: Inglés
+pwa:
+  button: Descargar
+  notificationMessage: ¡Bienvenido/a a PEPI!
+  notificationDescription: Puedes descargar la aplicación haciendo clic en el botón de la derecha
+iconic: Icónica
+mixed: Combinada
+symbolic: Simbólica
+lexical: Léxicos
+syntactic: Sintácticos
+semantic: Semánticos
+sider:
+  teacher:
+    welcomeMessage: Hola
+    classrooms: Mis aulas
+    exercises: Mis ejercicios
+    about: Sobre la estrategia
+    profile: Mi perfil
+  student:
+    exercises: Ejercicios
+    howto: Cómo hacer un ejercicio
+    mode: Selecciona el modo
+  anonymous:
+    welcomeMessage: Bienvenido
+  selectRole: Selecciona un rol
+  about: Sobre PEPI
+  funding: Financiación
+  disconnect: Cerrar sesión
+role:
+  title: ¿Quién eres?
+  teacher: Profesor/a
+  teacherMale: Profesor
+  teacherFemale: Profesora
+  student: Alumno/a
+  studentMale: Alumno
+  studentFemale: Alumna
+login:
+  title: Iniciar sesión
+  button: Iniciar sesión
+  registerMessage: ¿Aún no tienes una cuenta?
+  registerLink: Regístrate
+  faqMessage: ¿Tienes dudas?
+  faqLink: Consulta nuestras preguntas frecuentes
+  form:
+    label:
+      email: Correo electrónico
+      username: Nombre de usuario
+      password: Contraseña
+    placeholder:
+      email: angelicaR@email.com
+      username: ross80
+  error:
+    email:
+      empty: Por favor, ingrese el correo electrónico
+      format: Formato de correo electrónico incorrecto
+      notExist: No existe un profesor con este correo electrónico
+    password:
+      empty: Por favor, ingrese la contraseña
+      incorrect: Contraseña incorrecta
+    username:
+      empty: Por favor, ingrese el nombre de usuario
+      notExist: No existe un alumno con este nombre de usuario
+signup:
+  title: Regístrate
+  student:
+    title: Agregar alumno
+    steps:
+      basicInformation: Información Básica
+      familyBackground: Contexto Familiar
+      educationalNeeds: Necesidades Educativas
+  button:
+    next: Siguiente
+    prev: Anterior
+    submit: Enviar
+  loginMessage: ¿Ya tienes una cuenta?
+  loginLink: Iniciar sesión
+  steps:
+    basicInfo: Información básica
+    additionalInfo: Información adicional
+    finalInfo: Detalles finales
+  form:
+    label:
+      name: Nombre
+      lastName: Apellidos
+      email: Correo electrónico
+      username: Nombre de usuario
+      password: Contraseña
+      confirm: Confirma tu contraseña
+      teachingStage: Etapa educativa
+      schoolType: Tipo de centro
+      schoolLocation: Ubicación del centro
+      gender: Género
+      experienceYears: Años de experiencia
+      community: Comunidad autónoma
+      age: Edad
+      birthDate: Fecha de nacimiento
+      classroomNumber: Número de clase
+      school: Colegio
+      socioEconomicLevel: Nivel socioeconómico
+      nationalOrigin: Origen nacional
+      learningReadingRisk: ¿Alumno en riesgo de dificultades de aprendizaje de la lectura?
+      learningWritingRisk: ¿Alumno en riesgo de dificultades de aprendizaje de la escritura?
+      familyBackground: ¿Alguno de los progenitores del alumno presentó dificultades de aprendizaje de la lectura o la escritura?
+      neae: ¿El alumno presenta Necesidades Específicas de Apoyo Educativo (NEAE)?
+      specificSupportNeeds: Necesidades Específicas
+      learningDiagnosedDifficulties: Dificultades de Aprendizaje Diagnosticadas
+      needEducationalSupport: El alumno recibe apoyo educativo
+      educationalSupport: Apoyo educativo
+      firstWords: ¿Cuándo se inció la emisión de las primeras palabras?
+      otherSpecialists: Especialistas
+    placeholder:
+      name: Angelica
+      lastName: Ross
+      email: angelicaR@email.com
+      password: "******"
+      confirm: Repite tu contraseña
+      teachingStage: Selecciona una etapa educativa
+      schoolType: Selecciona un tipo de centro
+      schoolLocation: Selecciona el tipo de ubicación
+      gender: Selecciona tu género
+      experienceYears: Ej. 5
+      community: Selecciona tu comunidad
+    options:
+      infantil: Infantil
+      primaria: Primaria
+      secundaria: Secundaria
+      public: Público
+      concertado: Concertado
+      private: Privado
+      rural: Rural
+      urban: Urbano
+      male: Hombre
+      female: Mujer
+      nonBinary: No binario
+      preferNotToSay: Prefiero no decirlo
+  error:
+    email:
+      empty: Por favor, ingrese el correo electrónico
+      format: Formato de correo electrónico incorrecto
+      repeated: Ya existe una cuenta con este correo electrónico
+    name: Por favor, ingrese el nombre
+    lastName: Por favor, ingrese los apellidos
+    age: Por favor, ingrese la edad
+    birthDate: Por favor, ingrese la fecha de nacimiento
+    classroomNumber: Por favor, ingrese el número de clase
+    school: Por favor, ingrese el colegio
+    neae: Por favor, ingrese la descripción de NEAE
+    specialists: Por favor, ingrese los especialistas
+    nationalOrigin: Por favor, ingrese el origen nacional
+    password:
+      empty: Por favor, ingrese la contraseña
+      format: "La contraseña debe tener entre 8 y 12 caracteres, incluir al menos un número y un carácter especial (! @ # $ % & *)"
+      confirm: Por favor, confirme su contraseña
+      unmatch: Las contraseñas no coinciden
+    teachingStage: Por favor, seleccione la etapa educativa
+    schoolType: Por favor, seleccione el tipo de centro
+    schoolLocation: Por favor, seleccione la ubicación del centro
+    gender: Por favor, seleccione el género
+    experienceYears: Por favor, ingrese sus años de experiencia
+    community:
+      empty: Por favor, seleccione su comunidad autónoma
+    level:
+      empty: Por favor, seleccione el nivel educativo
+  validationError: Revisa todos los campos del formulario
+  internalServerError: Ocurrió un error en el servidor. Intenta de nuevo más tarde.
+  invalidServerResponse: Respuesta inesperada del servidor. Intenta más tarde.
+  unknownError: Ocurrió un error desconocido. Intenta nuevamente.
+classrooms:
+  table:
+    title: Mis aulas
+    className: Nombre del aula
+    numberStudents: Número de alumnos
+    actions: Acciones
+    empty: Aún no tienes aulas
+    tooltips:
+      seeStatistics: Ver estadísticas
+      delete: Eliminar
+    buttons:
+      seeStatistics: Ver estadísticas
+      delete: Eliminar
+      generateReport: Generar Informe
+  addClassroom:
+    divider: Añadir una nueva aula
+    label: Nombre del aula
+    placeholder: Primaria 2ºC
+    button: Añadir aula
+    error: Por favor, ingrese el nombre del aula
+    level:
+      label: Nivel educativo
+      placeholder: Primaria
+      EI:
+        label: Educación Infantil
+        stage:
+          "1": 3 años de Educación Infantil
+          "2": 4 años de Educación Infantil
+          "3": 5 años de Educación Infantil
+      EP:
+        label: Educación Primaria
+        stage:
+          "1": 1º de Educación Primaria
+          "2": 2º de Educación Primaria
+          "3": 3º de Educación Primaria
+          "4": 4º de Educación Primaria
+          "5": 5º de Educación Primaria
+          "6": 6º de Educación Primaria
+  create:
+    error:
+      name: Por favor, ingrese el nombre
+      teacher: El id del profesor es obligatorio
+      repeated: Ya existe un aula con este nombre
+  list:
+    error:
+      teacher: El id del profesor es obligatorio
+      notExist: Aún no tienes aulas
+  delete:
+    error:
+      id: El id del aula es obligatorio
+      notExist: El aula no existe
+    popconfirm:
+      title: Eliminar aula
+      description: ¿Estás seguro de que quieres eliminar esta aula?
+      okText: Eliminar
+      cancelText: Cancelar
+  detail:
+    table:
+      title: Mis alumnos
+      studentUsername: Nombre de usuario
+      studentName: Nombre
+      studentLastName: Apellidos
+      studentAge: Edad
+      empty: Aún no tienes alumnos
+      tooltips:
+        seeStatistics: Ver estadísticas
+        delete: Eliminar
+      buttons:
+        seeStatistics: Ver estadísticas
+        delete: Eliminar
+        survey: Completar encuesta
+        editSurvey: Editar encuesta
+    addStudent:
+      divider: Añadir un nuevo alumno
+      label:
+        name: Nombre del alumno
+        lastName: Apellido del alumno
+        age: Edad del alumno
+      error:
+        name: Por favor, ingrese el nombre
+        lastName: Por favor, ingrese los apellidos
+        age: Por favor, ingrese la edad
+      placeholder:
+        name: Angelica
+        lastName: Ross
+        age: "5"
+      button: Añadir alumno
+    error:
+      id: El id del alumno es obligatorio
+      teacher: El id del profesor es obligatorio
+      notExist: El alumno no existe
+internalServerError: Algo ha ido mal, inténtalo de nuevo más tarde
+exercise:
+  delete:
+    popconfirm:
+      title: Eliminar ejercicio
+      description: ¿Estás seguro de que quieres eliminar este ejercicio?
+      okText: Eliminar
+      cancelText: Cancelar
+  create:
+    title: Crear ejercicio
+    label:
+      title: Título
+      language: Idioma
+      category: Categoría
+      networkType: Tipo de red
+      representation: Representación
+      mainImage: Imagen principal
+      definitionText: Texto de definición
+      definitionImage: Imagen de definición
+      ampliationText: Texto de ampliación
+      ampliationImage: Imagen de ampliación
+      definitionPictogram: Pictograma de definición
+      ampliationPictogram: Pictograma de ampliación
+    error:
+      title: Por favor, introduce un título
+      language: Por favor, selecciona un idioma
+      category: Por favor, selecciona una categoría
+      networkType: Por favor, selecciona un tipo de red
+      representation: Por favor, selecciona una representación
+      definitionText: Por favor, introduce un texto de definición
+      ampliationText: Por favor, introduce un texto de ampliación
+      definitionPictogram: Por favor, selecciona un conector de definición
+      ampliationPictogram: Por favor, selecciona un conector de ampliación
+    placeholder:
+      title: La mano
+      language: Español
+      category: Cuerpo y alimentos
+      networkType: I-I
+      representation: Icónica
+      definitionText: El brazo
+      ampliationText: Dedos
+      definitionPictogram: es parte de
+      ampliationPictogram: tiene
+    addExercise:
+      divider: Añadir un nuevo ejercicio
+      button: Crear ejercicio
+  edit:
+    title: Editar ejercicio
+    button: Guardar cambios
+  clear: Borrar
+  carousel:
+    empty: No existen ejercicios
+  table:
+    actions: Acciones
+    title: Mis ejercicios
+    name: Ejercicio
+    category: Categoría
+    networkType: Tipo de red
+    representation: Representación
+    language: Idioma
+    empty: Aún no tienes ejercicios
+    tooltips:
+      edit: Editar
+      delete: Eliminar
+    buttons:
+      edit: Editar
+      delete: Eliminar
+  ICONIC: ICÓNICA
+  MIXED: COMBINADA
+  SYMBOLIC: SIMBÓLICA
+  GLOBAL: GLOBAL
+pictograms:
+  is: es
+  isFor: es para
+  isPartOf: es parte de
+  are: son
+  areFor: son para
+  arePartOf: son parte de
+  has: tiene
+  isUsedFor: sirve para
+  isIn: está en
+  have: tienen
+  areUsedFor: sirven para
+  areIn: están en
+representation:
+  iconic: Icónica
+  mixed: Combinada
+  symbolic: Simbólica
+  global: Global
+categories:
+  family: Familia
+  animals: Animales
+  body&food: Cuerpo y alimentos
+  transports: Transportes
+  seasons: Estaciones
+student:
+  title: Rol Alumno
+  sub1:
+    title: ¿Cómo se trabaja con PEPI?
+    intro: Pasos y modalidades para realizar los ejercicios con el rol de alumno.
+    divisions:
+      - title: Primeros pasos
+        intro:
+          - Cuando accedemos a PEPI con el usuario de alumno vemos que <bold>¡¡aparece nuestra amiga PEPI!!</bold> Ella nos explica cómo trabajar y guía el proceso de aprendizaje.
+          - Además, PEPI nos habla tanto durante el error como durante el acierto, para evitar que la resolución de los ejercicios se realice de forma mecánica sin comprender el porqué de lo que estamos haciendo.
+          - "En el programa encontraremos dos bloques: <linkPreparation>PREPARACIÓN</linkPreparation> y <linkTraining>ENTRENAMIENTO</linkTraining>."
+
+  sub2:
+    title: Preparación
+    intro: La preparación está diseñada para aprender el significado de los pictogramas que representan los enlaces en la presentación icónica y combinada. Los pictogramas son imágenes a las que les hemos atribuido un significado nuevo. En PEPI hay seis pictogramas y seis ejercicios para aprender qué significan.
+    divisions:
+      - title: Ejercicios 1 y 2
+        intro:
+          - Estos ejercicios están diseñados para conocer el significado de cada pictograma. La tarea consiste en colocar el pictograma que nos dice PEPI en el lugar correspondiente. PEPI nos dará las instrucciones sin necesidad de leerlas en la pantalla. Si PEPI dice "es" debemos mover los dos círculos arrastrándolos al cajón de respuesta que está en la parte inferior.
+        imgs:
+          - src: /images/activity1.png
+            alt: Actividad 1
+          - src: /images/activity2.png
+            alt: Actividad 2
+      - title: Ejercicios 3 y 4
+        intro:
+          - Consisten en colocar los elementos para ordenar la frase, utilizando para ello tanto las imágenes como los pictogramas que estamos aprendiendo. Nuevamente, primero escucharemos a PEPI y después ordenaremos los elementos arrastrándolos a la parte inferior.
+        imgs:
+          - src: /images/activity3.png
+            alt: Actividad 3
+          - src: /images/activity4.png
+            alt: Actividad 4
+      - title: Ejercicio 5
+        intro:
+          - Para aproximarnos al lugar del pictograma en la red, el ejercicio 5 consiste en colocar el pictograma que nos dice PEPI en el lugar correspondiente. Recordemos que tres pictogramas son para definir (rama izquierda) y tres para ampliar la información (rama derecha).
+        imgs:
+          - src: /images/activity5.png
+            alt: Actividad 5
+      - title: Ejercicio 6
+        intro:
+          - El último ejercicio nos permite aproximarnos a lo que va a ocurrir cuando iniciemos el entrenamiento. Ahora será necesario que coloquemos cada elemento en el lugar correspondiente de la red arrastrándolo.
+        imgs:
+          - src: /images/activity6.png
+            alt: Actividad 6
+    ending:
+      - Una vez que has finalizado la preparación, es el momento de iniciar el entrenamiento.
+
+  sub3:
+    title: Entrenamiento
+    intro: "El entrenamiento puede realizarse de dos formas: Cerrada y Abierta."
+    divisions:
+      - title: Descripción
+        intro:
+          - En la modalidad <bold>cerrada</bold> PEPI nos va mostrando el ejercicio que debemos realizar siguiendo una secuenciación en función del grado de dificultad y de nuestro rendimiento. La realización de un ejercicio permitirá desbloquear otros de dificultad superior.
+          - En la modalidad <bold>abierta</bold> el niño puede elegir el ejercicio que desee.
+          - Recomendamos empezar a trabajar en la modalidad cerrada, y una vez terminada esta modalidad, podremos trabajar de forma libre en la modalidad abierta.
+          - "Para realizar un ejercicio en PEPI seguiremos <bold>TRES</bold> pasos: Seleccionar el texto de partida, transformar el texto en red y transformar la red en texto."
+      - title: Seleccionar el texto de partida
+        intro:
+          - "El programa consta de diferentes actividades en las que, como ya sabemos, la información se presenta de cuatro formas: icónica (solo imágenes), combinada (imágenes asociadas a palabras), global (palabras completas) y simbólica (palabras fragmentadas)."
+          - "En la modalidad abierta en el menú central es posible seleccionar el tipo de presentación y posteriormente la temática del ejercicio organizada en cinco bloques de conocimiento: el cuerpo y los alimentos, la familia, los transportes, los animales y las estaciones."
+          - "Elegida la temática, aparecerán diferentes ejercicios con los que se trabaja con textos simples que se deberán organizar en tres tipos de redes: red 1-1, red 1-2 y red 1-3."
+          - "En la modalidad cerrada PEPI mostrará los ejercicios ya realizados que permiten ir desbloqueando otros de mayor dificultad."
+          - "Una vez iniciado un ejercicio, aparecerá en la parte superior de la pantalla un mensaje lineal y en la parte inferior una red vacía."
+      - title: Transformar el texto lineal en red
+        intro:
+          - "El objetivo de esta segunda fase es trabajar la comprensión del contenido. En el caso de la presentación icónica, combinada y global, es necesario arrastrar los elementos del texto lineal al Hypertexto en una secuencia concreta con la que se busca favorecer la comprensión:"
+          - 'Primero ponemos el barco (el título) en el rectángulo donde pone "1". Después, volvemos a colocar "el barco" en el rectángulo "1", ponemos "es para" donde pone "2" y "navegar" donde pone "3". Colocamos el stop en el "4". Nuevamente, ponemos "el barco" en el rectángulo "1", cogemos el "tiene" y lo colocamos en el "5", velas en el "6" y el stop en el "7".'
+        imgs:
+          - src: /images/textToHyper.png
+            alt: Transformar el texto lineal en red
+        presentation:
+          - title: Icónica, combinada y global
+            text: Durante la transformación del texto lineal a la red, en estos tres tipos de presentación (<bold>icónica</bold>, <bold>combinada</bold> y <bold>global</bold>), conviene tener en cuenta algunas claves
+            steps:
+              - Los signos de puntuación se sustituyen por la imagen del STOP. Pasamos de la rama izquierda a la rama derecha con STOP, los bolos hermanos cuando son dos o tres se separan con un stop pequeño que representa una parada más corta. El Hyper (o la red) termina con el STOP grande.
+              - Si intentamos colocar un elemento en el lugar equivocado, el programa nos permite cogerlo y moverlo, pero una vez que lo situamos en un lugar erróneo, el elemento vuelve a su sitio. Por ejemplo, si cogemos el barco y queremos ponerlo en un bolo en lugar de en el rectángulo, el barco vuelve a su sitio en el texto inicial de la parte superior.
+              - Si intentamos hacer el ejercicio de forma desordenada, por ejemplo, intentamos coger las velas antes que "el barco", el programa nos permite coger ese elemento, pero una vez que lo situamos, aunque se trate del lugar correcto, el elemento vuelve a su sitio.
+              - Una vez que finalizamos el ejercicio correctamente, aparecerá un refuerzo.
+          - title: Simbólica
+            text: En el caso de la presentación <bold>simbólica</bold>, tendremos que escribir la palabra (de ahí la idea de "palabra fragmentada") del mensaje lineal en el lugar correspondiente sin olvidar aspectos clave como que
+            steps:
+              - Si nos equivocamos, y escribimos la palabra de forma incorrecta ortográficamente, el programa no nos permitirá continuar.
+              - Si tratamos de escribir en el lugar erróneo, sin respetar el orden establecido, el programa no nos permitirá trabajar.
+              - 'Debemos recordar colocar los signos de puntuación teniendo en cuenta que: siempre pasamos de la rama izquierda a la rama derecha con punto y aparte, los bolos hermanos cuando son dos (red 1-2) se separan con "y" pero cuando son tres (red 1-3), se separan con "," y el último con "y". El ejercicio termina con el punto y final. Simplemente debemos escribir: ","  "y" o ".".'
+      - title: Transformar la red a texto lineal
+        intro:
+          - El objetivo de esta fase es trabajar la expresión del contenido. Para ello, en una nueva pantalla aparece la red completada en la parte superior, y los espacios necesarios para convertirla nuevamente en un texto lineal se mostrarán en la parte inferior.
+        imgs:
+          - src: /images/hyperToText.png
+            alt: Transformar la red en texto lineal
+        presentation:
+          - title: Icónica, combinada y global
+            text: En la presentación <bold>icónica</bold>, <bold>combinada</bold> y <bold>global</bold>, deberemos arrastrar los elementos de la red al lugar correspondiente del mensaje lineal, teniendo en cuenta que
+            steps:
+              - Los signos de puntuación se sustituyen por la imagen del STOP. Pasamos de la rama izquierda a la rama derecha con STOP, los bolos hermanos cuando son dos o tres se separan con un stop pequeño que representa una parada más corta. El Hyper (o la red) termina con el STOP grande.
+              - Si intentamos colocar un elemento en el lugar equivocado, el programa nos permite cogerlo y moverlo, pero una vez que lo situamos en un lugar erróneo, el elemento vuelve a su sitio. Por ejemplo, si cogemos el barco y queremos ponerlo en un bolo en lugar de en el rectángulo, el barco vuelve a su sitio en el texto inicial de la parte superior.
+              - Si intentamos hacer el ejercicio de forma desordenada, por ejemplo, intentamos coger las velas antes que "el barco", el programa nos permite coger ese elemento, pero una vez que lo situamos, aunque se trate del lugar correcto, el elemento vuelve a su sitio.
+              - Una vez que finalizamos el ejercicio correctamente, aparecerá un refuerzo.
+          - title: Simbólica
+            text: "En la presentación simbólica tendremos que escribir la palabra del mensaje lineal en el lugar correspondiente teniendo en cuenta tres claves:"
+            steps:
+              - Si nos equivocamos y escribimos la palabra de forma incorrecta ortográficamente, el programa no nos permitirá continuar.
+              - Si tratamos de escribir en el lugar erróneo, sin respetar el orden establecido, el programa no nos permitirá trabajar.
+              - Debemos recordar colocar los signos de puntuación "," "y" o "."
+
+  error:
+    notExist: El alumno no existe
+  delete:
+    popconfirm:
+      title: Eliminar alumno
+      description: ¿Estás seguro de que quieres eliminar este alumno?
+      okText: Eliminar
+      cancelText: Cancelar
+  mode:
+    training: Entrenamiento
+    pretraining: Preparación
+  trainingMode:
+    free: Abierto
+    ruled: Cerrado
+students:
+  detail:
+    title: Modificar alumno
+    update:
+      label:
+        name: Nombre del alumno
+        lastName: Apellidos del alumno
+        age: Edad del alumno
+        classroom: Aula del alumno
+      error:
+        name: Por favor, ingrese el nombre del alumno
+        lastName: Por favor, ingrese los apellidos del alumno
+        age: Por favor, ingrese la edad del alumno
+        classroom: Por favor, seleccione el aula del alumno
+      placeholder:
+        name: Angelica
+        lastName: Ross
+        age: "5"
+        classroom: Primaria 3º A
+      button: Aceptar
+  socioeconomicLevel:
+    low: Bajo
+    medium: Medio
+    high: Alto
+  nationalOrigin:
+    spain: España
+    european: Otro país europeo
+    african: País africano
+    asian: País asiático
+    northAmerican: País norteamericano
+    latinAmerican: País latinoamericano
+    other: Otro
+    specify: Especifica el país
+  familyBackground:
+    father: Sí, el padre
+    mother: Sí, la madre
+    both: Ambos progenitores
+    none: Ninguno
+  specificSupportNeeds:
+    languageDisorder: Trastorno del desarrollo del lenguaje y la comunicación
+    adhd: Trastorno por déficit de atención con hiperactividad
+    asd: Trastorno del espectro autista
+    awaitingEvaluation: Alumno pendiente de evaluación psicopedagógica
+    highAbilities: Altas capacidades
+    cognitiveDisability: Discapacidad cognitiva
+    physicalDisability: Discapacidad física
+    specificLearningDisability: Dificultades Específicas de Aprendizaje
+    other: Otros
+  learningDiagnosedDifficulties:
+    reading: En lectura
+    writing: En escritura
+    math: En matemáticas
+  educationalSupport:
+    pt: PT
+    al: AL
+    other: Otros
+  firstWords:
+    before12Months: Antes del año
+    between12And18Months: Entre el año y el año y medio
+    between18And24Months: Entre el año y medio y los dos años
+    between24And30Months: Entre los dos años y los dos años y medio
+    after30Months: Después de los dos años y medio
+    dontComunicate: No se comunica oralmente
+profile:
+  title: Mi perfil
+  label:
+    name: Nombre
+    lastName: Apellidos
+    email: Correo electrónico
+    teachingStage: Etapa educativa
+    schoolType: Tipo de centro
+    schoolLocation: Localización del centro
+    gender: Género
+    experienceYears: Años de experiencia
+    community: Comunidad autónoma
+  error:
+    name: Por favor, ingrese el nombre
+    lastName: Por favor, ingrese los apellidos
+    email:
+      empty: Por favor, ingrese el correo electrónico
+      format: Formato de correo electrónico incorrecto
+      repeated: Ya existe una cuenta con este correo electrónico
+    teachingStage: Por favor, seleccione la etapa educativa
+    schoolType: Por favor, seleccione el tipo de centro
+    schoolLocation: Por favor, seleccione la localización del centro
+    gender: Por favor, seleccione el género
+    experienceYears: Por favor, ingrese los años de experiencia
+    experienceYearsMin: Los años de experiencia deben ser mayor que 0
+    community: Por favor, seleccione la comunidad autónoma
+  placeholder:
+    name: Angelica
+    lastName: Ross
+    email: angelicaR@email.com
+    teachingStage: Primaria
+    schoolType: Público
+    schoolLocation: Urbano
+    gender: Mujer
+    experienceYears: "5"
+    community: Andalucía
+  options:
+    infant: Infantil
+    primary: Primaria
+    secondary: Secundaria
+    public: Público
+    private: Privado
+    concerted: Concertado
+    rural: Rural
+    urban: Urbano
+    man: Hombre
+    woman: Mujer
+    nonBinary: No binario
+    preferNotToSay: Prefiero no decirlo
+  button: Aceptar
+classroomStats:
+  title: Porcentaje de Ejercicios por Representación y Tipo de Red
+studentStats:
+  titleIconic: Errores de tipo ICÓNICA
+  titleMixed: Errores de tipo COMBINADA
+  titleSymbolic: Errores de tipo SIMBÓLICA
+  numberOfExercises: Número de ejercicios
+  errorsByCategoryAndTypeIconic: Errores por Categoría y Tipo ICÓNICA
+  errorsByCategoryAndTypeMixed: Errores por Categoría y Tipo COMBINADA
+  errorsByCategorySymbolic: Errores por Categoría y Tipo SIMBÓLICA
+  incorrectOrder: Orden incorrecto
+  incorrectPos: Posición incorrecta
+  outOfBounds: Fuera de límites
+surveyA:
+  title: Cuestionario para la detección temprana de las dificultades de aprendizaje en la lectura, escritura y cálculo en el alumnado que inicia Educación Infantil de 5 años (A)
+  button:
+    next: Siguiente
+    prev: Anterior
+    submit: Enviar
+  options:
+    never: Nunca
+    almostNever: Casi nunca
+    fewTimes: Pocas veces
+    sometimes: Algunas veces
+    often: A menudo
+    unknown: No sabe / No es adecuado
+  steps:
+    generalBehavior: Comportamiento general
+    speechAbility: Capacidad de habla
+    memoryAbility: Capacidad de memorización
+    attentionAbility: Capacidad de atención
+    sequenceAbility: Capacidad de secuencia
+    muscleCoordination: Coordinación muscular
+    spatialOrientation: Sentido del espacio y la orientación
+    emotionsSocialAdaptation: Emociones y adaptación social
+  questions:
+    generalBehavior:
+      generalBehavior_1: En la libreta, deja muchas marcas de goma de borrar, incluso se rompe o se arruga la hoja de tanto borrar
+      generalBehavior_2: Su comportamiento para la tarea de casa es irregular
+      generalBehavior_3: El comportamiento en la clase es bueno, pero su rendimiento es bajo
+    speechAbility:
+      speechAbility_1: Reacciona lentamente cuando tiene que contestar preguntas de forma oral
+      speechAbility_2: Se expresa oralmente con dificultad (por ejemplo, no encuentra las palabras para expresar sus ideas)
+      speechAbility_3: Comete errores gramaticales cuando habla
+      speechAbility_4: Tiene dificultades para pronunciar bien
+    memoryAbility:
+      memoryAbility_1: Pierde sus pertenencias personales, tales como libretas, lápices, o estuches, o se olvida de hacer o traer los deberes
+      memoryAbility_2: Le cuesta seguir una serie de varias indicaciones seguidas
+      memoryAbility_3: Necesita que otras personas le recuerden varias veces ciertas informaciones, como traer de casa algunos materiales para trabajar en el aula
+      memoryAbility_4: Le cuesta aprender de memoria los nombres de personas o lugares
+      memoryAbility_5: Le cuesta aprender canciones o poemas infantiles, incluso los que son sencillos
+      memoryAbility_6: Tiene dificultad para aprender un horario que sea un poco complejo
+      memoryAbility_7: Tiene dificultad para recordar sus datos personales, tales como su fecha de nacimiento, su número de teléfono, su dirección, etc.
+    attentionAbility:
+      attentionAbility_1: Se distrae con facilidad
+      attentionAbility_2: Tiene dificultad para concentrarse en una cosa durante mucho tiempo (por ejemplo, cuando hace tareas, se para con frecuencia, se levanta a hablar con otros/as compañeros/as)
+      attentionAbility_3: Tiene dificultad para repetir datos que acaba de escuchar, como números de teléfono, nombres de personas o contenido de cuentos
+    sequenceAbility:
+      sequenceAbility_1: Tiene dificultad para asimilar los conceptos de tiempo (no distingue ayer, hoy y mañana)
+      sequenceAbility_2: Se equivoca de orden cuando tiene que aprender de memoria algunas palabras o números en una secuencia (por ejemplo, el orden de las cuatro estaciones o nmeros de teléfono)
+      sequenceAbility_3: Necesita mucho tiempo para aprender a decir la hora
+    muscleCoordination:
+      muscleCoordination_1: Cuando colorea un dibujo se sale de los límites
+      muscleCoordination_2: Tiene dificultad cuando corre y salta (por ejemplo, se cae a menudo o se lesiona)
+      muscleCoordination_3: Cuando hace juegos con mucho movimiento, por ejemplo, saltar la cuerda, se cansa con facilidad
+      muscleCoordination_4: Su rendimiento motor es bajo (por ejemplo, no puede cumplir los movimientos que le indica el profesorado)
+      muscleCoordination_5: Le cuesta saltar la cuerda, tirar, coger o dar patadas a la pelota
+      muscleCoordination_6: En la clase no puede dar palmadas siguiendo ritmos sencillos
+      muscleCoordination_7: Le cuesta atarse los cordones y abrocharse los botones mas que a los niños de su edad
+    spatialOrientation:
+      spatialOrientation_1: Le cuesta distinguir entre arriba y abajo o entre izquierda y derecha
+      spatialOrientation_2: Tiene dificultad para orientarse (por ejemplo, necesita mucho tiempo para saber como ir a las diferentes aulas, salas del profesorado o sala de música)
+    emotionsSocialAdaptation:
+      emotionsSocialAdaptation_1: Le cuesta relacionarse con otras personas (por ejemplo, a menudo discute con los hermanos o con los companeros)
+      emotionsSocialAdaptation_2: Tiene mala imagen de sí mismo
+      emotionsSocialAdaptation_3: Se desanima o desiste de hacer las cosas con facilidad
+      emotionsSocialAdaptation_4: Tiene dolor de cabeza, dolor de estómago, se enfada o se pone nervioso cuando se siente presionado
+  validationError: Por favor, responde a todas las preguntas antes de pasar al siguiente paso o enviar el cuestionario.
+surveyB:
+  title: Cuestionario para la detección temprana de las dificultades de aprendizaje en la lectura, escritura y cálculo en el alumnado que inicia 1º de Educación Primaria (B)
+  button:
+    next: Siguiente
+    prev: Anterior
+    submit: Enviar
+  options:
+    never: Nunca
+    almostNever: Casi nunca
+    fewTimes: Pocas veces
+    sometimes: Algunas veces
+    often: A menudo
+    unknown: No sabe / No es adecuado
+  steps:
+    reading: Lectura
+    orthography: Ortogrfía y escritura al dictado
+    writeExpression: Expresión escrita
+    generalBehavior: Comportamiento general
+    mathAbility: Capacidad matemática
+    speechAbility: Capacidad de habla
+    memoryAbility: Capacidad de memorización
+    attentionAbility: Capacidad de atención
+    sequenceAbility: Capacidad de secuencia
+    muscleCoordination: Coordinación muscular
+    spatialOrientation: Sentido del espacio y la orientación
+    emotionsSocialAdaptation: Emociones y adaptación social
+  questions:
+    reading:
+      reading_1: Su competencia en la lectura es peor que la de los alumnos de su misma edad
+      reading_2: Tiene dificultad para reconocer palabras muy frecuentes o familiares
+      reading_3: Cuando lee en voz alta, se equivoca de palabras
+      reading_4: Su actitud a la hora de leer es peor que la de los alumnos de su misma edad
+      reading_5: Cuando revisa sus producciones, no encuentra los errores
+    orthography:
+      orthography_1: Se equivoca en la tarea de escribir al dictado, cometiendo errores en las letras, palabras o lo deja en blanco
+      orthography_2: Comete muchos errores a la hora de escribir, tales como saltarse letras, no mantiene el mismo tamano de las letras o no respeta la pauta
+      orthography_3: Necesita mas tiempo que otros alumnos para copiar un texto
+    writeExpression:
+      writeExpression_1: Muchas palabras de su vocabulario oral, no las sabe escribir
+      writeExpression_2: La expresion escrita es peor que la oral
+    generalBehavior:
+      generalBehavior_1: En la libreta, deja muchas marcas de goma de borrar, incluso se rompe o se arruga la hoja de tanto borrar
+      generalBehavior_2: Su comportamiento para la tarea de casa es irregular
+      generalBehavior_3: El comportamiento en la clase es bueno, pero su rendimiento es bajo
+      generalBehavior_4: Los padres dicen que el alumno estudia mucho, pero, incluso así, su rendimiento en clase es bajo
+      generalBehavior_5: Los padres dicen que el alumno ha leído muchas veces el contenido que debe escribir de memoria, pero el resultado de la escritura de memoria no es bueno
+    mathAbility:
+      mathAbility_1: Para cálculos sencillos (por ejemplo, 3+2), necesita los dedos o hacer marcas en el papel
+      mathAbility_2: Tiene dificultades para resolver problemas
+      mathAbility_3: Tiene dificultades para comprender el valor de los numeros que ha de conocer por su edad
+    speechAbility:
+      speechAbility_1: Reacciona lentamente cuando tiene que contestar preguntas de forma oral
+      speechAbility_2: Se expresa oralmente con dificultad (por ejemplo, no encuentra las palabras para expresar sus ideas)
+      speechAbility_3: Comete errores gramaticales cuando habla
+      speechAbility_4: Tiene dificultades para pronunciar bien
+    memoryAbility:
+      memoryAbility_1: Pierde sus pertenencias personales, tales como libretas, lápices, o estuches, o se olvida de hacer o traer los deberes
+      memoryAbility_2: Le cuesta seguir una serie de varias indicaciones seguidas
+      memoryAbility_3: Necesita que otras personas le recuerden varias veces ciertas informaciones, como traer de casa algunos materiales para trabajar en el aula
+      memoryAbility_4: Le cuesta aprender de memoria los nombres de personas o lugares
+      memoryAbility_5: Le cuesta aprender canciones o poemas infantiles, incluso los que son sencillos
+      memoryAbility_6: Tiene dificultad para aprender un horario que sea un poco complejo
+      memoryAbility_7: Tiene dificultad para recordar sus datos personales, tales como su fecha de nacimiento, su número de teléfono, su dirección, etc.
+    attentionAbility:
+      attentionAbility_1: Se distrae con facilidad
+      attentionAbility_2: Tiene dificultad para concentrarse en una cosa durante mucho tiempo (por ejemplo, cuando hace tareas, se para con frecuencia, se levanta a hablar con otros/as compañeros/as)
+      attentionAbility_3: Tiene dificultad para repetir datos que acaba de escuchar, como números de teléfono, nombres de personas o contenido de cuentos
+    sequenceAbility:
+      sequenceAbility_1: Cambia el orden de las letras en las palabras
+      sequenceAbility_2: Le cuesta escribir bien las fechas, siguiendo el orden de día, mes, año
+      sequenceAbility_3: Tiene dificultad para asimilar los conceptos de tiempo (no distingue ayer, hoy y mañana)
+      sequenceAbility_4: Se equivoca de orden cuando tiene que aprender de memoria algunas palabras o números en una secuencia (por ejemplo, el orden de las cuatro estaciones o nmeros de teléfono)
+      sequenceAbility_5: Necesita mucho tiempo para aprender a decir la hora
+    muscleCoordination:
+      muscleCoordination_1: Cuando colorea un dibujo se sale de los límites
+      muscleCoordination_2: Tiene dificultad cuando corre y salta (por ejemplo, se cae a menudo o se lesiona)
+      muscleCoordination_3: Cuando hace juegos con mucho movimiento, por ejemplo, saltar la cuerda, se cansa con facilidad
+      muscleCoordination_4: Su rendimiento en Educación Física es bajo (por ejemplo, no puede cumplir los movimientos que le indica el profesorado)
+      muscleCoordination_5: Le cuesta saltar la cuerda, tirar, coger o dar patadas a la pelota
+      muscleCoordination_6: En la clase de Música tiene dificultad para dar palmadas siguiendo ritmos sencillos
+      muscleCoordination_7: Le cuesta atarse los cordones y abrocharse los botones mas que a los niños de su edad
+    spatialOrientation:
+      spatialOrientation_1: Le cuesta distinguir entre arriba y abajo o entre izquierda y derecha
+      spatialOrientation_2: Tiene dificultad para orientarse (por ejemplo, necesita mucho tiempo para saber como ir a las diferentes aulas, salas del profesorado o sala de música)
+    emotionsSocialAdaptation:
+      emotionsSocialAdaptation_1: Huye del estudio
+      emotionsSocialAdaptation_2: Le cuesta relacionarse con otras personas (por ejemplo, a menudo discute con los hermanos o con los compañeros)
+      emotionsSocialAdaptation_3: Tiene mala imagen de sí mismo
+      emotionsSocialAdaptation_4: Se desanima o desiste de hacer las cosas con facilidad
+      emotionsSocialAdaptation_5: Tiene dolor de cabeza, dolor de estómago, se enfada o se pone nervioso cuando se siente presionado
+  validationError: Por favor, responde todas las preguntas antes de pasar al siguiente paso o enviar el cuestionario.
+pageNotFound:
+  message1: Vaya... Parece que la página que buscas no existe.
+  message2: Haz clic en el icono en la parte superior izquierda para volver.
+exercises:
+  notFound: No se han encontrado ejercicios
+pretraining:
+  select: Selecciona la actividad
+yes: Sí
+no: No
+select: Por favor, selecciona una opción
+addField: Añadir campo
+phrasesActivity:
+  intro1: Ahora vamos a ordenar los elementos para formar la frase, ¡fíjate bien en los pictogramas!
+  intro2: Recuerda que en esta actividad tienes que ordenar los elementos para formar la frase.
+  help: Escucha y ordena la frase
+  phrases:
+    dog-animal:
+      - El perro
+      - es
+      - un animal
+    whale-mammal:
+      - La ballena
+      - es
+      - un mamífero
+    house-living:
+      - La casa
+      - es para
+      - vivir
+    sun-star:
+      - El sol
+      - es
+      - una estrella
+    summer-year:
+      - El verano
+      - es parte de
+      - el año
+    apple-fruit:
+      - La manzana
+      - es
+      - una fruta
+    bed-sleeping:
+      - La cama
+      - es para
+      - dormir
+    street-city:
+      - La calle
+      - es parte de
+      - la ciudad
+    car-traveling:
+      - El coche
+      - es para
+      - viajar
+    swing-playing:
+      - El columpio
+      - es para
+      - jugar
+    water-drinking:
+      - El agua
+      - es para
+      - beber
+    sea-bathing:
+      - El mar
+      - es para
+      - bañarse
+    dog-tail:
+      - El perro
+      - tiene
+      - cola
+    whale-sea:
+      - La ballena
+      - está en
+      - el mar
+    house-living2:
+      - La casa
+      - sirve para
+      - vivir
+    sun-sky:
+      - El sol
+      - está en
+      - el cielo
+    summer-sunbathing:
+      - El verano
+      - sirve para
+      - tomar el sol
+    apple-fruitBowl:
+      - La manzana
+      - está en
+      - el frutero
+    bed-bedroom:
+      - La cama
+      - está en
+      - la habitación
+    street-city2:
+      - La calle
+      - está en
+      - la ciudad
+    car-wheels:
+      - El coche
+      - tiene
+      - ruedas
+    swing-park:
+      - El columpio
+      - está en
+      - el parque
+    water-washing:
+      - El agua
+      - sirve para
+      - lavarse
+    sea-beach:
+      - El mar
+      - está en
+      - la playa
+
+site:
+  title: Centro de Ayuda
+
+general:
+  title: Información General
+  sub1:
+    title: ¿Qué es PEPI?
+    intro: Presentación del programa PEPI y sus fundamentos.
+    body:
+      - 'PEPI es la revisión y actualización del Programa en papel y lápiz "EPI - Estimulación del Pensamiento y la Inteligencia" para niños de Educación Infantil y Educación Primaria.'
+      - topic: "El objetivo del programa es doble:"
+        explanation:
+              - De un lado, se busca trabajar habilidades de aproximación a la lectoescritura con el fin de favorecer la comprensión y expresión a edades muy tempranas.
+              - "De otro lado, el programa permite iniciar al alumno en la organización de la información trabajando un tipo de mapa conceptual muy sencillo. 
+                 Esto es muy importante porque, si incluso antes de que el niño lea, mejoramos la calidad del procesamiento (léxico, semántico y sintáctico) y el manejo de la información; se estimula la inteligencia, el pensamiento y el potencial de aprendizaje."
+      - PEPI se basa en el Hypertexto (revisado y actualizado en el programa Hyper), un tipo de mapa conceptual con reglas internas que permite estructurar la información en redes, estableciendo conexiones significativas entre los contenidos seleccionados.
+
+  sub2:
+    title: Sobre la estrategia
+    intro: Fundamentos de la estrategia Hypertexto en la que se basa PEPI.
+    body:
+      - Con Hyper se trabaja de forma conjunta el procesamiento léxico, semántico y sintáctico (implicados en la comprensión-expresión), pero también la organización del conocimiento en red.
+      - "Hyper se apoya sobre la idea de que comprender no va a depender exclusivamente de cómo se interpreta o construye la información, sino también de cómo se selecciona, se relaciona y se transmite, tanto verbalmente como por escrito. 
+         De ahí la eficacia de trabajar los procesos de comprensión-expresión unidos en un mismo bloque, haciendo que el alumno participe de forma activa a la hora de traducir, interpretar y extrapolar lo aprendido.
+         Para ello, es preciso aprender a transformar los mensajes lineales en mapas conceptuales o estructuras con forma de red, tipo Hyper."
+      - PEPI utiliza tres tipos de red y cuatro tipos de presentación que se ajustan a los diferentes niveles y necesidades de los estudiantes.
+  sub3:
+    title: Tipos de Red y Presentación
+    intro: Estructuras y formatos con los que PEPI organiza la información.
+    divisions:
+      - title: Tres Tipos de Red
+        body: Los tres tipos de red son la red 1-1, la red 1-2 y la red 1-3. Se define en la rama izquierda y se amplía la información en la rama derecha.
+        steps:
+          - "Red 1-1: un bolo en la rama izquierda y uno en la derecha."
+          - "Red 1-2: un bolo en la izquierda y dos en la derecha."
+          - "Red 1-3: un bolo en la izquierda y tres en la derecha."
+
+      - title: Signos de puntuación
+        body: Para cada uno de los tipos de red, los signos de puntuación (y por tanto la expresión) tienen ciertas peculiaridades.
+        steps:
+          - "Los bolos hermanos se separan con <code>,</code>, <code>y</code> o con STOPs de menor tamaño <smallStop/>."
+          - "Siempre se pasa de la rama izquierda a la derecha con punto y aparte <code>.</code> o STOP de mayor tamaño <bigStop/>."
+          - "Siempre se termina la rama derecha con punto y final <code>.</code> o STOP de mayor tamaño <bigStop/>."
+
+      - title: Cuatro Tipos de Presentación
+        body: La información se presenta de cuatro formas para ajustarse a los diferentes niveles de los estudiantes.
+        steps:
+          - "Icónica: solo imágenes."
+          - "Combinada: imágenes asociadas a palabras."
+          - "Global: palabras completas — trabaja la ruta léxica."
+          - "Simbólica: palabras fragmentadas — hay que escribir cada letra, desarrollando la ruta fonológica."
+        descriptions:
+          - La presentación icónica y combinada sustituyen los contenidos y los verbos por imágenes y pictogramas. Para la sustitución de los contenidos por imágenes este programa se conecta con la base de datos del Centro Aragonés para la Comunicación Aumentativa y Alternativa (ARASAAC).
+          - En la presentación global la palabra aparece de forma completa, y como veremos, los ejercicios se resuelven arrastrándola sin necesidad de escribir. En esta presentación trabajamos fundamentalmente la ruta léxica de la lectura. Sin embargo, en la presentación simbólica será necesario escribir la palabra, para ello, debemos fragmentarla y así teclear cada una de las letras que componen la palabra lo que permite desarrollar la ruta fonológica.
+          - <bold>¿Por qué una presentación global y una presentación simbólica?</bold>
+          - Con el programa buscamos iniciarnos en la organización de la información incluso antes de manejar la lectoescritura, con la presentación global tratamos de avanzar en este objetivo para posteriormente continuar con la organización una vez ya iniciada la lectoescritura.
+          - El procedimiento específico para desarrollar cada uno de los ejercicios en estos tipos de red y tipos de presentación, lo encontraremos en el apartado <linkWorkWithPepi>¿Cómo se trabaja con PEPI?</linkWorkWithPepi>
+
+      - title: Pictogramas y ARASAAC
+        body: La presentación icónica y combinada sustituye contenidos y verbos por imágenes y pictogramas conectados con la base de datos de ARASAAC.
+        steps:
+          - ARASAAC cuenta con más de 13 500 imágenes y pictogramas.
+          - "6 pictogramas para verbos: 3 para definir (es, es para, es parte de) y 3 para ampliar (tiene, sirve para, está en)."
+          - El uso del verbo en plural requiere dos pictogramas en lugar de uno.
+
+teacher:
+  help:
+    tooltip: Ayuda para profesores
+  title: Rol Docente
+  faq:
+    title: Preguntas Frecuentes
+    intro: Guía de uso del perfil docente en PEPI.
+    items:
+      - q: ¿Cómo puedo registrarme?
+        type: steps
+        a: 'Cuando accedemos a PEPI podemos elegir el tipo de perfil de usuario: Profesor o Alumno.'
+        steps:
+          - 'Accede a PEPI y selecciona el tipo de perfil <bold>Profesor / Profesora</bold>.'
+          - 'Haz click en <bold>"Regístrate"</bold>.'
+          - 'Rellena tu nombre, apellidos, correo electrónico y contraseña.'
+          - 'Ya puedes generar aulas, dar de alta alumnos y visualizar sus estadísticas.'
+
+      - q: ¿Cómo generar un aula?
+        type: steps
+        a: 'Crear un aula es muy sencillo:'
+        steps:
+          - 'En la pantalla principal, rellena los campos: nombre del aula y nivel educativo.'
+          - 'Haz click en <bold>"Añadir aula"</bold>.'
+
+      - q: ¿Cómo dar de alta a un alumno?
+        type: steps
+        a: 'Es muy sencillo dar de alta a tus alumnos, sigue estos pasos:'
+        steps:
+          - 'Haz click en el nombre del aula a la que quieres añadir el alumno.'
+          - 'En <bold>"Mis aulas"</bold>, haz click sobre el nombre del aula.'
+          - 'Pulsa <bold>"Añadir alumno"</bold> en la parte inferior.'
+          - 'Rellena los datos obligatorios: nombre, apellido/s, edad, fecha de nacimiento, número de clase y colegio.'
+          - '(Opcional, pero altamente recomendable) Completa la información complementaria sobre contexto familiar y necesidades educativas.'
+          - 'Una vez creado el alumno podemos acceder al aula para ver el <bold>nombre de usuario</bold> del alumno. Además, veremos el botón <bold>"Completar encuesta"</bold> que permite acceder a una encuesta sobre el nivel de lectoescritura del alumno. Se trata de ítems de pregunta corta y respuesta rápida.'
+        note: 'La información del alumno puede editarse en cualquier momento pinchando sobre su nombre.'
+
+      - q: ¿Cómo visualizar el rendimiento de un aula o de un alumno?
+        type: steps
+        a: 'Hay dos niveles de estadísticas disponibles:'
+        steps:
+          - 'En la pantalla principal, columna <bold>"Ver estadísticas"</bold> del aula → número de ejercicios realizados por todos los alumnos.'
+          - 'Dentro del aula, columna <bold>"Ver estadísticas"</bold> del alumno → ejercicios realizados y errores cometidos.'
+
+      - q: ¿Qué otras utilidades ofrece la versión del profesor?
+        type: list
+        a: 'Desde el perfil del profesor también puedes:'
+        items:
+          - 'Generar nuevos ejercicios personalizados.'
+          - 'Consultar información relacionada con la estrategia PEPI.'
+        note: 'Para acceder a estas opciones, haz click sobre el icono de <bold><userIcon/> usuario</bold> de la parte superior izquierda.'
+
+contactAndPublications:
+  title: "Contacto y Publicaciones"
+  intro: "Información de contacto y publicaciones relacionadas con el programa PEPI y la estrategia Hypertexto."
+  contact:
+    title: "Contacto"
+    intro: "Puedes ponerte en contacto con nosotros a través de los siguientes medios:"
+    means:
+      - type: "email"
+        label: "Marisol Fernández Cueli"
+        value: "cuelimarisol@uniovi.es"
+      - type: "email"
+        label: "María Paloma González Castro"
+        value: "mgcastro@uniovi.es"
+      - type: "web"
+        label: "Página oficial del proyecto"
+        value: "https://www.unioviedo.es/hyper/"
+
+  publications:
+    title: "Publicaciones"
+    intro: "Artículos y trabajos relacionados con el programa PEPI y la estrategia Hypertexto."
+    items:
+      - ref: "Álvarez, L., y González-Castro, P. (2012). EPI.com: Programa de Estimulación del Pensamiento y la Inteligencia. Editorial EOS."
+        url: null
+      - ref: "Cueli, M., Álvarez, A. I., Loew, S., González-Castro, P., y Rodríguez, C. (2020). Is organizing knowledge effective in primary education?"
+        url: "https://doi.org/10.1155/2020/887"

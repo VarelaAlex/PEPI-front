@@ -11,7 +11,7 @@ let Sider = (props) => {
 
     return (
         <Drawer
-            title={<Text style={{ color: "white", fontSize: "2vh" }}>{t("sider.teacher.welcomeMessage") + ", " + localStorage.getItem("name")}</Text>}
+            title={<Text style={{ color: "white", fontSize: "2vh" }}>{localStorage.getItem("name") ? t("sider.teacher.welcomeMessage") + ", " + localStorage.getItem("name") : t("sider.anonymous.welcomeMessage")}</Text>}
             open={open}
             onClose={() => setOpen(false)}
             placement="left"

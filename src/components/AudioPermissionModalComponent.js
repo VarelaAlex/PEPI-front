@@ -16,8 +16,7 @@ export default function AudioPermissionModal() {
         <Modal
             open={open}
             centered
-            closable={false}
-            maskClosable={false}
+            mask={{closable: false}}
             footer={null}
             getContainer={false}
             style={{ zIndex: 999999 }}

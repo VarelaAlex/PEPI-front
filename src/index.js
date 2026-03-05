@@ -7,6 +7,7 @@ import { BrowserRouter }   from 'react-router-dom';
 import { SessionProvider } from './components/SessionComponent';
 import {AvatarProvider} from "./components/AvatarContext";
 import Avatar from "./components/Avatar";
+import "./styles.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

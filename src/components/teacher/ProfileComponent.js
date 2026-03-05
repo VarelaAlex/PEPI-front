@@ -68,7 +68,7 @@ let Profile = () => {
 	};
 
 	return (
-		<Card title={ t("profile.title") } style={ { width: "90vw" } }>
+		<Card title={ t("profile.title") } style={ { width: "90vw", marginTop: "2vh", marginBottom: "2vh" } }>
 			{ message?.error?.type && (
 				<Alert
 					type="error"

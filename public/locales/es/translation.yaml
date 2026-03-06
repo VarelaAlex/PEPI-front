@@ -101,6 +101,7 @@ signup:
       experienceYears: Años de experiencia
       community: Comunidad autónoma
       age: Edad
+      sex: Sexo
       birthDate: Fecha de nacimiento
       classroomNumber: Número de clase
       school: Colegio
@@ -120,6 +121,7 @@ signup:
       name: Angelica
       lastName: Ross
       email: angelicaR@email.com
+      sex: Femenino
       password: "******"
       confirm: Repite tu contraseña
       teachingStage: Selecciona una etapa educativa
@@ -149,6 +151,7 @@ signup:
     name: Por favor, ingrese el nombre
     lastName: Por favor, ingrese los apellidos
     age: Por favor, ingrese la edad
+    sex: Por favor, seleccione el sexo
     birthDate: Por favor, ingrese la fecha de nacimiento
     classroomNumber: Por favor, ingrese el número de clase
     school: Por favor, ingrese el colegio
@@ -177,7 +180,7 @@ classrooms:
   table:
     title: Mis aulas
     className: Nombre del aula
-    numberStudents: Número de alumnos
+    numberStudents: alumnos
     actions: Acciones
     empty: Aún no tienes aulas
     tooltips:
@@ -244,7 +247,8 @@ classrooms:
         seeStatistics: Ver estadísticas
         delete: Eliminar
         survey: Completar encuesta
-        editSurvey: Editar encuesta
+        edit: Editar
+      surveyCompleted: Encuesta
     addStudent:
       divider: Añadir un nuevo alumno
       label:
@@ -487,18 +491,24 @@ students:
         name: Nombre del alumno
         lastName: Apellidos del alumno
         age: Edad del alumno
+        sex: Sexo del alumno
         classroom: Aula del alumno
       error:
         name: Por favor, ingrese el nombre del alumno
         lastName: Por favor, ingrese los apellidos del alumno
         age: Por favor, ingrese la edad del alumno
+        sex: Por favor, seleccione el sexo del alumno
         classroom: Por favor, seleccione el aula del alumno
       placeholder:
         name: Angelica
         lastName: Ross
         age: "5"
+        sex: Femenino
         classroom: Primaria 3º A
       button: Aceptar
+  sex:
+    male: Masculino
+    female: Femenino
   socioeconomicLevel:
     low: Bajo
     medium: Medio
@@ -606,7 +616,7 @@ studentStats:
   incorrectPos: Posición incorrecta
   outOfBounds: Fuera de límites
 surveyA:
-  title: Cuestionario para la detección temprana de las dificultades de aprendizaje en la lectura, escritura y cálculo en el alumnado que inicia Educación Infantil de 5 años (A)
+  title: Cuestionario de información del alumno de infantil
   button:
     next: Siguiente
     prev: Anterior
@@ -671,7 +681,7 @@ surveyA:
       emotionsSocialAdaptation_4: Tiene dolor de cabeza, dolor de estómago, se enfada o se pone nervioso cuando se siente presionado
   validationError: Por favor, responde a todas las preguntas antes de pasar al siguiente paso o enviar el cuestionario.
 surveyB:
-  title: Cuestionario para la detección temprana de las dificultades de aprendizaje en la lectura, escritura y cálculo en el alumnado que inicia 1º de Educación Primaria (B)
+  title: Cuestionario de información del alumno de primaria
   button:
     next: Siguiente
     prev: Anterior
@@ -900,6 +910,7 @@ general:
          De ahí la eficacia de trabajar los procesos de comprensión-expresión unidos en un mismo bloque, haciendo que el alumno participe de forma activa a la hora de traducir, interpretar y extrapolar lo aprendido.
          Para ello, es preciso aprender a transformar los mensajes lineales en mapas conceptuales o estructuras con forma de red, tipo Hyper."
       - PEPI utiliza tres tipos de red y cuatro tipos de presentación que se ajustan a los diferentes niveles y necesidades de los estudiantes.
+
   sub3:
     title: Tipos de Red y Presentación
     intro: Estructuras y formatos con los que PEPI organiza la información.

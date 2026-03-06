@@ -1,6 +1,6 @@
-import {DeleteOutlined, LineChartOutlined} from "@ant-design/icons";
-import {Alert, Button, Card, Cascader, Divider, Empty, Form, Input, Popconfirm, Spin, Table, Tooltip} from "antd";
-import {useEffect, useState} from "react";
+import {DeleteOutlined, LineChartOutlined, PlusOutlined, BookOutlined} from "@ant-design/icons";
+import {Alert, Button, Card, Cascader, Divider, Empty, Form, Input, Popconfirm, Space, Spin, Table} from "antd";
+import {useEffect, useState, useRef} from "react";
 import {useTranslation} from "react-i18next";
 import {Link, useNavigate} from "react-router-dom";
 import ExcelJS from "exceljs";
@@ -12,6 +12,9 @@ let ClassroomsList = (props) => {
     let [loading, setLoading] = useState(true);
     let [classrooms, setClassrooms] = useState([]);
     let [message, setMessage] = useState(null);
+    let [showAddForm, setShowAddForm] = useState(false);
+
+    const formRef = useRef(null);
 
     let {t} = useTranslation();
     let navigate = useNavigate();
@@ -109,26 +112,94 @@ let ClassroomsList = (props) => {
     };
 
 
-    const columns = [{
-        title: t("classrooms.table.className"), dataIndex: "name", render: (name) => {
-            return <Link to={"/teachers/classrooms/" + name}>{name}</Link>;
+    const columns = isMobile ? [
+        {
+            title: t("classrooms.table.className"),
+            dataIndex: "name",
+            render: (name, classroom) => (
+                <Link to={"/teachers/classrooms/" + name}>
+                    <div><strong>{name}</strong></div>
+                    <small>{classroom.numberStudents} {t("classrooms.table.numberStudents")}</small>
+                </Link>
+            )
+        },
+        {
+            title: t("classrooms.table.actions"),
+            dataIndex: "id",
+            render: (id, classroom) => (
+                <Space layout="vertical" style={{ width: "100%" }}>
+                    <Button
+                        size="small"
+                        block
+                        onClick={() => {
+                            setClassroomId(classroom.id);
+                            navigate("/teachers/classroomStats/" + classroom.name);
+                        }}
+                        icon={<LineChartOutlined />}
+                    >
+                        {t("classrooms.table.buttons.seeStatistics")}
+                    </Button>
+                    <Button
+                        size="small"
+                        block
+                        onClick={() => generateReport(classroom.name)}
+                    >
+                        {t("classrooms.table.buttons.generateReport")}
+                    </Button>
+                    <Popconfirm
+                        title={t("classrooms.delete.popconfirm.title")}
+                        description={t("classrooms.delete.popconfirm.description")}
+                        okText={t("classrooms.delete.popconfirm.okText")}
+                        okButtonProps={{danger: true}}
+                        cancelText={t("classrooms.delete.popconfirm.cancelText")}
+                        onConfirm={() => deleteClassroom(classroom.name)}
+                    >
+                        <Button
+                            size="small"
+                            block
+                            danger
+                            type="primary"
+                            icon={<DeleteOutlined />}
+                        >
+                            {t("classrooms.table.buttons.delete")}
+                        </Button>
+                    </Popconfirm>
+                </Space>
+            )
         }
-    }, {
-        title: t("classrooms.table.numberStudents"), dataIndex: "numberStudents", align: "center"
-    }, {
-        title: t("classrooms.table.actions"),
-        dataIndex: "name",
-        align: "right",
-        render: (name, classroom) => (isMobile ? <div style={{float: "right"}}>
-                <Tooltip title={t("classrooms.table.tooltips.seeStatistics")} mouseEnterDelay="0.3"
-                         trigger={["hover", "focus"]}>
-                    <Button onClick={() => {
-                        setClassroomId(classroom.id);
-                        navigate("/teachers/classroomStats/" + name);
-                    }} icon={<LineChartOutlined/>} style={{marginRight: "1vmax"}}/>
-                </Tooltip>
-                <Tooltip title={t("classrooms.table.tooltips.delete")} mouseEnterDelay="0.3"
-                         trigger={["hover", "focus"]}>
+    ] : [
+        {
+            title: t("classrooms.table.className"),
+            dataIndex: "name",
+            render: (name) => <Link to={"/teachers/classrooms/" + name}>{name}</Link>
+        },
+        {
+            title: t("classrooms.table.numberStudents"),
+            dataIndex: "numberStudents",
+            align: "center"
+        },
+        {
+            title: t("classrooms.table.actions"),
+            dataIndex: "name",
+            align: "right",
+            render: (name, classroom) => (
+                <Space wrap>
+                    <Button
+                        size="small"
+                        onClick={() => {
+                            setClassroomId(classroom.id);
+                            navigate("/teachers/classroomStats/" + name);
+                        }}
+                        icon={<LineChartOutlined/>}
+                    >
+                        {t("classrooms.table.buttons.seeStatistics")}
+                    </Button>
+                    <Button
+                        size="small"
+                        onClick={() => generateReport(name)}
+                    >
+                        {t("classrooms.table.buttons.generateReport")}
+                    </Button>
                     <Popconfirm
                         title={t("classrooms.delete.popconfirm.title")}
                         description={t("classrooms.delete.popconfirm.description")}
@@ -137,29 +208,19 @@ let ClassroomsList = (props) => {
                         cancelText={t("classrooms.delete.popconfirm.cancelText")}
                         onConfirm={() => deleteClassroom(name)}
                     >
-                        <Button danger type="primary"
-                                icon={<DeleteOutlined/>}> {t("classrooms.detail.table.buttons.delete")}</Button>
+                        <Button
+                            size="small"
+                            danger
+                            type="primary"
+                            icon={<DeleteOutlined/>}
+                        >
+                            {t("classrooms.table.buttons.delete")}
+                        </Button>
                     </Popconfirm>
-                </Tooltip>
-            </div> : <div style={{float: "right"}}>
-                <Button onClick={() => {
-                    setClassroomId(classroom.id);
-                    navigate("/teachers/classroomStats/" + name);
-                }} style={{marginRight: "1vmax"}}> {t("classrooms.table.buttons.seeStatistics")}</Button>
-                <Button onClick={() => generateReport(name)}
-                        style={{marginRight: "1vmax"}}> {t("classrooms.table.buttons.generateReport")}</Button>
-                <Popconfirm
-                    title={t("classrooms.delete.popconfirm.title")}
-                    description={t("classrooms.delete.popconfirm.description")}
-                    okText={t("classrooms.delete.popconfirm.okText")}
-                    okButtonProps={{danger: true}}
-                    cancelText={t("classrooms.delete.popconfirm.cancelText")}
-                    onConfirm={() => deleteClassroom(name)}
-                >
-                    <Button danger type="primary"> {t("classrooms.table.buttons.delete")}</Button>
-                </Popconfirm>
-            </div>)
-    }];
+                </Space>
+            )
+        }
+    ];
 
     let getClassrooms = async () => {
         setLoading(true);
@@ -220,55 +281,177 @@ let ClassroomsList = (props) => {
         getClassrooms();
     };
 
-    return (<Spin spinning={loading} tip="Loading" size="large">
-            <Card title={t("classrooms.table.title")} style={{width: "90vw", marginTop: "2vh", marginBottom: "2vh"}}>
+    return (
+        <Spin spinning={loading} size="large">
+            <Card
+                title={
+                    <Space size="middle" style={{ fontSize: "1.2rem", fontWeight: "600" }}>
+                        {t("classrooms.table.title")}
+                    </Space>
+                }
+                style={{
+                    width: isMobile ? "95vw" : "90vw",
+                    marginTop: "2vh",
+                    marginBottom: "2vh",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                    borderRadius: "8px"
+                }}
+                styles={{ body: { padding: isMobile ? "1.5rem" : "2rem" } }}
+            >
                 {classrooms.length <= 0 ?
                     <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={t("classrooms.table.empty")}/> :
-                    <Table bordered columns={columns}
-                           dataSource={classrooms}/>}
-                <Divider orientation="left">{t("classrooms.addClassroom.divider")}</Divider>
-                {message?.error?.type &&
-                    <Alert type="error" message={t(message?.error?.type)} showIcon style={{marginBottom: "1vh"}}/>}
-                <Form
-                    form={form}
-                    name="addClassroom"
-                    labelCol={{xs: {span: 24}, sm: {span: 6}}}
-                    wrapperCol={{xs: {span: 24}, sm: {span: 18}}}
-                    onFinish={onFinish}
-                    scrollToFirstError
-                >
-                    <Form.Item
-                        name="name"
-                        label={t("classrooms.addClassroom.label")}
-                        rules={[{
-                            required: true, message: t("classrooms.addClassroom.error")
-                        }]}
-                        validateStatus={message?.error?.name ? "error" : undefined}
-                        help={message?.error?.name ? t(message?.error?.name) : undefined}
-                        hasFeedback
-                    >
-                        <Input placeholder={t("classrooms.addClassroom.placeholder")} onInput={() => setMessage(null)}/>
-                    </Form.Item>
-                    <Form.Item
-                        name="level"
-                        label={t("classrooms.addClassroom.level.label")}
-                        rules={[{required: true, message: t("signup.error.level.empty")}]}
-                    >
-                        <Cascader
-                            placeholder={t("classrooms.addClassroom.level.placeholder")}
-                            options={options}
-                            expandTrigger="hover"
-                            displayRender={(labels) => labels[labels.length - 1]}
+                    <div style={{overflowX: "auto"}}>
+                        <Table
+                            bordered
+                            columns={columns}
+                            dataSource={classrooms}
+                            pagination={isMobile ? {pageSize: 5} : {pageSize: 7}}
+                            size={isMobile ? "small" : "middle"}
+                            style={{ borderRadius: "8px" }}
                         />
-                    </Form.Item>
-                    <Form.Item wrapperCol={{xs: {span: 24, offset: 0}, sm: {span: 16, offset: 6}}}>
-                        <Button type="primary" htmlType="submit">
-                            {t("classrooms.addClassroom.button")}
-                        </Button>
-                    </Form.Item>
-                </Form>
+                    </div>
+                }
+
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                }}>
+                    <Button
+                        type="primary"
+                        size="large"
+                        icon={<PlusOutlined />}
+                        onClick={() => {
+                            setShowAddForm(!showAddForm);
+                            if (!showAddForm) {
+                                setTimeout(() => {
+                                    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                                }, 100);
+                            }
+                        }}
+                        style={{
+                            minWidth: isMobile ? "100%" : "300px",
+                            fontSize: "1rem",
+                            fontWeight: "600",
+                            height: "45px",
+                            borderRadius: "6px"
+                        }}
+                    >
+                        {showAddForm ? t("signup.button.prev") : t("classrooms.addClassroom.button")}
+                    </Button>
+                </div>
+
+                {showAddForm && (
+                    <>
+                        <Divider style={{margin: "2.5rem 0"}}/>
+
+                        <div
+                            ref={formRef}
+                            style={{
+                                backgroundColor: "#fafafa",
+                                padding: isMobile ? "1.5rem" : "2rem",
+                                borderRadius: "8px",
+                                border: "1px solid #f0f0f0"
+                            }}
+                        >
+                            <h3 style={{marginTop: 0, marginBottom: "1.5rem", fontSize: "1.1rem", fontWeight: "600", color: "#262626"}}>
+                                {t("classrooms.addClassroom.divider")}
+                            </h3>
+
+                            {message?.error?.type &&
+                                <Alert
+                                    type="error"
+                                    description={t(message?.error?.type)}
+                                    showIcon
+                                    style={{marginBottom: "1.5rem"}}
+                                    closable
+                                />
+                            }
+
+                            <Form
+                                form={form}
+                                name="addClassroom"
+                                labelCol={{xs: {span: 24}, sm: {span: 6}}}
+                                wrapperCol={{xs: {span: 24}, sm: {span: 18}}}
+                                onFinish={onFinish}
+                                scrollToFirstError
+                                layout={isMobile ? "vertical" : "horizontal"}
+                            >
+                                <Form.Item
+                                    name="name"
+                                    label={t("classrooms.addClassroom.label")}
+                                    rules={[{
+                                        required: true, message: t("classrooms.addClassroom.error")
+                                    }]}
+                                    validateStatus={message?.error?.name ? "error" : undefined}
+                                    help={message?.error?.name ? t(message?.error?.name) : undefined}
+                                    hasFeedback
+                                >
+                                    <Input
+                                        placeholder={t("classrooms.addClassroom.placeholder")}
+                                        onInput={() => setMessage(null)}
+                                        size="large"
+                                        style={{ borderRadius: "6px" }}
+                                    />
+                                </Form.Item>
+                                <Form.Item
+                                    name="level"
+                                    label={t("classrooms.addClassroom.level.label")}
+                                    rules={[{required: true, message: t("signup.error.level.empty")}]}
+                                >
+                                    <Cascader
+                                        placeholder={t("classrooms.addClassroom.level.placeholder")}
+                                        options={options}
+                                        expandTrigger="hover"
+                                        displayRender={(labels) => labels[labels.length - 1]}
+                                        style={{ borderRadius: "6px" }}
+                                    />
+                                </Form.Item>
+                                <Form.Item wrapperCol={{xs: {span: 24, offset: 0}, sm: {span: 16, offset: 6}}}>
+                                    <Space style={{ width: "100%", gap: "1rem" }} wrap>
+                                        <Button
+                                            type="primary"
+                                            htmlType="submit"
+                                            size="large"
+                                            icon={<PlusOutlined />}
+                                            style={{
+                                                minWidth: isMobile ? "100%" : "200px",
+                                                fontSize: "1rem",
+                                                fontWeight: "600",
+                                                height: "40px",
+                                                borderRadius: "6px",
+                                                flex: isMobile ? "1 1 auto" : "0 1 auto"
+                                            }}
+                                        >
+                                            {t("classrooms.addClassroom.button")}
+                                        </Button>
+                                        <Button
+                                            onClick={() => {
+                                                setShowAddForm(false);
+                                                form.resetFields();
+                                                setMessage(null);
+                                            }}
+                                            style={{
+                                                minWidth: isMobile ? "100%" : "200px",
+                                                fontSize: "1rem",
+                                                fontWeight: "600",
+                                                height: "40px",
+                                                borderRadius: "6px",
+                                                flex: isMobile ? "1 1 auto" : "0 1 auto"
+                                            }}
+                                        >
+                                            {t("signup.button.prev")}
+                                        </Button>
+                                    </Space>
+                                </Form.Item>
+                            </Form>
+                        </div>
+                    </>
+                )}
             </Card>
-        </Spin>);
+        </Spin>
+    );
 };
 
 export default ClassroomsList;

@@ -1,11 +1,9 @@
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { MinusCircleOutlined, PlusOutlined, UserAddOutlined } from "@ant-design/icons";
 import { Alert, Button, Card, Checkbox, Col, DatePicker, Form, Input, InputNumber, Row, Select, Space, Steps } from "antd";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-
-const { Step } = Steps;
-const { Option } = Select;
+import { jwtDecode } from "jwt-decode";
 
 const CreateStudent = () => {
 
@@ -18,13 +16,65 @@ const CreateStudent = () => {
 	const [showNEAE, setShowNEAE] = useState(false);
 	const [showOtherNationalOrigin, setShowOtherNationalOrigin] = useState(false);
 	const [showEducationalSupport, setShowEducationalSupport] = useState(false);
+	const [generatedUsername, setGeneratedUsername] = useState("");
+	const [usernameAvailable, setUsernameAvailable] = useState(null);
 	const navigate = useNavigate();
 	const { t } = useTranslation();
 
+	// Función para generar el username: nombrealumno_idprofesor_numero3digitosaleatorio
+	const generateUsername = async (studentName) => {
+		if (!studentName || studentName.trim() === "") {
+			setGeneratedUsername("");
+			setUsernameAvailable(null);
+			return;
+		}
+
+		try {
+			const accessToken = localStorage.getItem("accessToken");
+			const decodedToken = jwtDecode(accessToken);
+			const teacherId = decodedToken.id || decodedToken.sub || "unknown";
+			const randomNumber = Math.floor(Math.random() * 900) + 100; // Número de 3 dígitos (100-999)
+			const username = `${studentName.toLowerCase()}_${teacherId}_${randomNumber}`;
+			setGeneratedUsername(username);
+
+			// Validar si el username ya existe
+			try {
+				const response = await fetch(
+					`${process.env.REACT_APP_USERS_SERVICE_URL}/students/checkUsername`,
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${accessToken}`
+						},
+						body: JSON.stringify({ username })
+					}
+				);
+
+				if (response.ok) {
+					const data = await response.json();
+					setUsernameAvailable(!data.exists);
+				} else {
+					// Si hay error en la validación, asumimos que está disponible
+					setUsernameAvailable(true);
+				}
+			} catch (error) {
+				console.error("Error checking username availability:", error);
+				// Si hay error de conexión, asumimos que está disponible
+				setUsernameAvailable(true);
+			}
+		} catch (error) {
+			console.error("Error generating username:", error);
+			setGeneratedUsername("");
+			setUsernameAvailable(null);
+		}
+	};
+
 	const steps = [
 		{
+			key: 0,
 			title:   t("signup.student.steps.basicInformation"),
-			fields: ['name', 'lastName', 'age', 'birthDate', 'classroomNumber', 'school'],
+			fields: ['name', 'lastName', 'age', 'sex', 'birthDate', 'classroomNumber', 'school'],
 			content: (
 				<>
 					<Form.Item
@@ -32,15 +82,46 @@ const CreateStudent = () => {
 						label={t("signup.form.label.name")}
 						rules={[{ required: true, message: t("signup.error.name") }]}
 					>
-						<Input placeholder={t("signup.error.name")} />
+						<Input
+							placeholder={t("signup.error.name")}
+							onChange={(e) => generateUsername(e.target.value)}
+							size="large"
+							style={{ borderRadius: "6px" }}
+						/>
 					</Form.Item>
+
+					{generatedUsername && (
+						<Form.Item style={{ marginBottom: "1rem" }}>
+							<div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+								<span style={{ fontSize: "0.95rem", fontWeight: "500" }}>
+									{t("signup.form.label.username")}:
+								</span>
+								<span style={{ fontWeight: "bold", color: "#1890ff" }}>
+									{generatedUsername}
+								</span>
+								{usernameAvailable !== null && (
+									<span style={{
+										color: usernameAvailable ? "#52c41a" : "#ff4d4f",
+										fontWeight: "500",
+										fontSize: "0.9rem"
+									}}>
+										{usernameAvailable ? t("signup.form.username.available") : t("signup.form.username.notAvailable")}
+									</span>
+								)}
+							</div>
+						</Form.Item>
+					)}
 
 					<Form.Item
 						name="lastName"
 						label={t("signup.form.label.lastName")}
 						rules={[{ required: true, message: t("signup.error.lastName") }]}
 					>
-						<Input placeholder={t("signup.error.lastName")} />
+						<Input
+							placeholder={t("signup.error.lastName")}
+							size="large"
+							style={{ borderRadius: "6px" }}
+						/>
 					</Form.Item>
 
 					<Row justify="start" gutter={32}>
@@ -50,7 +131,11 @@ const CreateStudent = () => {
 								label={t("signup.form.label.age")}
 								rules={[{ required: true, type: "number", message: t("signup.error.age") }]}
 							>
-								<InputNumber style={{ width: "15rem" }} placeholder={t("signup.error.age")} />
+								<InputNumber
+									style={{ minWidth: "16rem", borderRadius: "6px" }}
+									placeholder={t("signup.error.age")}
+									size="large"
+								/>
 							</Form.Item>
 						</Col>
 
@@ -60,29 +145,63 @@ const CreateStudent = () => {
 								label={t("signup.form.label.birthDate")}
 								rules={[{ required: true, message: t("signup.error.birthDate") }]}
 							>
-								<DatePicker style={{ width: "15rem" }} placeholder={t("signup.error.birthDate")} />
+								<DatePicker
+									style={{ minWidth: "20rem", borderRadius: "6px" }}
+									placeholder={t("signup.error.birthDate")}
+									size="large"
+								/>
 							</Form.Item>
 						</Col>
 					</Row>
 
-					<Form.Item
-						name="classroomNumber"
-						label={t("signup.form.label.classroomNumber")}
-						rules={[{ required: true, type: "number", message: t("signup.error.classroomNumber") }]}
-					>
-						<InputNumber style={{ width: "15rem" }} placeholder={t("signup.error.classroomNumber")} />
-					</Form.Item>
+					<Row justify="start" gutter={32}>
+						<Col>
+							<Form.Item
+								name="sex"
+								label={t("signup.form.label.sex")}
+								rules={[{ required: true,  message: t("signup.error.sex") }]}
+								style={{ minWidth: "16rem" }}
+							>
+								<Select
+									placeholder={t("select")}
+									allowClear
+									size="large"
+									options={[{ value: "M", label: t("students.sex.male")},
+										{ value: "F", label: t("students.sex.female")}]}
+								/>
+							</Form.Item>
+						</Col>
+
+						<Col>
+							<Form.Item
+								name="classroomNumber"
+								label={t("signup.form.label.classroomNumber")}
+								rules={[{ required: true, type: "number", message: t("signup.error.classroomNumber") }]}
+							>
+								<InputNumber
+									style={{ minWidth: "20rem", borderRadius: "6px" }}
+									placeholder={t("signup.error.classroomNumber")}
+									size="large"
+								/>
+							</Form.Item>
+						</Col>
+					</Row>
 
 					<Form.Item
 						name="school"
 						label={t("signup.form.label.school")}
 						rules={[{ required: true, message: t("signup.error.school") }]}
 					>
-						<Input placeholder={t("signup.error.school")} />
+						<Input
+							placeholder={t("signup.error.school")}
+							size="large"
+							style={{ borderRadius: "6px" }}
+						/>
 					</Form.Item>
 				</>
 			)
 		}, {
+			key: 1,
 			title:   t("signup.student.steps.familyBackground"),
 			fields: [],
 			content: (
@@ -91,11 +210,14 @@ const CreateStudent = () => {
 						name="socioEconomicLevel"
 						label={t("signup.form.label.socioEconomicLevel")}
 					>
-						<Select placeholder={t("select")} allowClear>
-							<Option value="bajo">{t("students.socioeconomicLevel.low")}</Option>
-							<Option value="medio">{t("students.socioeconomicLevel.medium")}</Option>
-							<Option value="alto">{t("students.socioeconomicLevel.high")}</Option>
-						</Select>
+						<Select
+							placeholder={t("select")}
+							allowClear
+							size="large"
+							options={[{ value: "bajo", label: t("students.socioeconomicLevel.low")},
+							{ value: "medio", label: t("students.socioeconomicLevel.medium")},
+							{ value: "alto", label: t("students.socioeconomicLevel.high") }]}
+						/>
 					</Form.Item>
 					<Form.Item
 						name="nationalOrigin"
@@ -105,24 +227,28 @@ const CreateStudent = () => {
 							placeholder={t("select")}
 							onChange={ (value) => setShowOtherNationalOrigin(value === "otro") }
 							allowClear
-						>
-							<Option value="espania">{t("students.nationalOrigin.spain")}</Option>
-							<Option value="europeo">{t("students.nationalOrigin.european")}</Option>
-							<Option value="africano">{t("students.nationalOrigin.african")}</Option>
-							<Option value="asiatico">{t("students.nationalOrigin.asian")}</Option>
-							<Option value="norteamericano">{t("students.nationalOrigin.northAmerican")}</Option>
-							<Option value="latinoamericano">{t("students.nationalOrigin.latinAmerican")}</Option>
-							<Option value="otro">{t("students.nationalOrigin.other")}</Option>
-						</Select>
+							size="large"
+							options={[{ value: "espania", label: t("students.nationalOrigin.spain") },
+							{ value: "europeo", label: t("students.nationalOrigin.european") },
+							{ value: "africano", label: t("students.nationalOrigin.african") },
+							{ value: "asiatico", label: t("students.nationalOrigin.asian") },
+							{ value: "norteamericano", label: t("students.nationalOrigin.northAmerican") },
+							{ value: "latinoamericano", label: t("students.nationalOrigin.latinAmerican") },
+							{ value: "otro", label: t("students.nationalOrigin.other") }]}
+						/>
 					</Form.Item>
 					{ showOtherNationalOrigin && (
 						<Form.Item name="otherNationalOrigin" label="Especifique el País">
-							<Input/>
+							<Input
+								size="large"
+								style={{ borderRadius: "6px" }}
+							/>
 						</Form.Item>
 					) }
 				</>
 			)
 		}, {
+			key: 2,
 			title:   t("signup.student.steps.educationalNeeds"),
 			fields: [], // Paso sin campos requeridos
 			content: (
@@ -131,41 +257,49 @@ const CreateStudent = () => {
 						name="learningReadingRisk"
 						label={t("signup.form.label.learningReadingRisk")}
 					>
-						<Select placeholder={t("select")} allowClear>
-							<Option value="si">{t("yes")}</Option>
-							<Option value="no">{t("no")}</Option>
-						</Select>
+						<Select
+							placeholder={t("select")}
+							allowClear
+							size="large"
+							options={[{ value: "si", label: t("yes") }, { value: "no", label: t("no") }]}
+						/>
 					</Form.Item>
 					<Form.Item
 						name="learningWritingRisk"
 						label={t("signup.form.label.learningWritingRisk")}
 					>
-						<Select placeholder={t("select")} allowClear>
-							<Option value="si">{t("yes")}</Option>
-							<Option value="no">{t("no")}</Option>
-						</Select>
+						<Select
+							placeholder={t("select")}
+							allowClear
+							size="large"
+							options={[{ value: "si", label: t("yes") }, { value: "no", label: t("no") }]}
+						/>
 					</Form.Item>
 					<Form.Item
 						name="familyBackground"
 						label={t("signup.form.label.familyBackground")}
 					>
-						<Select placeholder={t("select")} allowClear>
-							<Option value="padre">{t("students.familyBackground.father")}</Option>
-							<Option value="madre">{t("students.familyBackground.mother")}</Option>
-							<Option value="ambos">{t("students.familyBackground.both")}</Option>
-							<Option value="ninguno">{t("students.familyBackground.none")}</Option>
-						</Select>
+						<Select
+							placeholder={t("select")}
+							allowClear
+							size="large"
+							options={[{ value: "padre", label: t("students.familyBackground.father") },
+							{ value: "madre", label: t("students.familyBackground.mother") },
+							{ value: "ambos", label: t("students.familyBackground.both") },
+							{ value: "ninguno", label: t("students.familyBackground.none") }]}
+						/>
 					</Form.Item>
 					<Form.Item
 						name="neae"
 						label={t("signup.form.label.neae")}
 					>
-						<Select placeholder={t("select")}
-								onChange={ (value) => setShowNEAE(value === "si") }
-								allowClear>
-							<Option value="si">{t("yes")}</Option>
-							<Option value="no">{t("no")}</Option>
-						</Select>
+						<Select
+							placeholder={t("select")}
+							onChange={ (value) => setShowNEAE(value === "si") }
+							allowClear
+							size="large"
+							options={[{ value: "si", label: t("yes") }, { value: "no", label: t("no") }]}
+						/>
 					</Form.Item>
 					{ showNEAE && (
 						<Form.Item
@@ -204,7 +338,7 @@ const CreateStudent = () => {
 												name={ name }
 												{ ...restField }
 											>
-												<Space>{t("signup.form.label.specificSupportNeeds")}<Input/></Space>
+												<Space>{t("signup.form.label.specificSupportNeeds")}<Input size="large" style={{ borderRadius: "6px" }}/></Space>
 											</Form.Item>
 											<MinusCircleOutlined onClick={ () => remove(name) }/>
 										</Space>
@@ -233,12 +367,13 @@ const CreateStudent = () => {
 						name="needEducationalSupport"
 						label={t("signup.form.label.needEducationalSupport")}
 					>
-						<Select placeholder={t("select")}
-								onChange={ (value) => setShowEducationalSupport(value === "si") }
-								allowClear>
-							<Option value="si">{t("yes")}</Option>
-							<Option value="no">{t("no")}</Option>
-						</Select>
+						<Select
+							placeholder={t("select")}
+							onChange={ (value) => setShowEducationalSupport(value === "si") }
+							allowClear
+							size="large"
+							options={[{ value: "si", label: t("yes") }, { value: "no", label: t("no") }]}
+						/>
 					</Form.Item>
 					{ showEducationalSupport && <Form.Item
 						name="educationalSupport"
@@ -267,7 +402,7 @@ const CreateStudent = () => {
 												name={ name }
 												{ ...restField }
 											>
-												<Space>{t("signup.form.label.otherSpecialists")}<Input/></Space>
+												<Space>{t("signup.form.label.otherSpecialists")}<Input size="large" style={{ borderRadius: "6px" }}/></Space>
 											</Form.Item>
 											<MinusCircleOutlined onClick={ () => remove(name) }/>
 										</Space>
@@ -286,19 +421,24 @@ const CreateStudent = () => {
 						name="firstWords"
 						label={t("signup.form.label.firstWords")}
 					>
-						<Select placeholder={t("select")} allowClear>
-							<Option value="antesUno">{t("students.firstWords.before12Months")}</Option>
-							<Option value="entreUnoYUnoMedio">{t("students.firstWords.between12And18Months")}</Option>
-							<Option value="entreUnoMedioYDos">{t("students.firstWords.between18And24Months")}</Option>
-							<Option value="entreDosYDosMedio">{t("students.firstWords.between24And30Months")}</Option>
-							<Option value="despuesDos">{t("students.firstWords.after30Months")}</Option>
-							<Option value="noComunica">{t("students.firstWords.dontComunicate")}</Option>
-						</Select>
+						<Select
+							placeholder={t("select")}
+							allowClear
+							size="large"
+							options={[{value: "antesUno", label: t("students.firstWords.before12Months")},
+							{value: "entreUnoYUnoMedio", label: t("students.firstWords.between12And18Months")},
+							{value: "entreUnoMedioYDos", label: t("students.firstWords.between18And24Months")},
+							{value: "entreDosYDosMedio", label: t("students.firstWords.between24And30Months")},
+							{value: "despuesDos", label: t("students.firstWords.after30Months")},
+							{value: "noComunica", label: t("students.firstWords.dontComunicate")}]}
+						/>
 					</Form.Item>
 				</>
 			)
 		}
 	];
+
+	const stepsItems = steps.map(step => ({ key: step.key, title: step.title }));
 
 	const next = async () => {
 		try {
@@ -323,7 +463,7 @@ const CreateStudent = () => {
 	let onFinish = async () => {
 		// Validar todos los campos requeridos antes de enviar
 		try {
-			await form.validateFields(['name', 'lastName', 'age', 'birthDate', 'classroomNumber', 'school']);
+			await form.validateFields(['name', 'lastName', 'age', 'sex', 'birthDate', 'classroomNumber', 'school']);
 		} catch (error) {
 			setMessage({ error: { message: t("signup.validationError") } });
 			setCurrentStep(0);
@@ -334,6 +474,7 @@ const CreateStudent = () => {
 			name,
 			lastName,
 			age,
+			sex,
 			school,
 			classroomNumber,
 			birthDate,
@@ -384,6 +525,7 @@ const CreateStudent = () => {
 			name,
 			lastName,
 			age,
+			sex,
 			birthDate,
 			school,
 			classroomNumber,
@@ -423,57 +565,99 @@ const CreateStudent = () => {
 	};
 
 	return (
-		<Card title={t("signup.student.title")} style={ { margin: "auto" } }>
-			{ message && (
+		<Card
+			title={
+				<Space size="middle" style={{ fontSize: "1.2rem", fontWeight: "600" }}>
+					<UserAddOutlined style={{ fontSize: "1.5rem", color: "#1890ff" }} />
+					{t("signup.student.title")}
+				</Space>
+			}
+			style={{
+				width: typeof window !== "undefined" && window.innerWidth < 768 ? "95vw" : "90vw",
+				marginTop: "2vh",
+				marginBottom: "2vh",
+				marginLeft: "auto",
+				marginRight: "auto",
+				boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+				borderRadius: "8px"
+			}}
+			styles={{ body: { padding: "2rem" } }}
+		>
+			{message && (
 				Array.isArray(message) ? (
 					message.map((msg, index) => (
 						<Alert
 							key={index}
 							type="error"
-							message={msg.error?.message || msg.message || t("signup.validationError")}
+							description={msg.error?.message || msg.message || t("signup.validationError")}
 							showIcon
-							style={{ marginBottom: "1vh" }}
+							closable
+							style={{ marginBottom: "1.5rem" }}
 						/>
 					))
 				) : (
 					<Alert
 						type="error"
-						message={message.error?.message || message.message || t("signup.validationError")}
+						description={message.error?.message || message.message || t("signup.validationError")}
 						showIcon
-						style={{ marginBottom: "1vh" }}
+						closable
+						style={{ marginBottom: "1.5rem" }}
 					/>
 				)
-			) }
+			)}
 			<Form
-				form={ form }
+				form={form}
 				layout="vertical"
-				onFinish={ onFinish }
-				style={ { width: "40rem" } }
+				onFinish={onFinish}
+				style={{ maxWidth: "100%" }}
 			>
-				<Steps current={ currentStep } labelPlacement="vertical">
-					{ steps.map((item) => (
-						<Step key={ item.title } title={ item.title }/>
-					)) }
-				</Steps>
-				<div style={ { marginTop: "1.5rem" } }>{ steps[ currentStep ].content }</div>
-				<Form.Item>
-					<div style={ { display: "flex", gap: "1rem" } }>
-						{ currentStep > 0 && (
-							<Button block onClick={ prev } style={ { flex: "100%" } }>
+				<Steps
+					current={currentStep}
+					titlePlacement="vertical"
+					items={stepsItems}
+					style={{ marginBottom: "2rem" }}
+				/>
+
+				<div style={{ marginTop: "1.5rem", marginBottom: "2rem" }}>
+					{steps[currentStep].content}
+				</div>
+
+				<Form.Item style={{ marginBottom: 0 }}>
+					<Space style={{ width: "100%", gap: "1rem" }} wrap>
+						{currentStep > 0 && (
+							<Button
+								onClick={prev}
+								style={{ flex: "1 1 auto", minWidth: "120px" }}
+							>
 								{t("signup.button.prev")}
 							</Button>
-						) }
-						{ currentStep < steps.length - 1 && (
-							<Button block type="primary" onClick={ next } style={ { flex: "100%" } }>
+						)}
+						{currentStep < steps.length - 1 && (
+							<Button
+								type="primary"
+								onClick={next}
+								style={{ flex: "1 1 auto", minWidth: "120px" }}
+							>
 								{t("signup.button.next")}
 							</Button>
-						) }
-						{ currentStep === steps.length - 1 && (
-							<Button block type="primary" htmlType="submit" style={ { flex: "100%" } }>
+						)}
+						{currentStep === steps.length - 1 && (
+							<Button
+								type="primary"
+								htmlType="submit"
+								size="large"
+								style={{
+									flex: "1 1 auto",
+									minWidth: "120px",
+									height: "40px",
+									fontSize: "1rem",
+									fontWeight: "600"
+								}}
+							>
 								{t("signup.button.submit")}
 							</Button>
-						) }
-					</div>
+						)}
+					</Space>
 				</Form.Item>
 			</Form>
 		</Card>

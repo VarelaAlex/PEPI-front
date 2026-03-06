@@ -42,6 +42,16 @@ const StudentDetail = () => {
 					         >
 						         <Input/>
 					         </Form.Item>
+							 <Form.Item
+								 name="sex"
+								 label={t("signup.form.label.sex")}
+								 rules={[{ required: true,  message: t("signup.error.sex") }]}
+								 style={{ minWidth: "16rem" }}>
+								 <Select placeholder={t("select")} allowClear
+										 options={[{ value: "M", label: t("students.sex.male")},
+											 { value: "F", label: t("students.sex.female")}]}
+								 />
+							 </Form.Item>
 					         <Form.Item style={ { margin: "0" } }>
 						         <Form.Item
 							         name="age"
@@ -440,13 +450,13 @@ const StudentDetail = () => {
 	}
 
 	return (
-		<Card title="Modificar Estudiante" style={ { margin: "auto" } }>
-			{ message && <Alert type="error" message={ message } showIcon style={ { marginBottom: "1vh" } }/> }
+		<Card title="Modificar Estudiante" style={ { margin: "auto", marginTop: "2vh", marginBottom: "2vh" } }>
+			{ message && <Alert type="error" title={ message } showIcon style={ { marginBottom: "1vh" } }/> }
 			<Form form={ form }
 			      layout="vertical"
 			      onFinish={ onFinish }
 			      style={ { width: "40rem" } }>
-				<Steps current={ currentStep } labelPlacement="vertical" onChange={ value => setCurrentStep(value) }>
+				<Steps current={ currentStep } titlePlacement="vertical" onChange={ value => setCurrentStep(value) }>
 					{ steps.map((item) => (
 						<Step key={ item.title } title={ item.title }/>
 					)) }

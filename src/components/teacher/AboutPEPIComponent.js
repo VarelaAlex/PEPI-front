@@ -9,10 +9,8 @@ import {
     QuestionCircleOutlined,
     ReadOutlined,
     RightOutlined,
+    SettingOutlined,
     SolutionOutlined,
-    RocketOutlined,
-    ExperimentOutlined,
-    SettingOutlined, UserOutlined,
 } from "@ant-design/icons";
 import {Trans, useTranslation} from "react-i18next";
 import {STOP} from "../student/NetworkProps";
@@ -178,87 +176,28 @@ function TypeAndNetContent({subsectionKey}) {
 function TeacherContent() {
     const {t} = useTranslation();
     const faqs = t("teacher.faq.items", {returnObjects: true});
+
+    // Ensure faqs is an array
     const faqsArray = Array.isArray(faqs) ? faqs : [];
 
-    return (
-        <Card style={{maxWidth: 780}}>
-            <Collapse
-                accordion
-                ghost
-                expandIcon={({isActive}) => (
-                    <RightOutlined
-                        style={{
-                            color: "#2563eb",
-                            transform: isActive ? "rotate(90deg)" : "rotate(0deg)",
-                            transition: "transform 0.2s"
-                        }}
-                    />
-                )}
-                items={faqsArray.map((faq, i) => ({
-                    key: String(i),
-                    label: <Text strong>{faq.q}</Text>,
-                    children: <FaqAnswer faq={faq} />,
-                }))}
-            />
-        </Card>
-    );
+    return (<Card style={{maxWidth: 780}}>
+        <Collapse
+            accordion
+            ghost
+            expandIcon={({isActive}) => (<RightOutlined
+                style={{
+                    color: "#2563eb",
+                    transform: isActive ? "rotate(90deg)" : "rotate(0deg)",
+                    transition: "transform 0.2s"
+                }}
+            />)}
+            items={faqsArray.map((faq, i) => ({
+                key: String(i), label: <Text strong>{faq.q}</Text>, children: <Paragraph>{faq.a}</Paragraph>
+            }))}
+        />
+    </Card>);
 }
 
-function FaqAnswer({faq}) {
-    return (
-        <div style={{paddingLeft: 4}}>
-            {faq.a && (
-                <Paragraph style={{marginBottom: faq.steps || faq.items ? 10 : 0}}>
-                    <Trans
-                        i18nKey={faq.a}
-                        components={{bold: <b/>}}
-                    />
-                </Paragraph>
-            )}
-
-            {faq.type === "steps" && faq.steps?.length > 0 && (
-                <ol style={{paddingLeft: 20, margin: "0 0 10px 0"}}>
-                    {faq.steps.map((step, i) => (
-                        <li key={i} style={{marginBottom: 6, lineHeight: 1.6}}>
-                            <Trans
-                                i18nKey={step}
-                                components={{bold: <b/>}}
-                            />
-                        </li>
-                    ))}
-                </ol>
-            )}
-
-            {faq.type === "list" && faq.items?.length > 0 && (
-                <ul style={{paddingLeft: 20, margin: "0 0 10px 0"}}>
-                    {faq.items.map((item, i) => (
-                        <li key={i} style={{marginBottom: 6, lineHeight: 1.6}}>
-                            <Trans
-                                i18nKey={item}
-                                components={{bold: <b/>}}
-                            />
-                        </li>
-                    ))}
-                </ul>
-            )}
-
-            {faq.note && (
-                <div style={{
-                    marginTop: 10,
-                    padding: "8px 12px",
-                    background: "#eff6ff",
-                    borderLeft: "3px solid #2563eb",
-                    borderRadius: 4,
-                }}>
-                    <Trans
-                        i18nKey={faq.note}
-                        components={{bold: <b/>, userIcon: <UserOutlined style={{borderRadius: "20px", border: "1px solid black", padding: "2px", marginLeft: "5px"}}/>}}
-                    />
-                </div>
-            )}
-        </div>
-    );
-}
 
 function ContactAndPublicationsContent() {
     const {t} = useTranslation();
@@ -492,7 +431,7 @@ const AboutEPI = () => {
     }, {
         key: "student", icon: <ReadOutlined/>, label: t("student.title"), children: [{
             key: "student.sub1", icon: <FileTextOutlined/>, label: t("student.sub1.title")
-        }, {key: "student.sub2", icon: <ExperimentOutlined/>, label: t("student.sub2.title")}, {key: "student.sub3", icon: <RocketOutlined/>, label: t("student.sub3.title")}]
+        }, {key: "student.sub2", label: t("student.sub2.title")}, {key: "student.sub3", label: t("student.sub3.title")}]
     }, {
         key: "teacher", icon: <SolutionOutlined/>, label: t("teacher.title"), children: [{
             key: "teacher.faq", icon: <QuestionCircleOutlined/>, label: t("teacher.faq.title")

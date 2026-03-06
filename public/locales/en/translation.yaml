@@ -101,6 +101,7 @@ signup:
       experienceYears: Years of experience
       community: Autonomous community
       age: Age
+      sex: Sex
       birthDate: Birth date
       classroomNumber: Classroom number
       school: School
@@ -120,6 +121,7 @@ signup:
       name: Angelica
       lastName: Ross
       email: angelicaR@email.com
+      sex: Female
       password: "******"
       confirm: Repeat your password
       teachingStage: Select a teaching stage
@@ -149,6 +151,7 @@ signup:
     name: Please enter your name
     lastName: Please enter your last name
     age: Please enter your age
+    sex: Please select your sex
     birthDate: Please enter your birth date
     classroomNumber: Please enter the classroom number
     school: Please enter the school
@@ -177,7 +180,7 @@ classrooms:
   table:
     title: My classrooms
     className: Class name
-    numberStudents: Number of students
+    numberStudents: students
     actions: Actions
     empty: You don't have classrooms yet
     tooltips:
@@ -244,7 +247,8 @@ classrooms:
         seeStatistics: See statistics
         delete: Delete
         survey: Complete survey
-        editSurvey: Edit survey
+        edit: Edit
+    surveyCompleted: Survey
     addStudent:
       divider: Add a new student
       label:
@@ -487,18 +491,24 @@ students:
         name: Student's name
         lastName: Student's last name
         age: Student's age
+        sex: Student's sex
         classroom: Student's classroom
       error:
         name: Please enter the student's name
         lastName: Please enter the student's last name
         age: Please enter the student's age
+        sex: Please select the student's sex
         classroom: Please select the student's classroom
       placeholder:
         name: Angelica
         lastName: Ross
         age: "5"
+        sex: Female
         classroom: Primary 3º A
       button: Submit
+  sex:
+    male: Male
+    female: Female
   socioeconomicLevel:
     low: Low
     medium: Medium

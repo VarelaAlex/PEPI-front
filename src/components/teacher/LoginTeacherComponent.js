@@ -50,7 +50,7 @@ let LoginTeacher = () => {
 
     return (
         <Card title={t("login.title")} style={{ width: "80vw" }}>
-            {message?.error?.type && <Alert type="error" message={t(message?.error?.type)} showIcon style={{ marginBottom: "1vh" }} />}
+            {message?.error?.type && <Alert type="error" title={t(message?.error?.type)} showIcon style={{ marginBottom: "1vh" }} />}
             <Form
                 name="login"
                 labelCol={{ xs: { span: 24 }, sm: { span: 8 } }}

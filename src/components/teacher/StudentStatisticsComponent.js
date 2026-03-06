@@ -5,6 +5,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useTranslation } from "react-i18next"; // Import the plugin
 import {useParams} from 'react-router-dom';
 import {Card, Divider, Typography} from 'antd';
+import TeacherBreadcrumb from './BreadcrumbComponent';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 let StudentStatistics = ({studentName}) => {
@@ -208,7 +209,11 @@ let StudentStatistics = ({studentName}) => {
     }, [studentId, t]);
     let {Title} = Typography;
     return (
-        <Card style={{width: "80%", marginTop: "10px"}} title={<Title>{studentName}</Title>}>
+        <div>
+            <div style={{ width: "80%", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+                <TeacherBreadcrumb />
+            </div>
+            <Card style={{width: "80%", marginTop: "10px"}} title={<Title>{studentName}</Title>}>
             <h2>{t("studentStats.numberOfExercises")}: {totalFeedbacks}</h2>
             <h3>{t("studentStats.titleIconic")}</h3>
             <div>
@@ -306,6 +311,7 @@ let StudentStatistics = ({studentName}) => {
                 )}
             </div>
         </Card>
+        </div>
     );
 };
 export default StudentStatistics;

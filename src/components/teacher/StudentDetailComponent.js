@@ -4,6 +4,7 @@ import moment                                                                   
 import React, { useEffect, useState }                                                                                from "react";
 import { useTranslation }                                                                                            from "react-i18next";
 import { useNavigate, useParams }                                                                                    from "react-router-dom";
+import TeacherBreadcrumb from "./BreadcrumbComponent";
 
 const { Step } = Steps;
 const { Option } = Select;
@@ -345,6 +346,10 @@ const StudentDetail = () => {
 				});
 				const studentData = await studentResponse.json();
 
+				// Guardar el nombre del estudiante en localStorage para breadcrumbs
+				localStorage.setItem("currentStudentName", studentData.name);
+				localStorage.setItem("currentClassroomName", classroomName);
+
 				if ( studentData.otherSpecificSupportNeeds ) {
 					studentData.otherSpecificSupportNeeds = studentData.otherSpecificSupportNeeds.split(";");
 				}
@@ -450,7 +455,11 @@ const StudentDetail = () => {
 	}
 
 	return (
-		<Card title="Modificar Estudiante" style={ { margin: "auto", marginTop: "2vh", marginBottom: "2vh" } }>
+		<div>
+			<div style={{ width: "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+				<TeacherBreadcrumb />
+			</div>
+			<Card title="Modificar Estudiante" style={ { margin: "auto", marginTop: "2vh", marginBottom: "2vh" } }>
 			{ message && <Alert type="error" title={ message } showIcon style={ { marginBottom: "1vh" } }/> }
 			<Form form={ form }
 			      layout="vertical"
@@ -483,6 +492,7 @@ const StudentDetail = () => {
 				</Form.Item>
 			</Form>
 		</Card>
+		</div>
 	);
 };
 

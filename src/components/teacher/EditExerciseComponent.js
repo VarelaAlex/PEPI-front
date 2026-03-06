@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {useNavigate, useParams} from 'react-router-dom';
 import {Spin} from 'antd';
 import ExerciseForm from './ExerciseFormComponent';
+import TeacherBreadcrumb from './BreadcrumbComponent';
 
 const EditExercise = ({isMobile}) => {
     const {t} = useTranslation();
@@ -123,13 +124,18 @@ const EditExercise = ({isMobile}) => {
     }
 
     return (
-        <ExerciseForm
-            isMobile={isMobile}
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            title={t("exercise.edit.title")}
-            submitButtonText={t("exercise.edit.button")}
-        />
+        <div>
+            <div style={{ width: "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+                <TeacherBreadcrumb />
+            </div>
+            <ExerciseForm
+                isMobile={isMobile}
+                initialValues={initialValues}
+                onSubmit={handleSubmit}
+                title={t("exercise.edit.title")}
+                submitButtonText={t("exercise.edit.button")}
+            />
+        </div>
     );
 };
 

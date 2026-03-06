@@ -180,7 +180,8 @@ classrooms:
   table:
     title: Mis aulas
     className: Nombre del aula
-    numberStudents: alumnos
+    number: Número de alumnos
+    students: alumnos
     actions: Acciones
     empty: Aún no tienes aulas
     tooltips:
@@ -315,7 +316,7 @@ exercise:
       divider: Añadir un nuevo ejercicio
       button: Crear ejercicio
   edit:
-    title: Editar ejercicio
+    title: Editar Ejercicio
     button: Guardar cambios
   clear: Borrar
   carousel:
@@ -484,6 +485,7 @@ student:
     free: Abierto
     ruled: Cerrado
 students:
+  title: Alumnos
   detail:
     title: Modificar alumno
     update:
@@ -1026,3 +1028,8 @@ contactAndPublications:
         url: null
       - ref: "Cueli, M., Álvarez, A. I., Loew, S., González-Castro, P., y Rodríguez, C. (2020). Is organizing knowledge effective in primary education?"
         url: "https://doi.org/10.1155/2020/887"
+survey:
+  title: Encuesta
+
+statistics:
+  title: Estadísticas

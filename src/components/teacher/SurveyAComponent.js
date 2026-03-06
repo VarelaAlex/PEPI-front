@@ -2,6 +2,7 @@ import { Alert, Button, Card, Flex, Form, Radio, Steps, Typography } from "antd"
 import {useEffect, useState} from "react";
 import { useTranslation }                                            from "react-i18next";
 import { useNavigate, useParams }                                    from "react-router-dom";
+import TeacherBreadcrumb from "./BreadcrumbComponent";
 
 const { Step } = Steps;
 
@@ -422,7 +423,11 @@ const SurveyA = () => {
 	const { Title } = Typography;
 
 	return (
-		<Card title={ <Title level={ 3 } style={ { whiteSpace: "normal", wordBreak: "break-word" } }>{ t("surveyA.title") }</Title> } style={ { maxWidth: "70vw" } }>
+		<div>
+			<div style={{ width: "70vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+				<TeacherBreadcrumb />
+			</div>
+			<Card title={ <Title level={ 3 } style={ { whiteSpace: "normal", wordBreak: "break-word" } }>{ t("surveyA.title") }</Title> } style={ { maxWidth: "70vw" } }>
 			{ message?.error?.type && (
 				<Alert type="error" message={ t(message?.error?.type) } showIcon style={ { marginBottom: "1vh" } }/>
 			) }
@@ -442,6 +447,7 @@ const SurveyA = () => {
 				</Form>
 			</Flex>
 		</Card>
+		</div>
 	);
 };
 

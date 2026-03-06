@@ -1,9 +1,10 @@
-import {DeleteOutlined, LineChartOutlined, PlusOutlined, BookOutlined} from "@ant-design/icons";
+import {DeleteOutlined, LineChartOutlined, PlusOutlined} from "@ant-design/icons";
 import {Alert, Button, Card, Cascader, Divider, Empty, Form, Input, Popconfirm, Space, Spin, Table} from "antd";
 import {useEffect, useState, useRef} from "react";
 import {useTranslation} from "react-i18next";
 import {Link, useNavigate} from "react-router-dom";
 import ExcelJS from "exceljs";
+import TeacherBreadcrumb from "./BreadcrumbComponent";
 
 let ClassroomsList = (props) => {
 
@@ -119,7 +120,7 @@ let ClassroomsList = (props) => {
             render: (name, classroom) => (
                 <Link to={"/teachers/classrooms/" + name}>
                     <div><strong>{name}</strong></div>
-                    <small>{classroom.numberStudents} {t("classrooms.table.numberStudents")}</small>
+                    <small>{classroom.numberStudents} {t("classrooms.table.students")}</small>
                 </Link>
             )
         },
@@ -174,7 +175,7 @@ let ClassroomsList = (props) => {
             render: (name) => <Link to={"/teachers/classrooms/" + name}>{name}</Link>
         },
         {
-            title: t("classrooms.table.numberStudents"),
+            title: t("classrooms.table.number"),
             dataIndex: "numberStudents",
             align: "center"
         },
@@ -283,9 +284,12 @@ let ClassroomsList = (props) => {
 
     return (
         <Spin spinning={loading} size="large">
+            <div style={{ width: isMobile ? "95vw" : "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+                <TeacherBreadcrumb />
+            </div>
             <Card
                 title={
-                    <Space size="middle" style={{ fontSize: "1.2rem", fontWeight: "600" }}>
+                    <Space size="middle">
                         {t("classrooms.table.title")}
                     </Space>
                 }
@@ -314,33 +318,32 @@ let ClassroomsList = (props) => {
                     </div>
                 }
 
-                <div style={{
+                {!showAddForm && <div style={{
                     display: "flex",
                     justifyContent: "center",
                 }}>
                     <Button
                         type="primary"
                         size="large"
-                        icon={<PlusOutlined />}
+                        icon={<PlusOutlined/>}
                         onClick={() => {
                             setShowAddForm(!showAddForm);
                             if (!showAddForm) {
                                 setTimeout(() => {
-                                    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                                    formRef.current?.scrollIntoView({behavior: "smooth", block: "start"});
                                 }, 100);
                             }
                         }}
                         style={{
                             minWidth: isMobile ? "100%" : "300px",
-                            fontSize: "1rem",
                             fontWeight: "600",
                             height: "45px",
                             borderRadius: "6px"
                         }}
                     >
-                        {showAddForm ? t("signup.button.prev") : t("classrooms.addClassroom.button")}
+                        {t("classrooms.addClassroom.button")}
                     </Button>
-                </div>
+                </div>}
 
                 {showAddForm && (
                     <>
@@ -355,7 +358,7 @@ let ClassroomsList = (props) => {
                                 border: "1px solid #f0f0f0"
                             }}
                         >
-                            <h3 style={{marginTop: 0, marginBottom: "1.5rem", fontSize: "1.1rem", fontWeight: "600", color: "#262626"}}>
+                            <h3 style={{marginTop: 0, marginBottom: "1.5rem", fontWeight: "600", color: "#262626"}}>
                                 {t("classrooms.addClassroom.divider")}
                             </h3>
 
@@ -391,7 +394,6 @@ let ClassroomsList = (props) => {
                                     <Input
                                         placeholder={t("classrooms.addClassroom.placeholder")}
                                         onInput={() => setMessage(null)}
-                                        size="large"
                                         style={{ borderRadius: "6px" }}
                                     />
                                 </Form.Item>
@@ -417,7 +419,6 @@ let ClassroomsList = (props) => {
                                             icon={<PlusOutlined />}
                                             style={{
                                                 minWidth: isMobile ? "100%" : "200px",
-                                                fontSize: "1rem",
                                                 fontWeight: "600",
                                                 height: "40px",
                                                 borderRadius: "6px",

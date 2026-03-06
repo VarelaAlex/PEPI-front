@@ -5,6 +5,7 @@ import React, { useEffect, useState }                                           
 import { Bar }                                                                              from "react-chartjs-2";
 import { useTranslation }                                                                   from "react-i18next";
 import { useParams }                                                                        from "react-router-dom";
+import TeacherBreadcrumb from "./BreadcrumbComponent";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
@@ -74,7 +75,11 @@ let ClassroomStatistics = ({ classroomId }) => {
 
 	let { Title } = Typography;
 	return (
-		<Card style={ { width: "80%" } } title={ <Title>{ classroomName }</Title> }>
+		<div>
+			<div style={{ width: "80%", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+				<TeacherBreadcrumb />
+			</div>
+			<Card style={ { width: "80%" } } title={ <Title>{ classroomName }</Title> }>
 			<h2>Total: { total }</h2>
 			<div>
 				{ chartData && chartData.labels && (
@@ -97,6 +102,7 @@ let ClassroomStatistics = ({ classroomId }) => {
 				) }
 			</div>
 		</Card>
+		</div>
 	);
 };
 

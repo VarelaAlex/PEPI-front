@@ -3,6 +3,7 @@ import { Alert, Button, Card, Divider, Empty, Popconfirm, Spin, Table, Tooltip }
 import { useEffect, useState }                                                   from "react";
 import { useTranslation }                                                        from "react-i18next";
 import { useNavigate }                                                           from "react-router-dom";
+import TeacherBreadcrumb from "./BreadcrumbComponent";
 
 let ExercisesList = (props) => {
 
@@ -100,6 +101,9 @@ let ExercisesList = (props) => {
 
 	return (
 		<Spin spinning={ loading } tip="Loading" size="large">
+			<div style={{ width: "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+				<TeacherBreadcrumb />
+			</div>
 			<Card title={ t("exercise.table.title") } style={ { width: "90vw" } }>
 				{ exercises.length <= 0 ? <Empty image={ Empty.PRESENTED_IMAGE_SIMPLE } description={ t("exercise.table.empty") }/> : <Table size="small" bordered
 				                                                                                                                             columns={ columns }

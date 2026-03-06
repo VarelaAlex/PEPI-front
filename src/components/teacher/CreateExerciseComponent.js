@@ -1,6 +1,7 @@
 import {useTranslation} from 'react-i18next';
 import {useNavigate} from 'react-router-dom';
 import ExerciseForm from './ExerciseFormComponent';
+import TeacherBreadcrumb from './BreadcrumbComponent';
 
 const CreateExercise = ({isMobile}) => {
     const {t} = useTranslation();
@@ -58,12 +59,17 @@ const CreateExercise = ({isMobile}) => {
     };
 
     return (
-        <ExerciseForm
-            isMobile={isMobile}
-            onSubmit={handleSubmit}
-            title={t("exercise.create.title")}
-            submitButtonText={t("exercise.create.addExercise.button")}
-        />
+        <div>
+            <div style={{ width: "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+                <TeacherBreadcrumb />
+            </div>
+            <ExerciseForm
+                isMobile={isMobile}
+                onSubmit={handleSubmit}
+                title={t("exercise.create.title")}
+                submitButtonText={t("exercise.create.addExercise.button")}
+            />
+        </div>
     );
 };
 

@@ -4,6 +4,7 @@ import { useEffect, useState }                      from "react";
 import { useTranslation }                           from "react-i18next";
 import { useNavigate }                              from "react-router-dom";
 import { COMMUNITIES }                              from "../../Globals";
+import TeacherBreadcrumb from "./BreadcrumbComponent";
 
 const { Option } = Select;
 
@@ -68,7 +69,11 @@ let Profile = () => {
 	};
 
 	return (
-		<Card title={ t("profile.title") } style={ { width: "90vw", marginTop: "2vh", marginBottom: "2vh" } }>
+		<div>
+			<div style={{ width: "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+				<TeacherBreadcrumb />
+			</div>
+			<Card title={ t("profile.title") } style={ { width: "90vw", marginTop: "2vh", marginBottom: "2vh" } }>
 			{ message?.error?.type && (
 				<Alert
 					type="error"
@@ -185,6 +190,7 @@ let Profile = () => {
 				</Form.Item>
 			</Form>
 		</Card>
+		</div>
 	);
 };
 

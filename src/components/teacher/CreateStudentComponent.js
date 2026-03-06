@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import TeacherBreadcrumb from "./BreadcrumbComponent";
 
 const CreateStudent = () => {
 
@@ -564,7 +565,10 @@ const CreateStudent = () => {
 		}
 	};
 
-	return (
+	return (<>
+		<div style={{ width: "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+			<TeacherBreadcrumb />
+		</div>
 		<Card
 			title={
 				<Space size="middle" style={{ fontSize: "1.2rem", fontWeight: "600" }}>
@@ -661,6 +665,7 @@ const CreateStudent = () => {
 				</Form.Item>
 			</Form>
 		</Card>
+		</>
 	);
 };
 

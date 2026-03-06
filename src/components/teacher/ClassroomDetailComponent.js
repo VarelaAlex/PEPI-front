@@ -5,6 +5,7 @@ import {
 import {useCallback, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Link, useNavigate, useParams} from "react-router-dom";
+import TeacherBreadcrumb from "./BreadcrumbComponent";
 
 let ClassroomDetail = (props) => {
 
@@ -133,6 +134,8 @@ let ClassroomDetail = (props) => {
                                 block
                                 onClick={() => {
                                     setStudentName(student.name);
+                                    localStorage.setItem("currentStudentName", student.name);
+                                    localStorage.setItem("currentClassroomName", classroomName);
                                     navigate(`/teachers/${classroomName}/students/${student.id}/surveys/${(student.age > 5 ? "B" : "A")}`);
                                 }}
                             >
@@ -145,6 +148,8 @@ let ClassroomDetail = (props) => {
                             block
                             onClick={() => {
                                 setStudentName(student.name);
+                                localStorage.setItem("currentStudentName", student.name);
+                                localStorage.setItem("currentClassroomName", classroomName);
                                 navigate(`/teachers/${classroomName}/students/${student.id}/surveys/${(student.age > 5 ? "B" : "A")}`);
                             }}
                         >
@@ -156,6 +161,8 @@ let ClassroomDetail = (props) => {
                         block
                         onClick={() => {
                             setStudentName(student.name);
+                            localStorage.setItem("currentStudentName", student.name);
+                            localStorage.setItem("currentClassroomName", classroomName);
                             navigate("/teachers/studentStats/" + id);
                         }}
                         icon={<LineChartOutlined />}
@@ -220,6 +227,8 @@ let ClassroomDetail = (props) => {
                                 size="small"
                                 onClick={() => {
                                     setStudentName(student.name);
+                                    localStorage.setItem("currentStudentName", student.name);
+                                    localStorage.setItem("currentClassroomName", classroomName);
                                     navigate(`/teachers/${classroomName}/students/${student.id}/surveys/${(student.age > 5 ? "B" : "A")}`);
                                 }}
                             >
@@ -231,6 +240,8 @@ let ClassroomDetail = (props) => {
                             size="small"
                             onClick={() => {
                                 setStudentName(student.name);
+                                localStorage.setItem("currentStudentName", student.name);
+                                localStorage.setItem("currentClassroomName", classroomName);
                                 navigate(`/teachers/${classroomName}/students/${student.id}/surveys/${(student.age > 5 ? "B" : "A")}`);
                             }}
                         >
@@ -241,6 +252,8 @@ let ClassroomDetail = (props) => {
                         size="small"
                         onClick={() => {
                             setStudentName(student.name);
+                            localStorage.setItem("currentStudentName", student.name);
+                            localStorage.setItem("currentClassroomName", classroomName);
                             navigate("/teachers/studentStats/" + id);
                         }}
                         icon={<LineChartOutlined />}
@@ -295,6 +308,9 @@ let ClassroomDetail = (props) => {
     };
 
     return (<Spin spinning={loading} size="large">
+        <div style={{ width: isMobile ? "95vw" : "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+            <TeacherBreadcrumb />
+        </div>
         <Card
             title={!editing ? <Space>{classroomName} <EditOutlined onClick={() => setEditing(true)}/></Space> : <>
                 <Row>

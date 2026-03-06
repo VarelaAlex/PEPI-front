@@ -389,6 +389,7 @@ let DnDPhase2 = () => {
                 title: exercise.title,
                 representation: exercise.representation,
                 networkType: exercise.networkType,
+                trainingMode: trainingMode,
                 date: Date.now()
             });
             let phrases = [

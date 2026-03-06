@@ -11,9 +11,6 @@ pwa:
   button: Descargar
   notificationMessage: ¡Bienvenido/a a PEPI!
   notificationDescription: Puedes descargar la aplicación haciendo clic en el botón de la derecha
-iconic: Icónica
-mixed: Combinada
-symbolic: Simbólica
 lexical: Léxicos
 syntactic: Sintácticos
 semantic: Semánticos
@@ -606,6 +603,12 @@ profile:
   button: Aceptar
 classroomStats:
   title: Porcentaje de Ejercicios por Representación y Tipo de Red
+  free:
+    title: Modo Abierto
+    number: Número de errores en modo abierto
+  ruled:
+    title: Modo Cerrado
+    number: Número de errores en modo cerrado
 studentStats:
   titleIconic: Errores de tipo ICÓNICA
   titleMixed: Errores de tipo COMBINADA

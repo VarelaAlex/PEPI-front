@@ -11,9 +11,6 @@ pwa:
   button: Download
   notificationMessage: Welcome to PEPI!
   notificationDescription: You can download the app by clicking on the button on the right
-iconic: Iconic
-mixed: Mixed
-symbolic: Symbolic
 lexical: Lexical
 syntactic: Syntactic
 semantic: Semantic
@@ -606,6 +603,12 @@ profile:
   button: Submit
 classroomStats:
   title: Percentage of Exercises by Representation and Network Type
+  free:
+    title: Open Mode
+    number: Number of error in open mode
+  ruled:
+    title: Closed Mode
+    number: Number of error in closed mode
 studentStats:
   titleIconic: ICONIC Type errors
   titleMixed: MIXED Type errors

@@ -350,7 +350,7 @@ let ClassroomDetail = (props) => {
                         bordered
                         columns={columns}
                         dataSource={students}
-                        pagination={isMobile ? {pageSize: 5} : {pageSize: 7}}
+                        pagination={isMobile ? {pageSize: 5} : {pageSize: 6}}
                         size={isMobile ? "small" : "middle"}
                     />
                 </div>

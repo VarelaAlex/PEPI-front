@@ -96,7 +96,7 @@ let TypePhase2 = () => {
 									elapsedTime: (
 										             endTime - startTime.current
 									             ) / 1000
-								}, title:           exercise.title, representation: exercise.representation, networkType: exercise.networkType, date: Date.now()
+								}, title:           exercise.title, representation: exercise.representation, networkType: exercise.networkType, trainingMode: trainingMode, date: Date.now()
 							            });
 							setShowGif(true);
 							setTimer(setTimeout(() => {

@@ -1,4 +1,4 @@
-import { Alert, Button, Card, Form, Radio, Steps, Typography } from "antd";
+import { Alert, Button, Card, Form, Radio, Steps, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
@@ -207,7 +207,57 @@ const SurveyB = () => {
 		}
 	};
 
-	const stepsItems = categories.map((cat, index) => ({key: index, title: cat.name}));
+	// Crear items para Steps incluyendo instrucciones
+	const stepsItems = [
+		{ key: 0, title: t("surveyB.instructions.title") },
+		...categories.map((cat, index) => ({ key: index + 1, title: cat.name }))
+	];
+
+	// Generar columnas para Table
+	const getTableColumns = () => {
+		const columns = [
+			{
+				title: t("survey.table.item") || "Ítem",
+				dataIndex: "label",
+				key: "label",
+				width: 250,
+				render: (text, record) => {
+					const isUnanswered = message?.error?.type === "surveyB.validationError" && (form.getFieldValue(record.id) === undefined || form.getFieldValue(record.id) === null);
+					return (
+						<div>
+							<div>{text}</div>
+							{isUnanswered && (
+								<div style={{color: "#ff4d4f", fontSize: "0.75rem", marginTop: "0.25rem"}}>
+									• {t("surveyB.validationError")}
+								</div>
+							)}
+						</div>
+					);
+				}
+			}
+		];
+
+		responseOptions.forEach((option) => {
+			columns.push({
+				title: option.label,
+				dataIndex: option.value,
+				key: option.value,
+				width: 80,
+				align: "center",
+				render: (_, record) => (
+					<Radio
+						checked={form.getFieldValue(record.id) === option.value}
+						onChange={() => {
+							form.setFieldValue(record.id, option.value);
+							setUpdateTrigger(prev => prev + 1);
+						}}
+					/>
+				)
+			});
+		});
+
+		return columns;
+	};
 
 	return (
 		<div>
@@ -219,7 +269,7 @@ const SurveyB = () => {
 					<Alert type="error" title={t(message?.error?.type)} showIcon style={{marginBottom: "1vh"}}/>
 				)}
 
-				<Steps current={currentStep} size="small" titlePlacement="vertical" onChange={(value) => setCurrentStep(value)} style={{marginBottom: "2rem"}} items={stepsItems}/>
+				<Steps current={currentStep} titlePlacement="vertical" size="small" items={stepsItems} onChange={(value) => setCurrentStep(value)} style={{marginBottom: "2rem"}}/>
 
 				<Form form={form} name="surveyB" layout="vertical" onFinish={onFinish} style={{marginTop: "2rem"}}>
 					{currentStep === 0 ? (
@@ -236,55 +286,22 @@ const SurveyB = () => {
 					) : (
 						<div style={{marginBottom: "2rem"}}>
 							<h3 style={{fontSize: "1.1em", fontWeight: "bold", marginBottom: "1rem", backgroundColor: "#f0f0f0", padding: "0.5rem"}}>{categories[currentStep - 1].name}</h3>
-							<div style={{overflowX: "auto"}}>
-								<table style={{width: "100%", borderCollapse: "collapse", border: "1px solid #d9d9d9"}}>
-									<thead>
-										<tr style={{backgroundColor: "#fafafa"}}>
-											<th style={{border: "1px solid #d9d9d9", padding: "0.75rem", textAlign: "left", minWidth: "250px"}}>Ítem</th>
-											{responseOptions.map((option) => (
-												<th key={option.value} style={{border: "1px solid #d9d9d9", padding: "0.75rem", textAlign: "center", minWidth: "80px"}}>
-													{option.label}
-												</th>
-											))}
-										</tr>
-									</thead>
-									<tbody>
-										{categories[currentStep - 1].questions.map((question) => {
-											const isUnanswered = message?.error?.type === "surveyB.validationError" && (form.getFieldValue(question.id) === undefined || form.getFieldValue(question.id) === null);
-											return (
-												<tr key={question.id}>
-													<td style={{border: "1px solid #d9d9d9", padding: "0.75rem", fontWeight: "500", verticalAlign: "top"}}>
-														<div>{question.label}</div>
-														{isUnanswered && (
-															<div style={{color: "#ff4d4f", fontSize: "0.75rem", marginTop: "0.25rem"}}>
-																• {t("surveyB.validationError")}
-															</div>
-														)}
-													</td>
-													{responseOptions.map((option) => (
-														<td key={option.value} style={{border: "1px solid #d9d9d9", padding: "0.75rem", textAlign: "center"}}>
-															<Radio
-																checked={form.getFieldValue(question.id) === option.value}
-																onChange={() => {
-																	form.setFieldValue(question.id, option.value);
-																	setUpdateTrigger(prev => prev + 1);
-																}}
-															/>
-														</td>
-													))}
-												</tr>
-											);
-										})}
-									</tbody>
-								</table>
-							</div>
+							<Table
+								columns={getTableColumns()}
+								dataSource={categories[currentStep - 1].questions}
+								rowKey="id"
+								pagination={false}
+								bordered
+								size="small"
+								scroll={{ x: true }}
+							/>
 						</div>
 					)}
 
 					<div style={{marginTop: "2rem", display: "flex", justifyContent: currentStep === 0 ? "flex-end" : "space-between", gap: "1rem"}}>
 						{currentStep > 0 && <Button size="large" onClick={onPrev}>{t("surveyB.button.prev")}</Button>}
-						{currentStep < categories.length && <Button type="primary" size="large" onClick={onNext}>{t("surveyB.button.next")}</Button>}
-						{currentStep === categories.length && <Button type="primary" size="large" htmlType="submit">{t("surveyB.button.submit")}</Button>}
+						{currentStep < stepsItems.length - 1 && <Button type="primary" size="large" onClick={onNext}>{t("surveyB.button.next")}</Button>}
+						{currentStep === stepsItems.length - 1 && <Button type="primary" size="large" htmlType="submit">{t("surveyB.button.submit")}</Button>}
 					</div>
 				</Form>
 			</Card>

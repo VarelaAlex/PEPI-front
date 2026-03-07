@@ -688,7 +688,7 @@ surveyA:
 surveyB:
   title: Cuestionario de información del alumno de primaria
   instructions:
-    title: Instrucciones para cumplimentar el cuestionario
+    title: Instrucciones
     instruction1: El cuestionario tiene que ser rellenado por su tutor o tutora.
     instruction2: Es recomendable que rellenen todo el cuestionario para una evaluación más completa.
     instruction3: Para cada ítem, el tutor o la tutora puede elegir sólo una respuesta entre «nunca», «casi nunca», «pocas veces», «algunas veces» y «a menudo».
@@ -1006,6 +1006,8 @@ contactAndPublications:
         url: "https://doi.org/10.1155/2020/887"
 survey:
   title: Encuesta
+  table:
+    item: Ítem
 
 statistics:
   title: Estadísticas

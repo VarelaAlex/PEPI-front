@@ -565,7 +565,7 @@ const CreateStudent = () => {
                     {t("signup.student.title")}
                 </Space>}
                 style={{
-                    width: typeof window !== "undefined" && window.innerWidth < 768 ? "95vw" : "90vw",
+                    width: typeof window !== "undefined" && window.innerWidth < 768 ? "95vw" : "70vw",
                     marginTop: "2vh",
                     marginBottom: "2vh",
                     marginLeft: "auto",
@@ -606,18 +606,30 @@ const CreateStudent = () => {
                         {steps[currentStep].content}
                     </div>
 
-                    <Form.Item style={{marginBottom: 0}}>
-                        <Space style={{width: "100%", gap: "1rem"}} wrap>
+                    <Form.Item>
+                        <Space style={{marginTop: "2rem", display: "flex", justifyContent: currentStep === 0 ? "flex-end" : "space-between", gap: "1rem"}}>
                             {currentStep > 0 && (<Button
                                     onClick={prev}
-                                    style={{flex: "1 1 auto", minWidth: "120px"}}
+                                    style={{
+                                        flex: "1 1 auto",
+                                        minWidth: "120px",
+                                        height: "40px",
+                                        fontSize: "1rem",
+                                        fontWeight: "600"
+                                    }}
                                 >
                                     {t("signup.button.prev")}
                                 </Button>)}
                             {currentStep < steps.length - 1 && (<Button
                                     type="primary"
                                     onClick={next}
-                                    style={{flex: "1 1 auto", minWidth: "120px"}}
+                                    style={{
+                                        flex: "1 1 auto",
+                                        minWidth: "120px",
+                                        height: "40px",
+                                        fontSize: "1rem",
+                                        fontWeight: "600"
+                                    }}
                                 >
                                     {t("signup.button.next")}
                                 </Button>)}

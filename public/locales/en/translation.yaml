@@ -622,6 +622,14 @@ studentStats:
   outOfBounds: Out of bounds
 surveyA:
   title: Questionnaire for early detection of learning difficulties in reading, writing, and arithmetic for students starting 5-year-old Early Childhood Education (A)
+  instructions:
+    title: Instructions
+    instruction1: The questionnaire must be completed by the student's tutor or guardian.
+    instruction2: It is recommended to fill out the entire questionnaire for a more complete evaluation.
+    instruction3: For each item, the tutor or guardian can only choose one answer from "Never", "Almost never", "A few times", "Sometimes", and "Often".
+    instruction4: In the event that any item does not fit the curriculum or methodological principles of the 2nd cycle of Early Childhood Education, you can choose "Don't know / Not applicable" as the answer.
+    instruction5: The questionnaire contains a total of 24 items.
+    instruction6: This version of the questionnaire is intended primarily for students finishing 4-year-old Early Childhood Education (between May and June of the school year) or starting 5-year-old Early Childhood Education (between September and December of the school year).
   button:
     next: Next
     prev: Previous
@@ -687,6 +695,14 @@ surveyA:
   validationError: Please answer all questions before proceeding to the next step or submitting the form.
 surveyB:
   title: Questionnaire for early detection of learning difficulties in reading, writing, and arithmetic for students starting 1st grade of Primary Education (B)
+  instructions:
+    title: Instructions to complete the questionnaire
+    instruction1: The questionnaire must be completed by the student's tutor or guardian.
+    instruction2: It is recommended to fill out the entire questionnaire for a more complete evaluation.
+    instruction3: For each item, the tutor or guardian can only choose one answer from "Never", "Almost never", "A few times", "Sometimes", and "Often".
+    instruction4: In the event that any item does not fit the curriculum or methodological principles of Primary Education, you can choose "Don't know / Not applicable" as the answer.
+    instruction5: The questionnaire contains a total of 24 items.
+    instruction6: This version of the questionnaire is intended primarily for students finishing 5-year-old Early Childhood Education (between May and June of the school year) or starting 1st grade of Primary Education (between September and December of the school year).
   button:
     next: Next
     prev: Previous
@@ -700,81 +716,46 @@ surveyB:
     unknown: Don't know / Not applicable
   steps:
     reading: Reading
-    orthography: Spelling and dictation writing
-    writeExpression: Written expression
-    generalBehavior: General behavior
-    mathAbility: Math ability
-    speechAbility: Speech ability
-    memoryAbility: Memory ability
-    attentionAbility: Attention ability
-    sequenceAbility: Sequencing ability
-    muscleCoordination: Muscle coordination
-    spatialOrientation: Sense of space and orientation
-    emotionsSocialAdaptation: Emotions and social adaptation
+    writing: Writing
+    generalBehavior: General
+    speech: Speech
+    memory: Memory
+    attention: Attention
+    coordination: Coordination
+    emotion: Emotion
   questions:
     reading:
       reading_1: Reading competence is worse than that of students of the same age
-      reading_2: Has difficulty recognizing very frequent or familiar words
-      reading_3: When reading aloud, makes mistakes with words
-      reading_4: Attitude toward reading is worse than that of students of the same age
-      reading_5: When reviewing their work, does not find the errors
-    orthography:
-      orthography_1: Makes mistakes in dictation tasks, making errors in letters, words, or leaves it blank
-      orthography_2: Makes many errors when writing, such as skipping letters, not maintaining the same letter size, or not respecting the guidelines
-      orthography_3: Needs more time than other students to copy a text
-    writeExpression:
-      writeExpression_1: Many words from their oral vocabulary, they do not know how to write
-      writeExpression_2: Written expression is worse than oral expression
+      reading_2: When reading aloud, makes mistakes
+      reading_3: Attitude toward reading is worse than that of students of the same age
+    writing:
+      writing_1: Makes mistakes in dictation, making errors in letters or words
+      writing_2: Makes many errors when writing, such as skipping letters, not maintaining the same letter size, or not respecting the guidelines
+      writing_3: Needs more time than other students to copy
     generalBehavior:
       generalBehavior_1: In the notebook, leaves many eraser marks, the paper even tears or wrinkles from so much erasing
-      generalBehavior_2: Behavior doing homework is irregular
+      generalBehavior_2: Behavior during tasks is irregular
       generalBehavior_3: Behavior in class is good, but performance is low
-      generalBehavior_4: Parents say the student studies a lot, but even so, their performance in class is low
-      generalBehavior_5: Parents say the student has read many times the content they must write from memory, but the result of writing from memory is not good
-    mathAbility:
-      mathAbility_1: For simple calculations (for example, 3+2), needs fingers or to make marks on paper
-      mathAbility_2: Has difficulties solving problems
-      mathAbility_3: Has difficulties understanding the value of numbers they should know for their age
-    speechAbility:
-      speechAbility_1: Reacts slowly when having to answer questions orally
-      speechAbility_2: Expresses themselves orally with difficulty (for example, cannot find the words to express their ideas)
-      speechAbility_3: Makes grammatical errors when speaking
-      speechAbility_4: Has difficulties pronouncing correctly
-    memoryAbility:
-      memoryAbility_1: Loses personal belongings, such as notebooks, pencils, or pencil cases, or forgets to do or bring homework
-      memoryAbility_2: Has difficulty following a series of several consecutive instructions
-      memoryAbility_3: Needs other people to remind them several times about certain information, such as bringing materials from home to work in the classroom
-      memoryAbility_4: Has difficulty memorizing the names of people or places
-      memoryAbility_5: Has difficulty learning songs or children's poems, even simple ones
-      memoryAbility_6: Has difficulty learning a schedule that is somewhat complex
-      memoryAbility_7: Has difficulty remembering personal information, such as date of birth, phone number, address, etc.
-    attentionAbility:
-      attentionAbility_1: Gets distracted easily
-      attentionAbility_2: Has difficulty concentrating on one thing for a long time (for example, when doing tasks, stops frequently, gets up to talk with other classmates)
-      attentionAbility_3: Has difficulty repeating information just heard, such as phone numbers, people's names, or story content
-    sequenceAbility:
-      sequenceAbility_1: Changes the order of letters in words
-      sequenceAbility_2: Has difficulty writing dates correctly, following the order of day, month, year
-      sequenceAbility_3: Has difficulty assimilating time concepts (does not distinguish yesterday, today, and tomorrow)
-      sequenceAbility_4: Makes mistakes in order when having to memorize words or numbers in a sequence (for example, the order of the four seasons or phone numbers)
-      sequenceAbility_5: Needs a lot of time to learn to tell time
-    muscleCoordination:
-      muscleCoordination_1: When coloring a drawing, goes outside the lines
-      muscleCoordination_2: Has difficulty when running and jumping (for example, falls often or gets injured)
-      muscleCoordination_3: When doing games with a lot of movement, for example, jumping rope, gets tired easily
-      muscleCoordination_4: Performance in Physical Education is low (for example, cannot perform the movements indicated by the teacher)
-      muscleCoordination_5: Has difficulty jumping rope, throwing, catching, or kicking the ball
-      muscleCoordination_6: In Music class has difficulty clapping following simple rhythms
-      muscleCoordination_7: Has difficulty tying shoelaces and buttoning buttons more than children their age
-    spatialOrientation:
-      spatialOrientation_1: Has difficulty distinguishing between up and down or between left and right
-      spatialOrientation_2: Has difficulty with orientation (for example, needs a lot of time to know how to get to different classrooms, staff room, or music room)
-    emotionsSocialAdaptation:
-      emotionsSocialAdaptation_1: Avoids studying
-      emotionsSocialAdaptation_2: Has difficulty relating to other people (for example, often argues with siblings or classmates)
-      emotionsSocialAdaptation_3: Has a poor self-image
-      emotionsSocialAdaptation_4: Gets discouraged or gives up on doing things easily
-      emotionsSocialAdaptation_5: Has headaches, stomach aches, gets angry, or becomes nervous when feeling pressured
+    speech:
+      speech_1: Expresses themselves orally with difficulty (for example, cannot find the words to express their ideas)
+      speech_2: Makes grammatical errors when speaking
+      speech_3: Has difficulties pronouncing correctly
+    memory:
+      memory_1: Has difficulty following a series of several consecutive instructions
+      memory_2: Has difficulty memorizing names of people or places
+      memory_3: Has difficulty learning songs or poems, even simple ones
+    attention:
+      attention_1: Gets distracted easily
+      attention_2: Has difficulty concentrating on one thing for a long time (for example, when doing tasks, stops frequently, gets up to talk with other students)
+      attention_3: Loses personal belongings
+    coordination:
+      coordination_1: Has difficulty when running and jumping
+      coordination_2: Has difficulty jumping rope, throwing, catching, or kicking the ball
+      coordination_3: Has difficulty tying shoelaces and buttoning buttons more than children their age
+    emotion:
+      emotion_1: Has difficulty relating to other people
+      emotion_2: Gets discouraged or gives up on doing things easily
+      emotion_3: Has headaches, stomach aches, gets angry, or becomes nervous when feeling pressured
   validationError: Please answer all questions before proceeding to the next step or submitting the form.
 pageNotFound:
   message1: Oops... It seems the page you are looking for does not exist.

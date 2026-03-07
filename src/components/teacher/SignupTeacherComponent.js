@@ -4,9 +4,6 @@ import { useTranslation }                                  from "react-i18next";
 import { useNavigate }                                     from "react-router-dom";
 import { COMMUNITIES }                                     from "../../Globals";
 
-const { Step } = Steps;
-const { Option } = Select;
-
 const SignupTeacher = () => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
@@ -89,44 +86,52 @@ const SignupTeacher = () => {
 						         label={ t("signup.form.label.teachingStage") }
 						         rules={ [{ required: true, message: t("signup.error.teachingStage") }] }
 					         >
-						         <Select placeholder={ t("signup.form.placeholder.teachingStage") }>
-							         <Option value="infantil">{ t("signup.form.options.infantil") }</Option>
-							         <Option value="primaria">{ t("signup.form.options.primaria") }</Option>
-							         <Option value="secundaria">{ t("signup.form.options.secundaria") }</Option>
-						         </Select>
+						         <Select placeholder={ t("signup.form.placeholder.teachingStage") }
+								 options={[
+									 { value: "infantil", label: t("signup.form.options.infantil") },
+									 { value: "primaria", label: t("signup.form.options.primaria") },
+									 { value: "secundaria", label: t("signup.form.options.secundaria") }
+								 ]}
+								 />
 					         </Form.Item>
 					         <Form.Item
 						         name="schoolType"
 						         label={ t("signup.form.label.schoolType") }
 						         rules={ [{ required: true, message: t("signup.error.schoolType") }] }
 					         >
-						         <Select placeholder={ t("signup.form.placeholder.schoolType") }>
-							         <Option value="public">{ t("signup.form.options.public") }</Option>
-							         <Option value="concertado">{ t("signup.form.options.concertado") }</Option>
-							         <Option value="private">{ t("signup.form.options.private") }</Option>
-						         </Select>
+						         <Select placeholder={ t("signup.form.placeholder.schoolType") }
+								 options={[
+									 { value: "public", label: t("signup.form.options.public") },
+									 { value: "concertado", label: t("signup.form.options.concertado") },
+									 { value: "private", label: t("signup.form.options.private") }
+								 ]}
+								 />
 					         </Form.Item>
 					         <Form.Item
 						         name="schoolLocation"
 						         label={ t("signup.form.label.schoolLocation") }
 						         rules={ [{ required: true, message: t("signup.error.schoolLocation") }] }
 					         >
-						         <Select placeholder={ t("signup.form.placeholder.schoolLocation") }>
-							         <Option value="rural">{ t("signup.form.options.rural") }</Option>
-							         <Option value="urban">{ t("signup.form.options.urban") }</Option>
-						         </Select>
+						         <Select placeholder={ t("signup.form.placeholder.schoolLocation") }
+								 options={[
+									 { value: "rural", label: t("signup.form.options.rural") },
+									 { value: "urban", label: t("signup.form.options.urban") }
+								 ]}
+								 />
 					         </Form.Item>
 					         <Form.Item
 						         name="gender"
 						         label={ t("signup.form.label.gender") }
 						         rules={ [{ required: true, message: t("signup.error.gender") }] }
 					         >
-						         <Select placeholder={ t("signup.form.placeholder.gender") }>
-							         <Option value="male">{ t("signup.form.options.male") }</Option>
-							         <Option value="female">{ t("signup.form.options.female") }</Option>
-							         <Option value="nonBinary">{ t("signup.form.options.nonBinary") }</Option>
-							         <Option value="preferNotToSay">{ t("signup.form.options.preferNotToSay") }</Option>
-						         </Select>
+						         <Select placeholder={ t("signup.form.placeholder.gender") }
+								 options={[
+									 { value: "male", label: t("signup.form.options.male") },
+									 { value: "female", label: t("signup.form.options.female") },
+									 { value: "nonBinary", label: t("signup.form.options.nonBinary") },
+									 { value: "preferNotToSay", label: t("signup.form.options.preferNotToSay") }
+								 ]}
+								 />
 					         </Form.Item>
 				         </>
 			         )
@@ -226,21 +231,19 @@ const SignupTeacher = () => {
 		}
 	};
 
+	const stepsItems = steps.map((step, index) => ({key: index, title: step.title}));
+
 	return (
 		<Card title={ t("signup.title") } style={ { width: "80vw" } }>
 			{ message?.error?.type && (
 				<Alert
 					type="error"
-					message={ t(message?.error?.type) }
+					title={ t(message?.error?.type) }
 					showIcon
 					style={ { marginBottom: "1vh" } }
 				/>
 			) }
-			<Steps current={ currentStep }>
-				{ steps.map((item) => (
-					<Step key={ item.title } title={ item.title }/>
-				)) }
-			</Steps>
+			<Steps current={ currentStep } items={stepsItems} />
 			<Form
 				form={ form }
 				name="signup"

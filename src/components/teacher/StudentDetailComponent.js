@@ -6,9 +6,6 @@ import { useTranslation }                                                       
 import { useNavigate, useParams }                                                                                    from "react-router-dom";
 import TeacherBreadcrumb from "./BreadcrumbComponent";
 
-const { Step } = Steps;
-const { Option } = Select;
-
 const StudentDetail = () => {
 	const { studentId, classroomName } = useParams();
 	const [form] = Form.useForm();
@@ -104,13 +101,11 @@ const StudentDetail = () => {
 					         </Form.Item>
 					         <Form.Item name="classroom" label="Clase"
 					                    rules={ [{ required: true, message: "Por favor, ingrese el apellido" }] }>
-						         <Select placeholder="Seleccione">
-							         { classrooms.map((classroom) => (
-								         <Option key={ classroom.id } value={ classroom.name }>
-									         { classroom.name }
-								         </Option>
-							         )) }
-						         </Select>
+						         <Select placeholder="Seleccione"
+										 option={ classrooms.map((classroom) =>
+											 ( {value: classroom.name, label: classroom.name }))
+										 }
+								 />
 					         </Form.Item>
 				         </>
 			         )
@@ -122,11 +117,10 @@ const StudentDetail = () => {
 						         name="socioEconomicLevel"
 						         label="Nivel Socioeconómico"
 					         >
-						         <Select placeholder="Seleccione" allowClear>
-							         <Option value="bajo">Bajo</Option>
-							         <Option value="medio">Medio</Option>
-							         <Option value="alto">Alto</Option>
-						         </Select>
+						         <Select placeholder="Seleccione" allowClear options={[{value: "bajo", label: t("students.socioeconomicLevel.low")}, {
+									 value: "medio",
+									 label: t("students.socioeconomicLevel.medium")
+								 }, {value: "alto", label: t("students.socioeconomicLevel.high")}]}/>
 					         </Form.Item>
 					         <Form.Item
 						         name="nationalOrigin"
@@ -136,15 +130,20 @@ const StudentDetail = () => {
 							         placeholder="Seleccione"
 							         onChange={ (value) => setShowOtherNationalOrigin(value === "otro") }
 							         allowClear
-						         >
-							         <Option value="espania">España</Option>
-							         <Option value="europeo">Otro país europeo</Option>
-							         <Option value="africano">País africano</Option>
-							         <Option value="asiatico">País asiático</Option>
-							         <Option value="norteamericano">País norteamericano</Option>
-							         <Option value="latinoamericano">País latinoamericano</Option>
-							         <Option value="otro">Otro</Option>
-						         </Select>
+									 options={[{value: "espania", label: t("students.nationalOrigin.spain")}, {
+										 value: "europeo",
+										 label: t("students.nationalOrigin.european")
+									 }, {value: "africano", label: t("students.nationalOrigin.african")}, {
+										 value: "asiatico",
+										 label: t("students.nationalOrigin.asian")
+									 }, {
+										 value: "norteamericano",
+										 label: t("students.nationalOrigin.northAmerican")
+									 }, {
+										 value: "latinoamericano",
+										 label: t("students.nationalOrigin.latinAmerican")
+									 }, {value: "otro", label: t("students.nationalOrigin.other")}]}
+									 />
 					         </Form.Item>
 					         { showOtherNationalOrigin && (
 						         <Form.Item name="otherNationalOrigin" label="Especifique el País">
@@ -161,30 +160,31 @@ const StudentDetail = () => {
 						         name="learningReadingRisk"
 						         label="Dificultades de Aprendizaje de Lectura"
 					         >
-						         <Select placeholder="Seleccione" allowClear>
-							         <Option value="si">Sí</Option>
-							         <Option value="no">No</Option>
-						         </Select>
+						         <Select placeholder="Seleccione" allowClear
+										 options={[{value: "si", label: t("yes")}, {value: "no", label: t("no")}]}
+								 />
 					         </Form.Item>
 					         <Form.Item
 						         name="learningWritingRisk"
 						         label="Dificultades de Aprendizaje de Escritura"
 					         >
-						         <Select placeholder="Seleccione" allowClear>
-							         <Option value="si">Sí</Option>
-							         <Option value="no">No</Option>
-						         </Select>
+						         <Select placeholder="Seleccione" allowClear
+										 options={[{value: "si", label: t("yes")}, {value: "no", label: t("no")}]}
+								 />
 					         </Form.Item>
 					         <Form.Item
 						         name="familyBackground"
 						         label="Alguno de los progenitores del alumno presentó dificultades de aprendizaje de la lectura o la escritura"
 					         >
-						         <Select placeholder="Seleccione" allowClear>
-							         <Option value="padre">Sí, el padre</Option>
-							         <Option value="madre">Sí, la madre</Option>
-							         <Option value="ambos">Sí, ambos progenitores</Option>
-							         <Option value="ninguno">No</Option>
-						         </Select>
+						         <Select placeholder="Seleccione" allowClear
+										 options={[{value: "padre", label: t("students.familyBackground.father")}, {
+									 value: "madre",
+									 label: t("students.familyBackground.mother")
+								 }, {value: "ambos", label: t("students.familyBackground.both")}, {
+									 value: "ninguno",
+									 label: t("students.familyBackground.none")
+								 }]}
+								 />
 					         </Form.Item>
 					         <Form.Item
 						         name="neae"
@@ -192,10 +192,9 @@ const StudentDetail = () => {
 					         >
 						         <Select placeholder="Seleccione"
 						                 onChange={ (value) => setShowNEAE(value === "si") }
-						                 allowClear>
-							         <Option value="si">Sí</Option>
-							         <Option value="no">No</Option>
-						         </Select>
+						                 allowClear
+										 options={[{value: "si", label: t("yes")}, {value: "no", label: t("no")}]}
+								 />
 					         </Form.Item>
 					         { showNEAE && (
 						         <Form.Item
@@ -230,10 +229,11 @@ const StudentDetail = () => {
 											         align="baseline"
 										         >
 											         <Form.Item
-												         name={ name }
 												         { ...restField }
+												         name={[name, 'value']}
+												         style={ { marginBottom: 0 } }
 											         >
-														 <Space>{t("signup.student.steps.educationalNeeds")}<Input/></Space>
+												         <Input/>
 											         </Form.Item>
 											         <MinusCircleOutlined onClick={ () => remove(name) }/>
 										         </Space>
@@ -241,7 +241,7 @@ const StudentDetail = () => {
 									         <Form.Item>
 										         <Button type="dashed" onClick={ () => add() } block
 										                 icon={ <PlusOutlined/> }>
-											         Add field
+											         Añadir necesidad
 										         </Button>
 									         </Form.Item>
 								         </>
@@ -264,10 +264,9 @@ const StudentDetail = () => {
 					         >
 						         <Select placeholder="Seleccione"
 						                 onChange={ (value) => setShowEducationalSupport(value === "si") }
-						                 allowClear>
-							         <Option value="si">Sí</Option>
-							         <Option value="no">No</Option>
-						         </Select>
+						                 allowClear
+										 options={[{value: "si", label: t("yes")}, {value: "no", label: t("no")}]}
+								 />
 					         </Form.Item>
 					         { showEducationalSupport && <Form.Item
 						         name="educationalSupport"
@@ -293,10 +292,11 @@ const StudentDetail = () => {
 											         align="baseline"
 										         >
 											         <Form.Item
-												         name={ name }
 												         { ...restField }
+												         name={[name, 'value']}
+												         style={ { marginBottom: 0 } }
 											         >
-														 <Space.Compact>Otros especialistas<Input/></Space.Compact>
+												         <Input/>
 											         </Form.Item>
 											         <MinusCircleOutlined onClick={ () => remove(name) }/>
 										         </Space>
@@ -304,7 +304,7 @@ const StudentDetail = () => {
 									         <Form.Item>
 										         <Button type="dashed" onClick={ () => add() } block
 										                 icon={ <PlusOutlined/> }>
-											         Add field
+											         Añadir especialista
 										         </Button>
 									         </Form.Item>
 								         </>
@@ -315,15 +315,24 @@ const StudentDetail = () => {
 						         name="firstWords"
 						         label="La emisión de las primeras palabras se inició "
 					         >
-						         <Select placeholder="Seleccione" allowClear>
-							         <Option value="antesUno">Antes del año</Option>
-							         <Option value="entreUnoYUnoMedio">Entre el año y el año y medio</Option>
-							         <Option value="entreUnoMedioYDos">Entre el año y medio y los dos años</Option>
-							         <Option value="entreDosYDosMedio">Entre los dos años y los dos años y
-								         medio</Option>
-							         <Option value="despuesDos">Después de los dos años y medio</Option>
-							         <Option value="noComunica">No se comunica oralmente</Option>
-						         </Select>
+						         <Select placeholder="Seleccione" allowClear
+										 options={[{
+											 value: "antesUno",
+											 label: t("students.firstWords.before12Months")
+										 }, {
+											 value: "entreUnoYUnoMedio",
+											 label: t("students.firstWords.between12And18Months")
+										 }, {
+											 value: "entreUnoMedioYDos",
+											 label: t("students.firstWords.between18And24Months")
+										 }, {
+											 value: "entreDosYDosMedio",
+											 label: t("students.firstWords.between24And30Months")
+										 }, {value: "despuesDos", label: t("students.firstWords.after30Months")}, {
+											 value: "noComunica",
+											 label: t("students.firstWords.dontComunicate")
+										 }]}
+								 />
 					         </Form.Item>
 				         </>
 			         )
@@ -350,32 +359,58 @@ const StudentDetail = () => {
 				localStorage.setItem("currentStudentName", studentData.name);
 				localStorage.setItem("currentClassroomName", classroomName);
 
-				if ( studentData.otherSpecificSupportNeeds ) {
-					studentData.otherSpecificSupportNeeds = studentData.otherSpecificSupportNeeds.split(";");
+				// Procesar otherSpecificSupportNeeds
+				if ( studentData.otherSpecificSupportNeeds && studentData.otherSpecificSupportNeeds.trim() ) {
+					const otherNeeds = studentData.otherSpecificSupportNeeds.split(";").map(item => item.trim()).filter(item => item);
+					studentData.otherSpecificSupportNeeds = otherNeeds.map(need => ({ value: need }));
+					if ( otherNeeds.length > 0 ) {
+						setShowOtherSupportNeeds(true);
+						if ( studentData.specificSupportNeeds ) {
+							const needsArray = Array.isArray(studentData.specificSupportNeeds)
+								? studentData.specificSupportNeeds
+								: studentData.specificSupportNeeds.split(";").map(item => item.trim()).filter(item => item);
+							if ( !needsArray.includes("otro") ) {
+								needsArray.push("otro");
+							}
+							studentData.specificSupportNeeds = needsArray;
+						}
+						setShowNEAE(true);
+					}
+				} else {
+					studentData.otherSpecificSupportNeeds = [];
 				}
 
 				if ( studentData.specificSupportNeeds ) {
-					studentData.specificSupportNeeds = studentData.specificSupportNeeds.split(";");
+					studentData.specificSupportNeeds = Array.isArray(studentData.specificSupportNeeds)
+						? studentData.specificSupportNeeds
+						: studentData.specificSupportNeeds.split(";").map(item => item.trim()).filter(item => item);
 				}
 
-				if ( studentData.otherEducationalSupport ) {
-					studentData.otherEducationalSupport = studentData.otherEducationalSupport.split(";");
+				// Procesar otherEducationalSupport
+				if ( studentData.otherEducationalSupport && studentData.otherEducationalSupport.trim() ) {
+					const otherSupport = studentData.otherEducationalSupport.split(";").map(item => item.trim()).filter(item => item);
+					studentData.otherEducationalSupport = otherSupport.map(support => ({ value: support }));
+					if ( otherSupport.length > 0 ) {
+						setShowOtherEducationalSupport(true);
+						if ( studentData.educationalSupport ) {
+							const supportArray = Array.isArray(studentData.educationalSupport)
+								? studentData.educationalSupport
+								: studentData.educationalSupport.split(";").map(item => item.trim()).filter(item => item);
+							if ( !supportArray.includes("otros") ) {
+								supportArray.push("otros");
+							}
+							studentData.educationalSupport = supportArray;
+						}
+						setShowEducationalSupport(true);
+					}
+				} else {
+					studentData.otherEducationalSupport = [];
 				}
 
 				if ( studentData.educationalSupport ) {
-					studentData.educationalSupport = studentData.educationalSupport.split(";");
-				}
-
-				if ( studentData.otherSpecificSupportNeeds && studentData.specificSupportNeeds && studentData.otherSpecificSupportNeeds.length !== 0 ) {
-					studentData.specificSupportNeeds.push("otro");
-					setShowOtherSupportNeeds(true);
-					setShowNEAE(true);
-				}
-
-				if ( studentData.otherEducationalSupport && studentData.educationalSupport && studentData.otherEducationalSupport.length !== 0 ) {
-					studentData.educationalSupport.push("otros");
-					setShowEducationalSupport(true);
-					setShowOtherEducationalSupport(true);
+					studentData.educationalSupport = Array.isArray(studentData.educationalSupport)
+						? studentData.educationalSupport
+						: studentData.educationalSupport.split(";").map(item => item.trim()).filter(item => item);
 				}
 
 				if ( studentData.learningReadingRisk !== null && studentData.learningReadingRisk !== undefined ) {
@@ -416,19 +451,60 @@ const StudentDetail = () => {
 			}
 		};
 		fetchStudentData();
-	}, [studentId, form]);
+	}, [studentId, form, classroomName]);
 
 	const onFinish = async () => {
 		try {
 			let values = form.getFieldsValue(true);
+
+			// Procesar otherSpecificSupportNeeds - convertir array de objetos a string separado por ;
+			if ( values.otherSpecificSupportNeeds && Array.isArray(values.otherSpecificSupportNeeds) ) {
+				values.otherSpecificSupportNeeds = values.otherSpecificSupportNeeds
+					.map(item => item.value || item)
+					.filter(item => item && item.trim())
+					.join(";");
+			}
+
+			// Procesar otherEducationalSupport - convertir array de objetos a string separado por ;
+			if ( values.otherEducationalSupport && Array.isArray(values.otherEducationalSupport) ) {
+				values.otherEducationalSupport = values.otherEducationalSupport
+					.map(item => item.value || item)
+					.filter(item => item && item.trim())
+					.join(";");
+			}
+
+			// Procesar educationalSupport
+			if ( values.educationalSupport && Array.isArray(values.educationalSupport) ) {
+				values.educationalSupport = values.educationalSupport
+					.filter(item => item !== "otros")
+					.join(";");
+			}
+
+			// Procesar learningDiagnosedDifficulties
+			if ( values.learningDiagnosedDifficulties && Array.isArray(values.learningDiagnosedDifficulties) ) {
+				values.learningDiagnosedDifficulties = values.learningDiagnosedDifficulties.join(";");
+			}
+
+			// Procesar specificSupportNeeds
+			if ( values.specificSupportNeeds && Array.isArray(values.specificSupportNeeds) ) {
+				values.specificSupportNeeds = values.specificSupportNeeds
+					.filter(item => item !== "otro")
+					.join(";");
+			}
+
 			const payload = {
-				...values, classroomId: classrooms.find((c) => c.name === values.classroom).id, birthDate: values.birthDate ? values.birthDate.format("YYYY-MM-DD") : null
+				...values,
+				classroomId: classrooms.find((c) => c.name === values.classroom).id,
+				birthDate: values.birthDate ? values.birthDate.format("YYYY-MM-DD") : null
 			};
 
 			const response = await fetch(process.env.REACT_APP_USERS_SERVICE_URL + "/students/" + studentId, {
-				method:  "PUT", headers: {
-					"Content-Type": "application/json", Authorization: `Bearer ${ localStorage.getItem("accessToken") }`
-				}, body: JSON.stringify(payload)
+				method:  "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${ localStorage.getItem("accessToken") }`
+				},
+				body: JSON.stringify(payload)
 			});
 
 			if ( response.ok ) {
@@ -454,6 +530,8 @@ const StudentDetail = () => {
 		);
 	}
 
+	const stepsItems = steps.map((step, index) => ({key: index, title: step.title}));
+
 	return (
 		<div>
 			<div style={{ width: "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
@@ -464,12 +542,8 @@ const StudentDetail = () => {
 			<Form form={ form }
 			      layout="vertical"
 			      onFinish={ onFinish }
-			      style={ { width: "40rem" } }>
-				<Steps current={ currentStep } titlePlacement="vertical" onChange={ value => setCurrentStep(value) }>
-					{ steps.map((item) => (
-						<Step key={ item.title } title={ item.title }/>
-					)) }
-				</Steps>
+				  style={{maxWidth: "100%"}}>
+				<Steps current={ currentStep } titlePlacement="vertical" onChange={ value => setCurrentStep(value) } items={stepsItems}/>
 				<div style={ { marginTop: "1.5rem" } }>{ steps[ currentStep ].content }</div>
 				<Form.Item>
 					<div style={ { display: "flex", gap: "1rem" } }>

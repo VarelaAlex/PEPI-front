@@ -1,10 +1,8 @@
-import { Alert, Button, Card, Flex, Form, Radio, Steps, Typography } from "antd";
-import {useEffect, useState} from "react";
-import { useTranslation }                                            from "react-i18next";
-import { useNavigate, useParams }                                    from "react-router-dom";
+import { Alert, Button, Card, Form, Radio, Steps, Typography } from "antd";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate, useParams } from "react-router-dom";
 import TeacherBreadcrumb from "./BreadcrumbComponent";
-
-const { Step } = Steps;
 
 const SurveyA = () => {
 
@@ -16,6 +14,9 @@ const SurveyA = () => {
 	const [form] = Form.useForm();
 	const [message, setMessage] = useState(null);
 	const [surveyId, setSurveyId] = useState(null);
+	const [, setUpdateTrigger] = useState(0);
+
+	const { Title } = Typography;
 
 	const responseOptions = [
 		{ label: t("surveyA.options.never"), value: 0 },
@@ -24,6 +25,74 @@ const SurveyA = () => {
 		{ label: t("surveyA.options.sometimes"), value: 3 },
 		{ label: t("surveyA.options.often"), value: 4 },
 		{ label: t("surveyA.options.unknown"), value: -1 }
+	];
+
+	// Definir las categorías y sus preguntas
+	const categories = [
+		{
+			name: t("surveyA.steps.general"),
+			questions: [
+				{ id: "general_1", label: t("surveyA.questions.general.general_1") },
+				{ id: "general_2", label: t("surveyA.questions.general.general_2") },
+				{ id: "general_3", label: t("surveyA.questions.general.general_3") }
+			]
+		},
+		{
+			name: t("surveyA.steps.speech"),
+			questions: [
+				{ id: "speech_1", label: t("surveyA.questions.speech.speech_1") },
+				{ id: "speech_2", label: t("surveyA.questions.speech.speech_2") },
+				{ id: "speech_3", label: t("surveyA.questions.speech.speech_3") }
+			]
+		},
+		{
+			name: t("surveyA.steps.memory"),
+			questions: [
+				{ id: "memory_1", label: t("surveyA.questions.memory.memory_1") },
+				{ id: "memory_2", label: t("surveyA.questions.memory.memory_2") },
+				{ id: "memory_3", label: t("surveyA.questions.memory.memory_3") }
+			]
+		},
+		{
+			name: t("surveyA.steps.attention"),
+			questions: [
+				{ id: "attention_1", label: t("surveyA.questions.attention.attention_1") },
+				{ id: "attention_2", label: t("surveyA.questions.attention.attention_2") },
+				{ id: "attention_3", label: t("surveyA.questions.attention.attention_3") }
+			]
+		},
+		{
+			name: t("surveyA.steps.motricity"),
+			questions: [
+				{ id: "motricity_1", label: t("surveyA.questions.motricity.motricity_1") },
+				{ id: "motricity_2", label: t("surveyA.questions.motricity.motricity_2") },
+				{ id: "motricity_3", label: t("surveyA.questions.motricity.motricity_3") }
+			]
+		},
+		{
+			name: t("surveyA.steps.emotion"),
+			questions: [
+				{ id: "emotion_1", label: t("surveyA.questions.emotion.emotion_1") },
+				{ id: "emotion_2", label: t("surveyA.questions.emotion.emotion_2") },
+				{ id: "emotion_3", label: t("surveyA.questions.emotion.emotion_3") }
+			]
+		},
+		{
+			name: t("surveyB.steps.reading"),
+			questions: [
+				{ id: "reading_1", label: t("surveyB.questions.reading.reading_1") },
+				{ id: "reading_2", label: t("surveyB.questions.reading.reading_2") },
+				{ id: "reading_3", label: t("surveyB.questions.reading.reading_3") }
+			]
+		},
+		{
+			name: t("surveyB.steps.writing"),
+			questions: [
+				{ id: "writing_1", label: t("surveyB.questions.writing.writing_1") },
+				{ id: "writing_2", label: t("surveyB.questions.writing.writing_2") },
+				{ id: "writing_3", label: t("surveyB.questions.writing.writing_3") }
+			]
+		}
 	];
 
 	useEffect(() => {
@@ -42,7 +111,6 @@ const SurveyA = () => {
 
 				const data = await response.json();
 
-				// Campos que NO son respuestas
 				const {
 					id,
 					studentId: responseStudentId,
@@ -54,9 +122,6 @@ const SurveyA = () => {
 				} = data;
 
 				setSurveyId(data.id);
-
-
-				// Cargamos SOLO lo que exista
 				form.setFieldsValue(responses);
 
 			} catch (e) {
@@ -69,307 +134,24 @@ const SurveyA = () => {
 		}
 	}, [studentId, form]);
 
-	const steps = [
-		{
-			title:   t("surveyA.steps.generalBehavior"),
-			content: (
-				         <>
-					         <Form.Item name="generalBehavior_1" label={t("surveyA.questions.generalBehavior.generalBehavior_1")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="generalBehavior_2" label={t("surveyA.questions.generalBehavior.generalBehavior_2")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="generalBehavior_3" label={t("surveyA.questions.generalBehavior.generalBehavior_3")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-				         </>
-			         )
-		}, {
-			title:   t("surveyA.steps.speechAbility"),
-			content: (
-				         <>
-					         <Form.Item name="speechAbility_1" label={t("surveyA.questions.speechAbility.speechAbility_1")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="speechAbility_2" label={t("surveyA.questions.speechAbility.speechAbility_2")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="speechAbility_3" label={t("surveyA.questions.speechAbility.speechAbility_3")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="speechAbility_4" label={t("surveyA.questions.speechAbility.speechAbility_4")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-				         </>
-			         )
-		}, {
-			title:   t("surveyA.steps.memoryAbility"),
-			content: (
-				         <>
-					         <Form.Item name="memoryAbility_1"
-					                    label={t("surveyA.questions.memoryAbility.memoryAbility_1")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="memoryAbility_2" label={t("surveyA.questions.memoryAbility.memoryAbility_2")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="memoryAbility_3"
-					                    label={t("surveyA.questions.memoryAbility.memoryAbility_3")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="memoryAbility_4" label={t("surveyA.questions.memoryAbility.memoryAbility_4")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="memoryAbility_5" label={t("surveyA.questions.memoryAbility.memoryAbility_5")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="memoryAbility_6" label={t("surveyA.questions.memoryAbility.memoryAbility_6")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="memoryAbility_7"
-					                    label={t("surveyA.questions.memoryAbility.memoryAbility_7")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-				         </>
-			         )
-		}, {
-			title:   t("surveyA.steps.attentionAbility"),
-			content: (
-				         <>
-					         <Form.Item name="attentionAbility_1" label={t("surveyA.questions.attentionAbility.attentionAbility_1")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="attentionAbility_2"
-					                    label={t("surveyA.questions.attentionAbility.attentionAbility_2")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="attentionAbility_3"
-					                    label={t("surveyA.questions.attentionAbility.attentionAbility_3")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-				         </>
-			         )
-		}, {
-			title:   t("surveyA.steps.sequenceAbility"),
-			content: (
-				         <>
-					         <Form.Item name="sequenceAbility_1" label={t("surveyA.questions.sequenceAbility.sequenceAbility_1")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="sequenceAbility_2"
-					                    label={t("surveyA.questions.sequenceAbility.sequenceAbility_2")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="sequenceAbility_3" label={t("surveyA.questions.sequenceAbility.sequenceAbility_3")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-				         </>
-			         )
-		}, {
-			title:   t("surveyA.steps.muscleCoordination"),
-			content: (
-				         <>
-					         <Form.Item name="muscleCoordination_1" label={t("surveyA.questions.muscleCoordination.muscleCoordination_1")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="muscleCoordination_2" label={t("surveyA.questions.muscleCoordination.muscleCoordination_2")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="muscleCoordination_3" label={t("surveyA.questions.muscleCoordination.muscleCoordination_3")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="muscleCoordination_4"
-					                    label={t("surveyA.questions.muscleCoordination.muscleCoordination_4")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="muscleCoordination_5" label={t("surveyA.questions.muscleCoordination.muscleCoordination_5")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="muscleCoordination_6" label={t("surveyA.questions.muscleCoordination.muscleCoordination_6")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="muscleCoordination_7" label={t("surveyA.questions.muscleCoordination.muscleCoordination_7")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-				         </>
-			         )
-		}, {
-			title:   t("surveyA.steps.spatialOrientation"),
-			content: (
-				         <>
-					         <Form.Item name="spatialOrientation_1" label={t("surveyA.questions.spatialOrientation.spatialOrientation_1")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="spatialOrientation_2"
-					                    label={t("surveyA.questions.spatialOrientation.spatialOrientation_2")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-				         </>
-			         )
-		}, {
-			title:   t("surveyA.steps.emotionsSocialAdaptation"),
-			content: (
-				         <>
-					         <Form.Item name="emotionsSocialAdaptation_1"
-					                    label={t("surveyA.questions.emotionsSocialAdaptation.emotionsSocialAdaptation_1")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="emotionsSocialAdaptation_2" label={t("surveyA.questions.emotionsSocialAdaptation.emotionsSocialAdaptation_2")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="emotionsSocialAdaptation_3" label={t("surveyA.questions.emotionsSocialAdaptation.emotionsSocialAdaptation_3")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-					         <Form.Item name="emotionsSocialAdaptation_4"
-					                    label={t("surveyA.questions.emotionsSocialAdaptation.emotionsSocialAdaptation_4")} rules={[{ required: true, message: t("select") }]}>
-						         <Radio.Group>
-							         { responseOptions.map((option) => (
-								         <Radio.Button key={ option.value } value={ option.value }>{ option.label }</Radio.Button>
-							         )) }
-						         </Radio.Group>
-					         </Form.Item>
-				         </>
-			         )
-		}
-	];
-
 	const onNext = () => {
-		form
-			.validateFields()
-			.then(() => {
+		if (currentStep === 0) {
+			// En el step de instrucciones, simplemente pasar al siguiente
+			setCurrentStep(currentStep + 1);
+		} else {
+			// Validar que todas las preguntas del step actual estén respondidas
+			const currentCategory = categories[currentStep - 1];
+			const unansweredQuestions = currentCategory.questions.filter(
+				question => form.getFieldValue(question.id) === undefined || form.getFieldValue(question.id) === null
+			);
+
+			if (unansweredQuestions.length > 0) {
+				setMessage({ error: { type: "surveyA.validationError" } });
+			} else {
 				setMessage(null);
 				setCurrentStep(currentStep + 1);
-			})
-			.catch(() => setMessage({ error: { type: "surveyA.validationError" } }));
+			}
+		}
 	};
 
 	const onPrev = () => {
@@ -377,6 +159,13 @@ const SurveyA = () => {
 	};
 
 	const onFinish = async () => {
+		try {
+			await form.validateFields();
+		} catch (e) {
+			setMessage({ error: { type: "surveyA.validationError" } });
+			return;
+		}
+
 		const allValues = form.getFieldsValue(true);
 		let total = Object.values(allValues).reduce((acc, val) => {
 			if ( Number.isInteger(val) && val > 0 ) {
@@ -384,7 +173,7 @@ const SurveyA = () => {
 			}
 			return acc + 0;
 		}, 0);
-		delete allValues.remember
+		delete allValues.remember;
 
 		let response = null;
 		try {
@@ -420,35 +209,96 @@ const SurveyA = () => {
 		}
 	};
 
-	const { Title } = Typography;
+	const stepsItems = categories.map((cat, index) => ({key: index, title: cat.name}));
 
 	return (
 		<div>
-			<div style={{ width: "70vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
+			<div style={{ width: "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
 				<TeacherBreadcrumb />
 			</div>
-			<Card title={ <Title level={ 3 } style={ { whiteSpace: "normal", wordBreak: "break-word" } }>{ t("surveyA.title") }</Title> } style={ { maxWidth: "70vw" } }>
-			{ message?.error?.type && (
-				<Alert type="error" message={ t(message?.error?.type) } showIcon style={ { marginBottom: "1vh" } }/>
-			) }
-			<Steps current={ currentStep } size="small" labelPlacement="vertical" onChange={ (value) => setCurrentStep(value) }>
-				{ steps.map((item) => (
-					<Step key={ item.title } title={ item.title }/>
-				)) }
-			</Steps>
-			<Flex justify="space-around">
-				<Form labelWrap form={ form } name="surveyA" layout="vertical" onFinish={ onFinish } initialValues={ { remember: true } } style={ { marginTop: "2rem" } }>
-					{ steps[ currentStep ].content }
-					<Flex justify="space-between" gap={ 30 }>
-						{ currentStep > 0 && <Button block onClick={ onPrev }>{ t("surveyA.button.prev") }</Button> }
-						{ currentStep < steps.length - 1 && <Button block type="primary" onClick={ onNext }>{ t("surveyA.button.next") }</Button> }
-						{ currentStep === steps.length - 1 && <Button block type="primary" htmlType="submit">{ t("surveyA.button.submit") }</Button> }
-					</Flex>
+			<Card title={<Title level={3}>{t("surveyA.title")}</Title>} style={{maxWidth: "90vw", marginLeft: "auto", marginRight: "auto"}}>
+				{message?.error?.type && (
+					<Alert type="error" title={t(message?.error?.type)} showIcon style={{marginBottom: "1vh"}}/>
+				)}
+
+				<Steps current={currentStep} size="small" titlePlacement="vertical" onChange={(value) => setCurrentStep(value)} style={{marginBottom: "2rem"}} items={stepsItems}/>
+
+				<Form form={form} name="surveyA" layout="vertical" onFinish={onFinish} style={{marginTop: "2rem"}}>
+					{currentStep === 0 ? (
+						<div style={{marginBottom: "2rem"}}>
+							<ol style={{marginLeft: "1.5rem", lineHeight: "1.8"}}>
+								<li>{t("surveyA.instructions.instruction1")}</li>
+								<li>{t("surveyA.instructions.instruction2")}</li>
+								<li>{t("surveyA.instructions.instruction3")}</li>
+								<li>{t("surveyA.instructions.instruction4")}</li>
+								<li>{t("surveyA.instructions.instruction5")}</li>
+								<li>{t("surveyA.instructions.instruction6")}</li>
+							</ol>
+						</div>
+					) : (
+						<div style={{marginBottom: "2rem"}}>
+							<h3 style={{fontSize: "1.1em", fontWeight: "bold", marginBottom: "1rem", backgroundColor: "#f0f0f0", padding: "0.5rem"}}>{categories[currentStep - 1].name}</h3>
+							<div style={{overflowX: "auto"}}>
+								<table style={{width: "100%", borderCollapse: "collapse", border: "1px solid #d9d9d9"}}>
+									<thead>
+										<tr style={{backgroundColor: "#fafafa"}}>
+											<th style={{border: "1px solid #d9d9d9", padding: "0.75rem", textAlign: "left", minWidth: "250px"}}>Ítem</th>
+											{responseOptions.map((option) => (
+												<th key={option.value} style={{border: "1px solid #d9d9d9", padding: "0.75rem", textAlign: "center", minWidth: "80px"}}>
+													{option.label}
+												</th>
+											))}
+										</tr>
+									</thead>
+									<tbody>
+										{categories[currentStep - 1].questions.map((question) => {
+											const isUnanswered = message?.error?.type === "surveyA.validationError" && (form.getFieldValue(question.id) === undefined || form.getFieldValue(question.id) === null);
+											return (
+												<tr key={question.id}>
+													<td style={{border: "1px solid #d9d9d9", padding: "0.75rem", fontWeight: "500", verticalAlign: "top"}}>
+														<div>{question.label}</div>
+														{isUnanswered && (
+															<div style={{color: "#ff4d4f", fontSize: "0.75rem", marginTop: "0.25rem"}}>
+																• {t("surveyA.validationError")}
+															</div>
+														)}
+													</td>
+													{responseOptions.map((option) => (
+														<td key={option.value} style={{border: "1px solid #d9d9d9", padding: "0.75rem", textAlign: "center"}}>
+															<Radio
+																checked={form.getFieldValue(question.id) === option.value}
+																onChange={() => {
+																	form.setFieldValue(question.id, option.value);
+																	setUpdateTrigger(prev => prev + 1);
+																}}
+															/>
+														</td>
+													))}
+												</tr>
+											);
+										})}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					)}
+
+					<div style={{marginTop: "2rem", display: "flex", justifyContent: currentStep === 0 ? "flex-end" : "space-between", gap: "1rem"}}>
+						{currentStep > 0 && <Button size="large" onClick={onPrev}>{t("surveyA.button.prev")}</Button>}
+						{currentStep < categories.length && <Button type="primary" size="large" onClick={onNext}>{t("surveyA.button.next")}</Button>}
+						{currentStep === categories.length && <Button type="primary" size="large" htmlType="submit">{t("surveyA.button.submit")}</Button>}
+					</div>
 				</Form>
-			</Flex>
-		</Card>
+			</Card>
 		</div>
 	);
 };
 
 export default SurveyA;
+
+
+
+
+
+
+

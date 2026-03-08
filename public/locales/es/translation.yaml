@@ -761,8 +761,8 @@ no: No
 select: Por favor, selecciona una opción
 addField: Añadir campo
 phrasesActivity:
-  intro1: Ahora vamos a ordenar los elementos para formar la frase, ¡fíjate bien en los pictogramas!
-  intro2: Recuerda que en esta actividad tienes que ordenar los elementos para formar la frase.
+  intro1: Ahora vamos a ordenar los elementos para formar la frase, ¡fíjate bien en los pictogramas y arrastra los elementos en el orden correcto!
+  intro2: Recuerda que en esta actividad tienes que ordenar los elementos para formar la frase, ¡fíjate bien en los pictogramas y arrastra los elementos en el orden correcto!
   help: Escucha y ordena la frase
   phrases:
     dog-animal:

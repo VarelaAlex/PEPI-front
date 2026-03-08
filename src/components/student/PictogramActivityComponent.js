@@ -1,4 +1,5 @@
 import {Card, Col, Row} from "antd";
+import {HomeOutlined} from "@ant-design/icons";
 import React, {useEffect, useRef, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {MultiBackend} from "dnd-multi-backend";
@@ -332,8 +333,15 @@ let PictogramActivity = () => {
     return (<DndProvider backend={MultiBackend} options={HTML5toTouch}>
         <CustomDragLayer/>
         <Card style={{padding: "2vh", width: "80%"}}>
-            <ActivityToolsComponent content={t("Escucha y coloca el elemento correcto en el cuadrado inferior")}
-                                    playHelp={()=>playAudio(audioHelpRef.current)}/>
+            <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1vh"}}>
+                <div style={{flex: 1}}>
+                    <ActivityToolsComponent content={t("Escucha y coloca el elemento correcto en el cuadrado inferior")}
+                                            playHelp={()=>playAudio(audioHelpRef.current)}/>
+                </div>
+                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
+                    navigate("/students/pretraining/");
+                }}/>
+            </div>
             <Row justify="center" gutter={[16, 16]} style={{marginBottom: 24}}>
                 {pictograms.find(p => p.activity === activity)?.content.map((p) => (<Col key={p.id}>
                         <DraggablePictogram

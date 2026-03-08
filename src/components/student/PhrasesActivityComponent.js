@@ -1,4 +1,5 @@
 import {Col, Row, Card} from "antd";
+import {HomeOutlined} from "@ant-design/icons";
 import React, {useEffect, useRef, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {MultiBackend} from "react-dnd-multi-backend";
@@ -330,7 +331,8 @@ export default function PhrasesActivity() {
 
         const resetTimeout = () => {
             clearTimeout(timeoutRef.current);
-            timeoutRef.current = setTimeout(playIntro, 5000);
+            const ex = shuffledExercises.current[exerciseIndex];
+            timeoutRef.current = setTimeout(()=>playAudio(ex.phraseKey), 5000);
         };
 
         const events = ["click", "keydown", "touchstart", "mousemove"];
@@ -445,11 +447,18 @@ export default function PhrasesActivity() {
     return (<DndProvider backend={MultiBackend} options={HTML5toTouch}>
         <CustomDragLayer/>
         <Card style={{padding: "2vh", width: "80%"}}>
-            <ActivityToolsComponent
-                playAudio={() => playAudio(currentExercise.phraseKey)}
-                content={t("phrasesActivity.help")}
-                playHelp={() => playAudio("phraseActivityHelp")}
-            />
+            <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1vh"}}>
+                <div style={{flex: 1}}>
+                    <ActivityToolsComponent
+                        playAudio={() => playAudio(currentExercise.phraseKey)}
+                        content={t("phrasesActivity.help")}
+                        playHelp={() => playAudio("phraseActivityHelp")}
+                    />
+                </div>
+                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
+                    navigate("/students/pretraining/");
+                }}/>
+            </div>
             <Row gutter={[16, 16]} justify="center" style={{marginBottom: 40}}>
                 {visiblePool.map(({id, text, audio, image}) => (<Col key={id}>
                     <DraggableCard id={id} text={text} audio={audio} image={image}/>

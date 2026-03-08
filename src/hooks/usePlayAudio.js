@@ -22,8 +22,22 @@ export function usePlayAudio() {
 		}
 
 		audioRef.current.currentTime = 0;
+
+		// Verificar si AvatarContext está reproduciendo audio
+		// Usar dynamic import para evitar circular dependencies
+		try {
+			const { isAudioLocked } = require("../components/AvatarContext");
+			if (typeof isAudioLocked === 'function' && isAudioLocked()) {
+				console.log("Audio bloqueado por AvatarContext");
+				return audioRef.current;
+			}
+		} catch (e) {
+			// Si hay error al verificar, proceder normalmente
+		}
+
 		audioRef.current.play().catch(() => {});
 
 		return audioRef.current;
 	};
 }
+

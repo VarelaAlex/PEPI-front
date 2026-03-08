@@ -21,19 +21,19 @@ export const DraggableWord = ({wordData, isPlaced, onDragStart, wordKey}) => {
     }, [preview]);
 
     const handleMouseDown = () => {
-        if (!isPlaced) {
+        if (!isPlaced && onDragStart) {
             onDragStart();
         }
     };
 
     const handleTouchStart = () => {
-        if (!isPlaced) {
+        if (!isPlaced && onDragStart) {
             onDragStart();
         }
     };
 
     if (isPlaced) {
-        return (<div style={{display: 'inline-block', minWidth: 80, height: 40, margin: 4, visibility: 'hidden'}}/>);
+        return (<div style={{display: 'inline-block', minWidth: 90, height: 75, margin: 4, visibility: 'hidden'}}/>);
     }
 
     return (<div
@@ -54,8 +54,8 @@ export const DraggableWord = ({wordData, isPlaced, onDragStart, wordKey}) => {
             style={{
                 textAlign: 'center',
                 background: '#e6f7ff',
-                minWidth: 120,
-                height: 100,
+                minWidth: 90,
+                height: 80,
                 userSelect: 'none',
                 fontFamily: "Massallera"
             }}
@@ -65,7 +65,7 @@ export const DraggableWord = ({wordData, isPlaced, onDragStart, wordKey}) => {
                     <AntdImage
                         src={wordData.image}
                         alt={wordData.text}
-                        style={{width: 50, height: 50, objectFit: "contain", marginBottom: 4}}
+                        style={{width: 40, height: 40, objectFit: "contain", marginBottom: 4}}
                         preview={false}
                     />
                 </Col>

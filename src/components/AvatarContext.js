@@ -4,6 +4,9 @@ import {runWithLock} from "../services/runWithLock";
 
 const AvatarContext = createContext();
 
+// Variable global para bloquear audios mientras AvatarContext está reproduciendouno
+let globalAudioLock = false;
+
 export const AvatarProvider = ({ children }) => {
     const [emotion, setEmotion] = useState("neutral");
     const [speech, setSpeech] = useState(null);
@@ -11,10 +14,17 @@ export const AvatarProvider = ({ children }) => {
     const [voiceEnabled, setVoiceEnabled] = useState(localStorage.getItem("avatarVoiceEnabled") === "true");
     const [isBusy, setIsBusy] = useState(false);
 
-
     const audioRef = useRef(null);
     const isPlayingRef = useRef(false);
     const playAudioByKey = usePlayAudio();
+
+    const setAudioLock = (locked) => {
+        globalAudioLock = locked;
+    };
+
+    const isAudioLocked = () => {
+        return globalAudioLock;
+    };
 
     const playAudio = (audioKey) => {
         return new Promise(resolve => {
@@ -24,11 +34,21 @@ export const AvatarProvider = ({ children }) => {
                 audioRef.current.pause();
             }
 
+            // Bloquear audios desde otros componentes
+            setAudioLock(true);
+
             const audio = playAudioByKey(audioKey);
             audioRef.current = audio;
 
-            if (!audio) return resolve();
-            audio.onended = () => resolve();
+            if (!audio) {
+                setAudioLock(false);
+                return resolve();
+            }
+
+            audio.onended = () => {
+                setAudioLock(false);
+                resolve();
+            };
         });
     };
 
@@ -40,6 +60,7 @@ export const AvatarProvider = ({ children }) => {
         }
 
         setSpeech(null);
+        setAudioLock(false);
 
         if (visible) {
             setEmotion("neutral");
@@ -54,33 +75,34 @@ export const AvatarProvider = ({ children }) => {
 
         isPlayingRef.current = true;
         await runWithLock(setIsBusy, async () => {
-        for (const step of sequence) {
-            if (!isPlayingRef.current) break;
+            for (const step of sequence) {
+                if (!isPlayingRef.current) break;
 
-            const {
-                audio,
-                text,
-                emotionDuring = "neutral",
-                emotionAfter = "neutral",
-                afterDelay = 500,
-                onStart,
-                onEnd
-            } = step;
+                const {
+                    audio,
+                    text,
+                    emotionDuring = "neutral",
+                    emotionAfter = "neutral",
+                    afterDelay = 500,
+                    onStart,
+                    onEnd
+                } = step;
 
-            if (visible) setEmotion(emotionDuring);
-            setSpeech(text || null);
+                if (visible) setEmotion(emotionDuring);
+                setSpeech(text || null);
 
-            onStart?.();
+                onStart?.();
 
-            await playAudio(audio);
+                await playAudio(audio);
 
-            if (visible) setEmotion(emotionAfter);
-            setSpeech(null);
+                if (visible) setEmotion(emotionAfter);
+                setSpeech(null);
 
-            await new Promise(res => setTimeout(res, afterDelay));
+                await new Promise(res => setTimeout(res, afterDelay));
 
-            onEnd?.();
-        }});
+                onEnd?.();
+            }
+        });
 
         if (visible) setEmotion("neutral");
         isPlayingRef.current = false;
@@ -91,14 +113,17 @@ export const AvatarProvider = ({ children }) => {
         setVisible(false);
         localStorage.setItem("avatarVisible", "false");
     };
+
     const showAvatar = () => {
         setVisible(true);
         localStorage.setItem("avatarVisible", "true");
     };
+
     const disableVoice = () => {
         setVoiceEnabled(false);
         localStorage.setItem("avatarVoiceEnabled", "false");
     };
+
     const enableVoice = () => {
         setVoiceEnabled(true);
         localStorage.setItem("avatarVoiceEnabled", "true");
@@ -116,7 +141,9 @@ export const AvatarProvider = ({ children }) => {
             disableVoice,
             enableVoice,
             stopAudio,
-            isBusy
+            isBusy,
+            isAudioLocked,
+            setAudioLock
         }}>
             {children}
         </AvatarContext.Provider>

@@ -6,8 +6,8 @@ export const StaticWord = ({wordData}) => {
     return (<div style={{display: 'inline-block', margin: 4}}>
         <Card size="small" style={{
             textAlign: 'center',
-            minWidth: 120,
-            height: 100,
+            minWidth: 90,
+            height: 75,
             fontFamily: "Massallera",
             display: 'flex',
             alignItems: 'center',
@@ -20,7 +20,7 @@ export const StaticWord = ({wordData}) => {
                         <AntdImage
                             src={wordData.image}
                             alt={wordData.text}
-                            style={{width: 50, height: 50, objectFit: "contain", marginBottom: 4}}
+                            style={{width: 35, height: 35, objectFit: "contain", marginBottom: 4}}
                             preview={false}
                         />
                     </Col>

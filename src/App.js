@@ -79,6 +79,8 @@ let App = () => {
 		localStorage.removeItem("greeted-main");
 		localStorage.removeItem("greeted-pretraining");
 		localStorage.removeItem("greeted-training");
+		localStorage.removeItem("greeted-open");
+		localStorage.removeItem("greeted-closed");
 		setLogin(false);
 		setFeedback({});
 		setExercise({});

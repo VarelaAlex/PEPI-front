@@ -100,7 +100,7 @@ let ExercisesList = (props) => {
 	};
 
 	return (
-		<Spin spinning={ loading } tip="Loading" size="large">
+		<Spin spinning={ loading } description="Loading" size="large">
 			<div style={{ width: "90vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh" }}>
 				<TeacherBreadcrumb />
 			</div>

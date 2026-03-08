@@ -10,7 +10,7 @@ import DraggablePhase1 from "./DraggablePhase1Component";
 import DroppablePhase1 from "./DroppablePhase1Component";
 import {nexusX, nodes, pathBottom, pathBottom2, pathTop, STOP, stopX, viewBoxWidth, X, Y} from "./NetworkProps";
 import {useAvatar} from "../AvatarContext";
-import {HAPPY_SPEAKING, NEUTRAL, WORRIED_SPEAKING} from "../Avatar";
+import {HAPPY_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
 import {executeWithProbability} from "../../services/executeWithProbability";
 import GifComponent from "../GifComponent";
 
@@ -21,6 +21,34 @@ let DnDPhase1 = () => {
     let {changeEmotionSequence} = useAvatar();
 
     const INITIAL_ELEMENT = 0;
+
+    // Sistema para reproducir tres frases solo las primeras 3 veces que se accede
+    useEffect(() => {
+        const accessCountKey = 'dndPhase1AccessCount';
+        const currentCount = parseInt(localStorage.getItem(accessCountKey) || '0');
+
+        if (currentCount < 3) {
+            // Reproducir las tres frases solo si no hemos llegado a 3 accesos
+            let phrases = [
+                "Para hacer el ejercicio, tienes que colocar los elementos del mensaje en la red",
+                "¡Coloca los elementos del mensaje en la red!",
+                "¡Vamos a arrastrar los elementos del mensaje a la red! ¡ya sabes como se hace!",
+            ]
+            let index = Math.floor(Math.random() * phrases.length) + 1;
+
+            changeEmotionSequence([{
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: phrases[index],
+                audio: `dnd1-intro${index}`,
+                afterDelay: 500
+            }]);
+
+            // Incrementar el contador
+            localStorage.setItem(accessCountKey, (currentCount + 1).toString());
+        }
+    }, []);
+
     let {setExercise, exercise, feedback, setFeedback} = useSession();
     let exerciseNodes = nodes(exercise);
     let [countErrors, setCountErrors] = useState(0);
@@ -230,7 +258,7 @@ let DnDPhase1 = () => {
                                 let phrases = [
                                     "¡Fantástico! Lo importante lo ponemos en los bolos",
                                     "¡Muy bien! La información importante va en los bolos",
-                                    "¡Eso es! Bien hecho",
+                                    "¡Eso es! La información importante va en los bolos",
                                 ]
                                 let index = Math.floor(Math.random() * phrases.length) + 1;
 

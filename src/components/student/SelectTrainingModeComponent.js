@@ -26,7 +26,7 @@ let SelectTrainingMode = () => {
                     "¡Vamos a trabajar!",
                     "¡A por ello! Vamos a seguir entrenando.",
 
-            ]
+                ]
                 let index = Math.floor(Math.random() * phrases.length) + 1;
 
                 changeEmotionSequence([

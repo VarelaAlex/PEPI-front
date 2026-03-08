@@ -11,7 +11,7 @@ import "../assets/fonts/massallera.TTF";
 import {finishExperiment, finishTracking, initTracking, registerElement} from "../../scriptTest2";
 import {useExerciseProgressUpdater} from "../../hooks/useExerciseProgressUpdater";
 import {usePlayAudio} from "../../hooks/usePlayAudio";
-import {HAPPY_SPEAKING, NEUTRAL, WORRIED_SPEAKING} from "../Avatar";
+import {HAPPY_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
 import {useAvatar} from "../AvatarContext";
 import {getNextExercise} from '../../services/getNextExercise';
 import {TRAINING_MODES} from "../../Globals";
@@ -43,6 +43,24 @@ let DnDPhase2 = () => {
             saveFeedback(feedback);
         }
     }, [feedback]);
+
+    useEffect(() => {
+            // Reproducir las tres frases solo si no hemos llegado a 3 accesos
+            let phrases = [
+                "¡Muy bien! Has completado la red, ahora vamos a volver al mensaje ¡arrastra los elementos!",
+                "¡Buen trabajo! Volvamos a colocar los elementos del mensaje",
+                "¡Bien hecho! ¡Arrastra ahora los elementos de la red al mensaje!",
+            ]
+            let index = Math.floor(Math.random() * phrases.length) + 1;
+
+            changeEmotionSequence([{
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: phrases[index],
+                audio: `dnd2-intro${index}`,
+                afterDelay: 500
+            }]);
+    }, []);
 
     let startTime = useRef(Date.now());
 
@@ -79,6 +97,7 @@ let DnDPhase2 = () => {
     let [timer, setTimer] = useState(undefined);
     let [countErrors, setCountErrors] = useState(0);
     let [showGif, setShowGif] = useState(false);
+    let [placedCount, setPlacedCount] = useState({});
 
     let saveFeedback = async (feedback) => {
 
@@ -193,6 +212,12 @@ let DnDPhase2 = () => {
                             node = element;
                             setCurrent(current + 1);
                             correct = true;
+
+                            // Incrementar el contador de veces que ha sido colocado este elemento
+                            setPlacedCount(prev => ({
+                                ...prev,
+                                [active.id]: (prev[active.id] || 0) + 1
+                            }));
                             if (current === 0) {
                                 let phrases = [
                                     "Bien hecho! Ese es el título y es muy importante",
@@ -487,7 +512,7 @@ let DnDPhase2 = () => {
     };
 
     let strokeColor = () => {
-        switch (element.data.current.type) {
+        switch (element?.data.current?.type) {
             case "type5":
                 return "black";
             case "type8":
@@ -500,6 +525,8 @@ let DnDPhase2 = () => {
     };
 
     let getDragElement = () => {
+        if (!element?.data.current) return null;
+
         if (element.data.current.nexus) {
             return (<g>
                     {element.data.current.src && <image
@@ -583,6 +610,7 @@ let DnDPhase2 = () => {
                     startTime.current = Date.now();
                     setCurrent(INITIAL_ELEMENT);
                     setFeedback({phase1: {...feedback.phase1}});
+                    setPlacedCount({});
                 }}/>
                 <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
                     setExercise(undefined);
@@ -596,7 +624,8 @@ let DnDPhase2 = () => {
                 }}/>
             </div>
             <Flex align="center" vertical>
-                <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} sensors={sensors}>
+                <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} sensors={sensors}
+                            autoScroll={false}>
                     <Flex align="center" justify="center">
                         <svg height="20vmax" viewBox={`-2 -2 ${viewBoxWidth(exercise?.networkType)} 250`}>
                             <path
@@ -622,7 +651,22 @@ let DnDPhase2 = () => {
                                 strokeWidth="3"
                             />}
 
-                            {extendedNodes.slice().sort((a, b) => b.order - a.order).map((element) => <DraggablePhase2
+                            {extendedNodes.slice().sort((a, b) => b.order - a.order).filter((element) => {
+                                // El elemento con order 5 solo es visible cuando current >= 5 (después de colocar order 4)
+                                if (element.order === 5) {
+                                    return current >= 5;
+                                }
+
+                                // Si el elemento ha sido colocado 2 veces, ocultarlo a menos que sea su turno de nuevo
+                                const placementCount = placedCount[element.id] || 0;
+                                if (placementCount >= 2) {
+                                    const expectedReturnPosition = element.order + 5;
+                                    return current === expectedReturnPosition;
+                                }
+
+                                // Todos los demás elementos están siempre visibles
+                                return true;
+                            }).map((element) => <DraggablePhase2
                                 key={element.id}
                                 id={element.id}
                                 type={element.type}

@@ -10,6 +10,8 @@ import {useExerciseProgressUpdater} from "../../hooks/useExerciseProgressUpdater
 import {getNextExercise} from "../../services/getNextExercise";
 import {TRAINING_MODES} from "../../Globals";
 import GifComponent from "../GifComponent";
+import {NEUTRAL, NEUTRAL_SPEAKING} from "../Avatar";
+import {useAvatar} from "../AvatarContext";
 
 let TypePhase2 = () => {
 
@@ -23,6 +25,8 @@ let TypePhase2 = () => {
 	let { setExercise, exercise, feedback, setFeedback } = useSession();
 	let startTime = useRef(Date.now());
 
+	let {changeEmotionSequence} = useAvatar();
+
 	useEffect(() => {
 		exerciseNodes.forEach((node) => {
 			registerElement(`${exercise.title}_${exercise.representation}_${exercise.networkType}.phase2`, 1, document.getElementById(node.id));
@@ -35,6 +39,32 @@ let TypePhase2 = () => {
 			saveFeedback(feedback);
 		}
 	}, [feedback]);
+
+	useEffect(() => {
+		// Reproducir las tres frases solo si no hemos llegado a 3 accesos
+		let phrases = [
+			"¡Muy bien!, ¡Escribe nuevamente el mensaje!",
+			"¡Bien hecho!, ¡Volvamos a escribir el mensaje!",
+			""
+		]
+
+		let typeEnd = "Pulsa en el cuadrado rojo del elemento de la red donde quieras escribir."
+		let index = Math.floor(Math.random() * phrases.length) + 1;
+
+		changeEmotionSequence([{
+			emotionDuring: NEUTRAL_SPEAKING,
+			emotionAfter: NEUTRAL,
+			text: phrases[index],
+			audio: `type2-intro${index}`,
+			afterDelay: 500
+		}, {
+			emotionDuring: NEUTRAL_SPEAKING,
+			emotionAfter: NEUTRAL,
+			text: typeEnd,
+			audio: `type-end`,
+			afterDelay: 500
+		}]);
+	}, []);
 
 	let saveFeedback = async (feedback) => {
 		try {

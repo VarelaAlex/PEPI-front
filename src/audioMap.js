@@ -41,6 +41,27 @@ export const audioMap = {
         "intro-activity5": "/sounds/es/intro-activity5.mp3",
         "intro-activity6": "/sounds/es/intro-activity6.mp3",
 
+        "openIntro": "/sounds/es/openIntro.mp3",
+        "closedIntro": "/sounds/es/closedIntro.mp3",
+
+        "dnd1-intro1": "/sounds/es/dnd1-intro1.mp3",
+        "dnd1-intro2": "/sounds/es/dnd1-intro2.mp3",
+        "dnd1-intro3": "/sounds/es/dnd1-intro3.mp3",
+
+        "dnd2-intro1": "/sounds/es/dnd2-intro1.mp3",
+        "dnd2-intro2": "/sounds/es/dnd2-intro2.mp3",
+        "dnd2-intro3": "/sounds/es/dnd2-intro3.mp3",
+
+        "type1-intro1": "/sounds/es/type1-intro1.mp3",
+        "type1-intro2": "/sounds/es/type1-intro2.mp3",
+        "type1-intro3": "/sounds/es/type1-intro3.mp3",
+
+        "type2-intro1": "/sounds/es/type2-intro1.mp3",
+        "type2-intro2": "/sounds/es/type2-intro2.mp3",
+        "type2-intro3": "/sounds/es/type2-intro3.mp3",
+
+        "type-end": "/sounds/es/type-end.mp3",
+
         "intro-pretraining1": "/sounds/es/intro-pretraining1.mp3",
         "intro-pretraining2": "/sounds/es/intro-pretraining2.mp3",
         "intro-pretraining3": "/sounds/es/intro-pretraining3.mp3",
@@ -307,6 +328,27 @@ export const audioMap = {
         "intro-activity4": "/sounds/en/intro-activity4.mp3",
         "intro-activity5": "/sounds/en/intro-activity5.mp3",
         "intro-activity6": "/sounds/en/intro-activity6.mp3",
+
+        "openIntro": "/sounds/en/openIntro.mp3",
+        "closedIntro": "/sounds/en/closedIntro.mp3",
+
+        "dnd1-intro1": "/sounds/en/dnd1-intro1.mp3",
+        "dnd1-intro2": "/sounds/en/dnd1-intro2.mp3",
+        "dnd1-intro3": "/sounds/en/dnd1-intro3.mp3",
+
+        "dnd2-intro1": "/sounds/en/dnd2-intro1.mp3",
+        "dnd2-intro2": "/sounds/en/dnd2-intro2.mp3",
+        "dnd2-intro3": "/sounds/en/dnd2-intro3.mp3",
+
+        "type1-intro1": "/sounds/en/type1-intro1.mp3",
+        "type1-intro2": "/sounds/en/type1-intro2.mp3",
+        "type1-intro3": "/sounds/en/type1-intro3.mp3",
+
+        "type2-intro1": "/sounds/en/type2-intro1.mp3",
+        "type2-intro2": "/sounds/en/type2-intro2.mp3",
+        "type2-intro3": "/sounds/en/type2-intro3.mp3",
+
+        "type-end": "/sounds/en/type-end.mp3",
 
         "intro-pretraining1": "/sounds/en/intro-pretraining1.mp3",
         "intro-pretraining2": "/sounds/en/intro-pretraining2.mp3",

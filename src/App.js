@@ -196,7 +196,7 @@ let App = () => {
 	let studentMenuItems = [
         {
             key: "preparation",
-            label: <Link to="/students/pretraining/selectPhase" onClick={() => setOpen(false)}>{t("sider.student.preparation")}</Link>,
+            label: <Link to="/students/pretraining" onClick={() => setOpen(false)}>{t("sider.student.preparation")}</Link>,
             danger: false,
             icon: <ExperimentOutlined/>
         },
@@ -322,7 +322,7 @@ let App = () => {
 						const isAllowedPath = matchPath("/students/:path/*", location.pathname) || location.pathname.startsWith("/exercise") || location.pathname.startsWith("/funding") || location.pathname.startsWith("/aboutEPI");
 
 						if (!isAllowedPath) {
-							navigate("/students/pretraining/selectPhase");
+							navigate("/students/selectMode");
 						}
 					}
 				} else {

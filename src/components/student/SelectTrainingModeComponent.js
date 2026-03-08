@@ -46,7 +46,7 @@ let SelectTrainingMode = () => {
                     {
                         emotionDuring: NEUTRAL_SPEAKING,
                         emotionAfter: NEUTRAL,
-                        text: "¡Vamos a empezar a entrenar! Es mejor que lo hagas siguiendo un orden, pero también puedes trabajar de forma libre",
+                        text: "¡Vamos a empezar a entrenar! Es mejor que lo hagas siguiendo un orden, pero también puedes trabajar de forma libre. Empieza por el entrenamiento cerrado y cuando lo termines pasa al abierto.",
                         audio: "intro-training1",
                         afterDelay: 500
                     },

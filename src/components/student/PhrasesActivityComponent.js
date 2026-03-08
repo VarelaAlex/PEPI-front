@@ -391,19 +391,40 @@ export default function PhrasesActivity() {
             returnObjects: true
         });
 
-        if (item.text === phrase[index]) {
-            setSlots(prev => {
-                const next = [...prev];
-                if (!next[index]) next[index] = item.text;
-                return next;
-            });
-
-            setPool(prev =>
-                prev.map(p =>
-                    p.id === item.id ? { ...p, used: true } : p
-                )
-            );
+        // 1. Validar que el elemento sea el correcto para esta posición
+        if (item.text !== phrase[index]) {
+            playAudio("error");
+            return;
         }
+
+        // 2. Validar que no haya elemento ya colocado en esta posición
+        if (slots[index] !== null && slots[index] !== undefined) {
+            playAudio("error");
+            return;
+        }
+
+        // 3. Validar orden secuencial - todos los anteriores deben estar llenos
+        for (let i = 0; i < index; i++) {
+            if (slots[i] === null || slots[i] === undefined) {
+                playAudio("error");
+                return;
+            }
+        }
+
+        // Si todo es correcto, reproducir sonido y colocar el elemento
+        playAudio("correct");
+
+        setSlots(prev => {
+            const next = [...prev];
+            next[index] = item.text;
+            return next;
+        });
+
+        setPool(prev =>
+            prev.map(p =>
+                p.id === item.id ? { ...p, used: true } : p
+            )
+        );
     }
 
     useEffect(() => {

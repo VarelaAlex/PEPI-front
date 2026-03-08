@@ -44,6 +44,9 @@ export const audioMap = {
         "openIntro": "/sounds/es/openIntro.mp3",
         "closedIntro": "/sounds/es/closedIntro.mp3",
 
+        "preparation-end1": "/sounds/es/preparation-end1.mp3",
+        "preparation-end2": "/sounds/es/preparation-end2.mp3",
+
         "dnd1-intro1": "/sounds/es/dnd1-intro1.mp3",
         "dnd1-intro2": "/sounds/es/dnd1-intro2.mp3",
         "dnd1-intro3": "/sounds/es/dnd1-intro3.mp3",
@@ -331,6 +334,9 @@ export const audioMap = {
 
         "openIntro": "/sounds/en/openIntro.mp3",
         "closedIntro": "/sounds/en/closedIntro.mp3",
+
+        "preparation-end1": "/sounds/en/preparation-end1.mp3",
+        "preparation-end2": "/sounds/en/preparation-end2.mp3",
 
         "dnd1-intro1": "/sounds/en/dnd1-intro1.mp3",
         "dnd1-intro2": "/sounds/en/dnd1-intro2.mp3",

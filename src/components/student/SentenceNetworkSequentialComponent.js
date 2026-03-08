@@ -435,7 +435,7 @@ const SentenceNetworkSequential = ({updateUnlockedPhase}) => {
                         const newCount = prev + 1;
 
                         // if reached 5, call updateUnlockedPhase and navigate
-                        if (newCount >= 5) {
+                        if (newCount >= 1) {
                             if (typeof updateUnlockedPhase === 'function') {
                                 try {
                                     updateUnlockedPhase();
@@ -443,22 +443,35 @@ const SentenceNetworkSequential = ({updateUnlockedPhase}) => {
                                     // ignore errors from caller
                                 }
                             }
-                            navigate('/students/selectMode');
+                            let phrases = [
+                                "Te voy a ayudar para que puedas entrenar de la mejor forma posible, empieza por el primer ejercicio y yo te iré mostrando nuevas actividades",
+                                "¡Buen trabajo!, ¡ahora toca entrenar!"
+                            ]
+                            let index = Math.floor(Math.random() * phrases.length) + 1;
+
+                            changeEmotionSequence([{
+                                emotionDuring: NEUTRAL_SPEAKING,
+                                emotionAfter: NEUTRAL,
+                                text: phrases[index],
+                                audio: `preparation-end${index}`,
+                                onEnd: () => {navigate('/students/selectMode')},
+                                afterDelay: 100
+                            }]);
+
+                        } else {
+                            if (trioPointer < trioOrder.length - 1) {
+                                setTrioPointer(prev => prev + 1);
+                                setCurrentStep(0);
+                                setShowNetwork(false);
+                                setPlacedWords(initializePlacedWords());
+                            } else {
+                                // no more trios - keep UI consistent
+                                setShowNetwork(false);
+                            }
                         }
 
                         return newCount;
                     });
-
-                    // advance to next trio if available
-                    if (trioPointer < trioOrder.length - 1) {
-                        setTrioPointer(prev => prev + 1);
-                        setCurrentStep(0);
-                        setShowNetwork(false);
-                        setPlacedWords(initializePlacedWords());
-                    } else {
-                        // no more trios - keep UI consistent
-                        setShowNetwork(false);
-                    }
                 }, 1000);
             } else {
                 setCurrentStep(prev => prev + 1);

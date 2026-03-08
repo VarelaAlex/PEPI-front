@@ -4,14 +4,13 @@ import React from "react";
 import {ItemTypes} from "./ItemTypes";
 
 function DropSlot({index, expectedText, value, image, enabled, onDrop}) {
-    const [{isOver, canDrop}, drop] = useDrop(() => ({
+    const [{isOver}, drop] = useDrop(() => ({
         accept: ItemTypes.WORD,
-        canDrop: (item) => enabled && item.text === expectedText,
         drop: (item) => onDrop(index, item),
         collect: (monitor) => ({
-            isOver: monitor.isOver(), canDrop: monitor.canDrop(),
+            isOver: monitor.isOver(),
         }),
-    }), [expectedText, enabled]);
+    }), [enabled, onDrop]);
 
     const isFilled = !!value;
 
@@ -24,7 +23,7 @@ function DropSlot({index, expectedText, value, image, enabled, onDrop}) {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                borderColor: isFilled ? "green" : isOver && canDrop ? "blue" : "#d9d9d9",
+                borderColor: isFilled ? "green" : isOver ? "blue" : "#d9d9d9",
                 backgroundColor: isFilled ? "#d4edda" : "#fafafa",
                 fontWeight: 600,
                 fontFamily: "Massallera",

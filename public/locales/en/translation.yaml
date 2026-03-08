@@ -22,9 +22,9 @@ sider:
     about: About the strategy
     profile: My profile
   student:
-    exercises: Exercises
+    preparation: Preparation
+    training: Training
     howto: How to do a exercise
-    mode: Select the mode
   anonymous:
     welcomeMessage: Welcome
   selectRole: Select a role
@@ -768,6 +768,21 @@ yes: Yes
 no: No
 select: Please select an option
 addField: Add field
+howToDoExercises:
+  title: What exercise do you want to learn how to do?
+  videos:
+    iconic:
+      title: Iconic
+      description: How to do an iconic representation exercise
+    mixed:
+      title: Mixed
+      description: How to do a mixed representation exercise
+    global:
+      title: Global
+      description: How to do a global representation exercise
+    symbolic:
+      title: Symbolic
+      description: How to do a symbolic representation exercise
 phrasesActivity:
   intro1: Now we are going to order the elements to form the phrase. Look closely to the pictograms!
   intro2: Remember that in this activity you have to order the elements to form the phrase.

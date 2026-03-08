@@ -12,6 +12,7 @@ import {TRAINING_MODES} from "../../Globals";
 import GifComponent from "../GifComponent";
 import {NEUTRAL, NEUTRAL_SPEAKING} from "../Avatar";
 import {useAvatar} from "../AvatarContext";
+import {usePlayAudio} from "../../hooks/usePlayAudio";
 
 let TypePhase2 = () => {
 
@@ -24,6 +25,7 @@ let TypePhase2 = () => {
 
 	let { setExercise, exercise, feedback, setFeedback } = useSession();
 	let startTime = useRef(Date.now());
+	const playAudio = usePlayAudio();
 
 	let {changeEmotionSequence} = useAvatar();
 
@@ -113,6 +115,7 @@ let TypePhase2 = () => {
 				let text = t(element.text);
 				if ( text.length === i.value.length ) {
 					if ( normalize(text.toLowerCase()) === normalize(i.value.toLowerCase()) ) {
+						playAudio("correct");
 						element.failure = false;
 						i.readOnly = true;
 						element.ok = true;
@@ -151,6 +154,7 @@ let TypePhase2 = () => {
 							}, 3000));
 						}
 					} else {
+						playAudio("error");
 						element.failure = true;
 						if ( element.shape ) {
 							setFeedback({
@@ -453,7 +457,7 @@ let TypePhase2 = () => {
 													               autoComplete="off"
 													               id={ element.id }
 													               style={ {
-														               textTransform: element.shape === "rect" ? "uppercase" : "lowercase",
+														               textTransform: (element.shape === "rect" || element.shape === "ellipse") ? "uppercase" : "lowercase",
 														               textAlign:     "center",
 														               fontSize:      "1.1vmax",
 														               fontFamily:    "Massallera"
@@ -543,7 +547,7 @@ let TypePhase2 = () => {
 													               autoComplete="off"
 													               id={ element.id }
 													               style={ {
-														               textTransform: element.shape === "rect" ? "uppercase" : "lowercase",
+														               textTransform: (element.shape === "rect" || element.shape === "ellipse") ? "uppercase" : "lowercase",
 														               textAlign:     "center",
 														               fontSize:      "1.1vmax",
 														               fontFamily:    "Massallera"

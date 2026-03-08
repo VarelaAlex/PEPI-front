@@ -22,9 +22,9 @@ sider:
     about: Sobre la estrategia
     profile: Mi perfil
   student:
-    exercises: Ejercicios
+    preparation: Preparación
+    training: Entrenamiento
     howto: Cómo hacer un ejercicio
-    mode: Selecciona el modo
   anonymous:
     welcomeMessage: Bienvenido
   selectRole: Selecciona un rol
@@ -760,6 +760,21 @@ yes: Sí
 no: No
 select: Por favor, selecciona una opción
 addField: Añadir campo
+howToDoExercises:
+  title: ¿Qué ejercicio quieres aprender a hacer?
+  videos:
+    iconic:
+      title: Icónica
+      description: Cómo hacer un ejercicio de representación icónica
+    mixed:
+      title: Combinada
+      description: Cómo hacer un ejercicio de representación combinada
+    global:
+      title: Global
+      description: Cómo hacer un ejercicio de representación global
+    symbolic:
+      title: Simbólica
+      description: Cómo hacer un ejercicio de representación simbólica
 phrasesActivity:
   intro1: Ahora vamos a ordenar los elementos para formar la frase, ¡fíjate bien en los pictogramas y arrastra los elementos en el orden correcto!
   intro2: Recuerda que en esta actividad tienes que ordenar los elementos para formar la frase, ¡fíjate bien en los pictogramas y arrastra los elementos en el orden correcto!

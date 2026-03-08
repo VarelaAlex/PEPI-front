@@ -114,13 +114,7 @@ let DnDPhase1 = () => {
                 if (element.order !== current) {
                     setCountErrors(countErrors + 1);
                     if (countErrors < 2) {
-                        changeEmotionSequence([{
-                            emotionDuring: NEUTRAL,
-                            emotionAfter: NEUTRAL,
-                            text: "",
-                            audio: `error`,
-                            afterDelay: 500
-                        }]);
+                        playAudio("error");
                     } else {
                         if ([0, 1, 5].includes(current)) {
                             let phrases = [
@@ -344,13 +338,7 @@ let DnDPhase1 = () => {
                 });
                 setCountErrors(countErrors + 1);
                 if (countErrors < 2) {
-                    changeEmotionSequence([{
-                        emotionDuring: WORRIED_SPEAKING,
-                        emotionAfter: NEUTRAL,
-                        text: "",
-                        audio: `error`,
-                        afterDelay: 500
-                    }]);
+                    playAudio("error");
                 } else {
                     let phrases = [
 						"¡Ups! No pasa nada. Piensa, ¿dónde debo colocar este elemento?",

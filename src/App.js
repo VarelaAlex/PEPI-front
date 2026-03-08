@@ -48,12 +48,14 @@ import AvatarNavigationListener from "./components/AvatarNavigationListener";
 import InteractionBlocker from "./components/InteractionBlockerComponent";
 import EditExercise from "./components/teacher/EditExerciseComponent";
 import TeacherHelpButton from "./components/TeacherHelpButtonComponent";
+import {usePullToRefreshBlocker} from "./hooks/usePullToRefreshBlocker";
 
 let App = () => {
 
 	let { login, setLogin, setFeedback, setExercise } = useSession();
 	let {hideAvatar, disableVoice} = useAvatar();
     let exitFullscreen = useFullscreen();
+	usePullToRefreshBlocker();
 
 	const MOBILE_BREAKPOINT = 430;
 
@@ -193,17 +195,17 @@ let App = () => {
 
 	let studentMenuItems = [
         {
-            key: "mode",
-            label: <Link to="/students/selectMode" onClick={() => setOpen(false)}>{t("sider.student.mode")}</Link>,
+            key: "preparation",
+            label: <Link to="/students/pretraining/selectPhase" onClick={() => setOpen(false)}>{t("sider.student.preparation")}</Link>,
             danger: false,
             icon: <ExperimentOutlined/>
         },
-		{
-			key: "exercises",
-			label: <Link to="/students/trainingMode" onClick={() => setOpen(false)}>{t("sider.student.exercises")}</Link>,
-			danger: false,
-			icon: <FormOutlined />
-		},
+        {
+            key: "training",
+            label: <Link to="/students/trainingMode" onClick={() => setOpen(false)}>{t("sider.student.training")}</Link>,
+            danger: false,
+            icon: <FormOutlined/>
+        },
 		{
 			key: "howto",
 			label: <Link to="/students/howTo" onClick={() => setOpen(false)}>{t("sider.student.howto")}</Link>,
@@ -320,7 +322,7 @@ let App = () => {
 						const isAllowedPath = matchPath("/students/:path/*", location.pathname) || location.pathname.startsWith("/exercise") || location.pathname.startsWith("/funding") || location.pathname.startsWith("/aboutEPI");
 
 						if (!isAllowedPath) {
-							navigate("/students/selectMode");
+							navigate("/students/pretraining/selectPhase");
 						}
 					}
 				} else {

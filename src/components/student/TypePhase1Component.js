@@ -10,6 +10,7 @@ import {finishTracking, initTracking, registerElement} from "../../scriptTest2";
 import GifComponent from "../GifComponent";
 import {NEUTRAL, NEUTRAL_SPEAKING} from "../Avatar";
 import {useAvatar} from "../AvatarContext";
+import {usePlayAudio} from "../../hooks/usePlayAudio";
 
 let TypePhase1 = () => {
 
@@ -19,6 +20,7 @@ let TypePhase1 = () => {
     const INITIAL_ID = "1-1";
     let {setExercise, exercise, feedback, setFeedback} = useSession();
     let exerciseNodes = nodes(exercise);
+    const playAudio = usePlayAudio();
 
     let {changeEmotionSequence} = useAvatar();
 
@@ -119,6 +121,7 @@ let TypePhase1 = () => {
                 let text = t(element.text);
                 if (text.length === i.value.length) {
                     if (normalize(text.toLowerCase()) === normalize(i.value.toLowerCase())) {
+                        playAudio("correct");
                         element.failure = false;
                         if (current === 0 || current === 4) {
                             setTimeout(() => {
@@ -148,6 +151,7 @@ let TypePhase1 = () => {
                             }, 3000));
                         }
                     } else {
+                        playAudio("error");
                         element.failure = true;
                         if (element.shape) {
                             setFeedback({
@@ -636,7 +640,6 @@ let TypePhase1 = () => {
 
                                 );
                             }
-
                         })}
                     </svg>
                 </Flex>

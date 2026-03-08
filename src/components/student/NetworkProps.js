@@ -50,13 +50,13 @@ export const nexusX = (networkType) => {
 
 export const viewBoxWidth = (networkType) => {
 	if ( networkType === "I-I" ) {
-		return 480;
+		return 500;
 	}
 	if ( networkType === "I-II" ) {
-		return 730;
+		return 750;
 	}
 	if ( networkType === "I-III" ) {
-		return 920;
+		return 950;
 	}
 };
 

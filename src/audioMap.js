@@ -759,7 +759,7 @@ export const audioMap = {
         "FEATHERS": "/sounds/en/PLUMAS.mp3",
         "DOORS": "/sounds/en/PUERTAS.mp3",
         "THE_CHEESE": "/sounds/en/EL_QUESO.mp3",
-        "THREE_MAGIC_KINGS": "/sounds/en/REYES_MAGOS.mp3",
+        "THREE_WISE_MEN": "/sounds/en/REYES_MAGOS.mp3",
         "WHEELS": "/sounds/en/RUEDAS.mp3",
         "LIVING_ROOM": "/sounds/en/SALON.mp3",
         "SLIDES": "/sounds/en/TOBOGAN.mp3",

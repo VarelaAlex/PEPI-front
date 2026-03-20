@@ -10,7 +10,7 @@ import DraggablePhase1 from "./DraggablePhase1Component";
 import DroppablePhase1 from "./DroppablePhase1Component";
 import {nexusX, nodes, pathBottom, pathBottom2, pathTop, STOP, stopX, viewBoxWidth, X, Y} from "./NetworkProps";
 import {useAvatar} from "../AvatarContext";
-import {HAPPY_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
+import {LOVE_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
 import {executeWithProbability} from "../../services/executeWithProbability";
 import GifComponent from "../GifComponent";
 import CounterBadge from "./CounterBadgeComponent";
@@ -432,11 +432,11 @@ let DnDPhase1 = () => {
             let index = Math.floor(Math.random() * phrases.length) + 1;
 
             changeEmotionSequence([{
-                emotionDuring: HAPPY_SPEAKING,
+                emotionDuring: LOVE_SPEAKING,
                 emotionAfter: NEUTRAL,
                 text: phrases[index],
                 audio: `p1-end-${index}`,
-                afterDelay: 0
+                afterDelay: 500
             }]);
             setShowGif(true);
             setTimer(setTimeout(() => {

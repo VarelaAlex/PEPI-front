@@ -11,7 +11,7 @@ import "../assets/fonts/massallera.TTF";
 import {finishExperiment, finishTracking, initTracking, registerElement} from "../../scriptTest2";
 import {useExerciseProgressUpdater} from "../../hooks/useExerciseProgressUpdater";
 import {usePlayAudio} from "../../hooks/usePlayAudio";
-import {HAPPY_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
+import {HAPPY_SPEAKING, LOVE_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
 import {useAvatar} from "../AvatarContext";
 import {getNextExercise} from '../../services/getNextExercise';
 import {TRAINING_MODES} from "../../Globals";
@@ -451,7 +451,7 @@ let DnDPhase2 = () => {
             let index = Math.floor(Math.random() * phrases.length) + 1;
 
             changeEmotionSequence([{
-                emotionDuring: HAPPY_SPEAKING,
+                emotionDuring: LOVE_SPEAKING,
                 emotionAfter: NEUTRAL,
                 text: phrases[index],
                 audio: `p2-end-${index}`,

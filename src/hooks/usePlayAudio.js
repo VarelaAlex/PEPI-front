@@ -1,8 +1,10 @@
 import {useTranslation} from "react-i18next";
 import {useRef} from "react";
 import {audioMap} from "../audioMap";
+import {isAudioLocked} from "../services/audioLock.js";
 
-export function usePlayAudio() {
+export function usePlayAudio(options = {}) {
+	const { bypassLock = false } = options;
 	const audioRef = useRef(null);
 	const { i18n } = useTranslation();
 
@@ -23,16 +25,8 @@ export function usePlayAudio() {
 
 		audioRef.current.currentTime = 0;
 
-		// Verificar si AvatarContext está reproduciendo audio
-		// Usar dynamic import para evitar circular dependencies
-		try {
-			const { isAudioLocked } = require("../components/AvatarContext");
-			if (typeof isAudioLocked === 'function' && isAudioLocked()) {
-				console.log("Audio bloqueado por AvatarContext");
-				return audioRef.current;
-			}
-		} catch (e) {
-			// Si hay error al verificar, proceder normalmente
+		if (!bypassLock && isAudioLocked()) {
+			return null;
 		}
 
 		audioRef.current.play().catch(() => {});

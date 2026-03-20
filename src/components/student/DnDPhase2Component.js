@@ -11,10 +11,10 @@ import "../assets/fonts/massallera.TTF";
 import {finishExperiment, finishTracking, initTracking, registerElement} from "../../scriptTest2";
 import {useExerciseProgressUpdater} from "../../hooks/useExerciseProgressUpdater";
 import {usePlayAudio} from "../../hooks/usePlayAudio";
-import {HAPPY_SPEAKING, LOVE_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
+import {LOVE_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
 import {useAvatar} from "../AvatarContext";
 import {getNextExercise} from '../../services/getNextExercise';
-import {TRAINING_MODES} from "../../Globals";
+import {REPRESENTATION, TRAINING_MODES} from "../../Globals";
 import {executeWithProbability} from "../../services/executeWithProbability";
 import GifComponent from "../GifComponent";
 import CounterBadge from "./CounterBadgeComponent";
@@ -467,7 +467,7 @@ let DnDPhase2 = () => {
                         getNextExercise(exercise.index).then((nextExercise) => {
                             if (nextExercise) {
                                 setExercise(nextExercise);
-                                navigate(`/exerciseDnD/phase1/ruled`);
+                                REPRESENTATION.SYMBOLIC !== nextExercise.representation ? navigate(`/exerciseDnD/phase1/ruled`) : navigate(`/exerciseType/phase1/ruled`);
                             } else {
                                 // Fin de la secuencia guiada
                                 navigate(`/students/exercises/${trainingMode}`);

@@ -1,11 +1,9 @@
 import { createContext, useContext, useState, useRef } from "react";
 import {usePlayAudio} from "../hooks/usePlayAudio";
 import {runWithLock} from "../services/runWithLock";
+import {isAudioLocked, setAudioLocked} from "../services/audioLock.js";
 
 const AvatarContext = createContext();
-
-// Variable global para bloquear audios mientras AvatarContext está reproduciendouno
-let globalAudioLock = false;
 
 export const AvatarProvider = ({ children }) => {
     const [emotion, setEmotion] = useState("neutral");
@@ -16,14 +14,10 @@ export const AvatarProvider = ({ children }) => {
 
     const audioRef = useRef(null);
     const isPlayingRef = useRef(false);
-    const playAudioByKey = usePlayAudio();
+    const playAudioByKey = usePlayAudio({ bypassLock: true });
 
     const setAudioLock = (locked) => {
-        globalAudioLock = locked;
-    };
-
-    const isAudioLocked = () => {
-        return globalAudioLock;
+        setAudioLocked(locked);
     };
 
     const playAudio = (audioKey) => {
@@ -46,6 +40,11 @@ export const AvatarProvider = ({ children }) => {
             }
 
             audio.onended = () => {
+                setAudioLock(false);
+                resolve();
+            };
+
+            audio.onerror = () => {
                 setAudioLock(false);
                 resolve();
             };

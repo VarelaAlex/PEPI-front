@@ -1191,6 +1191,7 @@ contactAndPublications:
         url: null
       - ref: "Cueli, M., Álvarez, A. I., Loew, S., González-Castro, P., y Rodríguez, C. (2020). Is organizing knowledge effective in primary education?"
         url: "https://doi.org/10.1155/2020/887"
+
 survey:
   title: Encuesta
   table:

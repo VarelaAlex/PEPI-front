@@ -246,7 +246,7 @@ classrooms:
         delete: Delete
         survey: Complete survey
         edit: Edit
-    surveyCompleted: Survey
+      surveyCompleted: Survey
     addStudent:
       divider: Add a new student
       label:
@@ -642,57 +642,49 @@ surveyA:
     often: Often
     unknown: Don't know / Not applicable
   steps:
-    generalBehavior: General behavior
-    speechAbility: Speech ability
-    memoryAbility: Memory ability
-    attentionAbility: Attention ability
-    sequenceAbility: Sequencing ability
-    muscleCoordination: Muscle coordination
-    spatialOrientation: Sense of space and orientation
-    emotionsSocialAdaptation: Emotions and social adaptation
+    general: General
+    speech: Speech
+    memory: Memory
+    attention: Attention
+    motricity: Motor skills
+    emotion: Emotion
+    reading: Reading
+    writing: Writing
   questions:
-    generalBehavior:
-      generalBehavior_1: In the notebook, leaves many eraser marks, the paper even tears or wrinkles from so much erasing
-      generalBehavior_2: Behavior doing homework is irregular
-      generalBehavior_3: Behavior in class is good, but performance is low
-    speechAbility:
-      speechAbility_1: Reacts slowly when having to answer questions orally
-      speechAbility_2: Expresses themselves orally with difficulty (for example, cannot find the words to express their ideas)
-      speechAbility_3: Makes grammatical errors when speaking
-      speechAbility_4: Has difficulty pronouncing correctly
-    memoryAbility:
-      memoryAbility_1: Loses personal belongings, such as notebooks, pencils, or pencil cases, or forgets to do or bring homework
-      memoryAbility_2: Has difficulty following a series of several consecutive instructions
-      memoryAbility_3: Needs other people to remind them several times about certain information, such as bringing materials from home to work in the classroom
-      memoryAbility_4: Has difficulty memorizing the names of people or places
-      memoryAbility_5: Has difficulty learning songs or children's poems, even simple ones
-      memoryAbility_6: Has difficulty learning a schedule that is somewhat complex
-      memoryAbility_7: Has difficulty remembering personal information, such as date of birth, phone number, address, etc.
-    attentionAbility:
-      attentionAbility_1: Gets distracted easily
-      attentionAbility_2: Has difficulty concentrating on one thing for a long time (for example, when doing tasks, stops frequently, gets up to talk with other classmates)
-      attentionAbility_3: Has difficulty repeating information just heard, such as phone numbers, people's names, or story content
-    sequenceAbility:
-      sequenceAbility_1: Has difficulty assimilating time concepts (does not distinguish yesterday, today, and tomorrow)
-      sequenceAbility_2: Makes mistakes in order when having to memorize words or numbers in a sequence (for example, the order of the four seasons or phone numbers)
-      sequenceAbility_3: Needs a lot of time to learn to tell time
-    muscleCoordination:
-      muscleCoordination_1: When coloring a drawing, goes outside the lines
-      muscleCoordination_2: Has difficulty when running and jumping (for example, falls often or gets injured)
-      muscleCoordination_3: When doing games with a lot of movement, for example, jumping rope, gets tired easily
-      muscleCoordination_4: Motor performance is low (for example, cannot perform the movements indicated by the teacher)
-      muscleCoordination_5: Has difficulty jumping rope, throwing, catching, or kicking the ball
-      muscleCoordination_6: In class cannot clap following simple rhythms
-      muscleCoordination_7: Has difficulty tying shoelaces and buttoning buttons more than children their age
-    spatialOrientation:
-      spatialOrientation_1: Has difficulty distinguishing between up and down or between left and right
-      spatialOrientation_2: Has difficulty with orientation (for example, needs a lot of time to know how to get to different classrooms, staff room, or music room)
-    emotionsSocialAdaptation:
-      emotionsSocialAdaptation_1: Has difficulty relating to other people (for example, often argues with siblings or classmates)
-      emotionsSocialAdaptation_2: Has a poor self-image
-      emotionsSocialAdaptation_3: Gets discouraged or gives up on doing things easily
-      emotionsSocialAdaptation_4: Has headaches, stomach aches, gets angry, or becomes nervous when feeling pressured
+    general:
+      general_1: Leaves many eraser marks; the sheet may even tear or wrinkle from so much erasing.
+      general_2: Their behavior in class is irregular.
+      general_3: Their behavior in class is good, but task performance is low.
+    speech:
+      speech_1: Expresses themselves orally with difficulty (for example, cannot find words to express ideas).
+      speech_2: Makes grammatical mistakes when speaking.
+      speech_3: Has difficulties pronouncing correctly.
+    memory:
+      memory_1: Has difficulty following a sequence of several instructions.
+      memory_2: Has difficulty memorizing names of people or places.
+      memory_3: Has difficulty learning children's songs or poems, even simple ones.
+    attention:
+      attention_1: Gets distracted easily.
+      attention_2: Has difficulty concentrating on one thing for a long time (for example, while doing tasks, stops often and gets up to talk with classmates).
+      attention_3: Loses belongings.
+    motricity:
+      motricity_1: Has difficulty when running and jumping.
+      motricity_2: Has difficulty jumping rope, throwing, catching, or kicking a ball.
+      motricity_3: Has more difficulty than peers tying shoelaces and buttoning buttons.
+    emotion:
+      emotion_1: Has difficulty relating to other people.
+      emotion_2: Gets discouraged or gives up easily.
+      emotion_3: Has headaches, stomach aches, gets angry, or becomes nervous when feeling pressured.
+    reading:
+      reading_1: Reading level is lower than that of classmates.
+      reading_2: Does not identify letters.
+      reading_3: Does not recognize familiar words or associate them with meaning or image.
+    writing:
+      writing_1: Cannot correctly write their own name.
+      writing_2: Does not remember letter shapes to write them.
+      writing_3: Does not correctly copy letters or words.
   validationError: Please answer all questions before proceeding to the next step or submitting the form.
+
 surveyB:
   title: Questionnaire for early detection of learning difficulties in reading, writing, and arithmetic for students starting 1st grade of Primary Education (B)
   instructions:
@@ -715,9 +707,9 @@ surveyB:
     often: Often
     unknown: Don't know / Not applicable
   steps:
+    general: General
     reading: Reading
     writing: Writing
-    generalBehavior: General
     speech: Speech
     memory: Memory
     attention: Attention
@@ -732,10 +724,10 @@ surveyB:
       writing_1: Makes mistakes in dictation, making errors in letters or words
       writing_2: Makes many errors when writing, such as skipping letters, not maintaining the same letter size, or not respecting the guidelines
       writing_3: Needs more time than other students to copy
-    generalBehavior:
-      generalBehavior_1: In the notebook, leaves many eraser marks, the paper even tears or wrinkles from so much erasing
-      generalBehavior_2: Behavior during tasks is irregular
-      generalBehavior_3: Behavior in class is good, but performance is low
+    general:
+      general_1: In the notebook, leaves many eraser marks, the paper even tears or wrinkles from so much erasing
+      general_2: Behavior during tasks is irregular
+      general_3: Behavior in class is good, but performance is low
     speech:
       speech_1: Expresses themselves orally with difficulty (for example, cannot find the words to express their ideas)
       speech_2: Makes grammatical errors when speaking
@@ -1202,6 +1194,8 @@ contactAndPublications:
 
 survey:
   title: Survey
+  table:
+    item: Item
 
 statistics:
   title: Statistics

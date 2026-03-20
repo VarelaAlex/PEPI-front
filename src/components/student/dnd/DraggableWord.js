@@ -9,7 +9,12 @@ const ItemTypes = {
 export const DraggableWord = ({wordData, isPlaced, onDragStart, wordKey}) => {
     const [{isDragging}, drag, preview] = useDrag({
         type: ItemTypes.WORD,
-        item: {word: wordData.text, image: wordData.image, wordKey},
+        item: {
+            word: wordData.word ?? wordData.audio ?? wordData.text,
+            label: wordData.text,
+            image: wordData.image,
+            wordKey
+        },
         canDrag: !isPlaced,
         collect: (monitor) => ({
             isDragging: monitor.isDragging()

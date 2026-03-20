@@ -13,6 +13,8 @@ import {useAvatar} from "../AvatarContext";
 import {HAPPY_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
 import {executeWithProbability} from "../../services/executeWithProbability";
 import GifComponent from "../GifComponent";
+import CounterBadge from "./CounterBadgeComponent";
+import useCounter from "../../hooks/useCounter";
 
 let DnDPhase1 = () => {
 
@@ -106,6 +108,8 @@ let DnDPhase1 = () => {
     let [droppableNodes, setDroppableNodes] = useState(JSON.parse(JSON.stringify(INITIAL_EXTENDED_NODES)));
     let [current, setCurrent] = useState(INITIAL_ELEMENT);
 
+    const { counter, setCounter, decrease } = useCounter(extendedNodes.length);
+
     let handleDragStart = (event) => {
         let {active} = event;
         setElement(active);
@@ -132,7 +136,7 @@ let DnDPhase1 = () => {
                                 onEnd: ()=>{setCountErrors(0)},
                                 afterDelay: 500
                             }]);
-                        } else if ([4, 8, 10, 12].includes(current)) {
+                        } else if ([4, 12].includes(current)) {
                             let phrases = [
                                 "¡Vaya! Recuerda parar colocando el STOP antes de ir al otro lado de la red",
                                 "Te has olvidado de algo… a mí, a veces, también me pasa. Recuerda que debemos parar antes de ir al otro lado de la red",
@@ -145,6 +149,22 @@ let DnDPhase1 = () => {
                                 emotionAfter: NEUTRAL,
                                 text: phrases[index],
                                 audio: `stop-order${index}`,
+                                onEnd: ()=>{setCountErrors(0)},
+                                afterDelay: 500
+                            }]);
+                        } else if ([8, 10].includes(current)) {
+                            let phrases = [
+                                "¡Recuerda que tenemos que hacer una pequeña parada!",
+                                "¡Recuerda que hacemos una parada pequeña para seguir diciendo cosas importantes!",
+                                "¡Tenemos que hacer una pequeña parada antes de seguir diciendo cosas importantes!",
+                            ]
+                            let index = Math.floor(Math.random() * phrases.length) + 1;
+
+                            changeEmotionSequence([{
+                                emotionDuring: WORRIED_SPEAKING,
+                                emotionAfter: NEUTRAL,
+                                text: phrases[index],
+                                audio: `smallStop-order${index}`,
                                 onEnd: ()=>{setCountErrors(0)},
                                 afterDelay: 500
                             }]);
@@ -194,6 +214,7 @@ let DnDPhase1 = () => {
                             node = element;
                             setCurrent(current + 1);
                             correct = true;
+                            decrease();
                             if(current === 0) {
                                 let phrases = [
                                     "¡Bien hecho! El título es muy importante, se coloca en el rectángulo",
@@ -266,7 +287,7 @@ let DnDPhase1 = () => {
                                                               }])
                                 });
                             }
-                            if([4, 8, 10, 12].includes(current) && (node?.id !== "6-3" || node?.order !== current)) {
+                            if([4, 12].includes(current) && (node?.id !== "6-3" || node?.order !== current)) {
                                 let phrases = [
                                     "¡Muy bien! Cuando terminamos de decir cosas importantes nos paramos",
                                     "¡Eso es! Nos paramos cuando terminamos de decir lo importante",
@@ -282,6 +303,24 @@ let DnDPhase1 = () => {
                                         audio: `p1-stop-${index}`,
                                                               afterDelay: 500
                                                               }])
+                                });
+                            }
+                            if([8, 10].includes(current) && (node?.id !== "6-3" || node?.order !== current)) {
+                                let phrases = [
+                                    "¡Muy bien, hacemos una pequeña parada entre cosas importantes!",
+                                    "¡Eso es! Entre las cosas importantes hacemos pequeñas paradas",
+                                    "¡Claro que sí! Hacemos una pequeña parada",
+                                ]
+                                let index = Math.floor(Math.random() * phrases.length) + 1;
+
+                                executeWithProbability(() => {
+                                    changeEmotionSequence([{
+                                        emotionDuring: WORRIED_SPEAKING,
+                                        emotionAfter: NEUTRAL,
+                                        text: phrases[index],
+                                        audio: `smallStop-${index}`,
+                                        afterDelay: 500
+                                    }])
                                 });
                             }
                             if(current === 5) {
@@ -435,6 +474,7 @@ let DnDPhase1 = () => {
     };
 
     return (<Card style={{height: "53vmax", width: "95%"}}>
+        <CounterBadge current={counter} max={extendedNodes.length}/>
             <div style={{position: "absolute", top: "10px", right: "10px"}}>
                 <ReloadOutlined style={{fontSize: "45px", cursor: "pointer"}} onClick={() => {
                     setExercise(exercise);
@@ -443,6 +483,7 @@ let DnDPhase1 = () => {
                     startTime.current = Date.now();
                     setCurrent(INITIAL_ELEMENT);
                     setFeedback({});
+                    setCounter(extendedNodes.length);
                 }}/>
                 <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
                     setExercise(undefined);

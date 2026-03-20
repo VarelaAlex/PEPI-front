@@ -882,8 +882,180 @@ phrasesActivity:
       - washing
     sea-beach:
       - The sea
-      - is at
+      - is in
       - the beach
+    juice-drink:
+      - The juice
+      - is
+      - a drink
+    mouth-teeth:
+      - The mouth
+      - has
+      - teeth
+    wheel-circle:
+      - The wheel
+      - is
+      - a circle
+    piano-keys:
+      - The piano
+      - has
+      - keys
+    train-transport:
+      - The train
+      - is
+      - a transport
+    bike-wheels:
+      - The bike
+      - has
+      - wheels
+    sky-blue:
+      - The sky
+      - is
+      - blue
+    fish-scales:
+      - The fish
+      - has
+      - scales
+    banana-fruit:
+      - The banana
+      - is
+      - a fruit
+    elephant-trunk:
+      - The elephant
+      - has
+      - a trunk
+    yellow-color:
+      - The yellow
+      - is
+      - a color
+    backpack-books:
+      - The backpack
+      - has
+      - books
+    penguin-animal:
+      - The penguin
+      - is
+      - an animal
+    hedgehog-spines:
+      - The hedgehog
+      - has
+      - spines
+    nose-breathing:
+      - The nose
+      - is for
+      - breathing
+    spoon-eating:
+      - The spoon
+      - is used for
+      - eating
+    scissors-cutting:
+      - The scissors
+      - is for
+      - cutting
+    phone-calling:
+      - The phone
+      - is used for
+      - calling
+    fork-eating:
+      - The fork
+      - is for
+      - eating
+    money-buying:
+      - The money
+      - is used for
+      - buying
+    beach-summer:
+      - The beach
+      - is for
+      - summer
+    boat-sailing:
+      - The boat
+      - is used for
+      - sailing
+    bottle-drinking:
+      - The bottle
+      - is for
+      - drinking
+    pool-swimming:
+      - The pool
+      - is used for
+      - swimming
+    chair-sitting:
+      - The chair
+      - is for
+      - sitting
+    park-playing:
+      - The park
+      - is used for
+      - playing
+    ludo-playing:
+      - The ludo
+      - is for
+      - playing
+    story-reading:
+      - The story
+      - is used for
+      - reading
+    comb-combing:
+      - The comb
+      - is for
+      - combing
+    book-library:
+      - The book
+      - is in
+      - the library
+    elbow-arm:
+      - The elbow
+      - is part of
+      - the arm
+    fruit-fruitshop:
+      - The fruit
+      - is in
+      - the fruit shop
+    window-house:
+      - The window
+      - is part of
+      - the house
+    flower-garden:
+      - The flower
+      - is in
+      - the garden
+    snow-winter:
+      - The snow
+      - is part of
+      - winter
+    zebra-savanna:
+      - The zebra
+      - is in
+      - the savanna
+    school-city:
+      - The school
+      - is part of
+      - the city
+    car-garage:
+      - The car
+      - is in
+      - the garage
+    tongue-mouth:
+      - The tongue
+      - is part of
+      - the mouth
+    fish-sea:
+      - The fish
+      - is in
+      - the sea
+    fridge-kitchen:
+      - The fridge
+      - is part of
+      - the kitchen
+    playground-school:
+      - The playground
+      - is in
+      - the school
+    moon-night:
+      - The moon
+      - is part of
+      - the night
 
 site:
   title: Help Center
@@ -1028,9 +1200,82 @@ contactAndPublications:
       - ref: "Cueli, M., Álvarez, A. I., Loew, S., González-Castro, P., y Rodríguez, C. (2020). Is organizing knowledge effective in primary education?"
         url: "https://doi.org/10.1155/2020/887"
 
-
 survey:
   title: Survey
 
 statistics:
   title: Statistics
+
+pictogramActivity:
+  instructions:
+    listenAndDrop: Listen and place the correct element in the lower square
+  intro:
+    activity1:
+      step1: We are going to learn how we represent is, is for, and is part of. Watch closely.
+      step2: This pictogram means IS.
+      step3: This one means IS FOR.
+      step4: And this one means IS PART OF.
+    activity2:
+      step1: We are going to learn how we represent has, is used for, and is in. Look at the screen.
+      step2: This pictogram means HAS.
+      step3: This one means IS USED FOR.
+      step4: And this one means IS IN.
+    common:
+      finalStep: When you hear the pictogram sound, drag it to the square.
+
+sentenceNetworkActivity:
+  instructions:
+    listenAndComplete: Listen and complete the network
+  avatarIntro: Now we are going to place the pictograms in my network. See that it has two sides? Listen and place the pictogram on each side of the network.
+
+sentenceNetworkSequentialActivity:
+  instructions:
+    listenAndPlace: Listen and place the elements in the correct order and place
+  avatarIntro: You are now in the last preparation exercise. Congratulations. Place each text element in its place in the network.
+  closing:
+    - I am going to help you train in the best possible way. Start with the first exercise and I will show you new activities.
+    - Great job, now it is time to train.
+
+sentenceWords:
+  dog: The dog
+  is: is
+  animal: an animal
+  has: has
+  tail: tail
+  whale: The whale
+  mammal: a mammal
+  isIn: is in
+  sea: the sea
+  house: The house
+  isFor: is for
+  living: living
+  isUsedFor: is used for
+  sun: The sun
+  star: a star
+  sky: the sky
+  summer: The summer
+  isPartOf: is part of
+  year: the year
+  sunbathing: sunbathing
+  apple: The apple
+  fruit: a fruit
+  fruitBowl: the fruit bowl
+  bed: The bed
+  sleeping: sleeping
+  bedroom: the bedroom
+  street: The street
+  city: the city
+  car: The car
+  traveling: traveling
+  wheels: wheels
+  swing: The swing
+  playing: playing
+  park: the park
+  water: The water
+  drinking: drinking
+  washing: washing
+  bathing: bathing
+  beach: the beach
+  stop: .
+
+counter: "<current>{{current}}</current> left out of {{max}}!"

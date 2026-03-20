@@ -11,6 +11,8 @@ import GifComponent from "../GifComponent";
 import {NEUTRAL, NEUTRAL_SPEAKING} from "../Avatar";
 import {useAvatar} from "../AvatarContext";
 import {usePlayAudio} from "../../hooks/usePlayAudio";
+import CounterBadge from "./CounterBadgeComponent";
+import useCounter from "../../hooks/useCounter";
 
 let TypePhase1 = () => {
 
@@ -87,6 +89,8 @@ let TypePhase1 = () => {
 
     let [extendedNodes, setExtendedNodes] = useState(INITIAL_EXTENDED_NODES);
 
+    const { counter, setCounter, decrease } = useCounter(extendedNodes.length);
+
     const getTextPosition = (bigStop, stop, shape) => {
         if (bigStop) {
             return {x: "1.5vmax", y: "5vmax", fontSize: "2.3vmax"};
@@ -121,6 +125,7 @@ let TypePhase1 = () => {
                 let text = t(element.text);
                 if (text.length === i.value.length) {
                     if (normalize(text.toLowerCase()) === normalize(i.value.toLowerCase())) {
+                        decrease();
                         playAudio("correct");
                         element.failure = false;
                         if (current === 0 || current === 4) {
@@ -205,6 +210,7 @@ let TypePhase1 = () => {
     };
 
     return (<Card style={{height: "55vmax", width: "95%"}}>
+            <CounterBadge current={counter} max={extendedNodes.length}/>
             <div style={{position: "absolute", top: "10px", right: "10px"}}>
                 <ReloadOutlined style={{fontSize: "45px", cursor: "pointer"}} onClick={() => {
                     setExercise(exercise);
@@ -213,6 +219,7 @@ let TypePhase1 = () => {
                     startTime.current = Date.now();
                     setCurrent(INITIAL_ELEMENT);
                     setFeedback({});
+                    setCounter(extendedNodes.length);
                 }}/>
                 <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
                     setExercise(undefined);

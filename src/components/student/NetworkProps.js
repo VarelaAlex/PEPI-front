@@ -161,7 +161,7 @@ export let nodes = (exercise) => {
 			               ) : null,
 			               src:   ["ICONIC", "MIXED"].includes(representation) ? `${ process.env.REACT_APP_ARASAAC_URL }/pictograms/${ STOP }` : null,
 			               stop:  true,
-			               sound: `stop`
+			               sound: networkType === "I-II" ? "and" : "comma"
 		               }, {
 			               order: 9,
 			               id:    "8",
@@ -185,7 +185,7 @@ export let nodes = (exercise) => {
 			               text:  ["MIXED", "SYMBOLIC", "GLOBAL"].includes(representation) ? exercise.language === "es" ? "y" : "and" : null,
 			               src:   ["ICONIC", "MIXED"].includes(representation) ? `${ process.env.REACT_APP_ARASAAC_URL }/pictograms/${ STOP }` : null,
 			               stop:  true,
-					       sound: `stop`
+					       sound: "and"
 		               }, {
 			               order: 11,
 			               id:    "10",

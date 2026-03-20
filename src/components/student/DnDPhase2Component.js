@@ -17,6 +17,8 @@ import {getNextExercise} from '../../services/getNextExercise';
 import {TRAINING_MODES} from "../../Globals";
 import {executeWithProbability} from "../../services/executeWithProbability";
 import GifComponent from "../GifComponent";
+import CounterBadge from "./CounterBadgeComponent";
+import useCounter from "../../hooks/useCounter";
 
 let DnDPhase2 = () => {
 
@@ -99,6 +101,8 @@ let DnDPhase2 = () => {
     let [showGif, setShowGif] = useState(false);
     let [placedCount, setPlacedCount] = useState({});
 
+    const { counter, setCounter, decrease } = useCounter(extendedNodes.length);
+
     let saveFeedback = async (feedback) => {
 
         try {
@@ -140,7 +144,7 @@ let DnDPhase2 = () => {
                                 },
                                 afterDelay: 500
                             }]);
-                        } else if ([4, 8, 10, 12].includes(current)) {
+                        } else if ([4, 12].includes(current)) {
                             let phrases = [
                                 "¡Vaya! Recuerda parar colocando el STOP antes de ir al otro lado de la red",
                                 "Te has olvidado de algo… a mí, a veces, también me pasa. Recuerda que debemos parar antes de ir al otro lado de la red",
@@ -156,6 +160,22 @@ let DnDPhase2 = () => {
                                 onEnd: () => {
                                     setCountErrors(0)
                                 },
+                                afterDelay: 500
+                            }]);
+                        } else if ([8, 10].includes(current)) {
+                            let phrases = [
+                                "¡Recuerda que tenemos que hacer una pequeña parada!",
+                                "¡Recuerda que hacemos una parada pequeña para seguir diciendo cosas importantes!",
+                                "¡Tenemos que hacer una pequeña parada antes de seguir diciendo cosas importantes!",
+                            ]
+                            let index = Math.floor(Math.random() * phrases.length) + 1;
+
+                            changeEmotionSequence([{
+                                emotionDuring: WORRIED_SPEAKING,
+                                emotionAfter: NEUTRAL,
+                                text: phrases[index],
+                                audio: `smallStop-order${index}`,
+                                onEnd: ()=>{setCountErrors(0)},
                                 afterDelay: 500
                             }]);
                         } else {
@@ -206,7 +226,7 @@ let DnDPhase2 = () => {
                             node = element;
                             setCurrent(current + 1);
                             correct = true;
-
+                            decrease();
                             // Incrementar el contador de veces que ha sido colocado este elemento
                             setPlacedCount(prev => ({
                                 ...prev,
@@ -285,7 +305,7 @@ let DnDPhase2 = () => {
                                                               }])
                                 });
                             }
-                            if ([4, 8, 10, 12].includes(current) && node?.id !== "6-3") {
+                            if ([4, 12].includes(current) && node?.id !== "6-3") {
                                 let phrases = [
                                     "¡Eso es! Debemos pararnos antes de seguir diciendo cosas sobre este contenido",
                                     "¡Muy bien! Hay que parar después de decir cosas importantes",
@@ -301,6 +321,24 @@ let DnDPhase2 = () => {
                                         audio: `p2-stop-${index}`,
                                                               afterDelay: 500
                                                               }])
+                                });
+                            }
+                            if([8, 10].includes(current) && (node?.id !== "6-3" || node?.order !== current)) {
+                                let phrases = [
+                                    "¡Muy bien, hacemos una pequeña parada entre cosas importantes!",
+                                    "¡Eso es! Entre las cosas importantes hacemos pequeñas paradas",
+                                    "¡Claro que sí! Hacemos una pequeña parada",
+                                ]
+                                let index = Math.floor(Math.random() * phrases.length) + 1;
+
+                                executeWithProbability(() => {
+                                    changeEmotionSequence([{
+                                        emotionDuring: WORRIED_SPEAKING,
+                                        emotionAfter: NEUTRAL,
+                                        text: phrases[index],
+                                        audio: `smallStop-${index}`,
+                                        afterDelay: 500
+                                    }])
                                 });
                             }
                             if (current === 5) {
@@ -590,6 +628,7 @@ let DnDPhase2 = () => {
     };
 
     return (<Card style={{height: "53vmax", width: "95%"}}>
+            <CounterBadge current={counter} max={extendedNodes.length}/>
             <div style={{position: "absolute", top: "10px", right: "10px"}}>
                 <ReloadOutlined style={{fontSize: "45px", cursor: "pointer"}} onClick={() => {
                     setExercise(exercise);
@@ -599,6 +638,7 @@ let DnDPhase2 = () => {
                     setCurrent(INITIAL_ELEMENT);
                     setFeedback({phase1: {...feedback.phase1}});
                     setPlacedCount({});
+                    setCounter(extendedNodes.length);
                 }}/>
                 <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
                     setExercise(undefined);

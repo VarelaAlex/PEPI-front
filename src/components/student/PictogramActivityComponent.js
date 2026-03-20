@@ -1,6 +1,6 @@
 import {Card, Col, Row} from "antd";
 import {HomeOutlined} from "@ant-design/icons";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {MultiBackend} from "dnd-multi-backend";
 import {useNavigate, useParams} from "react-router-dom";
@@ -19,18 +19,16 @@ import {usePlayAudio} from "../../hooks/usePlayAudio";
 
 let pictograms = [{
     activity: "1",
-    content: [{id: "is", label: "es", audio: "is"}, {
+    content: [{id: "is", audio: "is"}, {
         id: "isFor",
-        label: "es para",
         audio: "isFor"
-    }, {id: "isPartOf", label: "es parte de", audio: "isPartOf"}]
+    }, {id: "isPartOf", audio: "isPartOf"}]
 }, {
     activity: "2",
-    content: [{id: "has", label: "tiene", audio: "has"}, {
+    content: [{id: "has", audio: "has"}, {
         id: "isUsedFor",
-        label: "sirve para",
         audio: "isUsedFor"
-    }, {id: "isIn", label: "está en", audio: "isIn"}]
+    }, {id: "isIn", audio: "isIn"}]
 }];
 
 let PictogramActivity = () => {
@@ -39,6 +37,7 @@ let PictogramActivity = () => {
     const { maxUnlocked, updateUnlockedPhase, fetchUnlockedPhase } = usePretraining();
 
     let {t} = useTranslation();
+    let {activity} = useParams();
     let [help, setHelp] = useState(false);
     let [escapingId, setEscapingId] = useState(null);
     let [highlightId, setHighlightId] = useState(null);
@@ -47,7 +46,7 @@ let PictogramActivity = () => {
     let [droppedPictogram, setDroppedPictogram] = useState(null);
     let [hiddenId, setHiddenId] = useState(null);
 
-    let [targetId, setTargetId] = useState("es");
+    let [targetId, setTargetId] = useState("is");
     let targetRef = useRef(targetId);
     const maxUnlockedRef = useRef(maxUnlocked);
 
@@ -58,7 +57,7 @@ let PictogramActivity = () => {
 
     useEffect(() => {
         fetchUnlockedPhase();
-    }, []);
+    }, [fetchUnlockedPhase]);
 
     useEffect(() => {
         targetRef.current = targetId;
@@ -66,99 +65,86 @@ let PictogramActivity = () => {
 
     let { changeEmotionSequence } =  useAvatar();
     useEffect(() => {
+        const introSequence = {
+            "1": [{
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: t("pictogramActivity.intro.activity1.step1"),
+                audio: "intro-activity1-1",
+                afterDelay: 500
+            }, {
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: t("pictogramActivity.intro.activity1.step2"),
+                audio: "intro-activity1-2",
+                onStart: () => setHighlightId("is"),
+                onEnd: () => setHighlightId(null),
+                afterDelay: 500
+            }, {
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: t("pictogramActivity.intro.activity1.step3"),
+                audio: "intro-activity1-3",
+                onStart: () => setHighlightId("isFor"),
+                onEnd: () => setHighlightId(null),
+                afterDelay: 500
+            }, {
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: t("pictogramActivity.intro.activity1.step4"),
+                audio: "intro-activity1-4",
+                onStart: () => setHighlightId("isPartOf"),
+                onEnd: () => setHighlightId(null),
+                afterDelay: 500
+            }, {
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: t("pictogramActivity.intro.common.finalStep"),
+                audio: "intro-activity-5",
+                onEnd: () => setStarted(true),
+                afterDelay: 2000
+            }],
+            "2": [{
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: t("pictogramActivity.intro.activity2.step1"),
+                audio: "intro-activity2-1",
+                afterDelay: 500
+            }, {
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: t("pictogramActivity.intro.activity2.step2"),
+                audio: "intro-activity2-2",
+                onStart: () => setHighlightId("has"),
+                onEnd: () => setHighlightId(null),
+                afterDelay: 500
+            }, {
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: t("pictogramActivity.intro.activity2.step3"),
+                audio: "intro-activity2-3",
+                onStart: () => setHighlightId("isUsedFor"),
+                onEnd: () => setHighlightId(null),
+                afterDelay: 500
+            }, {
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: t("pictogramActivity.intro.activity2.step4"),
+                audio: "intro-activity2-4",
+                onStart: () => setHighlightId("isIn"),
+                onEnd: () => setHighlightId(null),
+                afterDelay: 500
+            }, {
+                emotionDuring: NEUTRAL_SPEAKING,
+                emotionAfter: NEUTRAL,
+                text: t("pictogramActivity.intro.common.finalStep"),
+                audio: "intro-activity-5",
+                onEnd: () => setStarted(true),
+                afterDelay: 2000
+            }]
+        };
 
-        if(activity === "1") {
-            changeEmotionSequence([
-                {
-                    emotionDuring: NEUTRAL_SPEAKING,
-                    emotionAfter: NEUTRAL,
-                    text: "Vamos a aprender cómo representamos es, es para y es parte de. ¡Fíjate!",
-                    audio: "intro-activity1-1",
-                    afterDelay: 500
-                },
-                {
-                    emotionDuring: NEUTRAL_SPEAKING,
-                    emotionAfter: NEUTRAL,
-                    text: "Este pictograma significa “ES”.",
-                    audio: "intro-activity1-2",
-                    onStart: () => setHighlightId("is"),
-                    onEnd: () => setHighlightId(null),
-                    afterDelay: 500
-                },
-                {
-                    emotionDuring: NEUTRAL_SPEAKING,
-                    emotionAfter: NEUTRAL,
-                    text: "Este significa “ES PARA”.",
-                    audio: "intro-activity1-3",
-                    onStart: () => setHighlightId("isFor"),
-                    onEnd: () => setHighlightId(null),
-                    afterDelay: 500
-                },
-                {
-                    emotionDuring: NEUTRAL_SPEAKING,
-                    emotionAfter: NEUTRAL,
-                    text: "Y este significa “ES PARTE DE”.",
-                    audio: "intro-activity1-4",
-                    onStart: () => setHighlightId("isPartOf"),
-                    onEnd: () => setHighlightId(null),
-                    afterDelay: 500
-                },
-                {
-                    emotionDuring: NEUTRAL_SPEAKING,
-                    emotionAfter: NEUTRAL,
-                    text: "Cuando oigas el sonido del pictograma, arrástralo al cuadrado.",
-                    audio: "intro-activity-5",
-                    onEnd: () => setStarted(true),
-                    afterDelay: 2000
-                }
-            ]);
-        } else {
-            changeEmotionSequence([
-                {
-                    emotionDuring: NEUTRAL_SPEAKING,
-                    emotionAfter: NEUTRAL,
-                    text: "Vamos a aprender cómo representamos tiene, sirve para y está en. ¡Mira la pantalla!",
-                    audio: "intro-activity2-1",
-
-                    afterDelay: 500
-                },
-                {
-                    emotionDuring: NEUTRAL_SPEAKING,
-                    emotionAfter: NEUTRAL,
-                    text: "Este pictograma significa “TIENE”.",
-                    audio: "intro-activity2-2",
-                    onStart: () => setHighlightId("has"),
-                    onEnd: () => setHighlightId(null),
-                    afterDelay: 500
-                },
-                {
-                    emotionDuring: NEUTRAL_SPEAKING,
-                    emotionAfter: NEUTRAL,
-                    text: "Este significa “SIRVE PARA”.",
-                    audio: "intro-activity2-3",
-                    onStart: () => setHighlightId("isUsedFor"),
-                    onEnd: () => setHighlightId(null),
-                    afterDelay: 500
-                },
-                {
-                    emotionDuring: NEUTRAL_SPEAKING,
-                    emotionAfter: NEUTRAL,
-                    text: "Y este significa “ESTÁ EN”.",
-                    audio: "intro-activity2-4",
-                    onStart: () => setHighlightId("isIn"),
-                    onEnd: () => setHighlightId(null),
-                    afterDelay: 500
-                },
-                {
-                    emotionDuring: NEUTRAL_SPEAKING,
-                    emotionAfter: NEUTRAL,
-                    text: "Cuando oigas el sonido del pictograma, arrástralo al cuadrado.",
-                    audio: "intro-activity-5",
-                    onEnd: () => setStarted(true),
-                    afterDelay: 2000
-                }
-            ]);
-        }
+        changeEmotionSequence(introSequence[activity] || introSequence["1"]);
     }, []);
 
     let pictogramRefs = useRef({});
@@ -171,9 +157,15 @@ let PictogramActivity = () => {
     let audioHelpRef = useRef(("pictogramActivityHelp"));
     let repeatTimerRef = useRef(null);
 
-    let {activity} = useParams();
-
     let navigate = useNavigate();
+
+    const localizedPictograms = useMemo(() => pictograms.map((pictogramGroup) => ({
+        ...pictogramGroup,
+        content: pictogramGroup.content.map((pictogram) => ({
+            ...pictogram,
+            label: t(`pictograms.${pictogram.id}`)
+        }))
+    })), [t]);
 
     useEffect(() => {
         if(started){
@@ -182,11 +174,11 @@ let PictogramActivity = () => {
             setHelp(false);
             setEscapingId(null);
 
-            let newTarget = pictograms.find(p => p.activity === activity)?.content[0]?.id;
+            let newTarget = localizedPictograms.find(p => p.activity === activity)?.content[0]?.id;
             setTargetId(newTarget || "");
 
             audiosRef.current = {};
-            pictograms.find(p => p.activity === activity)?.content.forEach((p) => {
+            localizedPictograms.find(p => p.activity === activity)?.content.forEach((p) => {
                 audiosRef.current[p.id] = (p.audio);
             });
 
@@ -196,7 +188,7 @@ let PictogramActivity = () => {
                 }
             };
         }
-    }, [activity, started]);
+    }, [activity, started, localizedPictograms]);
 
 
     useEffect(() => {
@@ -218,13 +210,13 @@ let PictogramActivity = () => {
                 }
             };
         }
-    }, [targetId, help, started]);
+    }, [targetId, help, started, playAudio]);
 
 
 
     let handleDrop = (draggedId) => {
         const currentTarget = targetRef.current;
-        const draggedPictogram = pictograms
+        const draggedPictogram = localizedPictograms
             .find(p => p.activity === activity)
             ?.content.find(p => p.id === draggedId);
 
@@ -261,7 +253,7 @@ let PictogramActivity = () => {
                     }
                 }
 
-                let nextIds = pictograms.find(p => p.activity === activity)
+                let nextIds = localizedPictograms.find(p => p.activity === activity)
                     ?.content.map(p => p.id)
                     .filter(id => id !== currentTarget);
                 setTargetId(nextIds[Math.floor(Math.random() * nextIds.length)]);
@@ -335,7 +327,7 @@ let PictogramActivity = () => {
         <Card style={{padding: "2vh", width: "80%"}}>
             <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1vh"}}>
                 <div style={{flex: 1}}>
-                    <ActivityToolsComponent content={t("Escucha y coloca el elemento correcto en el cuadrado inferior")}
+                    <ActivityToolsComponent content={t("pictogramActivity.instructions.listenAndDrop")}
                                             playHelp={()=>playAudio(audioHelpRef.current)}/>
                 </div>
                 <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
@@ -343,7 +335,7 @@ let PictogramActivity = () => {
                 }}/>
             </div>
             <Row justify="center" gutter={[16, 16]} style={{marginBottom: 24}}>
-                {pictograms.find(p => p.activity === activity)?.content.map((p) => (<Col key={p.id}>
+                {localizedPictograms.find(p => p.activity === activity)?.content.map((p) => (<Col key={p.id}>
                         <DraggablePictogram
                             pictogram={p}
                             isBlinking={p.id === targetId}

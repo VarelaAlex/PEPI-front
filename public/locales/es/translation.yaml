@@ -876,6 +876,178 @@ phrasesActivity:
       - El mar
       - está en
       - la playa
+    juice-drink:
+      - El zumo
+      - es
+      - una bebida
+    mouth-teeth:
+      - La boca
+      - tiene
+      - dientes
+    wheel-circle:
+      - La rueda
+      - es
+      - un círculo
+    piano-keys:
+      - El piano
+      - tiene
+      - teclas
+    train-transport:
+      - El tren
+      - es
+      - un transporte
+    bike-wheels:
+      - La bici
+      - tiene
+      - ruedas
+    sky-blue:
+      - El cielo
+      - es
+      - azul
+    fish-scales:
+      - El pez
+      - tiene
+      - escamas
+    banana-fruit:
+      - El plátano
+      - es
+      - una fruta
+    elephant-trunk:
+      - El elefante
+      - tiene
+      - trompa
+    yellow-color:
+      - El amarillo
+      - es
+      - un color
+    backpack-books:
+      - La mochila
+      - tiene
+      - libros
+    penguin-animal:
+      - El pingüino
+      - es
+      - un animal
+    hedgehog-spines:
+      - El erizo
+      - tiene
+      - púas
+    nose-breathing:
+      - La nariz
+      - es para
+      - respirar
+    spoon-eating:
+      - La cuchara
+      - sirve para
+      - comer
+    scissors-cutting:
+      - La tijera
+      - es para
+      - recortar
+    phone-calling:
+      - El móvil
+      - sirve para
+      - llamar
+    fork-eating:
+      - El tenedor
+      - es para
+      - comer
+    money-buying:
+      - El dinero
+      - sirve para
+      - comprar
+    beach-summer:
+      - La playa
+      - es para
+      - el verano
+    boat-sailing:
+      - El barco
+      - sirve para
+      - navegar
+    bottle-drinking:
+      - La botella
+      - es para
+      - beber
+    pool-swimming:
+      - La piscina
+      - sirve para
+      - nadar
+    chair-sitting:
+      - La silla
+      - es para
+      - sentarse
+    park-playing:
+      - El parque
+      - sirve para
+      - jugar
+    ludo-playing:
+      - El parchís
+      - es para
+      - jugar
+    story-reading:
+      - El cuento
+      - sirve para
+      - leer
+    comb-combing:
+      - El peine
+      - es para
+      - peinarse
+    book-library:
+      - El libro
+      - está en
+      - la biblioteca
+    elbow-arm:
+      - El codo
+      - es parte de
+      - el brazo
+    fruit-fruitshop:
+      - La fruta
+      - está en
+      - la frutería
+    window-house:
+      - La ventana
+      - es parte de
+      - la casa
+    flower-garden:
+      - La flor
+      - está en
+      - el jardín
+    snow-winter:
+      - La nieve
+      - es parte de
+      - el invierno
+    zebra-savanna:
+      - La cebra
+      - está en
+      - la sabana
+    school-city:
+      - El colegio
+      - es parte de
+      - la ciudad
+    car-garage:
+      - El coche
+      - está en
+      - el taller
+    tongue-mouth:
+      - La lengua
+      - es parte de
+      - la boca
+    fish-sea:
+      - El pez
+      - está en
+      - el mar
+    fridge-kitchen:
+      - La nevera
+      - es parte de
+      - la cocina
+    playground-school:
+      - El patio
+      - está en
+      - el colegio
+    moon-night:
+      - La luna
+      - es parte de
+      - la noche
 
 site:
   title: Centro de Ayuda
@@ -1026,3 +1198,77 @@ survey:
 
 statistics:
   title: Estadísticas
+
+pictogramActivity:
+  instructions:
+    listenAndDrop: Escucha y coloca el elemento correcto en el cuadrado inferior
+  intro:
+    activity1:
+      step1: Vamos a aprender cómo representamos es, es para y es parte de. Fíjate.
+      step2: Este pictograma significa ES.
+      step3: Este significa ES PARA.
+      step4: Y este significa ES PARTE DE.
+    activity2:
+      step1: Vamos a aprender cómo representamos tiene, sirve para y está en. Mira la pantalla.
+      step2: Este pictograma significa TIENE.
+      step3: Este significa SIRVE PARA.
+      step4: Y este significa ESTÁ EN.
+    common:
+      finalStep: Cuando oigas el sonido del pictograma, arrástralo al cuadrado.
+
+sentenceNetworkActivity:
+  instructions:
+    listenAndComplete: Escucha y completa la red
+  avatarIntro: Ahora vamos a colocar los pictogramas en mi red. Ves que tiene dos lados? Escucha y coloca el pictograma a cada lado de la red.
+
+sentenceNetworkSequentialActivity:
+  instructions:
+    listenAndPlace: Escucha y coloca los elementos en el orden y el lugar correcto
+  avatarIntro: Ya estás en el último ejercicio de la preparación. Enhorabuena. Coloca cada elemento del texto en su lugar en la red.
+  closing:
+    - Te voy a ayudar para que puedas entrenar de la mejor forma posible, empieza por el primer ejercicio y yo te iré mostrando nuevas actividades.
+    - Buen trabajo, ahora toca entrenar.
+
+sentenceWords:
+  dog: El perro
+  is: es
+  animal: un animal
+  has: tiene
+  tail: cola
+  whale: La ballena
+  mammal: un mamífero
+  isIn: está en
+  sea: el mar
+  house: La casa
+  isFor: es para
+  living: vivir
+  isUsedFor: sirve para
+  sun: El sol
+  star: una estrella
+  sky: el cielo
+  summer: El verano
+  isPartOf: es parte de
+  year: el año
+  sunbathing: tomar el sol
+  apple: La manzana
+  fruit: una fruta
+  fruitBowl: el frutero
+  bed: La cama
+  sleeping: dormir
+  bedroom: la habitación
+  street: La calle
+  city: la ciudad
+  car: El coche
+  traveling: viajar
+  wheels: ruedas
+  swing: El columpio
+  playing: jugar
+  park: el parque
+  water: El agua
+  drinking: beber
+  washing: lavarse
+  bathing: bañarse
+  beach: la playa
+  stop: .
+
+counter: "¡Quedan <current>{{current}}</current> de {{max}}!"

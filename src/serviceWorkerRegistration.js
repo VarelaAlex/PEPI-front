@@ -83,10 +83,13 @@ function checkValidServiceWorker(swUrl, config) {
         })
 }
 export function unregister() {
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.ready
-            .then((registration) => {
-                registration.unregister();
-            })
-    }
+    if (!("serviceWorker" in navigator)) return;
+
+    navigator.serviceWorker
+        .getRegistrations()
+        .then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
+        .finally(() => {
+            if (!("caches" in window)) return;
+            caches.keys().then((cacheNames) => Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName))));
+        });
 }

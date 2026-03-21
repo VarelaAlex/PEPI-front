@@ -11,15 +11,8 @@ import "./styles.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-swr.register({
-  onUpdate: async (registration) => {
-    if (registration && registration.waiting) {
-      await registration.unregister();
-      registration.waiting.postMessage({ type: "SKIP_WAITING" });
-      window.location.reload();
-    }
-  },
-});
+// Disable SW caching to avoid stale production bundles/state behavior.
+swr.unregister();
 
 root.render(
   <BrowserRouter>

@@ -6,8 +6,6 @@ import { useSession }  from '../SessionComponent';
 import {registerID, startExperiment} from "../../scriptTest2";
 import {useAvatar} from "../AvatarContext";
 
-const AVATAR_LOGIN_FLAG_KEY = "avatarLoginFlag";
-
 let LoginStudent = () => {
 
     let { setLogin } = useSession();
@@ -41,9 +39,9 @@ let LoginStudent = () => {
 
         let jsonData = await response?.json();
         if (response?.ok) {
-            const avatarEnabled = localStorage.getItem(AVATAR_LOGIN_FLAG_KEY) === "true";
 
-            if (avatarEnabled) {
+            console.log(jsonData);
+            if (jsonData.avatarEnabled) {
                 showAvatar();
                 enableVoice();
             } else {

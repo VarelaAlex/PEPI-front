@@ -1,6 +1,6 @@
 import {CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, LineChartOutlined, PlusOutlined} from "@ant-design/icons";
 import {
-    Alert, Button, Card, Cascader, Divider, Empty, Input, Popconfirm, Row, Space, Spin, Table, Typography
+    Alert, Button, Card, Cascader, Divider, Empty, Input, Popconfirm, Row, Space, Spin, Switch, Table, Typography
 } from "antd";
 import {useCallback, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
@@ -104,6 +104,32 @@ let ClassroomDetail = (props) => {
         });
         await getStudents();
     }, [getStudents]);
+
+    const handleChange = async (value, studentId) => {
+        let response = null;
+        try {
+            response = await fetch(`${process.env.REACT_APP_USERS_SERVICE_URL}/students/avatar/student/${studentId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+                },
+                body: JSON.stringify({
+                    avatarEnabled: value
+                })
+            });
+        } catch (e) {
+            setMessage({ error: { type: "internalServerError", message: e } });
+            return;
+        }
+
+        let jsonData = await response?.json();
+        if (response?.ok) {
+
+        } else {
+            setMessage({ error: jsonData?.error });
+        }
+    };
 
     const columns = isMobile ? [
         {
@@ -219,6 +245,10 @@ let ClassroomDetail = (props) => {
             align: "right",
             render: (id, student) => (
                 <Space wrap>
+                    <Space>
+                        <Typography.Text>Mostrar avatar</Typography.Text>
+                        <Switch size="small" defaultChecked={student.avatarEnabled===1} onChange={(checked)=>handleChange(checked, student.id)} />
+                    </Space>
                     {student.surveyCompleted ? (
                         <Space size="small">
                             <Typography.Text>{t("classrooms.detail.table.surveyCompleted")}</Typography.Text>

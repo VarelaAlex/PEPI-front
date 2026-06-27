@@ -4,7 +4,7 @@ import {Card, Col, Divider, Flex, Row} from "antd";
 import React, {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {usePlayAudio} from "../../hooks/usePlayAudio";
-import {finishTracking, initTracking, registerElement} from "../../scriptTest2";
+import {buildSceneId, finishSubsceneTracking, setupSceneTracking} from "../../tracker";
 import {useSession} from "../SessionComponent";
 import DraggablePhase1 from "./DraggablePhase1Component";
 import DroppablePhase1 from "./DroppablePhase1Component";
@@ -58,10 +58,8 @@ let DnDPhase1 = () => {
     let playAudio = usePlayAudio();
 
     useEffect(() => {
-        exerciseNodes.forEach((node) => {
-            registerElement(`${exercise.title}_${exercise.representation}_${exercise.networkType}.phase1`, node.id, document.getElementById(node.id));
-        })
-        initTracking(`${exercise.title}_${exercise.representation}_${exercise.networkType}.phase1`);
+        const sceneId = buildSceneId(exercise, "phase1");
+        setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((node) => node.id));
 
         // Function to scroll the page
         const hideHeader = () => {
@@ -439,9 +437,9 @@ let DnDPhase1 = () => {
                 afterDelay: 500
             }]);
             setShowGif(true);
-            setTimer(setTimeout(() => {
+            setTimer(setTimeout(async () => {
                 setShowGif(false);
-                finishTracking("/exerciseDnD/phase2");
+                await finishSubsceneTracking();
                 navigate(`/exerciseDnD/phase2/${trainingMode}`);
             }, 4500));
         }

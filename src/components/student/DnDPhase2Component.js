@@ -8,7 +8,7 @@ import DraggablePhase2 from "./DraggablePhase2Component";
 import DroppablePhase2 from "./DroppablePhase2Component";
 import {nexusX, nodes, pathBottom, pathBottom2, pathTop, stopX, viewBoxWidth, X, Y} from "./NetworkProps";
 import "../assets/fonts/massallera.TTF";
-import {finishExperiment, finishTracking, initTracking, registerElement} from "../../scriptTest2";
+import {buildSceneId, finishExperiment, finishSubsceneTracking, setupSceneTracking} from "../../tracker";
 import {useExerciseProgressUpdater} from "../../hooks/useExerciseProgressUpdater";
 import {usePlayAudio} from "../../hooks/usePlayAudio";
 import {LOVE_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
@@ -34,10 +34,8 @@ let DnDPhase2 = () => {
     let exerciseNodes = nodes(exercise);
 
     useEffect(() => {
-        exerciseNodes.forEach((node) => {
-            registerElement(`${exercise.title}_${exercise.representation}_${exercise.networkType}.phase2`, 1, document.getElementById(node.id));
-        })
-        initTracking(`${exercise.title}_${exercise.representation}_${exercise.networkType}.phase2`);
+        const sceneId = buildSceneId(exercise, "phase2");
+        setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((node) => node.id));
     }, []);
 
     useEffect(() => {
@@ -458,10 +456,10 @@ let DnDPhase2 = () => {
                 afterDelay: 0
             }]);
             setShowGif(true);
-            setTimer(setTimeout(() => {
+            setTimer(setTimeout(async () => {
                 setShowGif(false);
                 finishExperiment();
-                finishTracking("/students/exercises");
+                await finishSubsceneTracking();
                 updateExerciseProgress(exercise.index).then(() => {
                     if (trainingMode.toUpperCase() === TRAINING_MODES.RULED) {
                         getNextExercise(exercise.index).then((nextExercise) => {

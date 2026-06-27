@@ -5,7 +5,7 @@ import { useTranslation }                                                       
 import {useNavigate, useParams} from "react-router-dom";
 import { useSession }                                                                 from "../SessionComponent";
 import { nexusX, nodes, pathBottom, pathBottom2, pathTop, stopX, viewBoxWidth, X, Y } from "./NetworkProps";
-import {finishExperiment, finishTracking, initTracking, registerElement} from "../../scriptTest2";
+import {buildSceneId, finishExperiment, finishSubsceneTracking, setupSceneTracking} from "../../tracker";
 import {useExerciseProgressUpdater} from "../../hooks/useExerciseProgressUpdater";
 import {getNextExercise} from "../../services/getNextExercise";
 import {TRAINING_MODES} from "../../Globals";
@@ -32,10 +32,8 @@ let TypePhase2 = () => {
 	let {changeEmotionSequence} = useAvatar();
 
 	useEffect(() => {
-		exerciseNodes.forEach((node) => {
-			registerElement(`${exercise.title}_${exercise.representation}_${exercise.networkType}.phase2`, 1, document.getElementById(node.id));
-		})
-		initTracking(`${exercise.title}_${exercise.representation}_${exercise.networkType}.phase2`);
+		const sceneId = buildSceneId(exercise, "phase2");
+		setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((node) => node.id));
 	}, []);
 
 	useEffect(() => {
@@ -137,10 +135,10 @@ let TypePhase2 = () => {
 								}, title:           exercise.title, representation: exercise.representation, networkType: exercise.networkType, trainingMode: trainingMode, date: Date.now()
 							            });
 							setShowGif(true);
-							setTimer(setTimeout(() => {
+							setTimer(setTimeout(async () => {
 								setShowGif(false);
 								finishExperiment();
-								finishTracking("/students/exercises");
+								await finishSubsceneTracking();
 								updateExerciseProgress(exercise.index).then(() => {
 									if (trainingMode.toUpperCase() === TRAINING_MODES.RULED) {
 										getNextExercise(exercise.index).then((nextExercise) => {
@@ -363,7 +361,7 @@ let TypePhase2 = () => {
 				<Flex align="start" vertical>
 					<Row>
 						<Col key={ extendedNodes[ 0 ].id }>
-							<svg height="7vmax" width="10.2vmax">
+							<svg id={extendedNodes[0].id} height="7vmax" width="10.2vmax">
 								<g key={ extendedNodes[ 0 ].id + extendedNodes[ 0 ].order }>
 									<rect
 										x="2"
@@ -393,6 +391,7 @@ let TypePhase2 = () => {
 										</foreignObject>
 									) : (
 										  <rect
+											  id={extendedNodes[0].id}
 											  onClick={ () => {
 												  if ( extendedNodes[ 0 ].order === current ) {
 													  let updated = extendedNodes.map((e) => {
@@ -430,7 +429,7 @@ let TypePhase2 = () => {
 						{ extendedNodes.slice(1, 5)
 						               .map((element) => (
 							               <Col key={ element.id } style={ { paddingRight: "0.5vmax" } }>
-								               <svg height="7vmax" width={ svgWidth(element) }>
+								               <svg id={element.id} height="7vmax" width={ svgWidth(element) }>
 									               <g key={ element.id + element.order }>
 										               { element.shape === "rect" && <rect
 											               x="2"
@@ -479,6 +478,7 @@ let TypePhase2 = () => {
 											               </foreignObject>
 										               ) : (
 											                 <rect
+												                 id={element.id}
 												                 onClick={ () => {
 													                 if ( element.order === current ) {
 														                 let updated = extendedNodes.map((e) => {
@@ -517,7 +517,7 @@ let TypePhase2 = () => {
 						{ extendedNodes.slice(5)
 						               .map((element) => (
 							               <Col key={ element.id } style={ { paddingRight: "0.3vmax" } }>
-								               <svg height="7vmax" width={ svgWidth(element) }>
+								               <svg id={element.id} height="7vmax" width={ svgWidth(element) }>
 									               <g key={ element.id + element.order }>
 										               { element.shape === "rect" && <rect
 											               x="2"
@@ -569,6 +569,7 @@ let TypePhase2 = () => {
 											               </foreignObject>
 										               ) : (
 											                 <rect
+												                 id={element.id}
 												                 onClick={ () => {
 													                 if ( element.order === current ) {
 														                 let updated = extendedNodes.map((e) => {

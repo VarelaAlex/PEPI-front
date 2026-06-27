@@ -65,7 +65,7 @@ const DraggablePhase1 = ({ id, type, ok, shape, src, stop, bigStop, nexus, text 
     };
 
     return (
-        <div ref={setNodeRef} style={ok ? { visibility: "hidden" } : style} {...listeners} {...attributes}>
+        <div id={id} ref={setNodeRef} style={ok ? { visibility: "hidden" } : style} {...listeners} {...attributes}>
             <svg height="7.5vmax" width={svgWidth()}>
                 {shape === "rect" &&
                     <rect

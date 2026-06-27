@@ -56,7 +56,7 @@ const DraggablePhase2 = ({ id, type, ok, shape, src, stop, bigStop, nexus, text,
     };
 
     return (
-        <g style={ok ? { visibility: "hidden" } : transform && { visibility: "hidden" }} ref={setNodeRef} {...listeners} {...attributes}>
+        <g id={id} style={ok ? { visibility: "hidden" } : transform && { visibility: "hidden" }} ref={setNodeRef} {...listeners} {...attributes}>
             {shape === "rect" &&
                 <rect x={x - 50}
                     y={y - 25}

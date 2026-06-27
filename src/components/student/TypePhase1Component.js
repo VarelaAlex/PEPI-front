@@ -6,7 +6,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useSession} from "../SessionComponent";
 import {nexusX, nodes, pathBottom, pathBottom2, pathTop, stopX, viewBoxWidth, X, Y} from "./NetworkProps";
 import "../assets/styles/font.css";
-import {finishTracking, initTracking, registerElement} from "../../scriptTest2";
+import {buildSceneId, finishSubsceneTracking, setupSceneTracking} from "../../tracker";
 import GifComponent from "../GifComponent";
 import {NEUTRAL, NEUTRAL_SPEAKING} from "../Avatar";
 import {useAvatar} from "../AvatarContext";
@@ -27,10 +27,8 @@ let TypePhase1 = () => {
     let {changeEmotionSequence} = useAvatar();
 
     useEffect(() => {
-        exerciseNodes.forEach((node) => {
-            registerElement(`${exercise.title}_${exercise.representation}_${exercise.networkType}.phase1`, node.id, document.getElementById(node.id));
-        })
-        initTracking(`${exercise.title}_${exercise.representation}_${exercise.networkType}.phase1`);
+        const sceneId = buildSceneId(exercise, "phase1");
+        setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((node) => node.id));
     }, []);
 
     useEffect(() => {
@@ -149,9 +147,9 @@ let TypePhase1 = () => {
                                 }
                             });
                             setShowGif(true);
-                            setTimer(setTimeout(() => {
+                            setTimer(setTimeout(async () => {
                                 setShowGif(false);
-                                finishTracking("/exerciseType/phase2");
+                                await finishSubsceneTracking();
                                 navigate(`/exerciseType/phase2/${trainingMode}`);
                             }, 3000));
                         }
@@ -236,7 +234,7 @@ let TypePhase1 = () => {
                 <Flex align="start" vertical style={{paddingTop: "20px"}}>
                     <Row>
                         <Col key={extendedNodes[0].id}>
-                            <svg height="6.5vmax" width={svgWidth(extendedNodes[0])}>
+                            <svg id={extendedNodes[0].id} height="6.5vmax" width={svgWidth(extendedNodes[0])}>
                                 <rect
                                     x="2"
                                     y="6"
@@ -260,7 +258,7 @@ let TypePhase1 = () => {
                     <Row>
                         {extendedNodes.slice(1, 5)
                             .map((element) => (<Col key={element.id} style={{paddingRight: "0.5vmax"}}>
-                                    <svg height="6.5vmax" width={svgWidth(element)}>
+                                    <svg id={element.id} height="6.5vmax" width={svgWidth(element)}>
                                         {element.shape === "rect" && <rect
                                             x="2"
                                             y="6"
@@ -293,7 +291,7 @@ let TypePhase1 = () => {
                     <Row>
                         {extendedNodes.slice(5)
                             .map((element) => (<Col key={element.id} style={{paddingRight: "0.5vmax"}}>
-                                    <svg height="6.5vmax" width={svgWidth(element)}>
+                                    <svg id={element.id} height="6.5vmax" width={svgWidth(element)}>
                                         {element.shape === "rect" && <rect
                                             x="2"
                                             y="6"
@@ -382,6 +380,7 @@ let TypePhase1 = () => {
                                                     status={element.failure ? "error" : ""}
                                                 />
                                             </foreignObject>) : (<rect
+                                                id={element.id}
                                                 onClick={() => {
                                                     if (current === 0 || current === 1 || current === 5) {
                                                         let updated = extendedNodes.map((e) => {
@@ -447,6 +446,7 @@ let TypePhase1 = () => {
                                                 />
 
                                             </foreignObject>) : (<rect
+                                                id={element.id}
                                                 onClick={() => {
                                                     if (element.order === current) {
                                                         let updated = extendedNodes.map((e) => {
@@ -501,6 +501,7 @@ let TypePhase1 = () => {
                                                 status={element.failure ? "error" : ""}
                                             />
                                         </foreignObject>) : (<rect
+                                            id={element.id}
                                             key={element.id + element.order}
                                             onClick={() => {
                                                 if (element.order === current) {
@@ -557,6 +558,7 @@ let TypePhase1 = () => {
                                                 status={element.failure ? "error" : ""}
                                             />
                                         </foreignObject>) : (<rect
+                                            id={element.id}
                                             key={element.id + element.order}
                                             onClick={() => {
                                                 if (element.order === current) {
@@ -612,6 +614,7 @@ let TypePhase1 = () => {
                                                 status={element.failure ? "error" : ""}
                                             />
                                         </foreignObject>) : (<rect
+                                            id={element.id}
                                             key={element.id + element.order}
                                             onClick={() => {
                                                 if (element.order === current) {

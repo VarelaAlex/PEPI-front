@@ -40,7 +40,6 @@ let LoginStudent = () => {
         let jsonData = await response?.json();
         if (response?.ok) {
 
-            console.log(jsonData);
             if (jsonData.avatarEnabled) {
                 showAvatar();
                 enableVoice();

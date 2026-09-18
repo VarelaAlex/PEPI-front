@@ -2,6 +2,14 @@
  * Provides functions to fetch and graphically visualize the user trace.
  * It also includes the necessary methods to register demographic data (String, Number, Date) from the user.
  */
+
+/**
+ * Fetches the tracking event list for a session/scene and draws it on the canvas.
+ * @param {string} sessionId - User session ID.
+ * @param {number} sceneId - Scene ID to retrieve tracking data for.
+ * @param {boolean} [showLoading=true] - Whether to show a loading message in the result element.
+ * @returns {Promise<void>}
+ */
 async function getTracking(sessionId, sceneId, showLoading = true) {
     if (!emittingData) return;
 
@@ -23,6 +31,13 @@ async function getTracking(sessionId, sceneId, showLoading = true) {
     }
 }
 
+/**
+ * Fetches and overlays both the background screenshot and the tracking trace on the canvas
+ * for the given session and scene. Both requests run concurrently.
+ * @param {string} sessionId - User session ID.
+ * @param {number} sceneId - Scene ID.
+ * @returns {Promise<void>}
+ */
 async function showTrace(sessionId, sceneId) {
     if (!emittingData) return;
 
@@ -39,6 +54,13 @@ async function showTrace(sessionId, sceneId) {
     }
 }
 
+/**
+ * Fetches the background screenshot for a session/scene and draws it on the canvas element
+ * with id "myCanvas".
+ * @param {string} sessionId - User session ID.
+ * @param {number} sceneId - Scene ID.
+ * @returns {Promise<void>}
+ */
 async function getBackground(sessionId, sceneId) {
     if (!emittingData) return;
 
@@ -66,6 +88,11 @@ async function getBackground(sessionId, sceneId) {
     }
 }
 
+/**
+ * Parses a JSON tracking response and draws each event as a colored dot on the
+ * canvas element with id "myCanvas". Color encodes the event type.
+ * @param {string} response - JSON string with a list array of event objects.
+ */
 function paintTracking(response) {
     const c = document.getElementById("myCanvas");
     const ctx = c.getContext("2d");
@@ -84,6 +111,11 @@ function paintTracking(response) {
     });
 }
 
+/**
+ * Returns the hex color associated with an event type for canvas visualization.
+ * @param {number} eventType - Event type constant.
+ * @returns {string} CSS hex color string.
+ */
 function getColor(eventType) {
     switch (eventType) {
         case EVENT_ON_MOUSE_MOVE: return "#FF0000";
@@ -93,10 +125,18 @@ function getColor(eventType) {
         case EVENT_ON_MOUSE_UP: return "#FF00FF";
         case EVENT_INIT_TRACKING: return "#74FF33";
         case EVENT_TRACKING_END: return "#336BFF";
+        case EVENT_GAZE: return "#00FFFF";
         default: return "#000F00";
     }
 }
 
+/**
+ * Sends a demographic data value to the tracker server under the specified field name.
+ * @param {number} id - Demographic data field ID.
+ * @param {string} fieldName - Payload key for the value ("stringValue", "numberValue", or "dateValue").
+ * @param {string|number} value - The value to submit.
+ * @returns {Promise<void>}
+ */
 async function postDemographicData(id, fieldName, value) {
     const parametros = {
         "timezone": getTimezone(),
@@ -108,10 +148,35 @@ async function postDemographicData(id, fieldName, value) {
     await postAJAXDemographicData(parametros);
 }
 
+/**
+ * Submits a string demographic data value.
+ * @param {number} id - Demographic data field ID.
+ * @param {string} value - String value to submit.
+ * @returns {Promise<void>}
+ */
 async function postNumberDD(id, value) { await postDemographicData(id, "numberValue", value); }
+
+/**
+ * Submits a numeric demographic data value.
+ * @param {number} id - Demographic data field ID.
+ * @param {number} value - Numeric value to submit.
+ * @returns {Promise<void>}
+ */
 async function postStringDD(id, value) { await postDemographicData(id, "stringValue", value); }
+
+/**
+ * Submits a date demographic data value.
+ * @param {number} id - Demographic data field ID.
+ * @param {string} value - Date value to submit (ISO string or similar).
+ * @returns {Promise<void>}
+ */
 async function postDateDD(id, value) { await postDemographicData(id, "dateValue", value); }
 
+/**
+ * Low-level POST for demographic data. Does nothing if tracking is not emitting.
+ * @param {object} parametros - Fully assembled payload to send to the demographic data endpoint.
+ * @returns {Promise<void>}
+ */
 async function postAJAXDemographicData(parametros) {
     if (!emittingData) return;
 
@@ -122,6 +187,6 @@ async function postAJAXDemographicData(parametros) {
     }
 }
 
-/* --- Funciones de datos demograficos --- */
+/* --- Demographic data functions --- */
 function registerid(value) { postNumberDD(6, value); }
 

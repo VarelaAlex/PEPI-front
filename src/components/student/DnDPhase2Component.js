@@ -1,34 +1,34 @@
-import {HomeOutlined, ReloadOutlined} from "@ant-design/icons";
-import {DndContext, DragOverlay, MouseSensor, TouchSensor, useSensor, useSensors} from "@dnd-kit/core";
-import {Card, Col, Divider, Flex, Row} from "antd";
-import React, {useEffect, useRef, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
-import {useSession} from "../SessionComponent";
+import { HomeOutlined, ReloadOutlined } from "@ant-design/icons";
+import { DndContext, DragOverlay, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { Card, Col, Divider, Flex, Row } from "antd";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSession } from "../SessionComponent";
 import DraggablePhase2 from "./DraggablePhase2Component";
 import DroppablePhase2 from "./DroppablePhase2Component";
-import {nexusX, nodes, pathBottom, pathBottom2, pathTop, stopX, viewBoxWidth, X, Y} from "./NetworkProps";
+import { nexusX, nodes, pathBottom, pathBottom2, pathTop, stopX, viewBoxWidth, X, Y } from "./NetworkProps";
 import "../assets/fonts/massallera.TTF";
-import {buildSceneId, finishExperiment, finishSubsceneTracking, setupSceneTracking} from "../../tracker";
-import {useExerciseProgressUpdater} from "../../hooks/useExerciseProgressUpdater";
-import {usePlayAudio} from "../../hooks/usePlayAudio";
-import {LOVE_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING} from "../Avatar";
-import {useAvatar} from "../AvatarContext";
-import {getNextExercise} from '../../services/getNextExercise';
-import {REPRESENTATION, TRAINING_MODES} from "../../Globals";
-import {executeWithProbability} from "../../services/executeWithProbability";
+import { buildSceneId, finishExperiment, finishSubsceneTracking, setupSceneTracking } from "../../tracker";
+import { useExerciseProgressUpdater } from "../../hooks/useExerciseProgressUpdater";
+import { usePlayAudio } from "../../hooks/usePlayAudio";
+import { LOVE_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING } from "../Avatar";
+import { useAvatar } from "../AvatarContext";
+import { getNextExercise } from '../../services/getNextExercise';
+import { REPRESENTATION, TRAINING_MODES } from "../../Globals";
+import { executeWithProbability } from "../../services/executeWithProbability";
 import GifComponent from "../GifComponent";
 import CounterBadge from "./CounterBadgeComponent";
 import useCounter from "../../hooks/useCounter";
 
 let DnDPhase2 = () => {
 
-    let {trainingMode} = useParams();
+    let { trainingMode } = useParams();
 
     let playAudio = usePlayAudio();
 
     const INITIAL_ELEMENT = 0;
 
-    let {setExercise, feedback, setFeedback, exercise} = useSession();
+    let { setExercise, feedback, setFeedback, exercise } = useSession();
     const updateExerciseProgress = useExerciseProgressUpdater();
 
     let exerciseNodes = nodes(exercise);
@@ -45,21 +45,21 @@ let DnDPhase2 = () => {
     }, [feedback]);
 
     useEffect(() => {
-            // Reproducir las tres frases solo si no hemos llegado a 3 accesos
-            let phrases = [
-                "¡Muy bien! Has completado la red, ahora vamos a volver al mensaje ¡arrastra los elementos!",
-                "¡Buen trabajo! Volvamos a colocar los elementos del mensaje",
-                "¡Bien hecho! ¡Arrastra ahora los elementos de la red al mensaje!",
-            ]
-            let index = Math.floor(Math.random() * phrases.length) + 1;
+        // Reproducir las tres frases solo si no hemos llegado a 3 accesos
+        let phrases = [
+            "¡Muy bien! Has completado la red, ahora vamos a volver al mensaje ¡arrastra los elementos!",
+            "¡Buen trabajo! Volvamos a colocar los elementos del mensaje",
+            "¡Bien hecho! ¡Arrastra ahora los elementos de la red al mensaje!",
+        ];
+        let index = Math.floor(Math.random() * phrases.length) + 1;
 
-            changeEmotionSequence([{
-                emotionDuring: NEUTRAL_SPEAKING,
-                emotionAfter: NEUTRAL,
-                text: phrases[index],
-                audio: `dnd2-intro${index}`,
-                afterDelay: 500
-            }]);
+        changeEmotionSequence([{
+            emotionDuring: NEUTRAL_SPEAKING,
+            emotionAfter: NEUTRAL,
+            text: phrases[index],
+            audio: `dnd2-intro${index}`,
+            afterDelay: 500
+        }]);
     }, []);
 
     let startTime = useRef(Date.now());
@@ -67,7 +67,7 @@ let DnDPhase2 = () => {
     let navigate = useNavigate();
     let [element, setElement] = useState();
 
-    const INITIAL_EXTENDED_NODES = [{...exerciseNodes[0], order: 0, id: "1-1"}, {
+    const INITIAL_EXTENDED_NODES = [{ ...exerciseNodes[0], order: 0, id: "1-1" }, {
         ...exerciseNodes[0],
         order: 1,
         id: "1-2"
@@ -78,7 +78,7 @@ let DnDPhase2 = () => {
         type: "type6-2",
         src: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/8289`,
         bigStop: true
-    }, {...exerciseNodes[0], order: 5, id: "1-3"}, ...exerciseNodes.slice(3, 5), ...exerciseNodes.slice(6), {
+    }, { ...exerciseNodes[0], order: 5, id: "1-3" }, ...exerciseNodes.slice(3, 5), ...exerciseNodes.slice(6), {
         ...exerciseNodes[5],
         order: exerciseNodes.length + 2,
         id: "6-3",
@@ -88,7 +88,7 @@ let DnDPhase2 = () => {
         bigStop: true
     }];
 
-    let {changeEmotionSequence} = useAvatar();
+    let { changeEmotionSequence } = useAvatar();
 
     let [extendedNodes, setExtendedNodes] = useState(INITIAL_EXTENDED_NODES);
 
@@ -107,7 +107,7 @@ let DnDPhase2 = () => {
             await fetch(`${process.env.REACT_APP_EXERCISES_SERVICE_URL}/statistics`, {
                 method: "POST", headers: {
                     "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-                }, body: JSON.stringify({feedback})
+                }, body: JSON.stringify({ feedback })
             });
         } catch (e) {
 
@@ -115,7 +115,7 @@ let DnDPhase2 = () => {
     };
 
     let handleDragStart = (event) => {
-        let {active} = event;
+        let { active } = event;
         setElement(active);
         extendedNodes.map((element) => {
             if (element.id === active.id) {
@@ -129,7 +129,7 @@ let DnDPhase2 = () => {
                                 "Todos nos equivocamos. Yo te ayudo. Debes colocar el título en el rectángulo",
                                 "¡No pasa nada! ¡Yo también me equivoco! Recuerda que siempre volvemos al título",
                                 "¡Vaya! Estamos aprendiendo y lo estás haciendo muy bien. Equivocarse también es aprender. Recuerda que es importante volver al título. Debes colocar el título en el rectángulo",
-                            ]
+                            ];
                             let index = Math.floor(Math.random() * phrases.length) + 1;
 
                             changeEmotionSequence([{
@@ -138,7 +138,7 @@ let DnDPhase2 = () => {
                                 text: phrases[index],
                                 audio: `rect-order${index}`,
                                 onEnd: () => {
-                                    setCountErrors(0)
+                                    setCountErrors(0);
                                 },
                                 afterDelay: 500
                             }]);
@@ -147,7 +147,7 @@ let DnDPhase2 = () => {
                                 "¡Vaya! Recuerda parar colocando el STOP antes de ir al otro lado de la red",
                                 "Te has olvidado de algo… a mí, a veces, también me pasa. Recuerda que debemos parar antes de ir al otro lado de la red",
                                 "¡Ups! Equivocarse es normal, nos ayuda a aprender. Tienes que colocar el STOP en su lugar antes de ir al otro lado de la red",
-                            ]
+                            ];
                             let index = Math.floor(Math.random() * phrases.length) + 1;
 
                             changeEmotionSequence([{
@@ -156,7 +156,7 @@ let DnDPhase2 = () => {
                                 text: phrases[index],
                                 audio: `stop-order${index}`,
                                 onEnd: () => {
-                                    setCountErrors(0)
+                                    setCountErrors(0);
                                 },
                                 afterDelay: 500
                             }]);
@@ -165,7 +165,7 @@ let DnDPhase2 = () => {
                                 "¡Recuerda que tenemos que hacer una pequeña parada!",
                                 "¡Recuerda que hacemos una parada pequeña para seguir diciendo cosas importantes!",
                                 "¡Tenemos que hacer una pequeña parada antes de seguir diciendo cosas importantes!",
-                            ]
+                            ];
                             let index = Math.floor(Math.random() * phrases.length) + 1;
 
                             changeEmotionSequence([{
@@ -173,7 +173,7 @@ let DnDPhase2 = () => {
                                 emotionAfter: NEUTRAL,
                                 text: phrases[index],
                                 audio: `smallStop-order${index}`,
-                                onEnd: ()=>{setCountErrors(0)},
+                                onEnd: () => { setCountErrors(0); },
                                 afterDelay: 500
                             }]);
                         } else {
@@ -181,7 +181,7 @@ let DnDPhase2 = () => {
                                 "No pasa nada, es normal cometer errores.",
                                 "Todos nos equivocamos. Lo importante es que te estás esforzando.",
                                 "Vaya, parece que no tocaba mover este elemento ahora. No tiene que salirte bien siempre, vamos a seguir intentándolo.",
-                            ]
+                            ];
                             let index = Math.floor(Math.random() * phrases.length) + 1;
 
                             changeEmotionSequence([{
@@ -196,7 +196,7 @@ let DnDPhase2 = () => {
                                 text: "Piensa, ¿qué elemento tienes que mover ahora a la red?",
                                 audio: `incorrect-order-end`,
                                 onEnd: () => {
-                                    setCountErrors(0)
+                                    setCountErrors(0);
                                 },
                                 afterDelay: 500
                             }]);
@@ -210,7 +210,7 @@ let DnDPhase2 = () => {
     };
 
     let handleDragEnd = (event) => {
-        let {active, over} = event;
+        let { active, over } = event;
         let node = null;
         let correct = false;
         let sintactic = element.data.current.stop || element.data.current.bigStop;
@@ -235,7 +235,7 @@ let DnDPhase2 = () => {
                                     "Bien hecho! Ese es el título y es muy importante",
                                     "¡Eso es! Debemos colocar el título en primer lugar",
                                     "¡Muy bien! Has colocado el título en el sitio correcto",
-                                ]
+                                ];
                                 let index = Math.floor(Math.random() * phrases.length) + 1;
 
                                 executeWithProbability(() => {
@@ -244,8 +244,8 @@ let DnDPhase2 = () => {
                                         emotionAfter: NEUTRAL,
                                         text: phrases[index],
                                         audio: `p2-rect1-${index}`,
-                                                              afterDelay: 500
-                                                              }])
+                                        afterDelay: 500
+                                    }]);
                                 });
                             }
                             if (current === 1) {
@@ -253,7 +253,7 @@ let DnDPhase2 = () => {
                                     "¡Eso es! Tenemos que decir de qué vamos a hablar",
                                     "¡Muy bien! Tenemos que decir de qué vamos a hablar",
                                     "¡Exacto! Lo primero es decir de qué vamos a hablar",
-                                ]
+                                ];
                                 let index = Math.floor(Math.random() * phrases.length) + 1;
 
                                 executeWithProbability(() => {
@@ -262,8 +262,8 @@ let DnDPhase2 = () => {
                                         emotionAfter: NEUTRAL,
                                         text: phrases[index],
                                         audio: `p2-rect2-${index}`,
-                                                              afterDelay: 500
-                                                              }])
+                                        afterDelay: 500
+                                    }]);
                                 });
                             }
                             if ([2, 6].includes(current)) {
@@ -272,17 +272,17 @@ let DnDPhase2 = () => {
                                     "¡Eso es! Relacionamos la información con los enlaces",
                                     "¡Muy bien! El enlace nos ayuda a relacionar la información",
 
-                                ]
+                                ];
                                 let index = Math.floor(Math.random() * phrases.length) + 1;
 
                                 executeWithProbability(() => {
-                                changeEmotionSequence([{
+                                    changeEmotionSequence([{
                                         emotionDuring: WORRIED_SPEAKING,
                                         emotionAfter: NEUTRAL,
                                         text: phrases[index],
                                         audio: `p2-nexus-${index}`,
-                                                              afterDelay: 500
-                                                              }])
+                                        afterDelay: 500
+                                    }]);
                                 });
                             }
                             if ([3, 7, 9, 11].includes(current)) {
@@ -290,7 +290,7 @@ let DnDPhase2 = () => {
                                     "¡Muy bien! Has dicho algo sobre ese contenido",
                                     "¡Bien hecho! Ahora nos tocaba decir algo sobre este contenido",
                                     "¡Eso es! Tocaba decir algo importante sobre este contenido.",
-                                ]
+                                ];
                                 let index = Math.floor(Math.random() * phrases.length) + 1;
 
                                 executeWithProbability(() => {
@@ -299,8 +299,8 @@ let DnDPhase2 = () => {
                                         emotionAfter: NEUTRAL,
                                         text: phrases[index],
                                         audio: `p2-content-${index}`,
-                                                              afterDelay: 500
-                                                              }])
+                                        afterDelay: 500
+                                    }]);
                                 });
                             }
                             if ([4, 12].includes(current) && node?.id !== "6-3") {
@@ -308,7 +308,7 @@ let DnDPhase2 = () => {
                                     "¡Eso es! Debemos pararnos antes de seguir diciendo cosas sobre este contenido",
                                     "¡Muy bien! Hay que parar después de decir cosas importantes",
                                     "¡Exacto! Hacemos una parada después de lo importante",
-                                ]
+                                ];
                                 let index = Math.floor(Math.random() * phrases.length) + 1;
 
                                 executeWithProbability(() => {
@@ -317,16 +317,16 @@ let DnDPhase2 = () => {
                                         emotionAfter: NEUTRAL,
                                         text: phrases[index],
                                         audio: `p2-stop-${index}`,
-                                                              afterDelay: 500
-                                                              }])
+                                        afterDelay: 500
+                                    }]);
                                 });
                             }
-                            if([8, 10].includes(current) && (node?.id !== "6-3" || node?.order !== current)) {
+                            if ([8, 10].includes(current) && (node?.id !== "6-3" || node?.order !== current)) {
                                 let phrases = [
                                     "¡Muy bien, hacemos una pequeña parada entre cosas importantes!",
                                     "¡Eso es! Entre las cosas importantes hacemos pequeñas paradas",
                                     "¡Claro que sí! Hacemos una pequeña parada",
-                                ]
+                                ];
                                 let index = Math.floor(Math.random() * phrases.length) + 1;
 
                                 executeWithProbability(() => {
@@ -336,7 +336,7 @@ let DnDPhase2 = () => {
                                         text: phrases[index],
                                         audio: `smallStop-${index}`,
                                         afterDelay: 500
-                                    }])
+                                    }]);
                                 });
                             }
                             if (current === 5) {
@@ -344,7 +344,7 @@ let DnDPhase2 = () => {
                                     "¡Estás trabajando muy bien! Cuando queremos seguir hablando de algo, debemos decir primero sobre qué.",
                                     "¡Fantástico! Siempre volvemos a decir de qué estamos hablando",
                                     "¡Muy bien hecho! Debemos recordar de qué estamos hablando.",
-                                ]
+                                ];
                                 let index = Math.floor(Math.random() * phrases.length) + 1;
 
                                 executeWithProbability(() => {
@@ -353,13 +353,13 @@ let DnDPhase2 = () => {
                                         emotionAfter: NEUTRAL,
                                         text: phrases[index],
                                         audio: `p2-rect3-${index}`,
-                                                              afterDelay: 500
-                                                              }])
+                                        afterDelay: 500
+                                    }]);
                                 });
                             }
                         } else {
                             setFeedback({
-                                phase1: {...feedback.phase1}, phase2: sintactic ? {
+                                phase1: { ...feedback.phase1 }, phase2: sintactic ? {
                                     ...feedback.phase2,
 
                                     incorrectOrderSintactic: feedback?.phase2?.incorrectOrderSintactic == null ? 1 : feedback?.phase2?.incorrectOrderSintactic + 1
@@ -380,7 +380,7 @@ let DnDPhase2 = () => {
                 correct && setDroppableNodes(updated);
             } else {
                 setFeedback({
-                    phase1: {...feedback.phase1}, phase2: sintactic ? {
+                    phase1: { ...feedback.phase1 }, phase2: sintactic ? {
                         ...feedback.phase2,
 
                         incorrectPosSintactic: feedback?.phase2?.incorrectPosSintactic == null ? 1 : feedback?.phase2?.incorrectPosSintactic + 1
@@ -400,7 +400,7 @@ let DnDPhase2 = () => {
                         "¡Ups! No pasa nada. Piensa, ¿dónde debo colocar este elemento?",
                         "Vaya, a veces nos equivocamos, es normal. Piensa, ¿cuál es el lugar en el que hay que colocar este elemento?",
                         "Parece que este no es el sitio correcto. Te estás esforzando y eso es lo importante. Sigue así y piensa, ¿dónde debes colocar este elemento?",
-                    ]
+                    ];
                     let index = Math.floor(Math.random() * phrases.length) + 1;
 
                     changeEmotionSequence([{
@@ -414,7 +414,7 @@ let DnDPhase2 = () => {
             }
         } else {
             setFeedback({
-                phase1: {...feedback.phase1}, phase2: sintactic ? {
+                phase1: { ...feedback.phase1 }, phase2: sintactic ? {
                     ...feedback.phase2,
 
                     outOfBoundsSintactic: feedback?.phase2?.outOfBoundsSintactic == null ? 1 : feedback?.phase2?.outOfBoundsSintactic + 1
@@ -431,7 +431,7 @@ let DnDPhase2 = () => {
         if (node?.id === "6-3") {
             let endTime = Date.now();
             setFeedback({
-                phase1: {...feedback.phase1},
+                phase1: { ...feedback.phase1 },
                 phase2: {
                     ...feedback.phase2, elapsedTime: (endTime - startTime.current) / 1000
                 },
@@ -445,7 +445,7 @@ let DnDPhase2 = () => {
                 "Has hecho un gran trabajo! ¡Te has esforzado mucho!",
                 "¡Buen trabajo! ¡Es genial trabajar contigo!",
                 "¡Muy bien hecho! ¡Has organizado muy bien la información!",
-            ]
+            ];
             let index = Math.floor(Math.random() * phrases.length) + 1;
 
             changeEmotionSequence([{
@@ -460,8 +460,8 @@ let DnDPhase2 = () => {
                 setShowGif(false);
                 finishExperiment();
                 await finishSubsceneTracking();
-                updateExerciseProgress(exercise.index).then(() => {
-                    if (trainingMode.toUpperCase() === TRAINING_MODES.RULED) {
+                if (trainingMode.toUpperCase() === TRAINING_MODES.RULED) {
+                    updateExerciseProgress(exercise.index).then(() => {
                         getNextExercise(exercise.index).then((nextExercise) => {
                             if (nextExercise) {
                                 setExercise(nextExercise);
@@ -471,10 +471,11 @@ let DnDPhase2 = () => {
                                 navigate(`/students/exercises/${trainingMode}`);
                             }
                         });
-                    } else {
-                        navigate(`/students/exercises/${trainingMode}`);
-                    }
-                });
+
+                    });
+                } else {
+                    navigate(`/students/exercises/${trainingMode}`);
+                }
 
             }, 4500));
         }
@@ -485,54 +486,54 @@ let DnDPhase2 = () => {
 
     const getImagePosition = (x, y, nexus, stop, bigStop, shape) => {
         if (nexus) {
-            return {x: "1.5vmax", y: "0.6vmax", width: 80, height: 40};
+            return { x: "1.5vmax", y: "0.6vmax", width: 80, height: 40 };
         }
         if (stop) {
-            return {x: "0vmax", y: "0vmax", width: "2vmax", height: "2vmax"};
+            return { x: "0vmax", y: "0vmax", width: "2vmax", height: "2vmax" };
         }
         if (bigStop) {
-            return {x: "0vmax", y: "0vmax", width: "3vmax", height: "3vmax"};
+            return { x: "0vmax", y: "0vmax", width: "3vmax", height: "3vmax" };
         }
         if (shape === "ellipse") {
-            return {x: 30, y: 0, width: "55", height: "55"};
+            return { x: 30, y: 0, width: "55", height: "55" };
         }
-        return {x: 38, y: 2, width: "55", height: "55"};
+        return { x: 38, y: 2, width: "55", height: "55" };
     };
 
     const getTextPosition = (x, y, bigStop, stop, shape, text, src) => {
 
         if (!src) {
             if (shape === "ellipse") {
-                return {x: 60, y: 45, fontSize: "13"};
+                return { x: 60, y: 45, fontSize: "13" };
             }
             if (shape === "rect") {
-                return {x: 60, y: 45, fontSize: "13"};
+                return { x: 60, y: 45, fontSize: "13" };
             }
             if (text === "and") {
-                return {x: "1vmax", y: "2vmax", fontSize: "1.3vmax"};
+                return { x: "1vmax", y: "2vmax", fontSize: "1.3vmax" };
             }
             if (stop) {
-                return {x: "1vmax", y: "2vmax", fontSize: "2vmax"};
+                return { x: "1vmax", y: "2vmax", fontSize: "2vmax" };
             }
-            return {x: "4.2vmax", y: "2vmax", fontSize: "1.2vmax"};
+            return { x: "4.2vmax", y: "2vmax", fontSize: "1.2vmax" };
         }
 
         if (text === "and") {
-            return {x: "3.3vmax", y: "2vmax", fontSize: "1.3vmax"};
+            return { x: "3.3vmax", y: "2vmax", fontSize: "1.3vmax" };
         }
         if (stop) {
-            return {x: "3vmax", y: "2vmax", fontSize: "2vmax"};
+            return { x: "3vmax", y: "2vmax", fontSize: "2vmax" };
         }
         if (bigStop) {
-            return {x: "3.5vmax", y: "3vmax", fontSize: "3vmax"};
+            return { x: "3.5vmax", y: "3vmax", fontSize: "3vmax" };
         }
         if (shape === "ellipse") {
-            return {x: 60, y: 65, fontSize: "12"};
+            return { x: 60, y: 65, fontSize: "12" };
         }
         if (shape === "rect") {
-            return {x: 60, y: 68, fontSize: "13"};
+            return { x: 60, y: 68, fontSize: "13" };
         }
-        return {x: "4.2vmax", y: "4vmax", fontSize: "1.2vmax"};
+        return { x: "4.2vmax", y: "4vmax", fontSize: "1.2vmax" };
     };
 
     let strokeColor = () => {
@@ -553,63 +554,63 @@ let DnDPhase2 = () => {
 
         if (element.data.current.nexus) {
             return (<g>
-                    {element.data.current.src && <image
-                        href={element.data.current.src} {...getImagePosition(element.data.current.x, element.data.current.y, element.data.current.nexus, element.data.current.stop, element.data.current.bigStop, element.data.current.shape)} />}
-                    <text {...getTextPosition(element.data.current.x, element.data.current.y, element.data.current.bigStop, element.data.current.stop, element.data.current.shape, element.data.current.text, element.data.current.src)}
-                          fill="black" textAnchor="middle" fontFamily="Massallera">
-                        {element.data.current.text}
-                    </text>
-                </g>);
+                {element.data.current.src && <image
+                    href={element.data.current.src} {...getImagePosition(element.data.current.x, element.data.current.y, element.data.current.nexus, element.data.current.stop, element.data.current.bigStop, element.data.current.shape)} />}
+                <text {...getTextPosition(element.data.current.x, element.data.current.y, element.data.current.bigStop, element.data.current.stop, element.data.current.shape, element.data.current.text, element.data.current.src)}
+                    fill="black" textAnchor="middle" fontFamily="Massallera">
+                    {element.data.current.text}
+                </text>
+            </g>);
         }
         if (element.data.current.shape === "rect") {
             return (<g>
-                    <rect width="120" height="75" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" strokeWidth="3"/>
-                    <image
-                        href={element.data.current.src} {...getImagePosition(element.data.current.x, element.data.current.y, element.data.current.nexus, element.data.current.stop, element.data.current.bigStop, element.data.current.shape)} />
-                    <text {...getTextPosition(element.data.current.x, element.data.current.y, element.data.current.bigStop, element.data.current.stop, element.data.current.shape, element.data.current.text, element.data.current.src)}
-                          fill="black" textAnchor="middle" fontFamily="Massallera">
-                        {element.data.current.text}
-                    </text>
-                </g>);
+                <rect width="120" height="75" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" strokeWidth="3" />
+                <image
+                    href={element.data.current.src} {...getImagePosition(element.data.current.x, element.data.current.y, element.data.current.nexus, element.data.current.stop, element.data.current.bigStop, element.data.current.shape)} />
+                <text {...getTextPosition(element.data.current.x, element.data.current.y, element.data.current.bigStop, element.data.current.stop, element.data.current.shape, element.data.current.text, element.data.current.src)}
+                    fill="black" textAnchor="middle" fontFamily="Massallera">
+                    {element.data.current.text}
+                </text>
+            </g>);
         }
         if (element.data.current.shape === "ellipse") {
             return (<g>
-                    <ellipse
-                        cx="60"
-                        cy="40"
-                        rx="60"
-                        ry="40"
-                        fill="white"
-                        stroke={strokeColor()}
-                        strokeWidth="3"
-                    />
-                    <image
-                        href={element.data.current.src} {...getImagePosition(element.data.current.x, element.data.current.y, element.data.current.nexus, element.data.current.stop, element.data.current.bigStop, element.data.current.shape)} />
-                    <text {...getTextPosition(element.data.current.x, element.data.current.y, element.data.current.bigStop, element.data.current.stop, element.data.current.shape, element.data.current.text, element.data.current.src)}
-                          fill="black" textAnchor="middle" fontFamily="Massallera">
-                        {element.data.current.text}
-                    </text>
-                </g>);
+                <ellipse
+                    cx="60"
+                    cy="40"
+                    rx="60"
+                    ry="40"
+                    fill="white"
+                    stroke={strokeColor()}
+                    strokeWidth="3"
+                />
+                <image
+                    href={element.data.current.src} {...getImagePosition(element.data.current.x, element.data.current.y, element.data.current.nexus, element.data.current.stop, element.data.current.bigStop, element.data.current.shape)} />
+                <text {...getTextPosition(element.data.current.x, element.data.current.y, element.data.current.bigStop, element.data.current.stop, element.data.current.shape, element.data.current.text, element.data.current.src)}
+                    fill="black" textAnchor="middle" fontFamily="Massallera">
+                    {element.data.current.text}
+                </text>
+            </g>);
         }
         if (element.data.current.stop) {
             return (<g>
-                    <image
-                        href={element.data.current.src} {...getImagePosition(element.data.current.x, element.data.current.y, element.data.current.nexus, element.data.current.stop, element.data.current.bigStop, element.data.current.shape)} />
-                    <text {...getTextPosition(element.data.current.x, element.data.current.y, element.data.current.bigStop, element.data.current.stop, element.data.current.shape, element.data.current.text, element.data.current.src)}
-                          fill="black" textAnchor="middle" fontFamily="Massallera">
-                        {element.data.current.text}
-                    </text>
-                </g>);
+                <image
+                    href={element.data.current.src} {...getImagePosition(element.data.current.x, element.data.current.y, element.data.current.nexus, element.data.current.stop, element.data.current.bigStop, element.data.current.shape)} />
+                <text {...getTextPosition(element.data.current.x, element.data.current.y, element.data.current.bigStop, element.data.current.stop, element.data.current.shape, element.data.current.text, element.data.current.src)}
+                    fill="black" textAnchor="middle" fontFamily="Massallera">
+                    {element.data.current.text}
+                </text>
+            </g>);
         }
         if (element.data.current.bigStop) {
             return (<g>
-                    <image
-                        href={element.data.current.src} {...getImagePosition(element.data.current.x, element.data.current.y, element.data.current.nexus, element.data.current.stop, element.data.current.bigStop, element.data.current.shape)} />
-                    <text {...getTextPosition(element.data.current.x, element.data.current.y, element.data.current.bigStop, element.data.current.stop, element.data.current.shape, element.data.current.text, element.data.current.src)}
-                          fill="black" textAnchor="middle" fontFamily="Massallera">
-                        {element.data.current.text}
-                    </text>
-                </g>);
+                <image
+                    href={element.data.current.src} {...getImagePosition(element.data.current.x, element.data.current.y, element.data.current.nexus, element.data.current.stop, element.data.current.bigStop, element.data.current.shape)} />
+                <text {...getTextPosition(element.data.current.x, element.data.current.y, element.data.current.bigStop, element.data.current.stop, element.data.current.shape, element.data.current.text, element.data.current.src)}
+                    fill="black" textAnchor="middle" fontFamily="Massallera">
+                    {element.data.current.text}
+                </text>
+            </g>);
         }
     };
 
@@ -625,151 +626,151 @@ let DnDPhase2 = () => {
         }
     };
 
-    return (<Card style={{height: "53vmax", width: "95%"}}>
-            <CounterBadge current={counter} max={extendedNodes.length}/>
-            <div style={{position: "absolute", top: "10px", right: "10px"}}>
-                <ReloadOutlined style={{fontSize: "45px", cursor: "pointer"}} onClick={() => {
-                    setExercise(exercise);
-                    setExtendedNodes(INITIAL_EXTENDED_NODES);
-                    setDroppableNodes(INITIAL_EXTENDED_NODES);
-                    startTime.current = Date.now();
-                    setCurrent(INITIAL_ELEMENT);
-                    setFeedback({phase1: {...feedback.phase1}});
-                    setPlacedCount({});
-                    setCounter(extendedNodes.length);
-                }}/>
-                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
-                    setExercise(undefined);
-                    setExtendedNodes(undefined);
-                    setDroppableNodes(undefined);
-                    startTime.current = undefined;
-                    setCurrent(undefined);
-                    setFeedback(undefined);
-                    clearTimeout(timer);
-                    navigate(`/students/exercises/${trainingMode}`);
-                }}/>
-            </div>
-            <Flex align="center" vertical>
-                <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} sensors={sensors}
-                            autoScroll={false}>
-                    <Flex align="center" justify="center">
-                        <svg height="20vmax" viewBox={`-2 -2 ${viewBoxWidth(exercise?.networkType)} 250`}>
-                            <path
-                                d={`M ${pathRect(exercise)} 70 L ${pathRect(exercise)} 85 ${pathTop(exercise?.networkType)}`}
-                                fill="none" stroke="black"
-                                strokeWidth="3"/>
-                            <path d={`M ${pathRect(exercise)} 70 L ${pathRect(exercise)} 85 L 60 85 L 60 95`}
-                                  fill="none" stroke="rgb(0, 0, 0)" strokeWidth="3"/>
-                            <path d="M 60 150 L 60 165" fill="none" stroke="rgb(0, 0, 0)" strokeWidth="3"/>
-                            <path d={`M 350 165 ${pathBottom(exercise?.networkType)}`} fill="none" stroke="black"
-                                  strokeWidth="3"/>
-                            {["I-II", "I-III"].includes(exercise?.networkType) && <path
-                                d={pathBottom2(exercise?.networkType)}
-                                fill="none"
-                                stroke="black"
-                                strokeWidth="3"
-                            />}
+    return (<Card style={{ height: "53vmax", width: "95%" }}>
+        <CounterBadge current={counter} max={extendedNodes.length} />
+        <div style={{ position: "absolute", top: "10px", right: "10px" }}>
+            <ReloadOutlined style={{ fontSize: "45px", cursor: "pointer" }} onClick={() => {
+                setExercise(exercise);
+                setExtendedNodes(INITIAL_EXTENDED_NODES);
+                setDroppableNodes(INITIAL_EXTENDED_NODES);
+                startTime.current = Date.now();
+                setCurrent(INITIAL_ELEMENT);
+                setFeedback({ phase1: { ...feedback.phase1 } });
+                setPlacedCount({});
+                setCounter(extendedNodes.length);
+            }} />
+            <HomeOutlined style={{ fontSize: "45px", cursor: "pointer", paddingLeft: "20px" }} onClick={() => {
+                setExercise(undefined);
+                setExtendedNodes(undefined);
+                setDroppableNodes(undefined);
+                startTime.current = undefined;
+                setCurrent(undefined);
+                setFeedback(undefined);
+                clearTimeout(timer);
+                navigate(`/students/exercises/${trainingMode}`);
+            }} />
+        </div>
+        <Flex align="center" vertical>
+            <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} sensors={sensors}
+                autoScroll={false}>
+                <Flex align="center" justify="center">
+                    <svg height="20vmax" viewBox={`-2 -2 ${viewBoxWidth(exercise?.networkType)} 250`}>
+                        <path
+                            d={`M ${pathRect(exercise)} 70 L ${pathRect(exercise)} 85 ${pathTop(exercise?.networkType)}`}
+                            fill="none" stroke="black"
+                            strokeWidth="3" />
+                        <path d={`M ${pathRect(exercise)} 70 L ${pathRect(exercise)} 85 L 60 85 L 60 95`}
+                            fill="none" stroke="rgb(0, 0, 0)" strokeWidth="3" />
+                        <path d="M 60 150 L 60 165" fill="none" stroke="rgb(0, 0, 0)" strokeWidth="3" />
+                        <path d={`M 350 165 ${pathBottom(exercise?.networkType)}`} fill="none" stroke="black"
+                            strokeWidth="3" />
+                        {["I-II", "I-III"].includes(exercise?.networkType) && <path
+                            d={pathBottom2(exercise?.networkType)}
+                            fill="none"
+                            stroke="black"
+                            strokeWidth="3"
+                        />}
 
-                            {exercise?.networkType === "I-III" && <path
-                                d="M 570 145 L 570 150 L 790 150 L 790 165"
-                                fill="none"
-                                stroke="black"
-                                strokeWidth="3"
-                            />}
+                        {exercise?.networkType === "I-III" && <path
+                            d="M 570 145 L 570 150 L 790 150 L 790 165"
+                            fill="none"
+                            stroke="black"
+                            strokeWidth="3"
+                        />}
 
-                            {extendedNodes.slice().sort((a, b) => b.order - a.order).filter((element) => {
-                                // El elemento con order 5 solo es visible cuando current >= 5 (después de colocar order 4)
-                                if (element.order === 5) {
-                                    return current >= 5;
-                                }
+                        {extendedNodes.slice().sort((a, b) => b.order - a.order).filter((element) => {
+                            // El elemento con order 5 solo es visible cuando current >= 5 (después de colocar order 4)
+                            if (element.order === 5) {
+                                return current >= 5;
+                            }
 
-                                // Si el elemento ha sido colocado 2 veces, ocultarlo a menos que sea su turno de nuevo
-                                const placementCount = placedCount[element.id] || 0;
-                                if (placementCount >= 2) {
-                                    const expectedReturnPosition = element.order + 5;
-                                    return current === expectedReturnPosition;
-                                }
+                            // Si el elemento ha sido colocado 2 veces, ocultarlo a menos que sea su turno de nuevo
+                            const placementCount = placedCount[element.id] || 0;
+                            if (placementCount >= 2) {
+                                const expectedReturnPosition = element.order + 5;
+                                return current === expectedReturnPosition;
+                            }
 
-                                // Todos los demás elementos están siempre visibles
-                                return true;
-                            }).map((element) => <DraggablePhase2
-                                key={element.id}
-                                id={element.id}
-                                type={element.type}
-                                x={X + element.posX}
-                                y={Y + element.posY}
-                                ok={element.ok}
-                                src={element.src}
-                                text={element.text}
-                                stop={element.stop}
-                                bigStop={element.bigStop}
-                                nexus={element.nexus}
-                                shape={element.shape}
-                            />)}
-                        </svg>
-                        <DragOverlay>
-                            {element?.id ? <svg viewBox={element?.data.current.shape ? `-2 -2 125 125` : null}>
-                                {getDragElement()}
-                            </svg> : null}
-                        </DragOverlay>
-                    </Flex>
-                    <Divider style={{backgroundColor: "grey"}}/>
-                    <Flex align="start" vertical style={{padding: "1vmax 0vmax 5vh"}}>
-                        <Row>
-                            <Col>
+                            // Todos los demás elementos están siempre visibles
+                            return true;
+                        }).map((element) => <DraggablePhase2
+                            key={element.id}
+                            id={element.id}
+                            type={element.type}
+                            x={X + element.posX}
+                            y={Y + element.posY}
+                            ok={element.ok}
+                            src={element.src}
+                            text={element.text}
+                            stop={element.stop}
+                            bigStop={element.bigStop}
+                            nexus={element.nexus}
+                            shape={element.shape}
+                        />)}
+                    </svg>
+                    <DragOverlay>
+                        {element?.id ? <svg viewBox={element?.data.current.shape ? `-2 -2 125 125` : null}>
+                            {getDragElement()}
+                        </svg> : null}
+                    </DragOverlay>
+                </Flex>
+                <Divider style={{ backgroundColor: "grey" }} />
+                <Flex align="start" vertical style={{ padding: "1vmax 0vmax 5vh" }}>
+                    <Row>
+                        <Col>
+                            <DroppablePhase2
+                                id={droppableNodes[0].id}
+                                type={droppableNodes[0].type}
+                                x={X + droppableNodes[0].posX}
+                                y={Y + droppableNodes[0].posY}
+                                ok={droppableNodes[0].ok}
+                                src={droppableNodes[0].src}
+                                text={droppableNodes[0].text}
+                                shape={droppableNodes[0].shape}
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        {droppableNodes.slice(1, 5)
+                            .map((element) => (<Col key={element.id} style={{ paddingRight: "0.5vmax" }}>
                                 <DroppablePhase2
-                                    id={droppableNodes[0].id}
-                                    type={droppableNodes[0].type}
-                                    x={X + droppableNodes[0].posX}
-                                    y={Y + droppableNodes[0].posY}
-                                    ok={droppableNodes[0].ok}
-                                    src={droppableNodes[0].src}
-                                    text={droppableNodes[0].text}
-                                    shape={droppableNodes[0].shape}
+                                    id={element.id}
+                                    type={element.type}
+                                    x={X + element.posX}
+                                    y={Y + element.posY}
+                                    ok={element.ok}
+                                    src={element.src}
+                                    text={element.text}
+                                    shape={element.shape}
+                                    stop={element.stop}
+                                    bigStop={element.bigStop}
+                                    nexus={element.nexus}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            {droppableNodes.slice(1, 5)
-                                .map((element) => (<Col key={element.id} style={{paddingRight: "0.5vmax"}}>
-                                        <DroppablePhase2
-                                            id={element.id}
-                                            type={element.type}
-                                            x={X + element.posX}
-                                            y={Y + element.posY}
-                                            ok={element.ok}
-                                            src={element.src}
-                                            text={element.text}
-                                            shape={element.shape}
-                                            stop={element.stop}
-                                            bigStop={element.bigStop}
-                                            nexus={element.nexus}
-                                        />
-                                    </Col>))}
-                        </Row>
-                        <Row>
-                            {droppableNodes.slice(5)
-                                .map((element) => (<Col key={element.id} style={{paddingRight: "0.5vmax"}}>
-                                        <DroppablePhase2
-                                            id={element.id}
-                                            type={element.type}
-                                            x={X + element.posX}
-                                            y={Y + element.posY}
-                                            ok={element.ok}
-                                            src={element.src}
-                                            text={element.text}
-                                            shape={element.shape}
-                                            stop={element.stop}
-                                            bigStop={element.bigStop}
-                                            nexus={element.nexus}
-                                        />
-                                    </Col>))}
-                        </Row>
-                    </Flex>
-                </DndContext>
-            </Flex>
-        <GifComponent show={showGif}/>
-        </Card>);
+                            </Col>))}
+                    </Row>
+                    <Row>
+                        {droppableNodes.slice(5)
+                            .map((element) => (<Col key={element.id} style={{ paddingRight: "0.5vmax" }}>
+                                <DroppablePhase2
+                                    id={element.id}
+                                    type={element.type}
+                                    x={X + element.posX}
+                                    y={Y + element.posY}
+                                    ok={element.ok}
+                                    src={element.src}
+                                    text={element.text}
+                                    shape={element.shape}
+                                    stop={element.stop}
+                                    bigStop={element.bigStop}
+                                    nexus={element.nexus}
+                                />
+                            </Col>))}
+                    </Row>
+                </Flex>
+            </DndContext>
+        </Flex>
+        <GifComponent show={showGif} />
+    </Card>);
 };
 
 export default DnDPhase2;

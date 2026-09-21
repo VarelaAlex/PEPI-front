@@ -110,7 +110,7 @@ let TypePhase2 = () => {
 
 	let check = () => {
 
-		let i = document.getElementById(id);
+		let i = document.querySelector(`input[id="${id}"]`);
 
 		extendedNodes.forEach((element) => {
 			if (element?.id === i?.id) {

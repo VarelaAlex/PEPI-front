@@ -88,7 +88,7 @@ let DnDPhase2 = () => {
         bigStop: true
     }];
 
-    let { changeEmotionSequence } = useAvatar();
+    let { visible, changeEmotionSequence } = useAvatar();
 
     let [extendedNodes, setExtendedNodes] = useState(INITIAL_EXTENDED_NODES);
 
@@ -439,7 +439,8 @@ let DnDPhase2 = () => {
                 representation: exercise.representation,
                 networkType: exercise.networkType,
                 trainingMode: trainingMode,
-                date: Date.now()
+                date: Date.now(),
+                avatarVisible: visible
             });
             let phrases = [
                 "Has hecho un gran trabajo! ¡Te has esforzado mucho!",

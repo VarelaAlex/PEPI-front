@@ -29,7 +29,7 @@ let TypePhase2 = () => {
 	let startTime = useRef(Date.now());
 	const playAudio = usePlayAudio();
 
-	let { changeEmotionSequence } = useAvatar();
+	let { visible, changeEmotionSequence } = useAvatar();
 
 	useEffect(() => {
 		const sceneId = buildSceneId(exercise, "phase2");
@@ -132,7 +132,7 @@ let TypePhase2 = () => {
 									elapsedTime: (
 										endTime - startTime.current
 									) / 1000
-								}, title: exercise.title, representation: exercise.representation, networkType: exercise.networkType, trainingMode: trainingMode, date: Date.now()
+								}, title: exercise.title, representation: exercise.representation, networkType: exercise.networkType, trainingMode: trainingMode, date: Date.now(), avatarVisible: visible
 							});
 							setShowGif(true);
 							setTimer(setTimeout(async () => {

@@ -1,7 +1,7 @@
 /**
  * Contains the global configuration and state of the tracking system.
  */
-const VERSION = 5;
+const VERSION = 6;
 
 const EVENT_ON_MOUSE_MOVE = 0;
 const EVENT_ON_CLICK = 1;
@@ -33,16 +33,24 @@ const COMPONENT_OPTION = 3;
 const COMPONENT_RADIO_BUTTON = 4;
 const COMPONENT_CHECK_BOX = 5;
 
+const idExperiment = 4;
+
+/**
+ * localStorage key for this experiment's session ID, scoped per experiment.
+ */
+function getUserStorageKey() {
+    return "user_" + idExperiment;
+}
+
 /**
  * Returns the persistent session user ID, creating one if it does not exist.
- * The ID is stored in localStorage so it survives page reloads within the same session.
- * @returns {string} UUID identifying the current user session.
  */
 function createUser() {
-    if (localStorage.getItem("user") === null) {
-        localStorage.setItem("user", crypto.randomUUID());
+    const key = getUserStorageKey();
+    if (localStorage.getItem(key) === null) {
+        localStorage.setItem(key, crypto.randomUUID());
     }
-    return localStorage.getItem("user");
+    return localStorage.getItem(key);
 }
 
 const user = createUser();
@@ -66,10 +74,10 @@ let gazeTrackingEnabled = false;
 let gazeSampleIntervalMs = 200;
 let lastGazeSampleTs = 0;
 let gazeStarted = false;
+let lastPointerType = 'mouse';
 
 const elements = [];
 const TOP_LIMIT = 50;
-const idExperiment = 4;
 const urlBase = "https:\/\/156-35-163-141.nip.io";
 const url = urlBase + '/TrackerServer/restws/track';
 const urlBackgroundTracker = urlBase + '/TrackerServer/restws/backgroundTracker';

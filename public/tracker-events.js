@@ -108,22 +108,22 @@ async function initTracking(_sceneId) {
     target.addEventListener('pointercancel', trackPointerCancel, { signal });
 }
 
-/** @param {MouseEvent} event */ function trackMouseMovement(event) { trackWithEvent(EVENT_ON_MOUSE_MOVE, event).catch(console.error); }
-/** @param {MouseEvent} event */ function trackClick(event) { trackWithEvent(EVENT_ON_CLICK, event).catch(console.error); }
-/** @param {MouseEvent} event */ function trackDblclick(event) { trackWithEvent(EVENT_ON_DOUBLE_CLICK, event).catch(console.error); }
-/** @param {MouseEvent} event */ function trackMouseDown(event) { trackWithEvent(EVENT_ON_MOUSE_DOWN, event).catch(console.error); }
-/** @param {MouseEvent} event */ function trackMouseUp(event) { trackWithEvent(EVENT_ON_MOUSE_UP, event).catch(console.error); }
-/** @param {WheelEvent} event */ function trackWheel(event) { trackWithEvent(EVENT_ON_WHEEL, event).catch(console.error); }
-/** @param {MouseEvent} event */ function trackContextmenu(event) { trackWithEvent(EVENT_CONTEXT_MENU, event).catch(console.error); }
+/** @param {MouseEvent} event */ function trackMouseMovement(event) { if (lastPointerType === 'mouse') trackWithEvent(EVENT_ON_MOUSE_MOVE, event).catch(console.error); }
+/** @param {MouseEvent} event */ function trackClick(event) { if (lastPointerType === 'mouse') trackWithEvent(EVENT_ON_CLICK, event).catch(console.error); }
+/** @param {MouseEvent} event */ function trackDblclick(event) { if (lastPointerType === 'mouse') trackWithEvent(EVENT_ON_DOUBLE_CLICK, event).catch(console.error); }
+/** @param {MouseEvent} event */ function trackMouseDown(event) { if (lastPointerType === 'mouse') trackWithEvent(EVENT_ON_MOUSE_DOWN, event).catch(console.error); }
+/** @param {MouseEvent} event */ function trackMouseUp(event) { if (lastPointerType === 'mouse') trackWithEvent(EVENT_ON_MOUSE_UP, event).catch(console.error); }
+/** @param {WheelEvent} event */ function trackWheel(event) { if (lastPointerType === 'mouse') trackWithEvent(EVENT_ON_WHEEL, event).catch(console.error); }
+/** @param {MouseEvent} event */ function trackContextmenu(event) { if (lastPointerType === 'mouse') trackWithEvent(EVENT_CONTEXT_MENU, event).catch(console.error); }
 /** @param {Event} event */ function trackWindowScroll(event) { trackWithEvent(EVENT_WINDOW_SCROLL, event).catch(console.error); }
 /** @param {UIEvent} event */ function trackWindowResize(event) { trackWithEvent(EVENT_WINDOW_RESIZE, event).catch(console.error); }
 /** @param {KeyboardEvent} event */ function trackEventKeydown(event) { trackWithEvent(EVENT_KEY_DOWN, event).catch(console.error); }
 /** @param {KeyboardEvent} event */ function trackEventKeypress(event) { trackWithEvent(EVENT_KEY_PRESS, event).catch(console.error); }
 /** @param {KeyboardEvent} event */ function trackEventKeyup(event) { trackWithEvent(EVENT_KEY_UP, event).catch(console.error); }
-/** @param {PointerEvent} event */ function trackPointerDown(event) { if (event.pointerType !== 'mouse') { trackWithPointerEvent(EVENT_POINTER_DOWN, event).catch(console.error); } }
-/** @param {PointerEvent} event */ function trackPointerUp(event) { if (event.pointerType !== 'mouse') { trackWithPointerEvent(EVENT_POINTER_UP, event).catch(console.error); } }
-/** @param {PointerEvent} event */ function trackPointerMove(event) { if (event.pointerType !== 'mouse') { trackWithPointerEvent(EVENT_POINTER_MOVE, event).catch(console.error); } }
-/** @param {PointerEvent} event */ function trackPointerCancel(event) { if (event.pointerType !== 'mouse') { trackWithPointerEvent(EVENT_POINTER_CANCEL, event).catch(console.error); } }
+/** @param {PointerEvent} event */ function trackPointerDown(event) { lastPointerType = event.pointerType; if (event.pointerType !== 'mouse') { trackWithPointerEvent(EVENT_POINTER_DOWN, event).catch(console.error); } }
+/** @param {PointerEvent} event */ function trackPointerUp(event) { lastPointerType = event.pointerType; if (event.pointerType !== 'mouse') { trackWithPointerEvent(EVENT_POINTER_UP, event).catch(console.error); } }
+/** @param {PointerEvent} event */ function trackPointerMove(event) { lastPointerType = event.pointerType; if (event.pointerType !== 'mouse') { trackWithPointerEvent(EVENT_POINTER_MOVE, event).catch(console.error); } }
+/** @param {PointerEvent} event */ function trackPointerCancel(event) { lastPointerType = event.pointerType; if (event.pointerType !== 'mouse') { trackWithPointerEvent(EVENT_POINTER_CANCEL, event).catch(console.error); } }
 /** @param {FocusEvent} event */ function trackFocusEvent(event) { trackWithEvent(EVENT_FOCUS, event).catch(console.error); }
 /** @param {FocusEvent} event */ function trackBlurEvent(event) { trackWithEvent(EVENT_BLUR, event).catch(console.error); }
 /** @param {Event} event */ function trackOnChangeSelectionEvent(event) { trackWithEvent(EVENT_ON_CHANGE_SELECTION_OBJECT, event).catch(console.error); }
@@ -175,8 +175,8 @@ function checkReadyToLeave() {
         console.log("Ready to leave page, pending request:" + pendingRequest + ", pending backgrounds " + pendingBackgroundsDelivered + "/" + backgroundsDelivered);
         if (finishedExperiment) {
             leftPage = true;
-            console.log("Experiment finished, deleting user " + localStorage.getItem("user"));
-            localStorage.removeItem("user");
+            console.log("Experiment finished, deleting user " + localStorage.getItem(getUserStorageKey()));
+            localStorage.removeItem(getUserStorageKey());
         }
         if (newPage != null) {
             window.location.href = newPage;

@@ -2,9 +2,10 @@ import { useTranslation } from 'react-i18next';
 import { Button, Card, Input, Form, Alert } from "antd";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSession }  from '../SessionComponent';
-import {registerStudentId, startExperiment} from "../../tracker";
-import {useAvatar} from "../AvatarContext";
+import { useSession } from '../SessionComponent';
+import { registerStudentId, startExperiment } from "../../tracker";
+import { useAvatar } from "../AvatarContext";
+import useFullscreen from "../../hooks/useFullscreen"
 
 let LoginStudent = () => {
 
@@ -13,6 +14,8 @@ let LoginStudent = () => {
     let { t } = useTranslation();
 
     let [message, setMessage] = useState(null);
+
+    const { enterFullscreen } = useFullscreen();
 
     let navigate = useNavigate();
     let {showAvatar, enableVoice, hideAvatar, disableVoice} = useAvatar();
@@ -87,7 +90,7 @@ let LoginStudent = () => {
                     <Input placeholder={t("login.form.placeholder.username")} onInput={() => setMessage(null)} />
                 </Form.Item>
                 <Form.Item wrapperCol={{ xs: { span: 24, offset: 0 }, sm: { span: 16, offset: 6 } }}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" onClick={enterFullscreen}>
                         {t("login.button")}
                     </Button>
                 </Form.Item>

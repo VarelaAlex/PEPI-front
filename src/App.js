@@ -54,7 +54,7 @@ let App = () => {
 
 	let { login, setLogin, setFeedback, setExercise } = useSession();
 	let {hideAvatar, disableVoice} = useAvatar();
-    let exitFullscreen = useFullscreen();
+    let {exitFullscreen} = useFullscreen();
 	usePullToRefreshBlocker();
 
 	const MOBILE_BREAKPOINT = 430;

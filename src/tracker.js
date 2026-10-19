@@ -1,6 +1,16 @@
 /**
- * Bridge to the InteractionLab tracker loaded globally from public/tracker-*.js
+ * Bridge between the app and the InteractionLab tracker module.
  */
+
+import {
+    finishExperiment as finishTrackerExperiment,
+    finishSubsceneTracking as finishTrackerSubsceneTracking,
+    finishTracking as finishTrackerTracking,
+    initTracking as initTrackerTracking,
+    postNumberDD,
+    registerComponent as registerTrackerComponent,
+    startExperiment as startTrackerExperiment,
+} from "./tracker-agent";
 
 export const COMPONENT_TEXT_FIELD = 1;
 export const COMPONENT_COMBOBOX = 2;
@@ -8,17 +18,9 @@ export const COMPONENT_OPTION = 3;
 export const COMPONENT_RADIO_BUTTON = 4;
 export const COMPONENT_CHECK_BOX = 5;
 
-function callTracker(fnName, ...args) {
-    const fn = window[fnName];
-    if (typeof fn !== 'function') {
-        console.warn(`Tracker: ${fnName} is not available`);
-        return undefined;
-    }
-    return fn(...args);
-}
-
 export function buildSceneId(exercise, phase) {
-    return `${exercise.title}_${exercise.representation}_${exercise.networkType}.${phase}`;
+    const timestamp = new Date().toISOString().replace(/[-:T.Z]/g, "").slice(0, 14);
+    return `${timestamp}_${exercise.title}_${exercise.representation}_${exercise.networkType}.${phase}`;
 }
 
 function getPageRect(element) {
@@ -43,7 +45,7 @@ export async function registerDomElement(sceneId, element, typeId = COMPONENT_TE
     if (!componentId) return;
 
     const { x, y, xF, yF } = getPageRect(el);
-    await callTracker('registerComponent', sceneId, componentId, x, y, xF, yF, typeId, null);
+    await registerTrackerComponent(sceneId, componentId, x, y, xF, yF, typeId, null);
 }
 
 export async function registerSceneElements(sceneId, elementIds, typeId = COMPONENT_TEXT_FIELD) {
@@ -52,23 +54,27 @@ export async function registerSceneElements(sceneId, elementIds, typeId = COMPON
 }
 
 export async function startExperiment() {
-    await callTracker('startExperiment');
+    await startTrackerExperiment();
 }
 
 export function finishExperiment() {
-    callTracker('finishExperiment');
+    finishTrackerExperiment();
 }
 
 export async function initTracking(sceneId) {
-    await callTracker('initTracking', sceneId);
+    await initTrackerTracking(sceneId);
+}
+
+export async function finishTracking(newPage) {
+    await finishTrackerTracking(newPage);
 }
 
 export async function finishSubsceneTracking() {
-    await callTracker('finishSubsceneTracking');
+    await finishTrackerSubsceneTracking();
 }
 
 export async function registerStudentId(value) {
-    await callTracker('postNumberDD', 6, value);
+    await postNumberDD(6, value);
 }
 
 export async function setupSceneTracking(sceneId, elementIds) {

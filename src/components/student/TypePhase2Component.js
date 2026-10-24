@@ -84,6 +84,7 @@ let TypePhase2 = () => {
 	let { t } = useTranslation();
 	let navigate = useNavigate();
 	const viewportHeight = useVisualViewportHeight();
+	const activeInputRef = useRef(null);
 	let exerciseNodes = nodes(exercise);
 
 	const INITIAL_EXTENDED_NODES = [
@@ -241,13 +242,27 @@ let TypePhase2 = () => {
 		}
 	};
 
+	const keepInputVisible = (input) => {
+		if (!input?.isConnected) return;
+		if (document.activeElement !== input) {
+			input.focus({ preventScroll: true });
+		}
+		input.scrollIntoView({ block: "center", inline: "nearest" });
+	};
+
 	const handleInputFocus = (event) => {
 		if (event.target instanceof HTMLInputElement) {
-			window.setTimeout(() => {
-				event.target.scrollIntoView({ block: "nearest", inline: "nearest" });
-			}, 100);
+			activeInputRef.current = event.target;
+			window.setTimeout(() => keepInputVisible(event.target), 150);
 		}
 	};
+
+	useEffect(() => {
+		const input = activeInputRef.current;
+		if (input && document.activeElement === input) {
+			window.requestAnimationFrame(() => keepInputVisible(input));
+		}
+	}, [viewportHeight]);
 
 	return (
 		<Card
@@ -284,7 +299,6 @@ let TypePhase2 = () => {
 			</div>
 			<Flex align="center" vertical>
 				<Flex align="center" justify="center" style={{
-					position: "sticky",
 					top: 0,
 					zIndex: 2,
 					alignSelf: "stretch",

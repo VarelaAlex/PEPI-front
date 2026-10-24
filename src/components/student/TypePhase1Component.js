@@ -63,6 +63,7 @@ let TypePhase1 = () => {
     let {t} = useTranslation();
     let navigate = useNavigate();
     const viewportHeight = useVisualViewportHeight();
+    const activeInputRef = useRef(null);
 
     const INITIAL_EXTENDED_NODES = [{...exerciseNodes[0], order: 0, id: "1-1"}, {
         ...exerciseNodes[0],
@@ -209,13 +210,27 @@ let TypePhase1 = () => {
         }
     };
 
+    const keepInputVisible = (input) => {
+        if (!input?.isConnected) return;
+        if (document.activeElement !== input) {
+            input.focus({preventScroll: true});
+        }
+        input.scrollIntoView({block: "center", inline: "nearest"});
+    };
+
     const handleInputFocus = (event) => {
         if (event.target instanceof HTMLInputElement) {
-            window.setTimeout(() => {
-                event.target.scrollIntoView({block: "nearest", inline: "nearest"});
-            }, 100);
+            activeInputRef.current = event.target;
+            window.setTimeout(() => keepInputVisible(event.target), 150);
         }
     };
+
+    useEffect(() => {
+        const input = activeInputRef.current;
+        if (input && document.activeElement === input) {
+            window.requestAnimationFrame(() => keepInputVisible(input));
+        }
+    }, [viewportHeight]);
 
     return (<Card
         onFocusCapture={handleInputFocus}
@@ -252,7 +267,6 @@ let TypePhase1 = () => {
             <Flex align="center" vertical>
                 <Flex align="start" vertical style={{
                     paddingTop: "20px",
-                    position: "sticky",
                     top: 0,
                     zIndex: 2,
                     background: "white"

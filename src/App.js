@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import {Trans, useTranslation} from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { Link, matchPath, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import {Layout, notification, Flex, Image, Typography} from "antd";
+import { Layout, notification, Flex, Image, Typography } from "antd";
 import SelectRole from './components/SelectRoleComponent';
 import Header from './components/layout/HeaderComponent';
 import Sider from "./components/layout/SiderComponent";
 import { UserOutlined, InfoCircleOutlined, LogoutOutlined, FormOutlined, ExperimentOutlined, DollarOutlined } from "@ant-design/icons";
 import ClassroomOutlined from './components/icons/ClassroomOutlined';
-import HowToDoExercises           from "./components/student/HowToDoExercisesComponent";
+import HowToDoExercises from "./components/student/HowToDoExercisesComponent";
 import PhrasesActivity from "./components/student/PhrasesActivityComponent";
 import PictogramActivity from "./components/student/PictogramActivityComponent";
-import CreateStudent              from "./components/teacher/CreateStudentComponent";
+import CreateStudent from "./components/teacher/CreateStudentComponent";
 import LoginTeacher from './components/teacher/LoginTeacherComponent';
 import SignupTeacher from './components/teacher/SignupTeacherComponent';
 import ClassroomsList from './components/teacher/ClassroomsListComponent';
@@ -22,8 +22,8 @@ import DnDPhase2 from './components/student/DnDPhase2Component';
 import TypePhase1 from './components/student/TypePhase1Component';
 import TypePhase2 from './components/student/TypePhase2Component';
 import ExercisesCarousel from './components/student/ExercisesCarouselComponent';
-import { useSession }    from './components/SessionComponent';
-import { jwtDecode }     from 'jwt-decode';
+import { useSession } from './components/SessionComponent';
+import { jwtDecode } from 'jwt-decode';
 import NotFound from './components/NotFoundComponent';
 import ClassroomDetail from './components/teacher/ClassroomDetailComponent';
 import StudentDetail from './components/teacher/StudentDetailComponent';
@@ -42,19 +42,19 @@ import Funding from "./components/FundingComponent";
 import SelectTrainingMode from "./components/student/SelectTrainingModeComponent";
 import useFullscreen from "./hooks/useFullscreen";
 import AudioPermissionModal from "./components/AudioPermissionModalComponent";
-import {useAvatar} from "./components/AvatarContext";
+import { useAvatar } from "./components/AvatarContext";
 import ClosedExercisesSelector from "./components/student/ClosedExercisesSelectorComponent";
 import AvatarNavigationListener from "./components/AvatarNavigationListener";
 import InteractionBlocker from "./components/InteractionBlockerComponent";
 import EditExercise from "./components/teacher/EditExerciseComponent";
 import TeacherHelpButton from "./components/TeacherHelpButtonComponent";
-import {usePullToRefreshBlocker} from "./hooks/usePullToRefreshBlocker";
+import { usePullToRefreshBlocker } from "./hooks/usePullToRefreshBlocker";
 
 let App = () => {
 
 	let { login, setLogin, setFeedback, setExercise } = useSession();
-	let {hideAvatar, disableVoice} = useAvatar();
-    let {exitFullscreen} = useFullscreen();
+	let { hideAvatar, disableVoice } = useAvatar();
+	let { exitFullscreen } = useFullscreen();
 	usePullToRefreshBlocker();
 
 	const MOBILE_BREAKPOINT = 430;
@@ -88,7 +88,7 @@ let App = () => {
 		setExercise({});
 		hideAvatar();
 		disableVoice();
-        exitFullscreen();
+		exitFullscreen();
 	}, [setExercise, setFeedback, setLogin]);
 
 	let logout = async () => {
@@ -121,20 +121,20 @@ let App = () => {
 		}
 	};
 
-    const drawerFooter = [
-        {
-            key: "team",
-            label: <Link to="/funding" onClick={() => setOpen(false)}>{t("sider.funding")}</Link>,
-            danger: false,
-            icon: <DollarOutlined />
-        },
-        {
-            key: "menuDisconnect",
-            label: <Link to="/selectRole" onClick={disconnect}>{t("sider.disconnect")}</Link>,
-            danger: true,
-            icon: <LogoutOutlined />
-        }
-    ];
+	const drawerFooter = [
+		{
+			key: "team",
+			label: <Link to="/funding" onClick={() => setOpen(false)}>{t("sider.funding")}</Link>,
+			danger: false,
+			icon: <DollarOutlined />
+		},
+		{
+			key: "menuDisconnect",
+			label: <Link to="/selectRole" onClick={disconnect}>{t("sider.disconnect")}</Link>,
+			danger: true,
+			icon: <LogoutOutlined />
+		}
+	];
 
 	const anonymousMenuFooter = [
 		{
@@ -179,7 +179,7 @@ let App = () => {
 				<Trans
 					i18nKey="sider.teacher.about"
 					components={{
-						italic: <i/>
+						italic: <i />
 					}}
 				/></Link>,
 			danger: false,
@@ -194,18 +194,18 @@ let App = () => {
 	];
 
 	let studentMenuItems = [
-        {
-            key: "preparation",
-            label: <Link to="/students/pretraining" onClick={() => setOpen(false)}>{t("sider.student.preparation")}</Link>,
-            danger: false,
-            icon: <ExperimentOutlined/>
-        },
-        {
-            key: "training",
-            label: <Link to="/students/trainingMode" onClick={() => setOpen(false)}>{t("sider.student.training")}</Link>,
-            danger: false,
-            icon: <FormOutlined/>
-        },
+		{
+			key: "preparation",
+			label: <Link to="/students/pretraining" onClick={() => setOpen(false)}>{t("sider.student.preparation")}</Link>,
+			danger: false,
+			icon: <ExperimentOutlined />
+		},
+		{
+			key: "training",
+			label: <Link to="/students/trainingMode" onClick={() => setOpen(false)}>{t("sider.student.training")}</Link>,
+			danger: false,
+			icon: <FormOutlined />
+		},
 		{
 			key: "howto",
 			label: <Link to="/students/howTo" onClick={() => setOpen(false)}>{t("sider.student.howto")}</Link>,
@@ -351,7 +351,7 @@ let App = () => {
 		}
 	}, [api, t]);
 
-    let {Text} = Typography;
+	let { Text } = Typography;
 
 	const hideHeaderFooterRoutes = [
 		"/exerciseDnD",
@@ -366,7 +366,7 @@ let App = () => {
 	return (
 		<>
 			{contextHolder}
-            <AudioPermissionModal/>
+			<AudioPermissionModal />
 			<AvatarNavigationListener />
 			<InteractionBlocker active={isBusy} />
 			<Layout style={{ height: "100vh" }}>
@@ -376,27 +376,27 @@ let App = () => {
 					setOpen={setOpen}
 					isMobile={isMobile}
 				/>}
-			<Layout hasSider>
-				{login ?
-					<Sider
-						login={login}
-						setLogin={setLogin}
-						open={open}
-						setOpen={setOpen}
-						menu={localStorage.getItem("role") === "T" ? teacherMenuItems : studentMenuItems}
-                        drawerFooter={drawerFooter}
-					/>
-					:
-					<Sider
-						login={login}
-						setLogin={setLogin}
-						open={open}
-						setOpen={setOpen}
-						menu={anonymousMenuItems}
-                        drawerFooter={anonymousMenuFooter}
-					/>
-				}
-				<Content style={{ overflowY: "auto", background: "url(/bg.png)", backgroundSize: "cover" }} >
+				<Layout hasSider>
+					{login ?
+						<Sider
+							login={login}
+							setLogin={setLogin}
+							open={open}
+							setOpen={setOpen}
+							menu={localStorage.getItem("role") === "T" ? teacherMenuItems : studentMenuItems}
+							drawerFooter={drawerFooter}
+						/>
+						:
+						<Sider
+							login={login}
+							setLogin={setLogin}
+							open={open}
+							setOpen={setOpen}
+							menu={anonymousMenuItems}
+							drawerFooter={anonymousMenuFooter}
+						/>
+					}
+					<Content style={{ overflowY: "auto", background: "url(/bg.png)", backgroundSize: "cover" }} >
 						<Flex align="center" justify="center" style={{ minHeight: "100%" }}>
 							<Routes>
 								<Route path="/selectRole" element={<SelectRole />} />
@@ -410,14 +410,14 @@ let App = () => {
 								<Route path="/students/exercises/free" element={<ExercisesCarousel />} />
 								<Route path="/students/exercises/ruled" element={<ClosedExercisesSelector />} />
 								<Route path="/students/trainingMode" element={<SelectTrainingMode />} />
-                                <Route path="/students/selectMode" element={<SelectMode />} />
-								<Route path="/students/pretraining/block/1/activity/:activity" element={<PictogramActivity key={location.pathname}/>} />
-                                <Route path="/students/pretraining/block/2/activity/:activity" element={<PhrasesActivity key={location.pathname}/>} />
-                                <Route path="/students/pretraining/block/3/activity/1" element={<SentenceNetwork />} />
-                                <Route path="/students/pretraining/block/3/activity/2" element={<SentenceNetworkSequential />} />
-                                <Route path="/students/pretraining/" element={<SelectPhase />} />
-                                <Route path="/students/howTo" element={<HowToDoExercises />} />
-                                <Route path="/loginTeacher" element={<LoginTeacher />} />
+								<Route path="/students/selectMode" element={<SelectMode />} />
+								<Route path="/students/pretraining/block/1/activity/:activity" element={<PictogramActivity key={location.pathname} />} />
+								<Route path="/students/pretraining/block/2/activity/:activity" element={<PhrasesActivity key={location.pathname} />} />
+								<Route path="/students/pretraining/block/3/activity/1" element={<SentenceNetwork />} />
+								<Route path="/students/pretraining/block/3/activity/2" element={<SentenceNetworkSequential />} />
+								<Route path="/students/pretraining/" element={<SelectPhase />} />
+								<Route path="/students/howTo" element={<HowToDoExercises />} />
+								<Route path="/loginTeacher" element={<LoginTeacher />} />
 								<Route path="/registerTeacher" element={<SignupTeacher />} />
 								<Route path="/teachers/menuTeacher" element={<ClassroomsList isMobile={isMobile} setClassroomId={setClassroomId} />} />
 								<Route path="/teachers/classrooms/:classroomName" element={<ClassroomDetail isMobile={isMobile} setStudentName={setStudentName} />} />
@@ -429,8 +429,8 @@ let App = () => {
 								<Route path='/teachers/profile' element={<Profile />} />
 								<Route path='/teachers/classroomStats/:classroomName' element={<ClassroomStatistics classroomId={classroomId} />} />
 								<Route path='/teachers/studentStats/:studentId' element={<StudentStatistics studentName={studentName} />} />
-								<Route path='/teachers/:classroomName/students/:studentId/surveys/A' element={<SurveyA/>} />
-								<Route path='/teachers/:classroomName/students/:studentId/surveys/B' element={<SurveyB/>} />
+								<Route path='/teachers/:classroomName/students/:studentId/surveys/A' element={<SurveyA />} />
+								<Route path='/teachers/:classroomName/students/:studentId/surveys/B' element={<SurveyB />} />
 								<Route path='/teachers/aboutEPI' element={<AboutEPI />} />
 								<Route path='/' element={<BlankPage />} />
 								<Route path="*" element={<NotFound />} />
@@ -438,26 +438,25 @@ let App = () => {
 						</Flex>
 					</Content>
 				</Layout>
-				{!shouldHideHeaderFooter && <Footer style={{backgroundColor: "#001628", color: "white", padding: 10}}>
-					<Flex align="center" justify="center" style={{minHeight: "100%"}}>
-						<Text style={{color: "white"}}>PEPI @ 2025 Made with ❤️ by <Typography.Link
-							href="https://github.com/VarelaAlex" style={{color: "white"}}
+				{!shouldHideHeaderFooter && <Footer style={{ backgroundColor: "#001628", color: "white", padding: 10 }}>
+					<Flex align="center" justify="center" style={{ minHeight: "100%" }}>
+						<Text style={{ color: "white" }}>{t("footer.about", { heart: "\u2665" })} <Typography.Link
+							href="https://github.com/VarelaAlex" style={{ color: "white" }}
 							underline>Álex</Typography.Link> & <Typography.Link href="https://grupoadir.es/"
-																				style={{color: "white"}}
-																				underline>ADIR</Typography.Link> – based
-							on <Typography.Link href="https://www.unioviedo.es/hyper/" style={{color: "white"}}
-												underline>Hyper</Typography.Link></Text>
+								style={{ color: "white" }}
+								underline>ADIR</Typography.Link> · {t("footer.based")} <Typography.Link href="https://www.unioviedo.es/hyper/" style={{ color: "white" }}
+								underline>Hyper</Typography.Link></Text>
 						<Link to="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 							<Image
 								src="https://static.arasaac.org/images/by-nc-sa.svg"
 								alt="Creative Commons license CC BY-NC-SA"
 								title="ARASAAC creative commons license CC BY-NC-SA"
 								preview={false}
-								style={{padding: "0px 10px"}}
+								style={{ padding: "0px 10px" }}
 							/>
 						</Link>
-						<Typography.Link href="/funding" style={{color: "white"}}
-										 underline>Financiación</Typography.Link>
+						<Typography.Link href="/funding" style={{ color: "white" }}
+							underline>{t("footer.funding")}</Typography.Link>
 					</Flex>
 				</Footer>}
 			</Layout>

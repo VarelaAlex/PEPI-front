@@ -15,6 +15,7 @@ import { useAvatar } from "../AvatarContext";
 import { usePlayAudio } from "../../hooks/usePlayAudio";
 import CounterBadge from "./CounterBadgeComponent";
 import useCounter from "../../hooks/useCounter";
+import {useVisualViewportHeight} from "../../hooks/useVisualViewportHeight";
 
 let TypePhase2 = () => {
 
@@ -82,6 +83,7 @@ let TypePhase2 = () => {
 
 	let { t } = useTranslation();
 	let navigate = useNavigate();
+	const viewportHeight = useVisualViewportHeight();
 	let exerciseNodes = nodes(exercise);
 
 	const INITIAL_EXTENDED_NODES = [
@@ -239,8 +241,25 @@ let TypePhase2 = () => {
 		}
 	};
 
+	const handleInputFocus = (event) => {
+		if (event.target instanceof HTMLInputElement) {
+			window.setTimeout(() => {
+				event.target.scrollIntoView({ block: "nearest", inline: "nearest" });
+			}, 100);
+		}
+	};
+
 	return (
-		<Card style={{ height: "100%", width: "95%" }}>
+		<Card
+			onFocusCapture={handleInputFocus}
+			style={{
+				height: "auto",
+				maxHeight: `${Math.max(viewportHeight - 96, 220)}px`,
+				overflowY: "auto",
+				overscrollBehavior: "contain",
+				width: "95%"
+			}}
+		>
 			<CounterBadge current={counter} max={extendedNodes.length} />
 			<div style={{ position: "absolute", top: "10px", right: "10px" }}>
 				<ReloadOutlined style={{ fontSize: "45px", cursor: "pointer" }} onClick={() => {
@@ -264,8 +283,14 @@ let TypePhase2 = () => {
 				}} />
 			</div>
 			<Flex align="center" vertical>
-				<Flex align="center" justify="center">
-					<svg height="19vmax" viewBox={`-2 -2 ${viewBoxWidth(exercise?.networkType)} 250`}>
+				<Flex align="center" justify="center" style={{
+					position: "sticky",
+					top: 0,
+					zIndex: 2,
+					alignSelf: "stretch",
+					background: "white"
+				}}>
+					<svg height="min(19vmax, 30dvh)" viewBox={`-2 -2 ${viewBoxWidth(exercise?.networkType)} 250`}>
 						<path d={`M ${pathRect(exercise)} 70 L ${pathRect(exercise)} 85 ${pathTop(exercise?.networkType)}`} fill="none" stroke="rgb(0, 0, 0)"
 							strokeWidth="3" />
 						<path d={`M ${pathRect(exercise)} 70 L ${pathRect(exercise)} 85 L 60 85 L 60 95`} fill="none" stroke="rgb(0, 0, 0)" strokeWidth="3" />

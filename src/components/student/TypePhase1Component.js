@@ -13,6 +13,7 @@ import {useAvatar} from "../AvatarContext";
 import {usePlayAudio} from "../../hooks/usePlayAudio";
 import CounterBadge from "./CounterBadgeComponent";
 import useCounter from "../../hooks/useCounter";
+import {useVisualViewportHeight} from "../../hooks/useVisualViewportHeight";
 
 let TypePhase1 = () => {
 
@@ -61,6 +62,7 @@ let TypePhase1 = () => {
 
     let {t} = useTranslation();
     let navigate = useNavigate();
+    const viewportHeight = useVisualViewportHeight();
 
     const INITIAL_EXTENDED_NODES = [{...exerciseNodes[0], order: 0, id: "1-1"}, {
         ...exerciseNodes[0],
@@ -207,7 +209,24 @@ let TypePhase1 = () => {
         }
     };
 
-    return (<Card style={{height: "55vmax", width: "95%"}}>
+    const handleInputFocus = (event) => {
+        if (event.target instanceof HTMLInputElement) {
+            window.setTimeout(() => {
+                event.target.scrollIntoView({block: "nearest", inline: "nearest"});
+            }, 100);
+        }
+    };
+
+    return (<Card
+        onFocusCapture={handleInputFocus}
+        style={{
+            height: "auto",
+            maxHeight: `${Math.max(viewportHeight - 96, 220)}px`,
+            overflowY: "auto",
+            overscrollBehavior: "contain",
+            width: "95%"
+        }}
+    >
             <CounterBadge current={counter} max={extendedNodes.length}/>
             <div style={{position: "absolute", top: "10px", right: "10px"}}>
                 <ReloadOutlined style={{fontSize: "45px", cursor: "pointer"}} onClick={() => {
@@ -231,7 +250,13 @@ let TypePhase1 = () => {
                 }}/>
             </div>
             <Flex align="center" vertical>
-                <Flex align="start" vertical style={{paddingTop: "20px"}}>
+                <Flex align="start" vertical style={{
+                    paddingTop: "20px",
+                    position: "sticky",
+                    top: 0,
+                    zIndex: 2,
+                    background: "white"
+                }}>
                     <Row>
                         <Col key={extendedNodes[0].id}>
                             <svg id={extendedNodes[0].id} height="6.5vmax" width={svgWidth(extendedNodes[0])}>
@@ -324,7 +349,7 @@ let TypePhase1 = () => {
                 </Flex>
                 <Divider style={{backgroundColor: "grey"}}/>
                 <Flex align="center" justify="center" style={{height: "90%", width: "90%"}}>
-                    <svg height="19vmax" viewBox={`-2 -2 ${viewBoxWidth(exercise?.networkType)} 250`}>
+                    <svg height="min(19vmax, 30dvh)" viewBox={`-2 -2 ${viewBoxWidth(exercise?.networkType)} 250`}>
                         <path
                             d={`M ${pathRect(exercise)} 70 L ${pathRect(exercise)} 85 ${pathTop(exercise?.networkType)}`}
                             fill="none" stroke="rgb(0, 0, 0)"

@@ -2,7 +2,7 @@ import {MinusCircleOutlined, PlusOutlined, UserAddOutlined} from "@ant-design/ic
 import {
     Alert, Button, Card, Checkbox, Col, DatePicker, Form, Input, InputNumber, Row, Select, Space, Steps
 } from "antd";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useNavigate, useParams} from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
@@ -21,14 +21,20 @@ const CreateStudent = () => {
     const [showEducationalSupport, setShowEducationalSupport] = useState(false);
     const [generatedUsername, setGeneratedUsername] = useState("");
     const [usernameAvailable, setUsernameAvailable] = useState(null);
+    const [usernameChecking, setUsernameChecking] = useState(false);
+    const [usernameCheckFailed, setUsernameCheckFailed] = useState(false);
+    const usernameCheckId = useRef(0);
     const navigate = useNavigate();
     const {t} = useTranslation();
 
     // Función para generar el username: nombrealumno_idprofesor_numero3digitosaleatorio
     const generateUsername = async (studentName) => {
+        const checkId = ++usernameCheckId.current;
         if (!studentName || studentName.trim() === "") {
             setGeneratedUsername("");
             setUsernameAvailable(null);
+            setUsernameChecking(false);
+            setUsernameCheckFailed(false);
             return;
         }
 
@@ -37,8 +43,15 @@ const CreateStudent = () => {
             const decodedToken = jwtDecode(accessToken);
             const teacherId = decodedToken.id || decodedToken.sub;
             const randomNumber = Math.floor(Math.random() * 900) + 100; // Número de 3 dígitos (100-999)
-            const username = `${studentName.toLowerCase()}${teacherId}${randomNumber}`;
+            const normalizedName = studentName.trim().toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/\s+/g, "");
+            const username = `${normalizedName}${teacherId}${randomNumber}`;
             setGeneratedUsername(username);
+            setUsernameAvailable(null);
+            setUsernameChecking(true);
+            setUsernameCheckFailed(false);
 
             // Validar si el username ya existe
             try {
@@ -50,20 +63,32 @@ const CreateStudent = () => {
 
                 if (response.ok) {
                     const data = await response.json();
-                    setUsernameAvailable(!data.exists);
+                    if (typeof data.exists !== "boolean") {
+                        throw new Error("Username availability check returned an invalid response");
+                    }
+                    if (checkId === usernameCheckId.current) {
+                        setUsernameAvailable(data.exists === false);
+                        setUsernameChecking(false);
+                    }
                 } else {
-                    // Si hay error en la validación, asumimos que está disponible
-                    setUsernameAvailable(true);
+                    throw new Error(`Username availability check failed with status ${response.status}`);
                 }
             } catch (error) {
                 console.error("Error checking username availability:", error);
-                // Si hay error de conexión, asumimos que está disponible
-                setUsernameAvailable(true);
+                if (checkId === usernameCheckId.current) {
+                    setUsernameAvailable(false);
+                    setUsernameChecking(false);
+                    setUsernameCheckFailed(true);
+                }
             }
         } catch (error) {
             console.error("Error generating username:", error);
-            setGeneratedUsername("");
-            setUsernameAvailable(null);
+            if (checkId === usernameCheckId.current) {
+                setGeneratedUsername("");
+                setUsernameAvailable(false);
+                setUsernameChecking(false);
+                setUsernameCheckFailed(true);
+            }
         }
     };
 
@@ -89,13 +114,29 @@ const CreateStudent = () => {
                 {generatedUsername && (<Form.Item style={{marginBottom: "1rem"}}>
                         <div style={{display: "flex", alignItems: "center", gap: "0.5rem"}}>
                             {
-								<span style={{color: "#52c41a", fontWeight: "500", fontSize: "0.9rem"}}>
+								<span style={{color: usernameAvailable === true ? "#52c41a" : "#595959", fontWeight: "500", fontSize: "0.9rem"}}>
 									<span style={{fontSize: "0.95rem", fontWeight: "500"}}>
 										{t("signup.form.label.username")}: <span style={{fontWeight: "bold"}}>{generatedUsername}</span>
 									</span>
 								</span>
 							}
                         </div>
+                        {usernameChecking && (
+                            <Alert
+                                type="info"
+                                message={t("signup.error.usernameChecking")}
+                                showIcon
+                                style={{marginTop: "0.5rem"}}
+                            />
+                        )}
+                        {usernameAvailable === false && (
+                            <Alert
+                                type="error"
+                                message={t(usernameCheckFailed ? "signup.error.usernameCheckFailed" : "signup.error.usernameTaken")}
+                                showIcon
+                                style={{marginTop: "0.5rem"}}
+                            />
+                        )}
                     </Form.Item>)}
 
                 <Form.Item
@@ -462,6 +503,18 @@ const CreateStudent = () => {
             return;
         }
 
+        if (!generatedUsername || usernameAvailable !== true) {
+            setMessage({
+                error: {
+                    message: t(usernameChecking
+                        ? "signup.error.usernameChecking"
+                        : (usernameCheckFailed ? "signup.error.usernameCheckFailed" : "signup.error.usernameTaken"))
+                }
+            });
+            setCurrentStep(0);
+            return;
+        }
+
         let {
             name,
             lastName,
@@ -516,6 +569,7 @@ const CreateStudent = () => {
         const payload = {
             name,
             lastName,
+            username: generatedUsername,
             age,
             sex,
             birthDate,
@@ -550,6 +604,14 @@ const CreateStudent = () => {
         if (response?.ok) {
             navigate("/teachers/classrooms/" + classroomName);
         } else {
+            if (response.status === 409) {
+                setUsernameAvailable(false);
+                setUsernameChecking(false);
+                setUsernameCheckFailed(false);
+                setMessage({error: {message: t("signup.error.usernameTaken")}});
+                setCurrentStep(0);
+                return;
+            }
             let jsonData = await response?.json();
             setMessage({error: jsonData?.error || {type: "unknownError", message: t("signup.form.unknownError")}});
         }

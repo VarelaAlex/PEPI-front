@@ -146,6 +146,9 @@ signup:
       repeated: There is already an account with this email
     name: Please enter your name
     lastName: Please enter your last name
+    usernameTaken: This username is already in use. Change the student's name to generate another.
+    usernameCheckFailed: The username could not be checked. Please try again.
+    usernameChecking: Checking username availability...
     age: Please enter your age
     sex: Please select your sex
     birthDate: Please enter your birth date
@@ -1239,6 +1242,7 @@ sentenceWords:
   mammal: a mammal
   isIn: is in
   sea: the sea
+  seaStandalone: The sea
   house: The house
   isFor: is for
   living: living

@@ -51,7 +51,10 @@ const DropZone = ({zone, placedWord, onDrop, canDropHere}) => {
 const SentenceNetworkSequential = ({updateUnlockedPhase}) => {
     const {t} = useTranslation();
     const navigate = useNavigate();
-    const getWordText = (wordData) => t(`sentenceWords.${wordData.audio}`, {defaultValue: wordData.text || ""});
+    const getWordText = (wordData, standalone = false) => {
+    const key = standalone ? `sentenceWords.${wordData.audio}Standalone` : `sentenceWords.${wordData.audio}`;
+    return t(key, {defaultValue: wordData.text || ""});
+};
 
     let play = usePlayAudio();
     const audioRef = useRef(null);
@@ -323,7 +326,7 @@ const SentenceNetworkSequential = ({updateUnlockedPhase}) => {
                             {sentence.phrase.map((wordData, wordIdx) => {
                                 const wordKey = getWordKey(sentenceIdx, wordIdx);
                                 const isPlaced = isWordPlaced(sentenceIdx, wordIdx);
-                                const localizedWordData = {...wordData, text: getWordText(wordData)};
+                                const localizedWordData = {...wordData, text: getWordText(wordData, wordIdx === 0)};
 
                                 if (isPlaced) {
                                     return <StaticWord key={wordKey} wordData={localizedWordData}/>;

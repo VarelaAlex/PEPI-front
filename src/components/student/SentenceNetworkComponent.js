@@ -104,7 +104,10 @@ const SentenceNetwork = () => {
         return pairs.flat();
     }, []); // run once on mount
 
-    const getWordText = (wordData) => t(`sentenceWords.${wordData.audio}`, {defaultValue: wordData.text || ""});
+    const getWordText = (wordData, standalone = false) => {
+    const key = standalone ? `sentenceWords.${wordData.audio}Standalone` : `sentenceWords.${wordData.audio}`;
+    return t(key, {defaultValue: wordData.text || ""});
+};
 
     // fijas que solicitaste (siempre las mismas)
     const leftFixed = [{
@@ -392,12 +395,12 @@ const SentenceNetwork = () => {
                             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
                         }}>
                             <AntdImage src={currentSentences[0].phrase[0].image}
-                                       alt={getWordText(currentSentences[0].phrase[0])}
+                                       alt={getWordText(currentSentences[0].phrase[0], true)}
                                        style={{width: 60, height: 60, objectFit: 'contain', marginBottom: 4}}
                                        preview={false}/>
                             <div style={{
                                 fontFamily: 'Massallera', fontSize: 15
-                            }}>{getWordText(currentSentences[0].phrase[0])}</div>
+                            }}>{getWordText(currentSentences[0].phrase[0], true)}</div>
                         </div>
                     </foreignObject>
 

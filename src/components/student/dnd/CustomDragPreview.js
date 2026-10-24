@@ -33,13 +33,13 @@ export const CustomDragPreview = () => {
                 <Col>
                     <AntdImage
                         src={item.image}
-                        alt={item.word}
+                        alt={item.label ?? item.word}
                         style={{width: 50, height: 50, objectFit: 'contain', marginBottom: 4}}
                         preview={false}
                     />
                 </Col>
             </Row>)}
-            {item.word}
+            {item.label ?? item.word}
         </Card>
     </div>);
 };

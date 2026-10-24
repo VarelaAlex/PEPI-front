@@ -146,6 +146,9 @@ signup:
       repeated: Ya existe una cuenta con este correo electrónico
     name: Por favor, ingrese el nombre
     lastName: Por favor, ingrese los apellidos
+    usernameTaken: Este nombre de usuario ya está en uso. Cambie el nombre del alumno para generar otro.
+    usernameCheckFailed: No se pudo comprobar el nombre de usuario. Inténtelo de nuevo.
+    usernameChecking: Comprobando disponibilidad del nombre de usuario...
     age: Por favor, ingrese la edad
     sex: Por favor, seleccione el sexo
     birthDate: Por favor, ingrese la fecha de nacimiento
@@ -1239,6 +1242,7 @@ sentenceWords:
   mammal: un mamífero
   isIn: está en
   sea: el mar
+  seaStandalone: El mar
   house: La casa
   isFor: es para
   living: vivir

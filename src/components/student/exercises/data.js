@@ -64,9 +64,9 @@ export const baseSentences = [{
         phrase: [{
             text: "El sol", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7252`, audio: ("sun")
         }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
-            text: "el cielo", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6978`, audio: ("sunbathing")
+            text: "el cielo", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6978`, audio: ("sky")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
-        audio: ("sun-sunbathing")
+        audio: ("sun-sky")
     }, {
         id: 9,
         phrase: [{

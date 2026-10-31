@@ -21,26 +21,28 @@ export default function AudioPermissionModal() {
             getContainer={false}
             style={{ zIndex: 999999 }}
         >
-            <h2 style={{ fontSize: "1.4rem", marginBottom: "1rem" }}>
-                Permiso para reproducir audio
-            </h2>
+            <div data-nosnippet>
+                <h2 style={{ fontSize: "1.4rem", marginBottom: "1rem" }}>
+                    Permiso para reproducir audio
+                </h2>
 
-            <p style={{ marginBottom: "1.5rem" }}>
-                Esta aplicación reproduce audio dividido en varias pistas.
-                ¿Permites la reproducción automática?
-            </p>
+                <p style={{ marginBottom: "1.5rem" }}>
+                    Esta aplicación reproduce audio dividido en varias pistas.
+                    ¿Permites la reproducción automática?
+                </p>
 
-            <Button
-                type="primary"
-                size="large"
-                style={{ width: "100%" }}
-                onClick={()=>{
-                    localStorage.setItem("audioPermission", "true");
-                    setOpen(false);
-                }}
-            >
-                Aceptar
-            </Button>
+                <Button
+                    type="primary"
+                    size="large"
+                    style={{ width: "100%" }}
+                    onClick={()=>{
+                        localStorage.setItem("audioPermission", "true");
+                        setOpen(false);
+                    }}
+                >
+                    Aceptar
+                </Button>
+            </div>
         </Modal>
     );
 }

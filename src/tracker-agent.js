@@ -33,7 +33,7 @@ const COMPONENT_OPTION = 3;
 const COMPONENT_RADIO_BUTTON = 4;
 const COMPONENT_CHECK_BOX = 5;
 
-const idExperiment = 4;
+const idExperiment = 12;
 
 /**
  * localStorage key for this experiment's session ID, scoped per experiment.
@@ -1402,5 +1402,5 @@ async function postAJAXDemographicData(parametros) {
 }
 
 /* --- Demographic data functions --- */
-export function registerid(value) { postNumberDD(6, value); }
+export function registerID(value) { postStringDD(57, value); }
 

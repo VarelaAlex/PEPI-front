@@ -125,7 +125,11 @@ let ClassroomDetail = (props) => {
 
         let jsonData = await response?.json();
         if (response?.ok) {
-
+            setStudents(currentStudents => currentStudents.map(student =>
+                student.id === studentId
+                    ? {...student, avatarEnabled: value ? 1 : 0}
+                    : student
+            ));
         } else {
             setMessage({ error: jsonData?.error });
         }
@@ -247,7 +251,7 @@ let ClassroomDetail = (props) => {
                 <Space wrap>
                     <Space>
                         <Typography.Text>Mostrar avatar</Typography.Text>
-                        <Switch size="small" defaultChecked={student.avatarEnabled===1} onChange={(checked)=>handleChange(checked, student.id)} />
+                        <Switch size="small" checked={student.avatarEnabled===1} onChange={(checked)=>handleChange(checked, student.id)} />
                     </Space>
                     {student.surveyCompleted ? (
                         <Space size="small">

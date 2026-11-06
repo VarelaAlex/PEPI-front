@@ -16,6 +16,7 @@ import { usePlayAudio } from "../../hooks/usePlayAudio";
 import CounterBadge from "./CounterBadgeComponent";
 import useCounter from "../../hooks/useCounter";
 import {useVisualViewportHeight} from "../../hooks/useVisualViewportHeight";
+import localTimestamp from "../../utils/localTimestamp";
 
 let TypePhase2 = () => {
 
@@ -136,7 +137,7 @@ let TypePhase2 = () => {
 									elapsedTime: (
 										endTime - startTime.current
 									) / 1000
-								}, title: exercise.title, representation: exercise.representation, networkType: exercise.networkType, trainingMode: trainingMode, date: Date.now(), avatarVisible: visible
+								}, title: exercise.title, representation: exercise.representation, networkType: exercise.networkType, trainingMode: trainingMode, date: localTimestamp(), avatarVisible: visible
 							});
 							setShowGif(true);
 							setTimer(setTimeout(async () => {

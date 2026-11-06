@@ -19,6 +19,7 @@ import { executeWithProbability } from "../../services/executeWithProbability";
 import GifComponent from "../GifComponent";
 import CounterBadge from "./CounterBadgeComponent";
 import useCounter from "../../hooks/useCounter";
+import localTimestamp from "../../utils/localTimestamp";
 
 let DnDPhase2 = () => {
 
@@ -440,7 +441,7 @@ let DnDPhase2 = () => {
                 representation: exercise.representation,
                 networkType: exercise.networkType,
                 trainingMode: trainingMode,
-                date: Date.now(),
+                date: localTimestamp(),
                 avatarVisible: visible
             });
             let phrases = [

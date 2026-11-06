@@ -16,6 +16,8 @@
  *   Las claves se localizan por patrón, así que no hay que copiar el idExperiment.
  */
 
+import localTimestamp from "./utils/localTimestamp";
+
 export const COMPONENT_TEXT_FIELD = 1;
 export const COMPONENT_COMBOBOX = 2;
 export const COMPONENT_OPTION = 3;
@@ -63,7 +65,7 @@ function clearSessionIds() {
  * porque el timestamp cambia en cada llamada.
  */
 export function buildSceneId(trainingMode, exercise, phase) {
-    const ts = new Date().toISOString().replace(/[-:T.Z]/g, "").slice(0, 14);
+    const ts = new Date(localTimestamp()).toISOString().replace(/[-:T.Z]/g, "").slice(0, 14);
     const safe = (s) => String(s ?? "").replace(/[^\w-]+/g, "_");
     return `${ts}_${safe(trainingMode)}_${safe(exercise.title)}_${safe(exercise.representation)}_${safe(exercise.networkType)}.${phase}`;
 }
@@ -73,7 +75,7 @@ export function buildSceneId(trainingMode, exercise, phase) {
  * Ej.: buildActivitySceneId("phrases", "1-3") -> "20261106142500_phrases.1-3"
  */
 export function buildActivitySceneId(name, phase) {
-    const ts = new Date().toISOString().replace(/[-:T.Z]/g, "").slice(0, 14);
+    const ts = new Date(localTimestamp()).toISOString().replace(/[-:T.Z]/g, "").slice(0, 14);
     const safe = (s) => String(s ?? "").replace(/[^\w-]+/g, "_");
     return `${ts}_${safe(name)}.${safe(phase)}`;
 }

@@ -6,11 +6,13 @@ import {Bar} from "react-chartjs-2";
 import {useTranslation} from "react-i18next";
 import {useParams} from "react-router-dom";
 import TeacherBreadcrumb from "./BreadcrumbComponent";
+import FeedbackExportButton from "./FeedbackExportButton";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
-let ClassroomStatistics = ({classroomId}) => {
+let ClassroomStatistics = () => {
     let {classroomName} = useParams();
+    const [resolvedClassroomId, setResolvedClassroomId] = useState();
     const [chartDataFree, setChartDataFree] = useState({});
     const [chartDataRuled, setChartDataRuled] = useState({});
     const [totalFree, setTotalFree] = useState(0);
@@ -18,9 +20,29 @@ let ClassroomStatistics = ({classroomId}) => {
     let {t} = useTranslation();
 
     useEffect(() => {
+        setResolvedClassroomId(undefined);
+        if (!classroomName) return;
+
+        const loadClassroomId = async () => {
+            try {
+                const response = await fetch(`${process.env.REACT_APP_USERS_SERVICE_URL}/classrooms/list`, {
+                    headers: {Authorization: `Bearer ${localStorage.getItem("accessToken")}`}
+                });
+                if (!response.ok) return;
+                const classrooms = await response.json();
+                setResolvedClassroomId(classrooms.find(classroom => classroom.name === classroomName)?.id);
+            } catch (error) {
+                console.error("Error fetching classroom:", error);
+            }
+        };
+        loadClassroomId();
+    }, [classroomName]);
+
+    useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_EXERCISES_SERVICE_URL}/statistics/classroom/${classroomId}`);
+                if (!resolvedClassroomId) return;
+                const response = await fetch(`${process.env.REACT_APP_EXERCISES_SERVICE_URL}/statistics/classroom/${resolvedClassroomId}`);
                 const data = await response.json();
 
                 if (data && data.groupedData) {
@@ -113,7 +135,7 @@ let ClassroomStatistics = ({classroomId}) => {
         };
 
         fetchData();
-    }, [classroomId, t]);
+    }, [resolvedClassroomId, t]);
 
     let {Title} = Typography;
     return (
@@ -122,6 +144,7 @@ let ClassroomStatistics = ({classroomId}) => {
                 <TeacherBreadcrumb/>
             </div>
             <Card style={{width: "95vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh", marginBottom: "2vh"}} title={<Title>{classroomName}</Title>}>
+                <FeedbackExportButton scope="classroom" id={resolvedClassroomId} name={classroomName}/>
                 <h2>{t("studentStats.numberOfExercises")}: {totalFree + totalRuled}</h2>
                 <Row gutter={[40, 24]} style={{marginTop: "2rem"}}>
                     <Col xs={24} lg={12}>

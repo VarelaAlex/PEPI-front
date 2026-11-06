@@ -611,6 +611,10 @@ classroomStats:
   ruled:
     title: Closed Mode
     number: Number of error in closed mode
+feedbackExport:
+  button: Download feedback Excel
+  empty: There is no feedback data to download.
+  error: Feedback could not be downloaded. Please try again.
 studentStats:
   titleIconic: ICONIC Type errors
   titleMixed: MIXED Type errors

@@ -8,7 +8,7 @@ import TeacherBreadcrumb from "./BreadcrumbComponent";
 
 let ClassroomsList = (props) => {
 
-    let {isMobile, setClassroomId} = props;
+    let {isMobile} = props;
 
     let [loading, setLoading] = useState(true);
     let [classrooms, setClassrooms] = useState([]);
@@ -133,7 +133,6 @@ let ClassroomsList = (props) => {
                         size="small"
                         block
                         onClick={() => {
-                            setClassroomId(classroom.id);
                             navigate("/teachers/classroomStats/" + classroom.name);
                         }}
                         icon={<LineChartOutlined />}
@@ -188,7 +187,6 @@ let ClassroomsList = (props) => {
                     <Button
                         size="small"
                         onClick={() => {
-                            setClassroomId(classroom.id);
                             navigate("/teachers/classroomStats/" + name);
                         }}
                         icon={<LineChartOutlined/>}

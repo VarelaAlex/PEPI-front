@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import {useParams} from 'react-router-dom';
 import {Card, Typography} from 'antd';
 import TeacherBreadcrumb from './BreadcrumbComponent';
+import FeedbackExportButton from "./FeedbackExportButton";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
@@ -196,6 +197,7 @@ let StudentStatistics = ({studentName}) => {
             </div>
             <div style={{width: "95vw", marginLeft: "auto", marginRight: "auto", marginTop: "2vh", marginBottom: "2vh"}}>
                 <Card title={<Title>{studentName}</Title>}>
+                    <FeedbackExportButton scope="student" id={studentId} name={studentName}/>
                     <h2>{t("studentStats.numberOfExercises")}: {totalFeedbacks}</h2>
 
                     {/* ICONIC */}
@@ -256,6 +258,5 @@ let StudentStatistics = ({studentName}) => {
 };
 
 export default StudentStatistics;
-
 
 

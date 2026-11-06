@@ -611,6 +611,10 @@ classroomStats:
   ruled:
     title: Modo Cerrado
     number: Número de errores en modo cerrado
+feedbackExport:
+  button: Descargar feedback Excel
+  empty: No hay datos de feedback para descargar.
+  error: No se pudo descargar el feedback. Inténtalo de nuevo.
 studentStats:
   titleIconic: Errores de tipo ICÓNICA
   titleMixed: Errores de tipo COMBINADA

@@ -1,6 +1,6 @@
 import {Col, Row, Card} from "antd";
 import {HomeOutlined} from "@ant-design/icons";
-import React, {useEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {MultiBackend} from "react-dnd-multi-backend";
 import {useNavigate, useParams} from "react-router-dom";
@@ -15,7 +15,8 @@ import {usePretraining} from "../../hooks/usePretraining";
 import {useAvatar} from "../AvatarContext";
 import {NEUTRAL, NEUTRAL_SPEAKING} from "../Avatar";
 import {usePlayAudio} from "../../hooks/usePlayAudio";
-import {exercises} from "./exercises/data";
+import { exercises } from "./exercises/data";
+import { buildActivitySceneId, finishSubsceneTracking, setupSceneTracking } from "../../tracker";
 
 function shuffledArray(arr) {
     const a = [...arr];
@@ -70,6 +71,8 @@ export default function PhrasesActivity() {
     };
 
     useEffect(() => {
+        const sceneId = buildActivitySceneId("phrases", activity);
+        setupSceneTracking(sceneId, []);
         playIntro();
 
         const resetTimeout = () => {
@@ -85,6 +88,7 @@ export default function PhrasesActivity() {
 
         return () => {
             clearTimeout(timeoutRef.current);
+            finishSubsceneTracking();
             events.forEach(e => window.removeEventListener(e, resetTimeout));
         };
     }, []);
@@ -184,7 +188,7 @@ export default function PhrasesActivity() {
 
         if (!completed) return;
 
-        setTimeout(() => {
+        setTimeout(async () => {
             setCompletedCount(c => c + 1);
 
             if (completedCount + 1 < 5) {
@@ -193,7 +197,7 @@ export default function PhrasesActivity() {
                 if (parseInt(activity) + 2 >= maxUnlockedRef.current) {
                     updateUnlockedPhase(maxUnlockedRef.current + 1);
                 }
-
+                await finishSubsceneTracking();
                 navigate(
                     activity === "1"
                         ? "/students/pretraining/block/2/activity/2"
@@ -219,7 +223,8 @@ export default function PhrasesActivity() {
                         playHelp={() => playAudio("phraseActivityHelp")}
                     />
                 </div>
-                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
+                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={async () => {
+                    await finishSubsceneTracking();
                     navigate("/students/pretraining/");
                 }}/>
             </div>

@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
 import {Card, Image as AntdImage} from 'antd';
 import {HomeOutlined} from '@ant-design/icons';
 import {DndProvider, useDrop} from 'react-dnd';
@@ -15,7 +15,8 @@ import {baseSentences} from "./exercises/data";
 import '../assets/styles/font.css';
 import {useAvatar} from "../AvatarContext";
 import {NEUTRAL, NEUTRAL_SPEAKING} from "../Avatar";
-import {usePlayAudio} from "../../hooks/usePlayAudio";
+import { usePlayAudio } from "../../hooks/usePlayAudio";
+import { buildActivitySceneId, finishSubsceneTracking, setupSceneTracking } from "../../tracker";
 
 const ItemTypes = {WORD: 'word'};
 
@@ -176,6 +177,8 @@ const SentenceNetwork = () => {
 
     let {changeEmotionSequence} = useAvatar();
     useEffect(() => {
+        const sceneId = buildActivitySceneId("sentenceNetwork", "1");
+        setupSceneTracking(sceneId, []);
         changeEmotionSequence([{
             emotionDuring: NEUTRAL_SPEAKING,
             emotionAfter: NEUTRAL,
@@ -193,6 +196,7 @@ const SentenceNetwork = () => {
                 }, 300);
             }
         }]);
+        return () => { finishSubsceneTracking(); };
     }, []);
 
     // ...existing code...
@@ -273,7 +277,10 @@ const SentenceNetwork = () => {
                     .then(() => console.log("Fase desbloqueada actualizada"))
                     .catch((err) => console.error(err));
             }
-            setTimeout(() => navigate("/students/pretraining/block/3/activity/2"), 1200);
+            setTimeout(async () => {
+                await finishSubsceneTracking();
+                navigate("/students/pretraining/block/3/activity/2");
+            }, 1200);
         }
     }, [completedPairs, updateUnlockedPhase, navigate]);
 
@@ -281,7 +288,11 @@ const SentenceNetwork = () => {
         const nextPairStart = currentPairIndex + 2;
         if (nextPairStart >= shuffledSentences.length - 1) {
             // if not more pairs, navigate as before (keep the same route)
-            setTimeout(() => navigate("/students/pretraining/block/3/activity/2"), 1200);
+            setTimeout(async () =>
+            {
+                await finishSubsceneTracking();
+                navigate("/students/pretraining/block/3/activity/2");
+            }, 1200);
         } else {
             setPlacedLinks({left: null, right: null});
             setShowNetwork(false);
@@ -327,7 +338,8 @@ const SentenceNetwork = () => {
                         playHelp={() => play(("sentenceActivity1Help"))}
                     />
                 </div>
-                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
+                <HomeOutlined style={{ fontSize: "45px", cursor: "pointer", paddingLeft: "20px" }} onClick={async () => {
+                    await finishSubsceneTracking();
                     navigate("/students/pretraining/");
                 }}/>
             </div>

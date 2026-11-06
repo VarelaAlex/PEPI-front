@@ -3,7 +3,7 @@ import { Button, Card, Input, Form, Alert } from "antd";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSession } from '../SessionComponent';
-import { registerStudentId, startExperiment } from "../../tracker";
+import { startExperiment } from "../../tracker";
 import { useAvatar } from "../AvatarContext";
 import useFullscreen from "../../hooks/useFullscreen"
 
@@ -56,8 +56,7 @@ let LoginStudent = () => {
             localStorage.setItem("name", jsonData.name);
             localStorage.setItem("role", "S");
             setLogin(true);
-            await startExperiment();
-            await registerStudentId(jsonData.id);
+            await startExperiment(jsonData.id);
             navigate("/students/selectMode");
         } else {
             setMessage({ error: jsonData?.error });

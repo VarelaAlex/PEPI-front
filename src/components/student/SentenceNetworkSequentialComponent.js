@@ -14,7 +14,8 @@ import {sentences} from "./exercises/data";
 import {useNavigate} from 'react-router-dom';
 import {useAvatar} from "../AvatarContext";
 import {NEUTRAL, NEUTRAL_SPEAKING} from "../Avatar";
-import {usePlayAudio} from "../../hooks/usePlayAudio";
+import { usePlayAudio } from "../../hooks/usePlayAudio";
+import { buildActivitySceneId, finishSubsceneTracking, setupSceneTracking } from "../../tracker";
 
 const ItemTypes = {WORD: 'word'};
 
@@ -116,7 +117,8 @@ const SentenceNetworkSequential = ({updateUnlockedPhase}) => {
 
     let {changeEmotionSequence} = useAvatar();
     useEffect(() => {
-
+        const sceneId = buildActivitySceneId("sentenceNetwork", "2");
+        setupSceneTracking(sceneId, []);
         changeEmotionSequence([{
             emotionDuring: NEUTRAL_SPEAKING,
             emotionAfter: NEUTRAL,
@@ -135,6 +137,7 @@ const SentenceNetworkSequential = ({updateUnlockedPhase}) => {
                 }, 300);
             }
         }]);
+        return () => { finishSubsceneTracking(); };
     }, []);
 
     useEffect(() => {
@@ -211,7 +214,8 @@ const SentenceNetworkSequential = ({updateUnlockedPhase}) => {
                                 emotionAfter: NEUTRAL,
                                 text: selectedPhrase,
                                 audio: `preparation-end${audioIndex}`,
-                                onEnd: () => {
+                                onEnd: async () => {
+                                    await finishSubsceneTracking();
                                     navigate('/students/selectMode')
                                 },
                                 afterDelay: 100
@@ -310,7 +314,8 @@ const SentenceNetworkSequential = ({updateUnlockedPhase}) => {
                         content={t("sentenceNetworkSequentialActivity.instructions.listenAndPlace")}
                         playHelp={() => playAudioSequentially(audioHelpRef.current)}/>
                 </div>
-                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
+                <HomeOutlined style={{ fontSize: "45px", cursor: "pointer", paddingLeft: "20px" }} onClick={async () => {
+                    await finishSubsceneTracking();
                     navigate("/students/pretraining/");
                 }}/>
             </div>

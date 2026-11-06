@@ -1,6 +1,6 @@
 import {Card, Col, Row} from "antd";
 import {HomeOutlined} from "@ant-design/icons";
-import React, {useEffect, useMemo, useRef, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {MultiBackend} from "dnd-multi-backend";
 import {useNavigate, useParams} from "react-router-dom";
@@ -15,7 +15,8 @@ import {useTranslation} from "react-i18next";
 import { usePretraining } from "../../hooks/usePretraining";
 import {useAvatar} from "../AvatarContext";
 import {NEUTRAL, NEUTRAL_SPEAKING} from "../Avatar";
-import {usePlayAudio} from "../../hooks/usePlayAudio";
+import { usePlayAudio } from "../../hooks/usePlayAudio";
+import { buildActivitySceneId, finishSubsceneTracking, setupSceneTracking } from "../../tracker";
 
 let pictograms = [{
     activity: "1",
@@ -65,6 +66,8 @@ let PictogramActivity = () => {
 
     let { changeEmotionSequence } =  useAvatar();
     useEffect(() => {
+        const sceneId = buildActivitySceneId("pictogram", activity);
+        setupSceneTracking(sceneId, []);
         const introSequence = {
             "1": [{
                 emotionDuring: NEUTRAL_SPEAKING,
@@ -145,6 +148,7 @@ let PictogramActivity = () => {
         };
 
         changeEmotionSequence(introSequence[activity] || introSequence["1"]);
+        return () => { finishSubsceneTracking(); };
     }, []);
 
     let pictogramRefs = useRef({});
@@ -231,7 +235,7 @@ let PictogramActivity = () => {
 
             successStreakRef.current++;
 
-            setTimeout(() => {
+            setTimeout(async () => {
                 setDroppedPictogram(null);
                 setHiddenId(null);
 
@@ -245,9 +249,11 @@ let PictogramActivity = () => {
                     }
 
                     if (activity === "1") {
+                        await finishSubsceneTracking();
                         navigate("/students/pretraining/block/1/activity/2");
                         return;
                     } else {
+                        await finishSubsceneTracking();
                         navigate("/students/pretraining/block/2/activity/1");
                         return;
                     }
@@ -330,7 +336,8 @@ let PictogramActivity = () => {
                     <ActivityToolsComponent content={t("pictogramActivity.instructions.listenAndDrop")}
                                             playHelp={()=>playAudio(audioHelpRef.current)}/>
                 </div>
-                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
+                <HomeOutlined style={{ fontSize: "45px", cursor: "pointer", paddingLeft: "20px" }} onClick={async () => {
+                    await finishSubsceneTracking();
                     navigate("/students/pretraining/");
                 }}/>
             </div>

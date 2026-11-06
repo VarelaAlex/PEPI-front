@@ -1,7 +1,7 @@
 import {HomeOutlined, ReloadOutlined} from "@ant-design/icons";
 import {DndContext, MouseSensor, TouchSensor, useSensor, useSensors} from "@dnd-kit/core";
 import {Card, Col, Divider, Flex, Row} from "antd";
-import React, {useEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {usePlayAudio} from "../../hooks/usePlayAudio";
 import {buildSceneId, finishSubsceneTracking, setupSceneTracking} from "../../tracker";
@@ -58,8 +58,8 @@ let DnDPhase1 = () => {
     let playAudio = usePlayAudio();
 
     useEffect(() => {
-        const sceneId = buildSceneId(exercise, "phase1");
-        setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((node) => node.id));
+        const sceneId = buildSceneId(trainingMode, exercise, "phase1");
+        setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((n) => n.id));
 
         // Function to scroll the page
         const hideHeader = () => {
@@ -71,6 +71,7 @@ let DnDPhase1 = () => {
 
         // Scroll on component mount
         hideHeader();
+        return () => { finishSubsceneTracking(); };
     }, []);
 
     let startTime = useRef(Date.now());
@@ -483,14 +484,15 @@ let DnDPhase1 = () => {
                     setFeedback({});
                     setCounter(extendedNodes.length);
                 }}/>
-                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
+            <HomeOutlined style={{ fontSize: "45px", cursor: "pointer", paddingLeft: "20px" }} onClick={async () => {
+                    clearTimeout(timer);
+                    await finishSubsceneTracking();
                     setExercise(undefined);
                     setExtendedNodes(undefined);
                     setDroppableNodes(undefined);
                     startTime.current = undefined;
                     setCurrent(undefined);
                     setFeedback(undefined);
-                    clearTimeout(timer);
                     navigate(`/students/exercises/${trainingMode}`);
                 }}/>
             </div>

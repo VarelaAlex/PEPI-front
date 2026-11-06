@@ -49,6 +49,7 @@ import InteractionBlocker from "./components/InteractionBlockerComponent";
 import EditExercise from "./components/teacher/EditExerciseComponent";
 import TeacherHelpButton from "./components/TeacherHelpButtonComponent";
 import { usePullToRefreshBlocker } from "./hooks/usePullToRefreshBlocker";
+import { endSession, finishSubsceneTracking, isTrackingActive } from "./tracker";
 
 let App = () => {
 
@@ -71,8 +72,10 @@ let App = () => {
 	const { isBusy } = useAvatar();
 	let { Content, Footer } = Layout;
 
-	let disconnect = useCallback(() => {
+	let disconnect = useCallback(async () => {
 		logout();
+		const tracking = isTrackingActive();
+    	if (tracking) await finishSubsceneTracking();
 		localStorage.removeItem("accessToken");
 		localStorage.removeItem("refreshToken");
 		localStorage.removeItem("name");
@@ -89,6 +92,7 @@ let App = () => {
 		hideAvatar();
 		disableVoice();
 		exitFullscreen();
+		if (tracking) endSession("/selectRole"); 
 	}, [setExercise, setFeedback, setLogin]);
 
 	let logout = async () => {
@@ -130,7 +134,12 @@ let App = () => {
 		},
 		{
 			key: "menuDisconnect",
-			label: <Link to="/selectRole" onClick={disconnect}>{t("sider.disconnect")}</Link>,
+			label: <Link to="/selectRole" onClick={async (e) => {
+				if (isTrackingActive()) e.preventDefault();
+				await disconnect();
+			}}>
+				{t("sider.disconnect")}
+			</Link>,
 			danger: true,
 			icon: <LogoutOutlined />
 		}

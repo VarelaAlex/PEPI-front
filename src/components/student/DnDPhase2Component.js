@@ -1,14 +1,14 @@
 import { HomeOutlined, ReloadOutlined } from "@ant-design/icons";
 import { DndContext, DragOverlay, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { Card, Col, Divider, Flex, Row } from "antd";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSession } from "../SessionComponent";
 import DraggablePhase2 from "./DraggablePhase2Component";
 import DroppablePhase2 from "./DroppablePhase2Component";
 import { nexusX, nodes, pathBottom, pathBottom2, pathTop, stopX, viewBoxWidth, X, Y } from "./NetworkProps";
 import "../assets/fonts/massallera.TTF";
-import { buildSceneId, finishExperiment, finishSubsceneTracking, setupSceneTracking } from "../../tracker";
+import { buildSceneId, finishSubsceneTracking, setupSceneTracking } from "../../tracker";
 import { useExerciseProgressUpdater } from "../../hooks/useExerciseProgressUpdater";
 import { usePlayAudio } from "../../hooks/usePlayAudio";
 import { LOVE_SPEAKING, NEUTRAL, NEUTRAL_SPEAKING, WORRIED_SPEAKING } from "../Avatar";
@@ -34,8 +34,9 @@ let DnDPhase2 = () => {
     let exerciseNodes = nodes(exercise);
 
     useEffect(() => {
-        const sceneId = buildSceneId(exercise, "phase2");
-        setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((node) => node.id));
+        const sceneId = buildSceneId(trainingMode, exercise, "phase2");
+        setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((n) => n.id));
+        return () => { finishSubsceneTracking(); };
     }, []);
 
     useEffect(() => {
@@ -459,7 +460,6 @@ let DnDPhase2 = () => {
             setShowGif(true);
             setTimer(setTimeout(async () => {
                 setShowGif(false);
-                finishExperiment();
                 await finishSubsceneTracking();
                 if (trainingMode.toUpperCase() === TRAINING_MODES.RULED) {
                     updateExerciseProgress(exercise.index).then(() => {
@@ -640,14 +640,15 @@ let DnDPhase2 = () => {
                 setPlacedCount({});
                 setCounter(extendedNodes.length);
             }} />
-            <HomeOutlined style={{ fontSize: "45px", cursor: "pointer", paddingLeft: "20px" }} onClick={() => {
+            <HomeOutlined style={{ fontSize: "45px", cursor: "pointer", paddingLeft: "20px" }} onClick={async () => {
+                clearTimeout(timer);
+                await finishSubsceneTracking();
                 setExercise(undefined);
                 setExtendedNodes(undefined);
                 setDroppableNodes(undefined);
                 startTime.current = undefined;
                 setCurrent(undefined);
                 setFeedback(undefined);
-                clearTimeout(timer);
                 navigate(`/students/exercises/${trainingMode}`);
             }} />
         </div>

@@ -1,11 +1,11 @@
 import { HomeOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Card, Col, Divider, Flex, Input, Row } from "antd";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSession } from "../SessionComponent";
 import { nexusX, nodes, pathBottom, pathBottom2, pathTop, stopX, viewBoxWidth, X, Y } from "./NetworkProps";
-import { buildSceneId, finishExperiment, finishSubsceneTracking, setupSceneTracking } from "../../tracker";
+import { buildSceneId, finishSubsceneTracking, setupSceneTracking } from "../../tracker";
 import { useExerciseProgressUpdater } from "../../hooks/useExerciseProgressUpdater";
 import { getNextExercise } from "../../services/getNextExercise";
 import { TRAINING_MODES } from "../../Globals";
@@ -33,8 +33,9 @@ let TypePhase2 = () => {
 	let { visible, changeEmotionSequence } = useAvatar();
 
 	useEffect(() => {
-		const sceneId = buildSceneId(exercise, "phase2");
-		setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((node) => node.id));
+		const sceneId = buildSceneId(trainingMode, exercise, "phase2");
+		setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((n) => n.id));
+		return () => { finishSubsceneTracking(); };
 	}, []);
 
 	useEffect(() => {
@@ -140,7 +141,6 @@ let TypePhase2 = () => {
 							setShowGif(true);
 							setTimer(setTimeout(async () => {
 								setShowGif(false);
-								finishExperiment();
 								await finishSubsceneTracking();
 								if (trainingMode.toUpperCase() === TRAINING_MODES.RULED) {
 									updateExerciseProgress(exercise.index).then(() => {
@@ -286,7 +286,9 @@ let TypePhase2 = () => {
 					setFeedback({ phase1: { ...feedback.phase1 } });
 					setCounter(extendedNodes.length);
 				}} />
-				<HomeOutlined style={{ fontSize: "45px", cursor: "pointer", paddingLeft: "20px" }} onClick={() => {
+				<HomeOutlined style={{ fontSize: "45px", cursor: "pointer", paddingLeft: "20px" }} onClick={async () => {
+					clearTimeout(timer);
+					await finishSubsceneTracking();
 					setExercise(undefined);
 					setExtendedNodes(undefined);
 					setId(undefined);

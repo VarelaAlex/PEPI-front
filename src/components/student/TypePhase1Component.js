@@ -1,6 +1,6 @@
 import {HomeOutlined, ReloadOutlined} from "@ant-design/icons";
 import {Card, Col, Divider, Flex, Input, Row} from "antd";
-import React, {useEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useNavigate, useParams} from "react-router-dom";
 import {useSession} from "../SessionComponent";
@@ -28,8 +28,9 @@ let TypePhase1 = () => {
     let {changeEmotionSequence} = useAvatar();
 
     useEffect(() => {
-        const sceneId = buildSceneId(exercise, "phase1");
-        setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((node) => node.id));
+        const sceneId = buildSceneId(trainingMode, exercise, "phase1");
+        setupSceneTracking(sceneId, INITIAL_EXTENDED_NODES.map((n) => n.id));
+        return () => { finishSubsceneTracking(); };
     }, []);
 
     useEffect(() => {
@@ -253,7 +254,9 @@ let TypePhase1 = () => {
                     setFeedback({});
                     setCounter(extendedNodes.length);
                 }}/>
-                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={() => {
+                <HomeOutlined style={{fontSize: "45px", cursor: "pointer", paddingLeft: "20px"}} onClick={async () => {
+                    clearTimeout(timer);
+                    await finishSubsceneTracking();
                     setExercise(undefined);
                     setExtendedNodes(undefined);
                     setId(undefined);

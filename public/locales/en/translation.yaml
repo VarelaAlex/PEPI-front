@@ -34,6 +34,7 @@ sider:
   selectRole: Select a role
   about: About PEPI
   funding: Funding
+  fullscreen: Enter fullscreen
   disconnect: Disconnect
 role:
   teacher: Teacher

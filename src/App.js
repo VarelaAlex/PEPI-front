@@ -5,7 +5,7 @@ import { Layout, notification, Flex, Image, Typography } from "antd";
 import SelectRole from './components/SelectRoleComponent';
 import Header from './components/layout/HeaderComponent';
 import Sider from "./components/layout/SiderComponent";
-import { UserOutlined, InfoCircleOutlined, LogoutOutlined, FormOutlined, ExperimentOutlined, DollarOutlined } from "@ant-design/icons";
+import { UserOutlined, InfoCircleOutlined, LogoutOutlined, FormOutlined, ExperimentOutlined, DollarOutlined, FullscreenOutlined } from "@ant-design/icons";
 import ClassroomOutlined from './components/icons/ClassroomOutlined';
 import HowToDoExercises from "./components/student/HowToDoExercisesComponent";
 import PhrasesActivity from "./components/student/PhrasesActivityComponent";
@@ -55,7 +55,7 @@ let App = () => {
 
 	let { login, setLogin, setFeedback, setExercise } = useSession();
 	let { hideAvatar, disableVoice } = useAvatar();
-	let { exitFullscreen } = useFullscreen();
+	let { exitFullscreen, enterFullscreen } = useFullscreen();
 	usePullToRefreshBlocker();
 
 	const MOBILE_BREAKPOINT = 430;
@@ -225,7 +225,14 @@ let App = () => {
 			label: <Link to="/aboutEPI" onClick={() => setOpen(false)}>{t("sider.about")}</Link>,
 			danger: false,
 			icon: <InfoCircleOutlined />
-		}
+		},
+		{
+			key: "fullscreen",
+			label: t("sider.fullscreen"),
+			onClick: enterFullscreen,
+			danger: false,
+			icon: <FullscreenOutlined/>
+		}	
 	];
 
 	useEffect(() => {

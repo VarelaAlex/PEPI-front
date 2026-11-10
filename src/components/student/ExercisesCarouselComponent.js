@@ -182,7 +182,7 @@ let ExercisesCarousel = () => {
             <div style={{width: "100vw", padding: "1vw", overflow: "hidden"}}>
                 <Flex style={{position: "absolute", top: "1vmax", right: "3vmax", gap: "1rem"}}>
                     <Image
-                        src={lang.startsWith("es") ? "/icons/es.png" : "/icons/es-bw.png"}
+                        src={lang.startsWith("es") ? "/icons/es.webp" : "/icons/es-bw.webp"}
                         alt="Español"
                         width={70}
                         preview={false}
@@ -193,7 +193,7 @@ let ExercisesCarousel = () => {
                         }}
                     />
                     <Image
-                        src={lang.startsWith("en") ? "/icons/en.png" : "/icons/en-bw.png"}
+                        src={lang.startsWith("en") ? "/icons/en.webp" : "/icons/en-bw.webp"}
                         alt="English"
                         width={70}
                         preview={false}
@@ -217,7 +217,7 @@ let ExercisesCarousel = () => {
                                             alt={t(`representation.${representation.toLocaleLowerCase()}`)}
                                             draggable={false}
                                             preview={false}
-                                            src={`/representations/${representation.toLocaleLowerCase()}${selectedRepresentation === index ? "Color" : "BW"}.png`}
+                                            src={`/representations/${representation.toLocaleLowerCase()}${selectedRepresentation === index ? "Color" : "BW"}.webp`}
                                             width="6vmax"
                                             onClick={() => handleRepresentationClick(representation, index)}
                                         />
@@ -237,7 +237,7 @@ let ExercisesCarousel = () => {
                                             alt={t(`categories.${category.toLocaleLowerCase()}`)}
                                             draggable={false}
                                             preview={false}
-                                            src={`/categories/${category.toLocaleLowerCase()}${selectedImage === index ? "Color" : "BW"}.png`}
+                                            src={`/categories/${category.toLocaleLowerCase()}${selectedImage === index ? "Color" : "BW"}.webp`}
                                             width="6vmax"
                                             onClick={() => handleImageClick(category, index)}
                                         />

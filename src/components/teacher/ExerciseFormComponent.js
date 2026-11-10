@@ -59,32 +59,32 @@ const ExerciseForm = ({
         {
             value: 'is',
             label: <><Image alt={t("pictograms.is", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/is.png'/> {t("pictograms.is", {lng: selectedLanguage})}</>
+                            src='/pictograms/is.webp'/> {t("pictograms.is", {lng: selectedLanguage})}</>
         },
         {
             value: 'isFor',
             label: <><Image alt={t("pictograms.isFor", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/isFor.png'/> {t("pictograms.isFor", {lng: selectedLanguage})}</>
+                            src='/pictograms/isFor.webp'/> {t("pictograms.isFor", {lng: selectedLanguage})}</>
         },
         {
             value: 'isPartOf',
             label: <><Image alt={t("pictograms.isPartOf", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/isPartOf.png'/> {t("pictograms.isPartOf", {lng: selectedLanguage})}</>
+                            src='/pictograms/isPartOf.webp'/> {t("pictograms.isPartOf", {lng: selectedLanguage})}</>
         },
         {
             value: 'are',
             label: <><Image alt={t("pictograms.are", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/are.png'/> {t("pictograms.are", {lng: selectedLanguage})}</>
+                            src='/pictograms/are.webp'/> {t("pictograms.are", {lng: selectedLanguage})}</>
         },
         {
             value: 'areFor',
             label: <><Image alt={t("pictograms.areFor", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/areFor.png'/> {t("pictograms.areFor", {lng: selectedLanguage})}</>
+                            src='/pictograms/areFor.webp'/> {t("pictograms.areFor", {lng: selectedLanguage})}</>
         },
         {
             value: 'arePartOf',
             label: <><Image alt={t("pictograms.arePartOf", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/arePartOf.png'/> {t("pictograms.arePartOf", {lng: selectedLanguage})}</>
+                            src='/pictograms/arePartOf.webp'/> {t("pictograms.arePartOf", {lng: selectedLanguage})}</>
         }
     ];
 
@@ -92,32 +92,32 @@ const ExerciseForm = ({
         {
             value: 'has',
             label: <><Image alt={t("pictograms.has", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/has.png'/> {t("pictograms.has", {lng: selectedLanguage})}</>
+                            src='/pictograms/has.webp'/> {t("pictograms.has", {lng: selectedLanguage})}</>
         },
         {
             value: 'isUsedFor',
             label: <><Image alt={t("pictograms.isUsedFor", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/isUsedFor.png'/> {t("pictograms.isUsedFor", {lng: selectedLanguage})}</>
+                            src='/pictograms/isUsedFor.webp'/> {t("pictograms.isUsedFor", {lng: selectedLanguage})}</>
         },
         {
             value: 'isIn',
             label: <><Image alt={t("pictograms.isIn", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/isIn.png'/> {t("pictograms.isIn", {lng: selectedLanguage})}</>
+                            src='/pictograms/isIn.webp'/> {t("pictograms.isIn", {lng: selectedLanguage})}</>
         },
         {
             value: 'have',
             label: <><Image alt={t("pictograms.have", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/have.png'/> {t("pictograms.have", {lng: selectedLanguage})}</>
+                            src='/pictograms/have.webp'/> {t("pictograms.have", {lng: selectedLanguage})}</>
         },
         {
             value: 'areUsedFor',
             label: <><Image alt={t("pictograms.areUsedFor", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/areUsedFor.png'/> {t("pictograms.areUsedFor", {lng: selectedLanguage})}</>
+                            src='/pictograms/areUsedFor.webp'/> {t("pictograms.areUsedFor", {lng: selectedLanguage})}</>
         },
         {
             value: 'areIn',
             label: <><Image alt={t("pictograms.areIn", {lng: selectedLanguage})} preview={false} width={20}
-                            src='/pictograms/areIn.png'/> {t("pictograms.areIn", {lng: selectedLanguage})}</>
+                            src='/pictograms/areIn.webp'/> {t("pictograms.areIn", {lng: selectedLanguage})}</>
         }
     ];
 

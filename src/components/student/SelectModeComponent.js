@@ -85,7 +85,7 @@ let SelectMode = () => {
                      style={ { width: "40%", height: "25vh", fontSize: "5vmin" } }
                      onClick={ () => navigate("/students/pretraining") }>
                 <Flex vertical align="center" justify="space-between" gap={ 20 } style={ { paddingTop: "1vmax" } }>
-                    <Image alt={t("student.mode.pretraining")} src="/icons/crawl.png" height="13vmin" width="13vmin" preview={ false }/>
+                    <Image alt={t("student.mode.pretraining")} src="/icons/crawl.webp" height="13vmin" width="13vmin" preview={ false }/>
                     { t("student.mode.pretraining").toUpperCase() }
                 </Flex>
             </Button>
@@ -93,7 +93,7 @@ let SelectMode = () => {
                     style={ { width: "40%", height: "25vh", fontSize: "5vmin" } }
                     onClick={ () => navigate("/students/trainingMode") }>
                 <Flex vertical align="center" justify="space-between" gap={ 20 } style={ { paddingTop: "1vmax" } }>
-                    <Image alt={t("student.mode.training")} src="/icons/running.png" height="13vmin" width="13vmin" preview={ false }/>
+                    <Image alt={t("student.mode.training")} src="/icons/running.webp" height="13vmin" width="13vmin" preview={ false }/>
                     { t("student.mode.training").toUpperCase() }
                 </Flex>
             </Button>

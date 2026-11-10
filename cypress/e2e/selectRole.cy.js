@@ -32,10 +32,10 @@ describe("SelectRole Component", () => {
 		cy.get(".ant-card").eq(1).click();
 		cy.contains("Accept").click();
 		cy.get("input[id=create_exercise_definitionPictogram]").click();
-		cy.get("img[src='/pictograms/is.png']").parent().click();
+		cy.get("img[src='/pictograms/is.webp']").parent().click();
 		cy.get("input[id=create_exercise_definitionText]").type("Ejemplo");
 		cy.get("input[id=create_exercise_ampliationPictogram]").click();
-		cy.get("img[src='/pictograms/has.png']").parent().click();
+		cy.get("img[src='/pictograms/has.webp']").parent().click();
 		cy.get("input[id=create_exercise_ampliationText_I-I_ampliationText]").type("Ejemplo");
 		cy.get("button").contains("Crear ejercicio").click();
 

@@ -28,7 +28,7 @@ let DropZone = ({blinking, onDrop, forwardRef, droppedPictogram}) => {
                 >
                     <Image
                         alt={droppedPictogram.id}
-                        src={`/pictograms/${droppedPictogram.id}.png`}
+                        src={`/pictograms/${droppedPictogram.id}.webp`}
                         preview={false}
                     />
                     <div style={{fontWeight: "700", fontFamily: "Massallera"}}>
@@ -36,7 +36,7 @@ let DropZone = ({blinking, onDrop, forwardRef, droppedPictogram}) => {
                     </div>
                 </Card>
             ) : (
-                <Image src="/icons/drag.png" alt="dragzone" height="5em" preview={false} />
+                <Image src="/icons/drag.webp" alt="dragzone" height="5em" preview={false} />
             )}
         </div>
     );

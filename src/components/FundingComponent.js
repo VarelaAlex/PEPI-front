@@ -1,4 +1,3 @@
-import React from "react";
 import {Card, Flex, Image, Typography} from "antd";
 import {useTranslation} from 'react-i18next';
 
@@ -8,10 +7,10 @@ const Funding = () => {
 
     let {t} = useTranslation();
     let images = [
-        {src: "/images/ministerio.png", alt: "Ministerio de Ciencia, Innovación y Universidades"},
-        {src: "/images/UE.png", alt: "Cofinanciado por la UE"},
-        {src: "/images/agencia-investigacion.png", alt: "Agencia Estatal de Investigación"},
-        {src: "/images/adir.png", alt: "ADIR"}
+        {src: "/images/ministerio.webp", alt: "Ministerio de Ciencia, Innovación y Universidades"},
+        {src: "/images/UE.webp", alt: "Cofinanciado por la UE"},
+        {src: "/images/agencia-investigacion.webp", alt: "Agencia Estatal de Investigación"},
+        {src: "/images/adir.webp", alt: "ADIR"}
     ]
 
     return (<Card

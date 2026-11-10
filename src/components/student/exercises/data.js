@@ -4,7 +4,7 @@ export const baseSentences = [{
     id: 1,
     phrase: [{
         text: "El perro", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7202`, audio: ("dog")
-    }, {text: "es", image: "/pictograms/is.png", audio: ("is"), draggable: true}, {
+    }, {text: "es", image: "/pictograms/is.webp", audio: ("is"), draggable: true}, {
         text: "un animal", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6901`, audio: ("animal")
     }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
     audio: ("dog-animal")
@@ -12,7 +12,7 @@ export const baseSentences = [{
     id: 2,
     phrase: [{
         text: "El perro", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7202`, audio: ("dog")
-    }, {text: "tiene", image: "/pictograms/has.png", audio: ("has"), draggable: true}, {
+    }, {text: "tiene", image: "/pictograms/has.webp", audio: ("has"), draggable: true}, {
         text: "cola", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5967`, audio: ("tail")
     }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
     audio: ("dog-tail")
@@ -20,7 +20,7 @@ export const baseSentences = [{
     id: 3,
     phrase: [{
         text: "La ballena", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2268`, audio: ("whale")
-    }, {text: "es", image: "/pictograms/is.png", audio: ("is"), draggable: true}, {
+    }, {text: "es", image: "/pictograms/is.webp", audio: ("is"), draggable: true}, {
         text: "un mamífero", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7777`, audio: ("mammal")
     }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
     audio: ("whale-mammal")
@@ -28,7 +28,7 @@ export const baseSentences = [{
     id: 4,
     phrase: [{
         text: "La ballena", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2268`, audio: ("whale")
-    }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+    }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
         text: "el mar", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2925`, audio: ("sea")
     }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
     audio: ("whale-sea")
@@ -37,7 +37,7 @@ export const baseSentences = [{
         id: 5,
         phrase: [{
             text: "La casa", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6964`, audio: ("house")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "vivir", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/11605`, audio: ("living")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("house-living")
@@ -46,7 +46,7 @@ export const baseSentences = [{
         phrase: [{
             text: "La casa", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6964`, audio: ("house")
         }, {
-            text: "sirve para", image: "/pictograms/isUsedFor.png", audio: ("isUsedFor"), draggable: true
+            text: "sirve para", image: "/pictograms/isUsedFor.webp", audio: ("isUsedFor"), draggable: true
         }, {
             text: "vivir", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/11605`, audio: ("living")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
@@ -55,7 +55,7 @@ export const baseSentences = [{
         id: 7,
         phrase: [{
             text: "El sol", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7252`, audio: ("sun")
-        }, {text: "es", image: "/pictograms/is.png", audio: ("is"), draggable: true}, {
+        }, {text: "es", image: "/pictograms/is.webp", audio: ("is"), draggable: true}, {
             text: "una estrella", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2752`, audio: ("star")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("sun-star")
@@ -63,7 +63,7 @@ export const baseSentences = [{
         id: 8,
         phrase: [{
             text: "El sol", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7252`, audio: ("sun")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "el cielo", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6978`, audio: ("sky")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("sun-sky")
@@ -72,7 +72,7 @@ export const baseSentences = [{
         phrase: [{
             text: "El verano", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5604`, audio: ("summer")
         }, {
-            text: "es parte de", image: "/pictograms/isPartOf.png", audio: ("isPartOf"), draggable: true
+            text: "es parte de", image: "/pictograms/isPartOf.webp", audio: ("isPartOf"), draggable: true
         }, {
             text: "el año", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6903`, audio: ("year")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
@@ -82,7 +82,7 @@ export const baseSentences = [{
         phrase: [{
             text: "El verano", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5604`, audio: ("summer")
         }, {
-            text: "sirve para", image: "/pictograms/isUsedFor.png", audio: ("isUsedFor"), draggable: true
+            text: "sirve para", image: "/pictograms/isUsedFor.webp", audio: ("isUsedFor"), draggable: true
         }, {
             text: "tomar el sol",
             image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/26500`,
@@ -93,7 +93,7 @@ export const baseSentences = [{
         id: 11,
         phrase: [{
             text: "La manzana", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2462`, audio: ("apple")
-        }, {text: "es", image: "/pictograms/is.png", audio: ("is"), draggable: true}, {
+        }, {text: "es", image: "/pictograms/is.webp", audio: ("is"), draggable: true}, {
             text: "una fruta", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/28339`, audio: ("fruit")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("apple-fruit")
@@ -101,7 +101,7 @@ export const baseSentences = [{
         id: 12,
         phrase: [{
             text: "La manzana", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2462`, audio: ("apple")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "el frutero", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/16303`, audio: ("fruitBowl")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("apple-fruitBowl")
@@ -109,7 +109,7 @@ export const baseSentences = [{
         id: 13,
         phrase: [{
             text: "La cama", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/25900`, audio: ("bed")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "dormir", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6479`, audio: ("sleeping")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("bed-sleeping")
@@ -118,7 +118,7 @@ export const baseSentences = [{
         phrase: [{
             text: "La cama", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/25900`, audio: ("bed")
         }, {
-            text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true
+            text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true
         }, {
             text: "la habitación",
             image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/33068`,
@@ -130,7 +130,7 @@ export const baseSentences = [{
         phrase: [{
             text: "La calle", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2299`, audio: ("street")
         }, {
-            text: "es parte de", image: "/pictograms/isPartOf.png", audio: ("isPartOf"), draggable: true
+            text: "es parte de", image: "/pictograms/isPartOf.webp", audio: ("isPartOf"), draggable: true
         }, {
             text: "la ciudad", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2704`, audio: ("city")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
@@ -139,7 +139,7 @@ export const baseSentences = [{
         id: 16,
         phrase: [{
             text: "La calle", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2299`, audio: ("street")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "la ciudad", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2704`, audio: ("city")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("street-city2")
@@ -147,7 +147,7 @@ export const baseSentences = [{
         id: 17,
         phrase: [{
             text: "El coche", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2339`, audio: ("car")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "viajar", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/36974`, audio: ("traveling")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("car-traveling")
@@ -155,7 +155,7 @@ export const baseSentences = [{
         id: 18,
         phrase: [{
             text: "El coche", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2339`, audio: ("car")
-        }, {text: "tiene", image: "/pictograms/has.png", audio: ("has"), draggable: true}, {
+        }, {text: "tiene", image: "/pictograms/has.webp", audio: ("has"), draggable: true}, {
             text: "ruedas", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6209`, audio: ("wheels")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("car-wheels")
@@ -163,7 +163,7 @@ export const baseSentences = [{
         id: 19,
         phrase: [{
             text: "El columpio", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/4608`, audio: ("swing")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "jugar", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6537`, audio: ("playing")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("swing-playing")
@@ -171,7 +171,7 @@ export const baseSentences = [{
         id: 20,
         phrase: [{
             text: "El columpio", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/4608`, audio: ("swing")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "el parque", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2859`, audio: ("park")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("swing-park")
@@ -179,7 +179,7 @@ export const baseSentences = [{
         id: 21,
         phrase: [{
             text: "El agua", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2248`, audio: ("water")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "beber", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6061`, audio: ("drinking")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("water-drinking")
@@ -188,7 +188,7 @@ export const baseSentences = [{
         phrase: [{
             text: "El agua", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2248`, audio: ("water")
         }, {
-            text: "sirve para", image: "/pictograms/isUsedFor.png", audio: ("isUsedFor"), draggable: true
+            text: "sirve para", image: "/pictograms/isUsedFor.webp", audio: ("isUsedFor"), draggable: true
         }, {
             text: "lavarse", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/26803`, audio: ("washing")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
@@ -197,7 +197,7 @@ export const baseSentences = [{
         id: 23,
         phrase: [{
             text: "El mar", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2925`, audio: ("sea")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "bañarse", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/38782`, audio: ("bathing")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("sea-bathing")
@@ -205,7 +205,7 @@ export const baseSentences = [{
         id: 24,
         phrase: [{
             text: "El mar", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2925`, audio: ("sea")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "la playa", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/30518`, audio: ("beach")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("sea-beach")
@@ -220,14 +220,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "El perro", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7202`, audio: ("dog")
-        }, {text: "es", image: "/pictograms/is.png", audio: ("is"), draggable: true}, {
+        }, {text: "es", image: "/pictograms/is.webp", audio: ("is"), draggable: true}, {
             text: "un animal", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6901`, audio: ("animal")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("dog-animal")
     }, {
         phrase: [{
             text: "El perro", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7202`, audio: ("dog")
-        }, {text: "tiene", image: "/pictograms/has.png", audio: ("has"), draggable: true}, {
+        }, {text: "tiene", image: "/pictograms/has.webp", audio: ("has"), draggable: true}, {
             text: "cola", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5967`, audio: ("tail")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("dog-tail")
@@ -241,14 +241,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "La ballena", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2268`, audio: ("whale")
-        }, {text: "es", image: "/pictograms/is.png", audio: ("is"), draggable: true}, {
+        }, {text: "es", image: "/pictograms/is.webp", audio: ("is"), draggable: true}, {
             text: "un mamífero", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7777`, audio: ("mammal")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("whale-mammal")
     }, {
         phrase: [{
             text: "La ballena", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2268`, audio: ("whale")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "el mar", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2925`, audio: ("sea")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("whale-sea")
@@ -262,14 +262,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "La casa", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6964`, audio: ("house")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "vivir", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/11605`, audio: ("living")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("house-living")
     }, {
         phrase: [{
             text: "La casa", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6964`, audio: ("house")
-        }, {text: "sirve para", image: "/pictograms/isUsedFor.png", audio: ("isUsedFor"), draggable: true}, {
+        }, {text: "sirve para", image: "/pictograms/isUsedFor.webp", audio: ("isUsedFor"), draggable: true}, {
             text: "vivir", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/11605`, audio: ("living")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("house-living2")
@@ -282,14 +282,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "El sol", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7252`, audio: ("sun")
-        }, {text: "es", image: "/pictograms/is.png", audio: ("is"), draggable: true}, {
+        }, {text: "es", image: "/pictograms/is.webp", audio: ("is"), draggable: true}, {
             text: "una estrella", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2752`, audio: ("star")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("sun-star")
     }, {
         phrase: [{
             text: "El sol", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7252`, audio: ("sun")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "el cielo", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6978`, audio: ("sky")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("sun-sky")
@@ -303,14 +303,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "El verano", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5604`, audio: ("summer")
-        }, {text: "es parte de", image: "/pictograms/isPartOf.png", audio: ("isPartOf"), draggable: true}, {
+        }, {text: "es parte de", image: "/pictograms/isPartOf.webp", audio: ("isPartOf"), draggable: true}, {
             text: "el año", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6903`, audio: ("year")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("summer-year")
     }, {
         phrase: [{
             text: "El verano", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5604`, audio: ("summer")
-        }, {text: "sirve para", image: "/pictograms/isUsedFor.png", audio: ("isUsedFor"), draggable: true}, {
+        }, {text: "sirve para", image: "/pictograms/isUsedFor.webp", audio: ("isUsedFor"), draggable: true}, {
             text: "tomar el sol",
             image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/26500`,
             audio: ("sunbathing")
@@ -326,14 +326,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "La manzana", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2462`, audio: ("apple")
-        }, {text: "es", image: "/pictograms/is.png", audio: ("is"), draggable: true}, {
+        }, {text: "es", image: "/pictograms/is.webp", audio: ("is"), draggable: true}, {
             text: "una fruta", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/28339`, audio: ("fruit")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("apple-fruit")
     }, {
         phrase: [{
             text: "La manzana", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2462`, audio: ("apple")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "el frutero", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/16303`, audio: ("fruitBowl")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("apple-fruitBowl")
@@ -347,14 +347,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "La cama", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/25900`, audio: ("bed")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "dormir", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6479`, audio: ("sleeping")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("bed-sleeping")
     }, {
         phrase: [{
             text: "La cama", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/25900`, audio: ("bed")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "la habitación",
             image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/33068`,
             audio: ("bedroom")
@@ -370,14 +370,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "La calle", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2299`, audio: ("street")
-        }, {text: "es parte de", image: "/pictograms/isPartOf.png", audio: ("isPartOf"), draggable: true}, {
+        }, {text: "es parte de", image: "/pictograms/isPartOf.webp", audio: ("isPartOf"), draggable: true}, {
             text: "la ciudad", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2704`, audio: ("city")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("street-city")
     }, {
         phrase: [{
             text: "La calle", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2299`, audio: ("street")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "la ciudad", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2704`, audio: ("city")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("street-city2")
@@ -390,14 +390,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "El coche", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2339`, audio: ("car")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "viajar", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/36974`, audio: ("traveling")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("car-traveling")
     }, {
         phrase: [{
             text: "El coche", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2339`, audio: ("car")
-        }, {text: "tiene", image: "/pictograms/has.png", audio: ("has"), draggable: true}, {
+        }, {text: "tiene", image: "/pictograms/has.webp", audio: ("has"), draggable: true}, {
             text: "ruedas", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6209`, audio: ("wheels")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("car-wheels")
@@ -411,14 +411,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "El columpio", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/4608`, audio: ("swing")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "jugar", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6537`, audio: ("playing")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("swing-playing")
     }, {
         phrase: [{
             text: "El columpio", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/4608`, audio: ("swing")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "el parque", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2859`, audio: ("park")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("swing-park")
@@ -432,14 +432,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "El agua", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2248`, audio: ("water")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "beber", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6061`, audio: ("drinking")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("water-drinking")
     }, {
         phrase: [{
             text: "El agua", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2248`, audio: ("water")
-        }, {text: "sirve para", image: "/pictograms/isUsedFor.png", audio: ("isUsedFor"), draggable: true}, {
+        }, {text: "sirve para", image: "/pictograms/isUsedFor.webp", audio: ("isUsedFor"), draggable: true}, {
             text: "lavarse", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/26803`, audio: ("washing")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("water-washing")
@@ -452,14 +452,14 @@ export const sentences = [
     }, {
         phrase: [{
             text: "El mar", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2925`, audio: ("sea")
-        }, {text: "es para", image: "/pictograms/isFor.png", audio: ("isFor"), draggable: true}, {
+        }, {text: "es para", image: "/pictograms/isFor.webp", audio: ("isFor"), draggable: true}, {
             text: "bañarse", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/38782`, audio: ("bathing")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("sea-bathing")
     }, {
         phrase: [{
             text: "El mar", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2925`, audio: ("sea")
-        }, {text: "está en", image: "/pictograms/isIn.png", audio: ("isIn"), draggable: true}, {
+        }, {text: "está en", image: "/pictograms/isIn.webp", audio: ("isIn"), draggable: true}, {
             text: "la playa", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/30518`, audio: ("beach")
         }, {text: ".", image: `${process.env.REACT_APP_ARASAAC_URL}/pictograms/${STOP}`, audio: ("stop")}],
         audio: ("sea-beach")
@@ -476,7 +476,7 @@ export const exercises = [
                 wordAudio: ["dog", "is", "animal"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7202`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6901`
                 ]
             },
@@ -486,7 +486,7 @@ export const exercises = [
                 wordAudio: ["whale", "is", "mammal"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2268`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7777`
                 ]
             },
@@ -496,7 +496,7 @@ export const exercises = [
                 wordAudio: ["house", "isFor", "living"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6964`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/11605`
                 ]
             },
@@ -506,7 +506,7 @@ export const exercises = [
                 wordAudio: ["sun", "is", "star"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7252`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2752`
                 ]
             },
@@ -516,7 +516,7 @@ export const exercises = [
                 wordAudio: ["summer", "isPartOf", "year"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5604`,
-                    "/pictograms/isPartOf.png",
+                    "/pictograms/isPartOf.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6903`
                 ]
             },
@@ -526,7 +526,7 @@ export const exercises = [
                 wordAudio: ["apple", "is", "fruit"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2462`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/28339`
                 ]
             },
@@ -536,7 +536,7 @@ export const exercises = [
                 wordAudio: ["bed", "isFor", "sleeping"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/25900`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6479`
                 ]
             },
@@ -546,7 +546,7 @@ export const exercises = [
                 wordAudio: ["street", "isPartOf", "city"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2299`,
-                    "/pictograms/isPartOf.png",
+                    "/pictograms/isPartOf.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2704`
                 ]
             },
@@ -556,7 +556,7 @@ export const exercises = [
                 wordAudio: ["car", "isFor", "traveling"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2339`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/36974`
                 ]
             },
@@ -566,7 +566,7 @@ export const exercises = [
                 wordAudio: ["swing", "isFor", "playing"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/4608`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6537`
                 ]
             },
@@ -576,7 +576,7 @@ export const exercises = [
                 wordAudio: ["water", "isFor", "drinking"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2248`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6061`
                 ]
             },
@@ -586,7 +586,7 @@ export const exercises = [
                 wordAudio: ["sea", "isFor", "bathing"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2925`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/38782`
                 ]
             },
@@ -596,7 +596,7 @@ export const exercises = [
                 wordAudio: ["juice", "is", "drink"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/11461`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/30403`
                 ]
             },
@@ -606,7 +606,7 @@ export const exercises = [
                 wordAudio: ["wheel", "is", "circle"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6209`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/4603`
                 ]
             },
@@ -616,7 +616,7 @@ export const exercises = [
                 wordAudio: ["train", "is", "transport"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2603`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/10351`
                 ]
             },
@@ -626,7 +626,7 @@ export const exercises = [
                 wordAudio: ["sky", "is", "blue"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/38270`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/3355`
                 ]
             },
@@ -636,7 +636,7 @@ export const exercises = [
                 wordAudio: ["banana", "is", "fruit"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2530`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/4653`
                 ]
             },
@@ -646,7 +646,7 @@ export const exercises = [
                 wordAudio: ["yellow", "is", "color"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2648`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5968`
                 ]
             },
@@ -656,7 +656,7 @@ export const exercises = [
                 wordAudio: ["penguin", "is", "animal"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/3243`,
-                    "/pictograms/is.png",
+                    "/pictograms/is.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6901`
                 ]
             },
@@ -666,7 +666,7 @@ export const exercises = [
                 wordAudio: ["nose", "isFor", "breathing"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2887`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/34377`
                 ]
             },
@@ -676,7 +676,7 @@ export const exercises = [
                 wordAudio: ["scissors", "isFor", "cutting"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6664`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2547`
                 ]
             },
@@ -686,7 +686,7 @@ export const exercises = [
                 wordAudio: ["fork", "isFor", "eating"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2588`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6456`
                 ]
             },
@@ -696,7 +696,7 @@ export const exercises = [
                 wordAudio: ["beach", "isFor", "summer"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/30518`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5604`
                 ]
             },
@@ -706,7 +706,7 @@ export const exercises = [
                 wordAudio: ["bottle", "isFor", "drinking"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/39043`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6061`
                 ]
             },
@@ -716,7 +716,7 @@ export const exercises = [
                 wordAudio: ["chair", "isFor", "sitting"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/3155`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6611`
                 ]
             },
@@ -726,7 +726,7 @@ export const exercises = [
                 wordAudio: ["ludo", "isFor", "playing"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2501`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6537`
                 ]
             },
@@ -736,7 +736,7 @@ export const exercises = [
                 wordAudio: ["comb", "isFor", "combing"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2852`,
-                    "/pictograms/isFor.png",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/26947`
                 ]
             },
@@ -746,7 +746,7 @@ export const exercises = [
                 wordAudio: ["elbow", "isPartOf", "arm"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2707`,
-                    "/pictograms/isPartOf.png",
+                    "/pictograms/isPartOf.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2669`
                 ]
             },
@@ -756,7 +756,7 @@ export const exercises = [
                 wordAudio: ["window", "isPartOf", "house"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/24465`,
-                    "/pictograms/isPartOf.png",
+                    "/pictograms/isPartOf.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6964`
                 ]
             },
@@ -766,7 +766,7 @@ export const exercises = [
                 wordAudio: ["snow", "isPartOf", "winter"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7172`,
-                    "/pictograms/isPartOf.png",
+                    "/pictograms/isPartOf.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5493`
                 ]
             },
@@ -776,7 +776,7 @@ export const exercises = [
                 wordAudio: ["school", "isPartOf", "city"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/3082`,
-                    "/pictograms/isPartOf.png",
+                    "/pictograms/isPartOf.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2704`
                 ]
             },
@@ -786,7 +786,7 @@ export const exercises = [
                 wordAudio: ["tongue", "isPartOf", "mouth"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2944`,
-                    "/pictograms/isPartOf.png",
+                    "/pictograms/isPartOf.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2663`
                 ]
             },
@@ -796,7 +796,7 @@ export const exercises = [
                 wordAudio: ["fridge", "isPartOf", "kitchen"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/3272`,
-                    "/pictograms/isPartOf.png",
+                    "/pictograms/isPartOf.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/33070`
                 ]
             },
@@ -806,7 +806,7 @@ export const exercises = [
                 wordAudio: ["moon", "isPartOf", "night"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2933`,
-                    "/pictograms/isPartOf.png",
+                    "/pictograms/isPartOf.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/26997`
                 ]
             },
@@ -822,7 +822,7 @@ export const exercises = [
                 wordAudio: ["dog", "has", "tail"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7202`,
-                    "/pictograms/has.png",
+                    "/pictograms/has.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5967`
                 ]
             },
@@ -832,7 +832,7 @@ export const exercises = [
                 wordAudio: ["whale", "isIn", "sea"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2268`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2925`
                 ]
             },
@@ -842,7 +842,7 @@ export const exercises = [
                 wordAudio: ["house", "isUsedFor", "living"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6964`,
-                    "/pictograms/isUsedFor.png",
+                    "/pictograms/isUsedFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/11605`
                 ]
             },
@@ -852,7 +852,7 @@ export const exercises = [
                 wordAudio: ["sun", "isIn", "sky"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7252`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6978`
                 ]
             },
@@ -866,7 +866,7 @@ export const exercises = [
                 ],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5604`,
-                    "/pictograms/isUsedFor.png",
+                    "/pictograms/isUsedFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/26500`
                 ]
             },
@@ -876,7 +876,7 @@ export const exercises = [
                 wordAudio: ["apple", "isIn", "fruitBowl"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2462`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/16303`
                 ]
             },
@@ -886,7 +886,7 @@ export const exercises = [
                 wordAudio: ["bed", "isIn", "bedroom"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/25900`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/33068`
                 ]
             },
@@ -896,7 +896,7 @@ export const exercises = [
                 wordAudio: ["street", "isIn", "city"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2299`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2704`
                 ]
             },
@@ -906,7 +906,7 @@ export const exercises = [
                 wordAudio: ["car", "has", "wheels"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2339`,
-                    "/pictograms/has.png",
+                    "/pictograms/has.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6209`
                 ]
             },
@@ -916,7 +916,7 @@ export const exercises = [
                 wordAudio: ["swing", "isIn", "park"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/4608`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2859`
                 ]
             },
@@ -926,7 +926,7 @@ export const exercises = [
                 wordAudio: ["water", "isUsedFor", "washing"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2248`,
-                    "/pictograms/isUsedFor.png",
+                    "/pictograms/isUsedFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/26803`
                 ]
             },
@@ -936,7 +936,7 @@ export const exercises = [
                 wordAudio: ["sea", "isIn", "beach"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2925`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/30518`
                 ]
             },
@@ -946,7 +946,7 @@ export const exercises = [
                 wordAudio: ["spoon", "isUsedFor", "eating"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2362`,
-                    "/pictograms/isUsedFor.png",
+                    "/pictograms/isUsedFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6456`
                 ]
             },
@@ -956,7 +956,7 @@ export const exercises = [
                 wordAudio: ["phone", "isUsedFor", "calling"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/25269`,
-                    "/pictograms/isUsedFor.png",
+                    "/pictograms/isUsedFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6518`
                 ]
             },
@@ -966,7 +966,7 @@ export const exercises = [
                 wordAudio: ["money", "isUsedFor", "buying"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/4630`,
-                    "/pictograms/isUsedFor.png",
+                    "/pictograms/isUsedFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6457`
                 ]
             },
@@ -976,7 +976,7 @@ export const exercises = [
                 wordAudio: ["boat", "isUsedFor", "sailing"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/8714`,
-                    "/pictograms/isUsedFor.png",
+                    "/pictograms/isUsedFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7170`
                 ]
             },
@@ -986,7 +986,7 @@ export const exercises = [
                 wordAudio: ["pool", "isUsedFor", "swimming"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/30516`,
-                    "/pictograms/isUsedFor.png",
+                    "/pictograms/isUsedFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6568`
                 ]
             },
@@ -996,7 +996,7 @@ export const exercises = [
                 wordAudio: ["park", "isUsedFor", "playing"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2859`,
-                    "/pictograms/isUsedFor.png",
+                    "/pictograms/isUsedFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6537`
                 ]
             },
@@ -1006,7 +1006,7 @@ export const exercises = [
                 wordAudio: ["story", "isUsedFor", "reading"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2364`,
-                    "/pictograms/isUsedFor.png",
+                    "/pictograms/isUsedFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7141`
                 ]
             },
@@ -1016,7 +1016,7 @@ export const exercises = [
                 wordAudio: ["book", "isIn", "library"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/25191`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/3065`
                 ]
             },
@@ -1026,7 +1026,7 @@ export const exercises = [
                 wordAudio: ["fruit", "isIn", "fruitshop"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/4653`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/3327`
                 ]
             },
@@ -1036,7 +1036,7 @@ export const exercises = [
                 wordAudio: ["flower", "isIn", "garden"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7104`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/30608`
                 ]
             },
@@ -1046,7 +1046,7 @@ export const exercises = [
                 wordAudio: ["zebra", "isIn", "savanna"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2324`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/5567`
                 ]
             },
@@ -1056,7 +1056,7 @@ export const exercises = [
                 wordAudio: ["car", "isIn", "garage"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2339`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/16975`
                 ]
             },
@@ -1066,7 +1066,7 @@ export const exercises = [
                 wordAudio: ["fish", "isIn", "sea"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7252`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/38270`
                 ]
             },
@@ -1076,7 +1076,7 @@ export const exercises = [
                 wordAudio: ["playground", "isIn", "school"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/33064`,
-                    "/pictograms/isIn.png",
+                    "/pictograms/isIn.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/3082`
                 ]
             },{
@@ -1085,7 +1085,7 @@ export const exercises = [
                 wordAudio: ["mouth", "has", "teeth"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2663`,
-                    "/pictograms/has.png",
+                    "/pictograms/has.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2737`
                 ]
             },
@@ -1095,7 +1095,7 @@ export const exercises = [
                 wordAudio: ["piano", "has", "keys"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2521`,
-                    "/pictograms/has.png",
+                    "/pictograms/has.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7270`
                 ]
             },
@@ -1105,7 +1105,7 @@ export const exercises = [
                 wordAudio: ["bike", "has", "wheels"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2277`,
-                    "/pictograms/has.png",
+                    "/pictograms/has.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6209`
                 ]
             },
@@ -1115,7 +1115,7 @@ export const exercises = [
                 wordAudio: ["fish", "has", "scales"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2520`,
-                    "/pictograms/has.png",
+                    "/pictograms/has.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7085`
                 ]
             },
@@ -1125,7 +1125,7 @@ export const exercises = [
                 wordAudio: ["elephant", "has", "trunk"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2372`,
-                    "/pictograms/has.png",
+                    "/pictograms/has.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7287`
                 ]
             },
@@ -1135,7 +1135,7 @@ export const exercises = [
                 wordAudio: ["backpack", "has", "books"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2475`,
-                    "/pictograms/has.png",
+                    "/pictograms/has.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/25191`
                 ]
             },
@@ -1145,7 +1145,7 @@ export const exercises = [
                 wordAudio: ["hedgehog", "has", "spines"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/26829`,
-                    "/pictograms/has.png",
+                    "/pictograms/has.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/28016`
                 ]
             },

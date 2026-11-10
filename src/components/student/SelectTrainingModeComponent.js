@@ -61,7 +61,7 @@ let SelectTrainingMode = () => {
                     style={ { width: "40%", height: "25vh", fontSize: "5vmin" } }
                     onClick={ () => navigate("/students/exercises/ruled") }>
                 <Flex vertical align="center" justify="space-between" gap={ 20 } style={ { paddingTop: "1vmax" } }>
-                    <Image alt={t("student.trainingMode.ruled")} src="/icons/locked.png" height="13vmin" width="13vmin" preview={ false }/>
+                    <Image alt={t("student.trainingMode.ruled")} src="/icons/locked.webp" height="13vmin" width="13vmin" preview={ false }/>
                     { t("student.trainingMode.ruled").toUpperCase() }
                 </Flex>
             </Button>
@@ -69,7 +69,7 @@ let SelectTrainingMode = () => {
                      style={ { width: "40%", height: "25vh", fontSize: "5vmin" } }
                      onClick={ () => navigate("/students/exercises/free") }>
                 <Flex vertical align="center" justify="space-between" gap={ 20 } style={ { paddingTop: "1vmax" } }>
-                    <Image alt={t("student.trainingMode.free")} src="/icons/unlocked.png" height="13vmin" width="13vmin" preview={ false }/>
+                    <Image alt={t("student.trainingMode.free")} src="/icons/unlocked.webp" height="13vmin" width="13vmin" preview={ false }/>
                     { t("student.trainingMode.free").toUpperCase() }
                 </Flex>
             </Button>

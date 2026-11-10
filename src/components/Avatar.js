@@ -1,15 +1,14 @@
-import React from "react";
 import { useAvatar } from "./AvatarContext";
 import "./assets/styles/avatar.css";
 
-import neutral from "./assets/avatar/neutral.png"
-import neutral_speaking from "./assets/avatar/neutral_speaking.png"
-import worried from "./assets/avatar/neutral.png"
-import worried_speaking from "./assets/avatar/neutral_speaking.png"
-import happy from "./assets/avatar/happy.png"
-import happy_speaking from "./assets/avatar/happy_speaking.png"
-import surprised from "./assets/avatar/surprised.png"
-import love_speaking from "./assets/avatar/love_speaking.png"
+import neutral from "./assets/avatar/neutral.webp"
+import neutral_speaking from "./assets/avatar/neutral_speaking.webp"
+import worried from "./assets/avatar/neutral.webp"
+import worried_speaking from "./assets/avatar/neutral_speaking.webp"
+import happy from "./assets/avatar/happy.webp"
+import happy_speaking from "./assets/avatar/happy_speaking.webp"
+import surprised from "./assets/avatar/surprised.webp"
+import love_speaking from "./assets/avatar/love_speaking.webp"
 
 export const NEUTRAL = "neutral";
 export const NEUTRAL_SPEAKING = "neutral_speaking";

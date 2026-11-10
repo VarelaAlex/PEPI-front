@@ -115,19 +115,19 @@ const SentenceNetwork = () => {
         id: 'is',
         word: 'is',
         text: t("pictograms.is"),
-        image: '/pictograms/is.png',
+        image: '/pictograms/is.webp',
         audio: ("is")
     }, {
         id: 'isPartOf',
         word: 'isPartOf',
         text: t("pictograms.isPartOf"),
-        image: '/pictograms/isPartOf.png',
+        image: '/pictograms/isPartOf.webp',
         audio: ("isPartOf")
     }, {
         id: 'isFor',
         word: 'isFor',
         text: t("pictograms.isFor"),
-        image: '/pictograms/isFor.png',
+        image: '/pictograms/isFor.webp',
         audio: ("isFor")
     }];
 
@@ -135,19 +135,19 @@ const SentenceNetwork = () => {
         id: 'has',
         word: 'has',
         text: t("pictograms.has"),
-        image: '/pictograms/has.png',
+        image: '/pictograms/has.webp',
         audio: ("has")
     }, {
         id: 'isIn',
         word: 'isIn',
         text: t("pictograms.isIn"),
-        image: '/pictograms/isIn.png',
+        image: '/pictograms/isIn.webp',
         audio: ("isIn")
     }, {
         id: 'isUsedFor',
         word: 'isUsedFor',
         text: t("pictograms.isUsedFor"),
-        image: '/pictograms/isUsedFor.png',
+        image: '/pictograms/isUsedFor.webp',
         audio: ("isUsedFor")
     }];
 

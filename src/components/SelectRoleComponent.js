@@ -14,7 +14,7 @@ let SelectRole = () => {
 			        style={ { width: "40%", height: "25vh", fontSize: "4vmin", padding: "1rem" } }
 			        onClick={ () => navigate("/loginTeacher") }>
 				<Flex vertical align="center" justify="center" gap={ 10 } style={ { height: "100%", width: "100%" } }>
-					<Image alt={t("role.teacher")} src="icons/teacher.png" height="10vmin" width="10vmin" preview={ false }/>
+					<Image alt={t("role.teacher")} src="icons/teacher.webp" height="10vmin" width="10vmin" preview={ false }/>
 					<div style={ { textAlign: "center", lineHeight: "1.1", fontSize: "3.5vmin" } }>
 						<div>{ t("role.teacher").toUpperCase() }</div>
 					</div>
@@ -24,7 +24,7 @@ let SelectRole = () => {
 			        style={ { width: "40%", height: "25vh", fontSize: "4vmin", padding: "1rem" } }
 			        onClick={ () => navigate("/loginStudent") }>
 				<Flex vertical align="center" justify="center" gap={ 10 } style={ { height: "100%", width: "100%" } }>
-					<Image alt={t("role.student")} src="icons/student.png" height="10vmin" width="10vmin" preview={ false }/>
+					<Image alt={t("role.student")} src="icons/student.webp" height="10vmin" width="10vmin" preview={ false }/>
 					<div style={ { textAlign: "center", lineHeight: "1.1", fontSize: "3.5vmin" } }>
 						<div>{ t("role.student").toUpperCase() }</div>
 					</div>

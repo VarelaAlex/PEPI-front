@@ -13,7 +13,7 @@ const DraggablePictogram = ({pictogram, isBlinking, isEscaping, isHighlighted, o
 
     const [{isDragging}, drag, preview] = useDrag(() => ({
         type: "PICTO", item: {
-            id: pictogram.id, text: pictogram.label, image: `/pictograms/${pictogram.id}.png`, audio: pictogram.audio,
+            id: pictogram.id, text: pictogram.label, image: `/pictograms/${pictogram.id}.webp`, audio: pictogram.audio,
         }, collect: (monitor) => ({isDragging: !!monitor.isDragging()}), canDrag: () => !disabled,
     }));
 
@@ -73,7 +73,7 @@ const DraggablePictogram = ({pictogram, isBlinking, isEscaping, isHighlighted, o
                 <Row justify="center">
                     <Col>
                         <Image
-                            src={`/pictograms/${pictogram.id}.png`}
+                            src={`/pictograms/${pictogram.id}.webp`}
                             alt={pictogram.label}
                             style={{width: 60, height: 60, objectFit: "contain", marginBottom: 6}}
                             preview={false}

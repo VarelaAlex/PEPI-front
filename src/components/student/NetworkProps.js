@@ -105,7 +105,7 @@ export let nodes = (exercise) => {
 			type:  "type2",
 			posX:  -160,
 			posY:  90,
-			src:   ["ICONIC", "MIXED"].includes(representation) ? `/pictograms/${ definitionPictogram }.png` : null,
+			src:   ["ICONIC", "MIXED"].includes(representation) ? `/pictograms/${ definitionPictogram }.webp` : null,
 			nexus: true,
 			text:  ["MIXED", "SYMBOLIC", "GLOBAL"].includes(representation) ? `pictograms.${ definitionPictogram }` : null,
 			sound: `${definitionPictogram}`
@@ -125,7 +125,7 @@ export let nodes = (exercise) => {
 			type:  "type4",
 			posX:  nexusX(networkType),
 			posY:  90,
-			src:   ["ICONIC", "MIXED"].includes(representation) ? `/pictograms/${ ampliationPictogram }.png` : null,
+			src:   ["ICONIC", "MIXED"].includes(representation) ? `/pictograms/${ ampliationPictogram }.webp` : null,
 			nexus: true,
 			text:  ["MIXED", "SYMBOLIC", "GLOBAL"].includes(representation) ? `pictograms.${ ampliationPictogram }` : null,
 			sound: `${ampliationPictogram}`

@@ -147,17 +147,17 @@ function TypeAndNetContent({subsectionKey}) {
                         /></Text>
                     </li>))}
                 </ul>)}
-                {idx === 0 && <ImageGrid images={[{src: "/images/red1-1.png", alt: "Red 1-1"}, {
-                    src: "/images/red1-2.png", alt: "Red 1-2"
-                }, {src: "/images/red1-3.png", alt: "Red 1-3"}]}
+                {idx === 0 && <ImageGrid images={[{src: "/images/red1-1.webp", alt: "Red 1-1"}, {
+                    src: "/images/red1-2.webp", alt: "Red 1-2"
+                }, {src: "/images/red1-3.webp", alt: "Red 1-3"}]}
                 />}
                 {idx === 2 && <>
-                    <ImageGrid images={[{src: "/images/iconica.png", alt: "Icónica"}, {
-                        src: "/images/combinada.png", alt: "Combinada"
+                    <ImageGrid images={[{src: "/images/iconica.webp", alt: "Icónica"}, {
+                        src: "/images/combinada.webp", alt: "Combinada"
                     }]}/>
                     {div.descriptions?.length > 0 && renderContent(div.descriptions[0], 0)}
-                    <ImageGrid images={[{src: "/images/global.png", alt: "Global"}, {
-                        src: "/images/simbolica.png", alt: "Simbólica"
+                    <ImageGrid images={[{src: "/images/global.webp", alt: "Global"}, {
+                        src: "/images/simbolica.webp", alt: "Simbólica"
                     }]}/>
                 </>}
                 {div.descriptions?.slice(1).map((desc, index) => (<Paragraph key={index}>
@@ -167,7 +167,7 @@ function TypeAndNetContent({subsectionKey}) {
                         components={{bold: <b/>, linkWorkWithPepi: <Link to="#student.sub1"/>}}
                     />
                 </Paragraph>))}
-                {idx === 3 && <ImageGrid images={[{src: "/images/Pictogramas.png", alt: "Pictogramas"}]}/>}
+                {idx === 3 && <ImageGrid images={[{src: "/images/Pictogramas.webp", alt: "Pictogramas"}]}/>}
             </Card>);
         })}
     </div>);

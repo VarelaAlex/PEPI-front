@@ -141,7 +141,7 @@ const SelectPhase = () => {
                                 >
                                     {num}
                                 </Title>
-                                {/*<Image src={`/images/activity${num}.png`} preview={false} height="100%"/>*/}
+                                {/*<Image src={`/images/activity${num}.webp`} preview={false} height="100%"/>*/}
                             </Card>
                         </Col>
                     );

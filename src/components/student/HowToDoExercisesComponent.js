@@ -13,25 +13,25 @@ const HowToDoExercises = () => {
 		{
 			id:          1,
 			title:       t("howToDoExercises.videos.iconic.title"),
-			thumbnail:   "/representations/iconicColor.png",
+			thumbnail:   "/representations/iconicColor.webp",
 			videoSrc:    "/exerciseExamples/ExampleIconic.mp4",
 			description: t("howToDoExercises.videos.iconic.description")
 		}, {
 			id:          2,
 			title:       t("howToDoExercises.videos.mixed.title"),
-			thumbnail:   "/representations/mixedColor.png",
+			thumbnail:   "/representations/mixedColor.webp",
 			videoSrc:    "/exerciseExamples/ExampleMixed.mp4",
 			description: t("howToDoExercises.videos.mixed.description")
 		}, {
 			id:          3,
 			title:       t("howToDoExercises.videos.global.title"),
-			thumbnail:   "/representations/globalColor.png",
+			thumbnail:   "/representations/globalColor.webp",
 			videoSrc:    "/exerciseExamples/ExampleGlobal.mp4",
 			description: t("howToDoExercises.videos.global.description")
 		}, {
 			id:          4,
 			title:       t("howToDoExercises.videos.symbolic.title"),
-			thumbnail:   "/representations/symbolicColor.png",
+			thumbnail:   "/representations/symbolicColor.webp",
 			videoSrc:    "/exerciseExamples/ExampleSymbolic.mp4",
 			description: t("howToDoExercises.videos.symbolic.description")
 		}

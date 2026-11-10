@@ -74,7 +74,7 @@ let Header = (props) => {
                 </Col>
                 <Col style={{ display: 'flex', alignItems: 'center' }}>
                     <Link to="/" >
-                        <Image alt="logo" src="/logo_text.png" height="3rem" preview={false} style={{ borderRadius: '0.75vmax' }} />
+                        <Image alt="logo" src="/logo_text.webp" height="3rem" preview={false} style={{ borderRadius: '0.75vmax' }} />
                     </Link>
                 </Col>
             </Row>

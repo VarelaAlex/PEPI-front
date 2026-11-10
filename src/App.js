@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, matchPath, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Layout, notification, Flex, Image, Typography } from "antd";
@@ -74,7 +74,7 @@ let App = () => {
 	let disconnect = useCallback(async () => {
 		logout();
 		const tracking = isTrackingActive();
-    	if (tracking) await finishSubsceneTracking();
+		if (tracking) await finishSubsceneTracking();
 		localStorage.removeItem("accessToken");
 		localStorage.removeItem("refreshToken");
 		localStorage.removeItem("name");
@@ -91,7 +91,7 @@ let App = () => {
 		hideAvatar();
 		disableVoice();
 		exitFullscreen();
-		if (tracking) endSession("/selectRole"); 
+		if (tracking) endSession("/selectRole");
 	}, [setExercise, setFeedback, setLogin]);
 
 	let logout = async () => {
@@ -231,8 +231,8 @@ let App = () => {
 			label: t("sider.fullscreen"),
 			onClick: enterFullscreen,
 			danger: false,
-			icon: <FullscreenOutlined/>
-		}	
+			icon: <FullscreenOutlined />
+		}
 	];
 
 	useEffect(() => {
@@ -378,6 +378,27 @@ let App = () => {
 		location.pathname.startsWith(route)
 	);
 
+	const noiseSvg = `
+		<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'>
+			<filter id='n' x='0' y='0' width='100%' height='100%' color-interpolation-filters='sRGB'>
+				<feTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2' seed='3' stitchTiles='stitch'/>
+				<feColorMatrix values='0.16 0 0 0 0.79
+										0.16 0 0 0 0.8298
+										0.08 0 0 0 0.9522
+										0    0 0 0 1'/>
+			</filter>
+			<rect width='100%' height='100%' filter='url(#n)'/>
+		</svg>`;
+
+	const paperBg = {
+		backgroundColor: "#d2dfff",
+		backgroundImage: [
+			"linear-gradient(135deg, rgba(255,255,255,0.04), rgba(0,0,0,0.01))",
+			`url("data:image/svg+xml,${encodeURIComponent(noiseSvg)}")`,
+		].join(", "),
+		backgroundSize: "100% 100%, 400px 400px",
+	};
+
 	return (
 		<>
 			{contextHolder}
@@ -411,7 +432,7 @@ let App = () => {
 							drawerFooter={anonymousMenuFooter}
 						/>
 					}
-					<Content style={{ overflowY: "auto", background: "url(/bg.png)", backgroundSize: "cover" }} >
+					<Content style={{ overflowY: "auto", ...paperBg }}>
 						<Flex align="center" justify="center" style={{ minHeight: "100%" }}>
 							<Routes>
 								<Route path="/selectRole" element={<SelectRole />} />
@@ -460,7 +481,7 @@ let App = () => {
 							underline>Álex</Typography.Link> & <Typography.Link href="https://grupoadir.es/"
 								style={{ color: "white" }}
 								underline>ADIR</Typography.Link> · {t("footer.based")} <Typography.Link href="https://www.unioviedo.es/hyper/" style={{ color: "white" }}
-								underline>Hyper</Typography.Link></Text>
+									underline>Hyper</Typography.Link></Text>
 						<Link to="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 							<Image
 								src="https://static.arasaac.org/images/by-nc-sa.svg"

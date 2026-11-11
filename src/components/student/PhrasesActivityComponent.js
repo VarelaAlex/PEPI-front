@@ -130,6 +130,13 @@ export default function PhrasesActivity() {
         playAudio(ex.phraseKey);
     }, [exerciseIndex, started]);
 
+    useEffect(() => {
+        const nextExercise = shuffledExercises.current[exerciseIndex + 1];
+        if (nextExercise) {
+            playAudio.preload([nextExercise.phraseKey, ...(nextExercise.wordAudio ?? [])]);
+        }
+    }, [exerciseIndex, playAudio]);
+
     function handleDrop(index, item) {
         const ex = shuffledExercises.current[exerciseIndex];
         if (!ex) return;

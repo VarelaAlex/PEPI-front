@@ -1,55 +1,56 @@
-import { useCallback, useEffect, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, matchPath, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { Layout, notification, Flex, Image, Typography } from "antd";
-import SelectRole from './components/SelectRoleComponent';
+import { Layout, notification, Flex, Image, Spin, Typography } from "antd";
 import Header from './components/layout/HeaderComponent';
 import Sider from "./components/layout/SiderComponent";
 import { UserOutlined, InfoCircleOutlined, LogoutOutlined, FormOutlined, ExperimentOutlined, DollarOutlined, FullscreenOutlined } from "@ant-design/icons";
 import ClassroomOutlined from './components/icons/ClassroomOutlined';
-import HowToDoExercises from "./components/student/HowToDoExercisesComponent";
-import PhrasesActivity from "./components/student/PhrasesActivityComponent";
-import PictogramActivity from "./components/student/PictogramActivityComponent";
-import CreateStudent from "./components/teacher/CreateStudentComponent";
-import LoginTeacher from './components/teacher/LoginTeacherComponent';
-import SignupTeacher from './components/teacher/SignupTeacherComponent';
-import ClassroomsList from './components/teacher/ClassroomsListComponent';
-import ExercisesList from './components/teacher/ExercisesListComponent';
-import CreateExercise from './components/teacher/CreateExerciseComponent';
-import LoginStudent from './components/student/LoginStudentComponent';
-import DnDPhase1 from './components/student/DnDPhase1Component';
-import DnDPhase2 from './components/student/DnDPhase2Component';
-import TypePhase1 from './components/student/TypePhase1Component';
-import TypePhase2 from './components/student/TypePhase2Component';
-import ExercisesCarousel from './components/student/ExercisesCarouselComponent';
 import { useSession } from './components/SessionComponent';
 import { jwtDecode } from 'jwt-decode';
-import NotFound from './components/NotFoundComponent';
-import ClassroomDetail from './components/teacher/ClassroomDetailComponent';
-import StudentDetail from './components/teacher/StudentDetailComponent';
-import BlankPage from './components/BlankPageComponent';
-import Profile from './components/teacher/ProfileComponent';
-import ClassroomStatistics from './components/teacher/ClassroomStatisticsComponent';
-import StudentStatistics from './components/teacher/StudentStatisticsComponent';
-import AboutEPI from './components/teacher/AboutPEPIComponent';
-import SurveyA from "./components/teacher/SurveyAComponent";
-import SurveyB from "./components/teacher/SurveyBComponent";
-import SelectMode from "./components/student/SelectModeComponent";
-import SentenceNetwork from "./components/student/SentenceNetworkComponent";
-import SentenceNetworkSequential from "./components/student/SentenceNetworkSequentialComponent";
-import SelectPhase from "./components/student/SelectPhaseComponent";
-import Funding from "./components/FundingComponent";
-import SelectTrainingMode from "./components/student/SelectTrainingModeComponent";
 import useFullscreen from "./hooks/useFullscreen";
 import AudioPermissionModal from "./components/AudioPermissionModalComponent";
 import { useAvatar } from "./components/AvatarContext";
-import ClosedExercisesSelector from "./components/student/ClosedExercisesSelectorComponent";
 import AvatarNavigationListener from "./components/AvatarNavigationListener";
 import InteractionBlocker from "./components/InteractionBlockerComponent";
-import EditExercise from "./components/teacher/EditExerciseComponent";
 import TeacherHelpButton from "./components/TeacherHelpButtonComponent";
 import { usePullToRefreshBlocker } from "./hooks/usePullToRefreshBlocker";
 import { endSession, finishSubsceneTracking, isTrackingActive } from "./tracker";
+
+const SelectRole = lazy(() => import('./components/SelectRoleComponent'));
+const HowToDoExercises = lazy(() => import("./components/student/HowToDoExercisesComponent"));
+const PhrasesActivity = lazy(() => import("./components/student/PhrasesActivityComponent"));
+const PictogramActivity = lazy(() => import("./components/student/PictogramActivityComponent"));
+const CreateStudent = lazy(() => import("./components/teacher/CreateStudentComponent"));
+const LoginTeacher = lazy(() => import('./components/teacher/LoginTeacherComponent'));
+const SignupTeacher = lazy(() => import('./components/teacher/SignupTeacherComponent'));
+const ClassroomsList = lazy(() => import('./components/teacher/ClassroomsListComponent'));
+const ExercisesList = lazy(() => import('./components/teacher/ExercisesListComponent'));
+const CreateExercise = lazy(() => import('./components/teacher/CreateExerciseComponent'));
+const LoginStudent = lazy(() => import('./components/student/LoginStudentComponent'));
+const DnDPhase1 = lazy(() => import('./components/student/DnDPhase1Component'));
+const DnDPhase2 = lazy(() => import('./components/student/DnDPhase2Component'));
+const TypePhase1 = lazy(() => import('./components/student/TypePhase1Component'));
+const TypePhase2 = lazy(() => import('./components/student/TypePhase2Component'));
+const ExercisesCarousel = lazy(() => import('./components/student/ExercisesCarouselComponent'));
+const NotFound = lazy(() => import('./components/NotFoundComponent'));
+const ClassroomDetail = lazy(() => import('./components/teacher/ClassroomDetailComponent'));
+const StudentDetail = lazy(() => import('./components/teacher/StudentDetailComponent'));
+const BlankPage = lazy(() => import('./components/BlankPageComponent'));
+const Profile = lazy(() => import('./components/teacher/ProfileComponent'));
+const ClassroomStatistics = lazy(() => import('./components/teacher/ClassroomStatisticsComponent'));
+const StudentStatistics = lazy(() => import('./components/teacher/StudentStatisticsComponent'));
+const AboutEPI = lazy(() => import('./components/teacher/AboutPEPIComponent'));
+const SurveyA = lazy(() => import("./components/teacher/SurveyAComponent"));
+const SurveyB = lazy(() => import("./components/teacher/SurveyBComponent"));
+const SelectMode = lazy(() => import("./components/student/SelectModeComponent"));
+const SentenceNetwork = lazy(() => import("./components/student/SentenceNetworkComponent"));
+const SentenceNetworkSequential = lazy(() => import("./components/student/SentenceNetworkSequentialComponent"));
+const SelectPhase = lazy(() => import("./components/student/SelectPhaseComponent"));
+const Funding = lazy(() => import("./components/FundingComponent"));
+const SelectTrainingMode = lazy(() => import("./components/student/SelectTrainingModeComponent"));
+const ClosedExercisesSelector = lazy(() => import("./components/student/ClosedExercisesSelectorComponent"));
+const EditExercise = lazy(() => import("./components/teacher/EditExerciseComponent"));
 
 let App = () => {
 
@@ -112,16 +113,20 @@ let App = () => {
 		}
 	};
 
-	let isTokenExpired = (token) => {
-		if (!token) return true;
+	let getTokenExpiration = (token) => {
+		if (!token) return null;
 		try {
 			const decodedToken = jwtDecode(token);
-			const currentTime = Date.now() / 1000;
-			return decodedToken.exp < currentTime;
+			return typeof decodedToken.exp === "number" ? decodedToken.exp * 1000 : null;
 		} catch (error) {
 			console.error('Error decoding token:', error);
-			return true;
+			return null;
 		}
+	};
+
+	let isTokenExpired = (token) => {
+		const expiration = getTokenExpiration(token);
+		return expiration === null || expiration <= Date.now();
 	};
 
 	const drawerFooter = [
@@ -255,6 +260,7 @@ let App = () => {
 				if (isTokenExpired(refreshToken)) {
 					disconnect();
 					navigate('/selectRole');
+					return false;
 				}
 
 				let response;
@@ -269,21 +275,68 @@ let App = () => {
 							}
 						}
 					);
-					return await response.json();
+						if (localStorage.getItem("refreshToken") !== refreshToken) {
+							return false;
+						}
+						if (response.status === 401 || response.status === 403) {
+							disconnect();
+						navigate('/selectRole');
+						return false;
+					}
+					if (!response.ok) {
+						throw new Error(`Token refresh failed with status ${response.status}`);
+					}
+					const accessToken = await response.json();
+					if (localStorage.getItem("refreshToken") !== refreshToken) {
+						return false;
+					}
+					if (typeof accessToken !== "string" || !accessToken) {
+						throw new Error("Token refresh returned an invalid access token");
+					}
+					return accessToken;
 				} catch (e) {
-					disconnect();
-					navigate("/selectRole");
+					console.error("Error refreshing access token; retrying:", e);
+					return null;
 				}
 			}
 		};
 
-		const interval = setInterval(async () => {
-			if (localStorage.getItem("refreshToken")) {
-				localStorage.setItem("accessToken", await refresh());
-			}
-		}, 0.5 * 60 * 1000);
+		let refreshTimeout;
+		let retryCount = 0;
+		const scheduleRefresh = (delay) => {
+			clearTimeout(refreshTimeout);
+			refreshTimeout = setTimeout(refreshIfNeeded, delay);
+		};
+		const refreshIfNeeded = async () => {
+			if (!localStorage.getItem("refreshToken")) return;
 
-		return () => clearInterval(interval);
+			const expiration = getTokenExpiration(localStorage.getItem("accessToken"));
+			const delay = expiration === null
+				? 0
+				: expiration - Date.now() - 60 * 1000;
+			if (delay > 0) {
+				scheduleRefresh(delay);
+				return;
+			}
+
+			const accessToken = await refresh();
+			if (accessToken === false) return;
+			if (accessToken) {
+				localStorage.setItem("accessToken", accessToken);
+				retryCount = 0;
+				const newExpiration = getTokenExpiration(accessToken);
+				scheduleRefresh(newExpiration === null
+					? 0
+					: Math.max(newExpiration - Date.now() - 60 * 1000, 0));
+				return;
+			}
+
+			retryCount += 1;
+			scheduleRefresh(Math.min(1000 * 2 ** (retryCount - 1), 30 * 1000));
+		};
+
+		refreshIfNeeded();
+		return () => clearTimeout(refreshTimeout);
 	}, [disconnect, navigate]);
 
 	useEffect(() => {
@@ -434,6 +487,7 @@ let App = () => {
 					}
 					<Content style={{ overflowY: "auto", ...paperBg }}>
 						<Flex align="center" justify="center" style={{ minHeight: "100%" }}>
+							<Suspense fallback={<Flex align="center" justify="center" style={{ minHeight: "50vh", width: "100%" }}><Spin size="large" /></Flex>}>
 							<Routes>
 								<Route path="/selectRole" element={<SelectRole />} />
 								<Route path="/loginStudent" element={<LoginStudent />} />
@@ -471,6 +525,7 @@ let App = () => {
 								<Route path='/' element={<BlankPage />} />
 								<Route path="*" element={<NotFound />} />
 							</Routes>
+							</Suspense>
 						</Flex>
 					</Content>
 				</Layout>

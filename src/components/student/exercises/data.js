@@ -496,7 +496,7 @@ export const exercises = [
                 wordAudio: ["house", "isFor", "living"],
                 image: [
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/6964`,
-                    "/pictograms/is.webp",
+                    "/pictograms/isFor.webp",
                     `${process.env.REACT_APP_ARASAAC_URL}/pictograms/11605`
                 ]
             },
@@ -1065,9 +1065,9 @@ export const exercises = [
                 phraseKey: "fish-sea",
                 wordAudio: ["fish", "isIn", "sea"],
                 image: [
-                    `${process.env.REACT_APP_ARASAAC_URL}/pictograms/7252`,
+                    `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2520`,
                     "/pictograms/isIn.webp",
-                    `${process.env.REACT_APP_ARASAAC_URL}/pictograms/38270`
+                    `${process.env.REACT_APP_ARASAAC_URL}/pictograms/2925`
                 ]
             },
             {

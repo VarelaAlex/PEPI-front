@@ -87,8 +87,10 @@ const HowToDoExercises = () => {
 					<div style={{ textAlign: "center" }}>
 						<video
 							src={selectedVideoData.videoSrc}
+							poster={selectedVideoData.thumbnail}
 							controls
 							muted
+							preload="none"
 							style={{
 								width: "100%",
 								maxHeight: "600px",

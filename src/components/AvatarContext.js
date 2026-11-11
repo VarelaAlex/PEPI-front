@@ -4,6 +4,7 @@ import {runWithLock} from "../services/runWithLock";
 import {isAudioLocked, setAudioLocked} from "../services/audioLock.js";
 
 const AvatarContext = createContext();
+const AUDIO_PLAYBACK_TIMEOUT_MS = 15000;
 
 export const AvatarProvider = ({ children }) => {
     const [emotion, setEmotion] = useState("neutral");
@@ -13,7 +14,9 @@ export const AvatarProvider = ({ children }) => {
     const [isBusy, setIsBusy] = useState(false);
 
     const audioRef = useRef(null);
+    const finishAudioRef = useRef(null);
     const isPlayingRef = useRef(false);
+    const sequenceIdRef = useRef(0);
     const playAudioByKey = usePlayAudio({ bypassLock: true });
 
     const setAudioLock = (locked) => {
@@ -24,37 +27,59 @@ export const AvatarProvider = ({ children }) => {
         return new Promise(resolve => {
             if (!audioKey || !voiceEnabled) return resolve();
 
+            finishAudioRef.current?.();
             if (audioRef.current) {
                 audioRef.current.pause();
             }
 
-            // Bloquear audios desde otros componentes
             setAudioLock(true);
 
-            const audio = playAudioByKey(audioKey);
-            audioRef.current = audio;
-
-            if (!audio) {
+            let audio = null;
+            let settled = false;
+            const finish = () => {
+                if (settled) return;
+                settled = true;
+                clearTimeout(timeout);
+                if (audio) {
+                    audio.onended = null;
+                    audio.onerror = null;
+                }
+                if (finishAudioRef.current === finish) {
+                    finishAudioRef.current = null;
+                }
                 setAudioLock(false);
-                return resolve();
+                resolve();
+            };
+            const timeout = setTimeout(() => {
+                audio?.pause();
+                finish();
+            }, AUDIO_PLAYBACK_TIMEOUT_MS);
+
+            try {
+                audio = playAudioByKey(audioKey, finish);
+            } catch (error) {
+                console.warn(`Could not start avatar audio "${audioKey}":`, error);
+                finish();
+                return;
             }
 
-            audio.onended = () => {
-                setAudioLock(false);
-                resolve();
-            };
-
-            audio.onerror = () => {
-                setAudioLock(false);
-                resolve();
-            };
+            if (!audio || settled) return finish();
+            audioRef.current = audio;
+            finishAudioRef.current = finish;
+            audio.onended = finish;
+            audio.onerror = finish;
         });
     };
 
     const stopAudio = () => {
+        finishAudioRef.current?.();
         if (audioRef.current) {
             audioRef.current.pause();
-            audioRef.current.currentTime = 0;
+            try {
+                audioRef.current.currentTime = 0;
+            } catch (error) {
+                console.warn("Could not reset stopped avatar audio:", error);
+            }
             audioRef.current = null;
         }
 
@@ -66,6 +91,7 @@ export const AvatarProvider = ({ children }) => {
         }
 
         isPlayingRef.current = false;
+        sequenceIdRef.current += 1;
     };
 
     const changeEmotionSequence = async (sequence = []) => {
@@ -73,38 +99,45 @@ export const AvatarProvider = ({ children }) => {
         if (isPlayingRef.current) return;
 
         isPlayingRef.current = true;
-        await runWithLock(setIsBusy, async () => {
-            for (const step of sequence) {
-                if (!isPlayingRef.current) break;
+        const sequenceId = ++sequenceIdRef.current;
+        try {
+            await runWithLock(setIsBusy, async () => {
+                for (const step of sequence) {
+                    if (sequenceIdRef.current !== sequenceId) break;
 
-                const {
-                    audio,
-                    text,
-                    emotionDuring = "neutral",
-                    emotionAfter = "neutral",
-                    afterDelay = 500,
-                    onStart,
-                    onEnd
-                } = step;
+                    const {
+                        audio,
+                        text,
+                        emotionDuring = "neutral",
+                        emotionAfter = "neutral",
+                        afterDelay = 500,
+                        onStart,
+                        onEnd
+                    } = step;
 
-                if (visible) setEmotion(emotionDuring);
-                setSpeech(text || null);
+                    if (visible) setEmotion(emotionDuring);
+                    setSpeech(text || null);
 
-                onStart?.();
+                    onStart?.();
 
-                await playAudio(audio);
+                    await playAudio(audio);
+                    if (sequenceIdRef.current !== sequenceId) break;
 
-                if (visible) setEmotion(emotionAfter);
+                    if (visible) setEmotion(emotionAfter);
+                    setSpeech(null);
+
+                    await new Promise(res => setTimeout(res, afterDelay));
+
+                    onEnd?.();
+                }
+            });
+        } finally {
+            if (sequenceIdRef.current === sequenceId) {
+                if (visible) setEmotion("neutral");
                 setSpeech(null);
-
-                await new Promise(res => setTimeout(res, afterDelay));
-
-                onEnd?.();
+                isPlayingRef.current = false;
             }
-        });
-
-        if (visible) setEmotion("neutral");
-        isPlayingRef.current = false;
+        }
     };
 
     // Funciones para controlar visibilidad y voz

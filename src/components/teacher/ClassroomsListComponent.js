@@ -3,7 +3,6 @@ import {Alert, Button, Card, Cascader, Divider, Empty, Form, Input, Popconfirm, 
 import {useEffect, useState, useRef} from "react";
 import {useTranslation} from "react-i18next";
 import {Link, useNavigate} from "react-router-dom";
-import ExcelJS from "exceljs";
 import TeacherBreadcrumb from "./BreadcrumbComponent";
 
 let ClassroomsList = (props) => {
@@ -77,6 +76,7 @@ let ClassroomsList = (props) => {
                 "Código encuesta": row.surveyCode,
             }));
 
+            const {default: ExcelJS} = await import("exceljs");
             // Crear workbook
             const workbook = new ExcelJS.Workbook();
             const worksheet = workbook.addWorksheet("Informe");

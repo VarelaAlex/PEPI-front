@@ -39,6 +39,42 @@ const ENABLED = !(
 let tracker = null;
 let activeScene = null;
 let starting = null;
+let html2CanvasLoad = null;
+
+function installLazyHtml2Canvas() {
+    if (typeof window.html2canvas === "function") return;
+
+    window.html2canvas = (...args) => {
+        if (!html2CanvasLoad) {
+            html2CanvasLoad = new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.src = `${process.env.PUBLIC_URL || ""}/html2canvas.js`;
+                script.async = true;
+                script.onload = () => {
+                    if (typeof window.html2canvas !== "function") {
+                        html2CanvasLoad = null;
+                        reject(new Error("html2canvas did not expose its API"));
+                        return;
+                    }
+                    resolve(window.html2canvas);
+                };
+                script.onerror = () => {
+                    html2CanvasLoad = null;
+                    reject(new Error("Failed to load html2canvas"));
+                };
+                document.head.appendChild(script);
+            });
+        }
+
+        return html2CanvasLoad.then(
+            (html2canvas) => html2canvas(...args),
+            (error) => {
+                html2CanvasLoad = null;
+                throw error;
+            }
+        );
+    };
+}
 
 // Serializa las operaciones de escena: evita carreras con StrictMode,
 // efectos que se desmontan y montan, dobles clics, etc.
@@ -131,6 +167,7 @@ export async function startExperiment(accountId, studentId = accountId) {
             clearSessionIds();                // otra cuenta: sessionId nuevo
             localStorage.setItem(ACCOUNT_KEY, String(accountId));
         }
+        installLazyHtml2Canvas();
         tracker = await import("./tracker-agent");
         await tracker.startExperiment();
         if (studentId !== undefined && studentId !== null) {

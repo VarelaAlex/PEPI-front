@@ -1,6 +1,5 @@
 import {DownloadOutlined} from "@ant-design/icons";
 import {Alert, Button} from "antd";
-import ExcelJS from "exceljs";
 import {useState} from "react";
 import {useTranslation} from "react-i18next";
 
@@ -94,6 +93,7 @@ const FeedbackExportButton = ({scope, id, name}) => {
                 throw new Error(t("feedbackExport.empty"));
             }
 
+            const {default: ExcelJS} = await import("exceljs");
             const workbook = new ExcelJS.Workbook();
             const worksheet = workbook.addWorksheet("Feedback");
             worksheet.columns = columnKeys.map((key, index) => ({

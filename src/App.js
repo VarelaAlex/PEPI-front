@@ -275,11 +275,11 @@ let App = () => {
 							}
 						}
 					);
-						if (localStorage.getItem("refreshToken") !== refreshToken) {
-							return false;
-						}
-						if (response.status === 401 || response.status === 403) {
-							disconnect();
+					if (localStorage.getItem("refreshToken") !== refreshToken) {
+						return false;
+					}
+					if (response.status === 401 || response.status === 403) {
+						disconnect();
 						navigate('/selectRole');
 						return false;
 					}
@@ -488,68 +488,130 @@ let App = () => {
 					<Content style={{ overflowY: "auto", ...paperBg }}>
 						<Flex align="center" justify="center" style={{ minHeight: "100%" }}>
 							<Suspense fallback={<Flex align="center" justify="center" style={{ minHeight: "50vh", width: "100%" }}><Spin size="large" /></Flex>}>
-							<Routes>
-								<Route path="/selectRole" element={<SelectRole />} />
-								<Route path="/loginStudent" element={<LoginStudent />} />
-								<Route path="/funding" element={<Funding />} />
-								<Route path="/aboutEPI" element={<AboutEPI />} />
-								<Route path="/exerciseDnD/phase1/:trainingMode" element={<DnDPhase1 />} />
-								<Route path="/exerciseDnD/phase2/:trainingMode" element={<DnDPhase2 />} />
-								<Route path="/exerciseType/phase1/:trainingMode" element={<TypePhase1 />} />
-								<Route path="/exerciseType/phase2/:trainingMode" element={<TypePhase2 />} />
-								<Route path="/students/exercises/free" element={<ExercisesCarousel />} />
-								<Route path="/students/exercises/ruled" element={<ClosedExercisesSelector />} />
-								<Route path="/students/trainingMode" element={<SelectTrainingMode />} />
-								<Route path="/students/selectMode" element={<SelectMode />} />
-								<Route path="/students/pretraining/block/1/activity/:activity" element={<PictogramActivity key={location.pathname} />} />
-								<Route path="/students/pretraining/block/2/activity/:activity" element={<PhrasesActivity key={location.pathname} />} />
-								<Route path="/students/pretraining/block/3/activity/1" element={<SentenceNetwork />} />
-								<Route path="/students/pretraining/block/3/activity/2" element={<SentenceNetworkSequential />} />
-								<Route path="/students/pretraining/" element={<SelectPhase />} />
-								<Route path="/students/howTo" element={<HowToDoExercises />} />
-								<Route path="/loginTeacher" element={<LoginTeacher />} />
-								<Route path="/registerTeacher" element={<SignupTeacher />} />
-								<Route path="/teachers/menuTeacher" element={<ClassroomsList isMobile={isMobile} />} />
-								<Route path="/teachers/classrooms/:classroomName" element={<ClassroomDetail isMobile={isMobile} setStudentName={setStudentName} />} />
-								<Route path="/teachers/:classroomName/students/:studentId" element={<StudentDetail />} />
-								<Route path="/teachers/classrooms/:classroomName/students" element={<CreateStudent />} />
-								<Route path="/teachers/manageExercises" element={<ExercisesList />} />
-								<Route path="/teachers/create" element={<CreateExercise isMobile={isMobile} />} />
-								<Route path="/teachers/exercise/:exerciseId/edit" element={<EditExercise />} />
-								<Route path='/teachers/profile' element={<Profile />} />
-								<Route path='/teachers/classroomStats/:classroomName' element={<ClassroomStatistics />} />
-								<Route path='/teachers/studentStats/:studentId' element={<StudentStatistics studentName={studentName} />} />
-								<Route path='/teachers/:classroomName/students/:studentId/surveys/A' element={<SurveyA />} />
-								<Route path='/teachers/:classroomName/students/:studentId/surveys/B' element={<SurveyB />} />
-								<Route path='/teachers/aboutEPI' element={<AboutEPI />} />
-								<Route path='/' element={<BlankPage />} />
-								<Route path="*" element={<NotFound />} />
-							</Routes>
+								<Routes>
+									<Route path="/selectRole" element={<SelectRole />} />
+									<Route path="/loginStudent" element={<LoginStudent />} />
+									<Route path="/funding" element={<Funding />} />
+									<Route path="/aboutEPI" element={<AboutEPI />} />
+									<Route path="/exerciseDnD/phase1/:trainingMode" element={<DnDPhase1 />} />
+									<Route path="/exerciseDnD/phase2/:trainingMode" element={<DnDPhase2 />} />
+									<Route path="/exerciseType/phase1/:trainingMode" element={<TypePhase1 />} />
+									<Route path="/exerciseType/phase2/:trainingMode" element={<TypePhase2 />} />
+									<Route path="/students/exercises/free" element={<ExercisesCarousel />} />
+									<Route path="/students/exercises/ruled" element={<ClosedExercisesSelector />} />
+									<Route path="/students/trainingMode" element={<SelectTrainingMode />} />
+									<Route path="/students/selectMode" element={<SelectMode />} />
+									<Route path="/students/pretraining/block/1/activity/:activity" element={<PictogramActivity key={location.pathname} />} />
+									<Route path="/students/pretraining/block/2/activity/:activity" element={<PhrasesActivity key={location.pathname} />} />
+									<Route path="/students/pretraining/block/3/activity/1" element={<SentenceNetwork />} />
+									<Route path="/students/pretraining/block/3/activity/2" element={<SentenceNetworkSequential />} />
+									<Route path="/students/pretraining/" element={<SelectPhase />} />
+									<Route path="/students/howTo" element={<HowToDoExercises />} />
+									<Route path="/loginTeacher" element={<LoginTeacher />} />
+									<Route path="/registerTeacher" element={<SignupTeacher />} />
+									<Route path="/teachers/menuTeacher" element={<ClassroomsList isMobile={isMobile} />} />
+									<Route path="/teachers/classrooms/:classroomName" element={<ClassroomDetail isMobile={isMobile} setStudentName={setStudentName} />} />
+									<Route path="/teachers/:classroomName/students/:studentId" element={<StudentDetail />} />
+									<Route path="/teachers/classrooms/:classroomName/students" element={<CreateStudent />} />
+									<Route path="/teachers/manageExercises" element={<ExercisesList />} />
+									<Route path="/teachers/create" element={<CreateExercise isMobile={isMobile} />} />
+									<Route path="/teachers/exercise/:exerciseId/edit" element={<EditExercise />} />
+									<Route path='/teachers/profile' element={<Profile />} />
+									<Route path='/teachers/classroomStats/:classroomName' element={<ClassroomStatistics />} />
+									<Route path='/teachers/studentStats/:studentId' element={<StudentStatistics studentName={studentName} />} />
+									<Route path='/teachers/:classroomName/students/:studentId/surveys/A' element={<SurveyA />} />
+									<Route path='/teachers/:classroomName/students/:studentId/surveys/B' element={<SurveyB />} />
+									<Route path='/teachers/aboutEPI' element={<AboutEPI />} />
+									<Route path='/' element={<BlankPage />} />
+									<Route path="*" element={<NotFound />} />
+								</Routes>
 							</Suspense>
 						</Flex>
 					</Content>
 				</Layout>
-				{!shouldHideHeaderFooter && <Footer style={{ backgroundColor: "#001628", color: "white", padding: 10 }}>
-					<Flex align="center" justify="center" style={{ minHeight: "100%" }}>
-						<Text style={{ color: "white" }}>{t("footer.about", { heart: "\u2665" })} <Typography.Link
-							href="https://github.com/VarelaAlex" style={{ color: "white" }}
-							underline>Álex</Typography.Link> & <Typography.Link href="https://grupoadir.es/"
-								style={{ color: "white" }}
-								underline>ADIR</Typography.Link> · {t("footer.based")} <Typography.Link href="https://www.unioviedo.es/hyper/" style={{ color: "white" }}
-									underline>Hyper</Typography.Link></Text>
-						<Link to="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-							<Image
-								src="https://static.arasaac.org/images/by-nc-sa.svg"
-								alt="Creative Commons license CC BY-NC-SA"
-								title="ARASAAC creative commons license CC BY-NC-SA"
-								preview={false}
-								style={{ padding: "0px 10px" }}
-							/>
-						</Link>
-						<Typography.Link href="/funding" style={{ color: "white" }}
-							underline>{t("footer.funding")}</Typography.Link>
-					</Flex>
-				</Footer>}
+				{!shouldHideHeaderFooter &&
+					<Footer style={{ backgroundColor: "#001628", color: "white", padding: 10 }}>
+						<Flex vertical align="center" justify="center" style={{ minHeight: "100%", gap: "8px", textAlign: "center" }}>
+							<Flex align="center" justify="center" gap="8px" wrap="wrap">
+								<Text style={{ color: "white" }}>
+									<Trans
+										i18nKey="footer.arasaacText"
+										components={{
+											arasaacLink: (
+												<Typography.Link
+													href="http://www.arasaac.org"
+													target="_blank"
+													rel="noopener noreferrer"
+													style={{ color: "white" }}
+													underline
+												/>
+											)
+										}}
+									/>
+								</Text>
+								<a
+									href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{ display: "inline-flex", alignItems: "center" }}
+								>
+									<Image
+										src="https://static.arasaac.org/images/by-nc-sa.svg"
+										alt="Creative Commons license CC BY-NC-SA"
+										title="ARASAAC creative commons license CC BY-NC-SA"
+										preview={false}
+										style={{ height: "35px" }}
+									/>
+								</a>
+							</Flex>
+							<Flex align="center" justify="center" gap="10px" wrap="wrap">
+								<Text style={{ color: "white" }}>
+									<Trans
+										i18nKey="footer.credits"
+										values={{
+											heart: "\u2665",
+											year: new Date().getFullYear()
+										}}
+										components={{
+											alexLink: (
+												<Typography.Link
+													href="https://github.com/VarelaAlex"
+													target="_blank"
+													rel="noopener noreferrer"
+													style={{ color: "white" }}
+													underline
+												/>
+											),
+											adirLink: (
+												<Typography.Link
+													href="https://grupoadir.es/"
+													target="_blank"
+													rel="noopener noreferrer"
+													style={{ color: "white" }}
+													underline
+												/>
+											),
+											hyperLink: (
+												<Typography.Link
+													href="https://www.unioviedo.es/hyper/"
+													target="_blank"
+													rel="noopener noreferrer"
+													style={{ color: "white" }}
+													underline
+												/>
+											),
+											fundingLink: (
+												<Link
+													to="/funding"
+													style={{ color: "white", textDecoration: "underline" }}
+												/>
+											)
+										}}
+									/>
+								</Text>
+							</Flex>
+						</Flex>
+					</Footer>}
 			</Layout>
 			<TeacherHelpButton />
 		</>

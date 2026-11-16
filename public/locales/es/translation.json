@@ -19,9 +19,8 @@
     "syntactic": "Sintácticos",
     "semantic": "Semánticos",
     "footer": {
-        "about": "PEPI @ 2025 Hecho con {{heart}} por",
-        "based": "basado en",
-        "funding": "Financiación"
+        "arasaacText": "Los símbolos pictográficos utilizados son propiedad del Gobierno de Aragón y han sido creados por Sergio Palao para <arasaacLink>ARASAAC</arasaacLink>, que los distribuye bajo licencia",
+        "credits": "PEPI © 2024-{{year}} Hecho con {{heart}} por <alexLink>Álex</alexLink> y <adirLink>ADIR</adirLink> · basado en <hyperLink>Hyper</hyperLink> · <fundingLink>Financiación</fundingLink>"
     },
     "sider": {
         "teacher": {
@@ -1511,7 +1510,7 @@
                 },
                 {
                     "ref": "Cueli, M., Álvarez, A. I., Loew, S., González-Castro, P., y Rodríguez, C. (2020). Is organizing knowledge effective in primary education?",
-                    "url": "https://doi.org/10.1155/2020/887"
+                    "url": "https://doi.org/10.1155/2020/8879335"
                 }
             ]
         }
